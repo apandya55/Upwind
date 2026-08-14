@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "upwind"
+version = "0.1.0"
+description = "Local community air monitoring investigations and experimental scenario planning"
+readme = "README.md"
+license = "Apache-2.0"
+authors = [{ name = "Arnav Pandya" }]
+requires-python = ">=3.12,<3.13"
+dependencies = ["fastapi==0.141.1", "pydantic==2.13.4", "uvicorn==0.52.1"]
+
+[project.optional-dependencies]
+engine = ["numpy==2.3.5", "scipy==1.17.0", "pandas==2.2.3", "pyproj==3.7.2", "certifi>=2026.10.18"]
+dev = ["pytest==9.0.3", "httpx==0.28.1"]
+national-evaluation = ["rasterio>=1.4,<2"]
+
+[project.scripts]
+upwind = "upwind.cli:main"
+
+[project.urls]
+Repository = "https://github.com/apandya55/Upwind"
+Documentation = "https://github.com/apandya55/Upwind#readme"
+
+[tool.vercel]
+entrypoint = "api.index:app"
+
+[tool.setuptools.packages.find]
+where = ["backend"]
+include = ["upwind*"]
+
+[tool.pytest.ini_options]
+testpaths = ["backend/tests"]
