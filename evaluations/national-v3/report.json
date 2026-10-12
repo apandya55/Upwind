@@ -1,0 +1,982 @@
+{
+  "annual_completeness_comparison": {
+    "eligible_parameter_rows": {
+      "2024": 5448,
+      "2025": 5320
+    },
+    "interpretation": "2025 provisional archive currently contains 13 more complete site summaries than 2024, despite 128 fewer eligible standard/POC/event rows; it is a different site-year sample and not an independent prospective validation set.",
+    "site_count_change_2025_minus_2024": 13,
+    "unique_eligible_site_years": {
+      "2024": 894,
+      "2025": 907
+    }
+  },
+  "aqs_annual_audit": {
+    "2024": {
+      "archive_rows": 68956,
+      "completeness_indicator": [
+        "Y"
+      ],
+      "duplicate_poc_event_groups": 1364,
+      "duplicate_poc_event_rows": 4078,
+      "eligible_parameter_rows": 5448,
+      "event_selection_audit": {
+        "ambient_policy": "One summary per physical site POC: Events Included when exceptional-event data are present, otherwise No Events; event-excluded rows are never substituted for an ambient concentration.",
+        "ambient_policy_event_treatment_counts": {
+          "Events Included": 119,
+          "No Events": 1092
+        },
+        "ambient_policy_selected_poc_rows": 1211,
+        "event_type_definition_url": "https://aqs.epa.gov/aqsweb/airdata/FileFormats.html",
+        "legacy_fallback_multi_event_mean_absolute_within_site_range_ug_m3": 1.027425078125,
+        "legacy_fallback_multi_event_median_absolute_within_site_range_ug_m3": 0.5830289999999994,
+        "legacy_fallback_sites_with_multiple_event_treatments_averaged": 64,
+        "legacy_policy": "At site level, use No Events rows if any; otherwise average every event-treatment row.",
+        "legacy_sites_falling_back_to_event_rows": 78,
+        "legacy_sites_with_no_events_summary_preferred": 816,
+        "maximum_absolute_site_value_change_ug_m3": 3.615414666666668,
+        "mean_absolute_site_value_change_ug_m3": 0.034926281919143494,
+        "pocs_with_only_event_excluded_summaries": 0,
+        "site_years_with_changed_mean_vs_legacy": 80,
+        "site_years_without_ambient_poc": 0
+      },
+      "event_type_counts": {
+        "Concurred Events Excluded": 312,
+        "Events Excluded": 292,
+        "Events Included": 476,
+        "No Events": 4368
+      },
+      "max_pocs_per_site": 4,
+      "metric": [
+        "Quarterly Means of Daily Means"
+      ],
+      "observation_percent_max": 100.0,
+      "observation_percent_median": 98.0,
+      "observation_percent_min": 83.0,
+      "pollutant_standard_counts": {
+        "PM25 Annual 1997": 1370,
+        "PM25 Annual 2006": 1362,
+        "PM25 Annual 2012": 1357,
+        "PM25 Annual 2024": 1359
+      },
+      "rows_after_newest_standard_poc_event_deduplication": 1370,
+      "sites_with_multiple_event_types": 88,
+      "sites_with_multiple_pocs": 262,
+      "unique_physical_site_years": 894,
+      "units": [
+        "Micrograms/cubic meter (LC)"
+      ]
+    },
+    "2025": {
+      "archive_rows": 65709,
+      "completeness_indicator": [
+        "Y"
+      ],
+      "duplicate_poc_event_groups": 1334,
+      "duplicate_poc_event_rows": 3982,
+      "eligible_parameter_rows": 5320,
+      "event_selection_audit": {
+        "ambient_policy": "One summary per physical site POC: Events Included when exceptional-event data are present, otherwise No Events; event-excluded rows are never substituted for an ambient concentration.",
+        "ambient_policy_event_treatment_counts": {
+          "Events Included": 88,
+          "No Events": 1144
+        },
+        "ambient_policy_selected_poc_rows": 1232,
+        "event_type_definition_url": "https://aqs.epa.gov/aqsweb/airdata/FileFormats.html",
+        "legacy_fallback_multi_event_mean_absolute_within_site_range_ug_m3": 0.5322929375,
+        "legacy_fallback_multi_event_median_absolute_within_site_range_ug_m3": 0.18519749999999968,
+        "legacy_fallback_sites_with_multiple_event_treatments_averaged": 48,
+        "legacy_policy": "At site level, use No Events rows if any; otherwise average every event-treatment row.",
+        "legacy_sites_falling_back_to_event_rows": 58,
+        "legacy_sites_with_no_events_summary_preferred": 849,
+        "maximum_absolute_site_value_change_ug_m3": 1.2909544999999998,
+        "mean_absolute_site_value_change_ug_m3": 0.013841282157295109,
+        "pocs_with_only_event_excluded_summaries": 0,
+        "site_years_with_changed_mean_vs_legacy": 57,
+        "site_years_without_ambient_poc": 0
+      },
+      "event_type_counts": {
+        "Concurred Events Excluded": 212,
+        "Events Excluded": 180,
+        "Events Included": 352,
+        "No Events": 4576
+      },
+      "max_pocs_per_site": 4,
+      "metric": [
+        "Quarterly Means of Daily Means"
+      ],
+      "observation_percent_max": 100.0,
+      "observation_percent_median": 98.0,
+      "observation_percent_min": 82.0,
+      "pollutant_standard_counts": {
+        "PM25 Annual 1997": 1338,
+        "PM25 Annual 2006": 1332,
+        "PM25 Annual 2012": 1326,
+        "PM25 Annual 2024": 1324
+      },
+      "rows_after_newest_standard_poc_event_deduplication": 1338,
+      "sites_with_multiple_event_types": 68,
+      "sites_with_multiple_pocs": 266,
+      "unique_physical_site_years": 907,
+      "units": [
+        "Micrograms/cubic meter (LC)"
+      ]
+    }
+  },
+  "corrected_release_deployed_interval": {
+    "half_width_ug_m3": 4.122966999999999,
+    "interpretation": "Descriptive site-level OOF error band; it does not guarantee place-level or local coverage.",
+    "method": "symmetric empirical nearest-monitor spatial out-of-fold absolute residual quantile",
+    "nominal_level": 0.9,
+    "width_ug_m3": 8.245933999999998
+  },
+  "evaluation": {
+    "2024": {
+      "gaussian_kernel_ridge_150km": {
+        "distance_strata": {
+          "100-200km": {
+            "bias_ug_m3": 0.1502851773419276,
+            "distance_max_km": 200,
+            "distance_min_km": 100,
+            "mae_ug_m3": 1.5108507579000459,
+            "n": 136,
+            "r2_vs_training_mean": 0.006574240707212353,
+            "rmse_ug_m3": 2.203127774279438
+          },
+          "50-100km": {
+            "bias_ug_m3": -0.0024721216041396223,
+            "distance_max_km": 100,
+            "distance_min_km": 50,
+            "mae_ug_m3": 1.8317190016108769,
+            "n": 41,
+            "r2_vs_training_mean": -0.23207662691772724,
+            "rmse_ug_m3": 2.3458961199473203
+          },
+          "<=50km": {
+            "bias_ug_m3": -1.13952004915818,
+            "distance_max_km": 50,
+            "distance_min_km": 0,
+            "mae_ug_m3": 1.7107046815231084,
+            "n": 16,
+            "r2_vs_training_mean": 0.3185172936458729,
+            "rmse_ug_m3": 2.497404911334705
+          },
+          ">200km": {
+            "bias_ug_m3": 0.011574056768527087,
+            "distance_max_km": null,
+            "distance_min_km": 200,
+            "mae_ug_m3": 1.4660820672817785,
+            "n": 679,
+            "r2_vs_training_mean": -0.002508280321987355,
+            "rmse_ug_m3": 2.0290903744479327
+          }
+        },
+        "folds": {
+          "0": {
+            "metrics": {
+              "bias_ug_m3": 0.8287654686420207,
+              "mae_ug_m3": 1.9673732297701474,
+              "n": 47,
+              "r2_vs_training_mean": -0.6335019927654755,
+              "rmse_ug_m3": 2.4262623168314934
+            },
+            "n_test": 47,
+            "n_train": 825
+          },
+          "1": {
+            "metrics": {
+              "bias_ug_m3": 0.3670910564278196,
+              "mae_ug_m3": 1.0389438185305369,
+              "n": 415,
+              "r2_vs_training_mean": 0.01896469843581705,
+              "rmse_ug_m3": 1.3201069802018532
+            },
+            "n_test": 415,
+            "n_train": 457
+          },
+          "2": {
+            "metrics": {
+              "bias_ug_m3": -1.5585725055370385,
+              "mae_ug_m3": 2.3344600779379725,
+              "n": 238,
+              "r2_vs_training_mean": 0.01704163780368162,
+              "rmse_ug_m3": 3.080670378241485
+            },
+            "n_test": 238,
+            "n_train": 634
+          },
+          "3": {
+            "metrics": {
+              "bias_ug_m3": 1.5132922087017957,
+              "mae_ug_m3": 1.6442614865915943,
+              "n": 38,
+              "r2_vs_training_mean": -0.15357012264773262,
+              "rmse_ug_m3": 1.954460276600887
+            },
+            "n_test": 38,
+            "n_train": 834
+          },
+          "4": {
+            "metrics": {
+              "bias_ug_m3": 0.9858528196675982,
+              "mae_ug_m3": 1.2067576059706093,
+              "n": 134,
+              "r2_vs_training_mean": 0.16580690450380198,
+              "rmse_ug_m3": 1.678059943788721
+            },
+            "n_test": 134,
+            "n_train": 738
+          }
+        },
+        "pooled_out_of_fold": {
+          "bias_ug_m3": 0.011426480380769972,
+          "mae_ug_m3": 1.4947444733132447,
+          "n": 872,
+          "r2_vs_training_mean": 0.00040056112025166346,
+          "rmse_ug_m3": 2.082342190010973
+        }
+      },
+      "gaussian_kernel_ridge_150km_plus_prism_tmean": {
+        "distance_strata": {
+          "100-200km": {
+            "bias_ug_m3": 0.07700253495784268,
+            "distance_max_km": 200,
+            "distance_min_km": 100,
+            "mae_ug_m3": 1.308429352871415,
+            "n": 136,
+            "r2_vs_training_mean": 0.21700614039170119,
+            "rmse_ug_m3": 1.9559203047550016
+          },
+          "50-100km": {
+            "bias_ug_m3": 0.09833763775903732,
+            "distance_max_km": 100,
+            "distance_min_km": 50,
+            "mae_ug_m3": 1.7544958223369536,
+            "n": 41,
+            "r2_vs_training_mean": -0.16517066553293325,
+            "rmse_ug_m3": 2.2813120194385483
+          },
+          "<=50km": {
+            "bias_ug_m3": -1.0666412595170445,
+            "distance_max_km": 50,
+            "distance_min_km": 0,
+            "mae_ug_m3": 1.670989191168693,
+            "n": 16,
+            "r2_vs_training_mean": 0.390278918055463,
+            "rmse_ug_m3": 2.362257016032948
+          },
+          ">200km": {
+            "bias_ug_m3": -0.10003891940774,
+            "distance_max_km": null,
+            "distance_min_km": 200,
+            "mae_ug_m3": 1.2880619963295015,
+            "n": 679,
+            "r2_vs_training_mean": 0.21450792626556037,
+            "rmse_ug_m3": 1.7960908895896281
+          }
+        },
+        "folds": {
+          "0": {
+            "metrics": {
+              "bias_ug_m3": 0.8721377315461121,
+              "mae_ug_m3": 1.8493075286207807,
+              "n": 47,
+              "r2_vs_training_mean": -0.5063953527985678,
+              "rmse_ug_m3": 2.3299542977187278
+            },
+            "n_test": 47,
+            "n_train": 825
+          },
+          "1": {
+            "metrics": {
+              "bias_ug_m3": 0.05699372129658845,
+              "mae_ug_m3": 0.856107749496456,
+              "n": 415,
+              "r2_vs_training_mean": 0.3043978766986001,
+              "rmse_ug_m3": 1.1115967267978515
+            },
+            "n_test": 415,
+            "n_train": 457
+          },
+          "2": {
+            "metrics": {
+              "bias_ug_m3": -1.0202795066420902,
+              "mae_ug_m3": 2.0324787873602026,
+              "n": 238,
+              "r2_vs_training_mean": 0.22131850337344816,
+              "rmse_ug_m3": 2.741937803825852
+            },
+            "n_test": 238,
+            "n_train": 634
+          },
+          "3": {
+            "metrics": {
+              "bias_ug_m3": 1.1513323569968315,
+              "mae_ug_m3": 1.4406012617997517,
+              "n": 38,
+              "r2_vs_training_mean": 0.15843925807984582,
+              "rmse_ug_m3": 1.6693506950390953
+            },
+            "n_test": 38,
+            "n_train": 834
+          },
+          "4": {
+            "metrics": {
+              "bias_ug_m3": 0.4771979609436226,
+              "mae_ug_m3": 1.2726542839286077,
+              "n": 134,
+              "r2_vs_training_mean": 0.22580687745463102,
+              "rmse_ug_m3": 1.6165860607284455
+            },
+            "n_test": 134,
+            "n_train": 738
+          }
+        },
+        "pooled_out_of_fold": {
+          "bias_ug_m3": -0.08083543409144615,
+          "mae_ug_m3": 1.3201956918265576,
+          "n": 872,
+          "r2_vs_training_mean": 0.2033695914827336,
+          "rmse_ug_m3": 1.8589492629756885
+        }
+      },
+      "nearest_monitor": {
+        "distance_strata": {
+          "100-200km": {
+            "bias_ug_m3": -0.11543667156862732,
+            "distance_max_km": 200,
+            "distance_min_km": 100,
+            "mae_ug_m3": 1.9784387598039217,
+            "n": 136,
+            "r2_vs_training_mean": -0.7887950560336843,
+            "rmse_ug_m3": 2.9563256401049602
+          },
+          "50-100km": {
+            "bias_ug_m3": 0.02746489430894313,
+            "distance_max_km": 100,
+            "distance_min_km": 50,
+            "mae_ug_m3": 2.2444632764227643,
+            "n": 41,
+            "r2_vs_training_mean": -1.1306546102199166,
+            "rmse_ug_m3": 3.08493803128501
+          },
+          "<=50km": {
+            "bias_ug_m3": -0.6740893125000003,
+            "distance_max_km": 50,
+            "distance_min_km": 0,
+            "mae_ug_m3": 1.5416133125,
+            "n": 16,
+            "r2_vs_training_mean": 0.5667246001156453,
+            "rmse_ug_m3": 1.991331472046169
+          },
+          ">200km": {
+            "bias_ug_m3": -0.6645579712812959,
+            "distance_max_km": null,
+            "distance_min_km": 200,
+            "mae_ug_m3": 1.784255505645557,
+            "n": 679,
+            "r2_vs_training_mean": -0.6272216623564428,
+            "rmse_ug_m3": 2.585120341756326
+          }
+        },
+        "folds": {
+          "0": {
+            "metrics": {
+              "bias_ug_m3": 0.4157290425531918,
+              "mae_ug_m3": 2.5826395106382978,
+              "n": 47,
+              "r2_vs_training_mean": -2.14206094184457,
+              "rmse_ug_m3": 3.365001179918662
+            },
+            "n_test": 47,
+            "n_train": 825
+          },
+          "1": {
+            "metrics": {
+              "bias_ug_m3": -0.28283660522088344,
+              "mae_ug_m3": 1.0738862514056224,
+              "n": 415,
+              "r2_vs_training_mean": -0.04644723173753751,
+              "rmse_ug_m3": 1.363406865278909
+            },
+            "n_test": 415,
+            "n_train": 457
+          },
+          "2": {
+            "metrics": {
+              "bias_ug_m3": -1.8733221743697475,
+              "mae_ug_m3": 2.9617277149859946,
+              "n": 238,
+              "r2_vs_training_mean": -0.5323258843935046,
+              "rmse_ug_m3": 3.846389326067317
+            },
+            "n_test": 238,
+            "n_train": 634
+          },
+          "3": {
+            "metrics": {
+              "bias_ug_m3": 3.254062710526316,
+              "mae_ug_m3": 3.407986500000001,
+              "n": 38,
+              "r2_vs_training_mean": -6.0417143388088,
+              "rmse_ug_m3": 4.828853723932609
+            },
+            "n_test": 38,
+            "n_train": 834
+          },
+          "4": {
+            "metrics": {
+              "bias_ug_m3": -0.4220850559701493,
+              "mae_ug_m3": 1.4613763619402984,
+              "n": 134,
+              "r2_vs_training_mean": -0.037005436885967136,
+              "rmse_ug_m3": 1.8709608152354413
+            },
+            "n_test": 134,
+            "n_train": 738
+          }
+        },
+        "pooled_out_of_fold": {
+          "bias_ug_m3": -0.5465523144113148,
+          "mae_ug_m3": 1.8317270263761465,
+          "n": 872,
+          "r2_vs_training_mean": -0.6337573946997832,
+          "rmse_ug_m3": 2.662152190545951
+        }
+      }
+    },
+    "2025": {
+      "gaussian_kernel_ridge_150km": {
+        "distance_strata": {
+          "100-200km": {
+            "bias_ug_m3": 0.07327164608884063,
+            "distance_max_km": 200,
+            "distance_min_km": 100,
+            "mae_ug_m3": 1.5015910600648033,
+            "n": 149,
+            "r2_vs_training_mean": -0.16978179527928305,
+            "rmse_ug_m3": 2.1843194120618374
+          },
+          "50-100km": {
+            "bias_ug_m3": -0.07639929446996643,
+            "distance_max_km": 100,
+            "distance_min_km": 50,
+            "mae_ug_m3": 1.7422828874964935,
+            "n": 35,
+            "r2_vs_training_mean": -0.04093507219280457,
+            "rmse_ug_m3": 2.264015607116736
+          },
+          "<=50km": {
+            "bias_ug_m3": -0.03066108183027847,
+            "distance_max_km": 50,
+            "distance_min_km": 0,
+            "mae_ug_m3": 1.4584027669264783,
+            "n": 25,
+            "r2_vs_training_mean": 0.12167357131087675,
+            "rmse_ug_m3": 2.034622763202775
+          },
+          ">200km": {
+            "bias_ug_m3": -0.12377983258358345,
+            "distance_max_km": null,
+            "distance_min_km": 200,
+            "mae_ug_m3": 1.3253256364244186,
+            "n": 673,
+            "r2_vs_training_mean": 0.01247454295614936,
+            "rmse_ug_m3": 1.7864785117570587
+          }
+        },
+        "folds": {
+          "0": {
+            "metrics": {
+              "bias_ug_m3": 1.3641588726554448,
+              "mae_ug_m3": 2.161599936153695,
+              "n": 39,
+              "r2_vs_training_mean": -0.79662532983047,
+              "rmse_ug_m3": 2.8809089606441223
+            },
+            "n_test": 39,
+            "n_train": 843
+          },
+          "1": {
+            "metrics": {
+              "bias_ug_m3": -0.25325913772138775,
+              "mae_ug_m3": 1.0005628374230102,
+              "n": 426,
+              "r2_vs_training_mean": 0.044006384510180796,
+              "rmse_ug_m3": 1.2790992254220264
+            },
+            "n_test": 426,
+            "n_train": 456
+          },
+          "2": {
+            "metrics": {
+              "bias_ug_m3": -0.6586545832855748,
+              "mae_ug_m3": 1.7737786567823375,
+              "n": 229,
+              "r2_vs_training_mean": -0.023784473940833717,
+              "rmse_ug_m3": 2.3402220741874777
+            },
+            "n_test": 229,
+            "n_train": 653
+          },
+          "3": {
+            "metrics": {
+              "bias_ug_m3": 1.240984090932084,
+              "mae_ug_m3": 1.440531033363985,
+              "n": 37,
+              "r2_vs_training_mean": 0.00658123671436095,
+              "rmse_ug_m3": 1.6959288676277962
+            },
+            "n_test": 37,
+            "n_train": 845
+          },
+          "4": {
+            "metrics": {
+              "bias_ug_m3": 0.5548002015227691,
+              "mae_ug_m3": 1.6098282424437718,
+              "n": 151,
+              "r2_vs_training_mean": 0.0855042893305874,
+              "rmse_ug_m3": 2.2441426462666936
+            },
+            "n_test": 151,
+            "n_train": 731
+          }
+        },
+        "pooled_out_of_fold": {
+          "bias_ug_m3": -0.08597149026498892,
+          "mae_ug_m3": 1.3754208520394886,
+          "n": 882,
+          "r2_vs_training_mean": -0.02237875620571761,
+          "rmse_ug_m3": 1.8873290657802009
+        }
+      },
+      "gaussian_kernel_ridge_150km_plus_prism_tmean": {
+        "distance_strata": {
+          "100-200km": {
+            "bias_ug_m3": 0.045489313588623924,
+            "distance_max_km": 200,
+            "distance_min_km": 100,
+            "mae_ug_m3": 1.4739143146557485,
+            "n": 149,
+            "r2_vs_training_mean": -0.11374918795026834,
+            "rmse_ug_m3": 2.131362971180294
+          },
+          "50-100km": {
+            "bias_ug_m3": -0.0729344002237736,
+            "distance_max_km": 100,
+            "distance_min_km": 50,
+            "mae_ug_m3": 1.7255691950530223,
+            "n": 35,
+            "r2_vs_training_mean": -0.03474571391405279,
+            "rmse_ug_m3": 2.2572746987899213
+          },
+          "<=50km": {
+            "bias_ug_m3": 0.004062636056880429,
+            "distance_max_km": 50,
+            "distance_min_km": 0,
+            "mae_ug_m3": 1.4316112964740695,
+            "n": 25,
+            "r2_vs_training_mean": 0.1590406296824206,
+            "rmse_ug_m3": 1.990872421813318
+          },
+          ">200km": {
+            "bias_ug_m3": -0.27085345785861864,
+            "distance_max_km": null,
+            "distance_min_km": 200,
+            "mae_ug_m3": 1.3446001204184714,
+            "n": 673,
+            "r2_vs_training_mean": 0.017010912024754354,
+            "rmse_ug_m3": 1.7823705395682046
+          }
+        },
+        "folds": {
+          "0": {
+            "metrics": {
+              "bias_ug_m3": 1.3675467501737193,
+              "mae_ug_m3": 2.1217714581134683,
+              "n": 39,
+              "r2_vs_training_mean": -0.7377315532745397,
+              "rmse_ug_m3": 2.8332971106673077
+            },
+            "n_test": 39,
+            "n_train": 843
+          },
+          "1": {
+            "metrics": {
+              "bias_ug_m3": -0.5305605928340301,
+              "mae_ug_m3": 1.0291060977213915,
+              "n": 426,
+              "r2_vs_training_mean": -0.05353946848889435,
+              "rmse_ug_m3": 1.3427715932971436
+            },
+            "n_test": 426,
+            "n_train": 456
+          },
+          "2": {
+            "metrics": {
+              "bias_ug_m3": -0.4837279395833115,
+              "mae_ug_m3": 1.7039129287330514,
+              "n": 229,
+              "r2_vs_training_mean": 0.041735472660436534,
+              "rmse_ug_m3": 2.26409949558691
+            },
+            "n_test": 229,
+            "n_train": 653
+          },
+          "3": {
+            "metrics": {
+              "bias_ug_m3": 1.1723046437027256,
+              "mae_ug_m3": 1.3916148671065733,
+              "n": 37,
+              "r2_vs_training_mean": 0.0728801515071077,
+              "rmse_ug_m3": 1.6383602135021569
+            },
+            "n_test": 37,
+            "n_train": 845
+          },
+          "4": {
+            "metrics": {
+              "bias_ug_m3": 0.4114258815731378,
+              "mae_ug_m3": 1.7078160457317564,
+              "n": 151,
+              "r2_vs_training_mean": 0.11259834720828377,
+              "rmse_ug_m3": 2.2106487301086357
+            },
+            "n_test": 151,
+            "n_train": 731
+          }
+        },
+        "pooled_out_of_fold": {
+          "bias_ug_m3": -0.20176599492126465,
+          "mae_ug_m3": 1.3840298391882602,
+          "n": 882,
+          "r2_vs_training_mean": -0.0063063706864199265,
+          "rmse_ug_m3": 1.872435347045709
+        }
+      },
+      "nearest_monitor": {
+        "distance_strata": {
+          "100-200km": {
+            "bias_ug_m3": -0.4563760973154364,
+            "distance_max_km": 200,
+            "distance_min_km": 100,
+            "mae_ug_m3": 2.090254140939597,
+            "n": 149,
+            "r2_vs_training_mean": -1.2035530943055854,
+            "rmse_ug_m3": 2.9979575271873773
+          },
+          "50-100km": {
+            "bias_ug_m3": -0.6213301571428572,
+            "distance_max_km": 100,
+            "distance_min_km": 50,
+            "mae_ug_m3": 1.9238666142857141,
+            "n": 35,
+            "r2_vs_training_mean": -0.2729738492955658,
+            "rmse_ug_m3": 2.503671448019866
+          },
+          "<=50km": {
+            "bias_ug_m3": -0.23370654000000018,
+            "distance_max_km": 50,
+            "distance_min_km": 0,
+            "mae_ug_m3": 1.5825727533333334,
+            "n": 25,
+            "r2_vs_training_mean": -0.021056619589052472,
+            "rmse_ug_m3": 2.193718189452814
+          },
+          ">200km": {
+            "bias_ug_m3": -0.2871054040366518,
+            "distance_max_km": null,
+            "distance_min_km": 200,
+            "mae_ug_m3": 1.6311210464338781,
+            "n": 673,
+            "r2_vs_training_mean": -0.4972120894409495,
+            "rmse_ug_m3": 2.1997093934884826
+          }
+        },
+        "folds": {
+          "0": {
+            "metrics": {
+              "bias_ug_m3": 1.0074761025641021,
+              "mae_ug_m3": 3.2305850256410253,
+              "n": 39,
+              "r2_vs_training_mean": -2.2244497653983117,
+              "rmse_ug_m3": 3.8594781174659083
+            },
+            "n_test": 39,
+            "n_train": 843
+          },
+          "1": {
+            "metrics": {
+              "bias_ug_m3": 0.10443476232394369,
+              "mae_ug_m3": 1.2911956962050077,
+              "n": 426,
+              "r2_vs_training_mean": -0.4562480385190786,
+              "rmse_ug_m3": 1.578681125734132
+            },
+            "n_test": 426,
+            "n_train": 456
+          },
+          "2": {
+            "metrics": {
+              "bias_ug_m3": -1.5508606703056769,
+              "mae_ug_m3": 2.4192999861717612,
+              "n": 229,
+              "r2_vs_training_mean": -0.9677286416200575,
+              "rmse_ug_m3": 3.2444075663923777
+            },
+            "n_test": 229,
+            "n_train": 653
+          },
+          "3": {
+            "metrics": {
+              "bias_ug_m3": 1.0063550405405401,
+              "mae_ug_m3": 1.3364646891891887,
+              "n": 37,
+              "r2_vs_training_mean": 0.05225681158239792,
+              "rmse_ug_m3": 1.6564822604469096
+            },
+            "n_test": 37,
+            "n_train": 845
+          },
+          "4": {
+            "metrics": {
+              "bias_ug_m3": -0.36211929911699764,
+              "mae_ug_m3": 1.566760984547461,
+              "n": 151,
+              "r2_vs_training_mean": 0.06117107761913965,
+              "rmse_ug_m3": 2.2738030917133814
+            },
+            "n_test": 151,
+            "n_train": 731
+          }
+        },
+        "pooled_out_of_fold": {
+          "bias_ug_m3": -0.32745033380574456,
+          "mae_ug_m3": 1.7189251491874529,
+          "n": 882,
+          "r2_vs_training_mean": -0.6060712175128635,
+          "rmse_ug_m3": 2.3655063569092682
+        }
+      }
+    }
+  },
+  "generated_utc": "2026-10-20T19:07:32Z",
+  "input_hashes": {
+    "aqs_2024": "8af92d1ec8ac9271babc84e3512cb2068e6a8849af438448c4170fd9e99ea5bb",
+    "aqs_2025": "7af948b3dcaf2d214e7d8fdcfb8ab7b4b6dd9865a43ead6f1e21955bcc326cb8",
+    "monitors.json": "d6911750d73d60820dd337083c18b02224dc858695a4f1c91a67d1601ef6fcb8",
+    "prism_2024": "2ee308e6f9054c6ed1d27511393ff436d5df1f515f1d9cb0634946a3c439d1a7",
+    "prism_2025": "0e89025ae8aed58bc41771da79806f641bb20d4846772d847bb04db667bf0b40"
+  },
+  "limitations": [
+    "All 2024 folds and provisional 2025 folds were inspected in prior development; none is an untouched final validation set.",
+    "PRISM is a retrospective environmental covariate. Its annual target-year grid cannot support an operational beginning-of-year prediction claim.",
+    "AQS rows are annual monitor summaries, not independent daily observations; event-treatment alternatives are reduced to one ambient summary per POC and the selected treatment, certification, completeness, and POC are retained in the source release.",
+    "The environmental candidate is a fixed one-feature linear mean plus fixed Gaussian residual; no broad parameter search was performed.",
+    "The former v0.2 builder selected No Events rows at site level, or averaged every event treatment when none existed. AQS identifies these as alternative event-adjusted summaries, not independent instruments. The corrected v0.3 build selects Events Included once per POC where exceptional-event data exist and No Events otherwise; it never substitutes event-excluded values for the ambient target. See the event_selection_audit for before/after row and value differences.",
+    "Monitor-site cross-validation does not establish accuracy at Census place points or local exposure."
+  ],
+  "predictor_audit": {
+    "2024": {
+      "bounds": [
+        -125.0208333333335,
+        24.062499999793495,
+        -66.4791666661985,
+        49.9375000000005
+      ],
+      "crs": "EPSG:4269",
+      "height": 621,
+      "info": "PRISM_DATASET_FILENAME: cai_tmax_us_us_30s_202401.bil, cai_tmin_us_us_30s_202401.bil, cai_tmax_us_us_30s_202402.bil, cai_tmin_us_us_30s_202402.bil, cai_tmax_us_us_30s_202403.bil, cai_tmin_us_us_30s_202403.bil, cai_tmax_us_us_30s_202404.bil, cai_tmin_us_us_30s_202404.bil, cai_tmax_us_us_30s_202405.bil, cai_tmin_us_us_30s_202405.bil, cai_tmax_us_us_30s_202406.bil, cai_tmin_us_us_30s_202406.bil, cai_tmax_us_us_30s_202407.bil, cai_tmin_us_us_30s_202407.bil, cai_tmax_us_us_30s_202408.bil, cai_tmin_us_us_30s_202408.bil, cai_tmax_us_us_30s_202409.bil, cai_tmin_us_us_30s_202409.bil, cai_tmax_us_us_30s_202410.bil, cai_tmin_us_us_30s_202410.bil, cai_tmax_us_us_30s_202411.bil, cai_tmin_us_us_30s_202411.bil, cai_tmax_us_us_30s_202412.bil, cai_tmin_us_us_30s_202412.bil\nPRISM_DATASET_CREATE_DATE: 20240716, 20240717, 20240810, 20240810, 20240915, 20240915, 20241018, 20241018, 20241119, 20241119, 20241216, 20241216, 20250117, 20250117, 20250216, 20250216, 20250318, 20250318, 20250416, 20250417, 20250516, 20250516, 20250614, 20250614\nPRISM_DATASET_TYPE: an91/r2112\nPRISM_DATASET_VERSION: M3\nPRISM_CODE_VERSION: 16.1-20220830-1154, 16.1-20220830-1154, 16.1-20220830-1154, 16.1-20220830-1154, 16.1-20220830-1154, 16.1-20230816-1307, 16.1-20230816-1307, 16.1-20230816-1307, 16.1-20230816-1307, 16.1-20230816-1307, 16.1-20230816-1307, 16.1-20230816-1307\nPRISM_DATASET_REMARKS: This grid was developed in four steps:  (1) tmin and tmax were initially modeled with PRISM at 30-arc-second (~800-m) resolution for each month of the year to produce the source grids listed under PRISM_DATASET_FILENAME, on the date(s) listed under PRISM_DATASET_CREATE_DATE; (2) these twelve monthly 800-m tmin and tmax grids were upscaled to 2.5-arc-minute (~4-km) resolution with a Gaussian filter; (3) the 4-km tmin and tmax grids were averaged to obtain twelve monthly 4-km mean temperature grids; and (4) the resulting twelve monthly 4-km grids were averaged to obtain a 4-km mean annual temperature grid.\n",
+      "n_finite": 872,
+      "n_missing": 22,
+      "n_rows": 894,
+      "nodata": -9999.0,
+      "tif_member": "prism_tmean_us_25m_2024.tif",
+      "transform": [
+        0.041666666667,
+        0.0,
+        -125.0208333333335,
+        0.0,
+        -0.041666666667,
+        49.9375000000005
+      ],
+      "width": 1405
+    },
+    "2025": {
+      "bounds": [
+        -125.0208333333335,
+        24.062499999793495,
+        -66.4791666661985,
+        49.9375000000005
+      ],
+      "crs": "EPSG:4269",
+      "height": 621,
+      "info": "PRISM_DATASET_FILENAME: prism_tmean_us_25m_2025.tif\nPRISM_DATASET_CREATE_DATE: 20260225-0857\nPRISM_SOURCE_FILENAME: cai_tmean_us_us_30s_202501.bil, cai_tmean_us_us_30s_202502.bil, cai_tmean_us_us_30s_202503.bil, cai_tmean_us_us_30s_202504.bil, cai_tmean_us_us_30s_202505.bil, cai_tmean_us_us_30s_202506.bil, cai_tmean_us_us_30s_202507.bil, cai_tmean_us_us_30s_202508.bil, cai_tmean_us_us_30s_202509.bil, cai_tmean_us_us_30s_202510.bil, cai_tmean_us_us_30s_202511.bil, cai_tmean_us_us_30s_202512.bil\nPRISM_SOURCE_CREATE_DATE: 20251120-1230, 20251120-1236, 20251120-1241, 20251017-2021, 20251116-2344, 20251217-0247, 20260116-1442, 20260216-0440, 20260216-0441, 20260216-0443, 20260216-0444, 20260216-0446\nPRISM_DATASET_TYPE: an91/r2112\nPRISM_DATASET_VERSION: M3\nPRISM_CODE_VERSION: 16.2-20250715-1813\nPRISM_DATASET_RELEASE_NUMBER: 3\nPRISM_DATASET_REMARKS: This grid was developed in four steps: (1) tmin and tmax data were modeled with PRISM at 30-arc-second (~800m) resolution to produce the source grid(s) listed under PRISM_SOURCE_FILENAME, on the date(s) listed under PRISM_SOURCE_CREATE_DATE; (2) These twelve monthly 800m grids were then upscaled to 2.5-arc-minute(~ 4km) resolution with a Gaussian filter; (3) The 4km tmin and tmax grids were averaged to obtain twelve monthly 4km mean temperature grids; and (4) The resulting twelve monthly 4km grids were averaged to obtain a 4km mean annual mean temperature grid.\n",
+      "n_finite": 882,
+      "n_missing": 25,
+      "n_rows": 907,
+      "nodata": -9999.0,
+      "tif_member": "prism_tmean_us_25m_2025.tif",
+      "transform": [
+        0.041666666667,
+        0.0,
+        -125.0208333333335,
+        0.0,
+        -0.041666666667,
+        49.9375000000005
+      ],
+      "width": 1405
+    }
+  },
+  "predictor_provenance": {
+    "access_date": "2026-10-20",
+    "downloaded_archives": {
+      "2024": {
+        "bytes": 2651255,
+        "file": "prism_tmean_us_25m_2024.zip",
+        "sha256": "2ee308e6f9054c6ed1d27511393ff436d5df1f515f1d9cb0634946a3c439d1a7"
+      },
+      "2025": {
+        "bytes": 2099940,
+        "file": "prism_tmean_us_25m_2025.zip",
+        "sha256": "0e89025ae8aed58bc41771da79806f641bb20d4846772d847bb04db667bf0b40"
+      }
+    },
+    "family": "PRISM AN M3 annual mean temperature",
+    "ftp_pattern": "https://ftp.prism.oregonstate.edu/time_series/us/an/4km/tmean/monthly/{year}/prism_tmean_us_25m_{year}.zip",
+    "license_summary": "PRISM Terms of Use state all gridded, polygon, tabular, and graphical data may be freely reproduced and distributed; references must state PRISM Group, URL, and access date.",
+    "resolution": "4 km / 2.5 arc-minute CONUS grid",
+    "source": "PRISM Group, Oregon State University",
+    "temporal_caveat": "Annual grids are retrospective and published after the target year; no real-time forecast or causal feature is claimed.",
+    "terms": "https://prism.oregonstate.edu/terms",
+    "units": "degrees Celsius",
+    "url": "https://prism.oregonstate.edu/"
+  },
+  "protocol": "UW-NATIONAL-SPATIAL-2026-04",
+  "selection": {
+    "deployed_model_unchanged": true,
+    "environmental_candidate_status": "descriptive_development_only; no deployment switch without untouched evaluation",
+    "fold_wins_vs_nearest": {
+      "2024": {
+        "gaussian_kernel_ridge_150km": 5,
+        "gaussian_kernel_ridge_150km_plus_prism_tmean": 5
+      },
+      "2025": {
+        "gaussian_kernel_ridge_150km": 3,
+        "gaussian_kernel_ridge_150km_plus_prism_tmean": 3
+      }
+    },
+    "rule": "The v2 Gaussian candidate must beat nearest monitor in at least four of five folds in both years; v3 does not alter that rule.",
+    "selected_model": "upwind-nearest-monitor-annual-pm25-0.2.0"
+  },
+  "site_identity_audit": {
+    "fold_definition": "v2 fixed SHA-256 10-degree coordinate cell; all rows for a physical AQS site inherit its fold",
+    "folds_assigned_once_per_site_id": true,
+    "site_ids_with_coordinate_changes": 0,
+    "site_year_rows": 6763,
+    "unique_physical_sites_all_years": 1161
+  },
+  "status": "development_only_previously_inspected_target_vintages",
+  "uncertainty": {
+    "2024": {
+      "gaussian_kernel_ridge_150km": {
+        "corrected_release_deployed_band": {
+          "band_ug_m3": 4.122966999999999,
+          "coverage": 0.9518348623853211,
+          "source": "corrected-data v3 nearest-monitor geographic OOF residual quantile",
+          "width_ug_m3": 8.245933999999998
+        },
+        "legacy_v2_band": {
+          "band_ug_m3": 4.059,
+          "coverage": 0.9506880733944955,
+          "source": "pre-correction v2 nearest-monitor geographic OOF residual quantile",
+          "width_ug_m3": 8.118
+        },
+        "n": 872,
+        "nominal_level": 0.9
+      },
+      "gaussian_kernel_ridge_150km_plus_prism_tmean": {
+        "corrected_release_deployed_band": {
+          "band_ug_m3": 4.122966999999999,
+          "coverage": 0.9621559633027523,
+          "source": "corrected-data v3 nearest-monitor geographic OOF residual quantile",
+          "width_ug_m3": 8.245933999999998
+        },
+        "legacy_v2_band": {
+          "band_ug_m3": 4.059,
+          "coverage": 0.9621559633027523,
+          "source": "pre-correction v2 nearest-monitor geographic OOF residual quantile",
+          "width_ug_m3": 8.118
+        },
+        "n": 872,
+        "nominal_level": 0.9
+      },
+      "nearest_monitor": {
+        "corrected_release_deployed_band": {
+          "band_ug_m3": 4.122966999999999,
+          "coverage": 0.8990825688073395,
+          "source": "corrected-data v3 nearest-monitor geographic OOF residual quantile",
+          "width_ug_m3": 8.245933999999998
+        },
+        "legacy_v2_band": {
+          "band_ug_m3": 4.059,
+          "coverage": 0.8944954128440367,
+          "source": "pre-correction v2 nearest-monitor geographic OOF residual quantile",
+          "width_ug_m3": 8.118
+        },
+        "n": 872,
+        "nominal_level": 0.9
+      }
+    },
+    "2025": {
+      "gaussian_kernel_ridge_150km": {
+        "corrected_release_deployed_band": {
+          "band_ug_m3": 4.122966999999999,
+          "coverage": 0.953514739229025,
+          "source": "corrected-data v3 nearest-monitor geographic OOF residual quantile",
+          "width_ug_m3": 8.245933999999998
+        },
+        "legacy_v2_band": {
+          "band_ug_m3": 4.059,
+          "coverage": 0.9512471655328798,
+          "source": "pre-correction v2 nearest-monitor geographic OOF residual quantile",
+          "width_ug_m3": 8.118
+        },
+        "n": 882,
+        "nominal_level": 0.9
+      },
+      "gaussian_kernel_ridge_150km_plus_prism_tmean": {
+        "corrected_release_deployed_band": {
+          "band_ug_m3": 4.122966999999999,
+          "coverage": 0.9614512471655329,
+          "source": "corrected-data v3 nearest-monitor geographic OOF residual quantile",
+          "width_ug_m3": 8.245933999999998
+        },
+        "legacy_v2_band": {
+          "band_ug_m3": 4.059,
+          "coverage": 0.9603174603174603,
+          "source": "pre-correction v2 nearest-monitor geographic OOF residual quantile",
+          "width_ug_m3": 8.118
+        },
+        "n": 882,
+        "nominal_level": 0.9
+      },
+      "nearest_monitor": {
+        "corrected_release_deployed_band": {
+          "band_ug_m3": 4.122966999999999,
+          "coverage": 0.9319727891156463,
+          "source": "corrected-data v3 nearest-monitor geographic OOF residual quantile",
+          "width_ug_m3": 8.245933999999998
+        },
+        "legacy_v2_band": {
+          "band_ug_m3": 4.059,
+          "coverage": 0.9308390022675737,
+          "source": "pre-correction v2 nearest-monitor geographic OOF residual quantile",
+          "width_ug_m3": 8.118
+        },
+        "n": 882,
+        "nominal_level": 0.9
+      }
+    }
+  }
+}

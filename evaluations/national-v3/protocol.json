@@ -1,0 +1,35 @@
+{
+  "protocol": "UW-NATIONAL-SPATIAL-2026-04",
+  "status": "predeclared_development_analysis_after_aqs_event_selection_repair",
+  "declared_before_model_run": true,
+  "dates": {
+    "run_date": "2026-10-20",
+    "data_access_date": "2026-10-20"
+  },
+  "data": {
+    "targets": "EPA AQS annual PM2.5 parameter 88101, annual standard, Quarterly Means of Daily Means, Completeness Indicator Y, Micrograms/cubic meter (LC). Select one summary per POC: Events Included when exceptional-event data are present, otherwise No Events. Event-excluded alternatives are not substituted for observed ambient concentration. Average selected colocated POCs once per physical site-year.",
+    "event_type_source": "EPA AirData file format definition: https://aqs.epa.gov/aqsweb/airdata/FileFormats.html",
+    "target_years": [2024, 2025],
+    "2024_role": "deployment-vintage development evidence; previously inspected",
+    "2025_role": "provisional AQS development evidence; previously inspected",
+    "geographic_split": "Reuse UW-NATIONAL-SPATIAL-2026-02 fixed 10-degree cells and SHA-256 fold assignment so site groups/folds are directly comparable; every physical AQS site ID maps to one fold across years.",
+    "environmental_predictor": "PRISM annual mean temperature (tmean, degrees Celsius), 4-km (~2.5 arc-minute) CONUS raster, same calendar year as target, AN M3 annual grid. Sample the containing pixel at EPA monitor coordinates transformed from EPSG:4326 to raster CRS. Sites without finite raster pixels are excluded from the common matched-row comparison for all candidates.",
+    "predictor_temporality": "Retrospective annual nowcast only. PRISM annual grids are released after year end and are not available at the beginning of the target year; no forecast claim is made.",
+    "license_and_access": "PRISM data freely reproducible/distributable under its Terms of Use; references must prominently state PRISM Group, Oregon State University, URL, and access date. Official FTP listing and terms verified on 2026-10-20."
+  },
+  "candidates": [
+    "nearest_monitor",
+    "gaussian_kernel_ridge_150km (fixed v2 candidate; ridge diagonal 1.0)",
+    "gaussian_kernel_ridge_150km_plus_prism_tmean_linear_mean (one environmental candidate; OLS intercept and temperature slope on training-fold rows only, standardize temperature using training-fold mean/std only, then Gaussian 150-km residual kernel ridge with diagonal 1.0)"
+  ],
+  "comparison": {
+    "same_rows": "For each year, all methods use only AQS site rows with valid same-year PRISM tmean pixels; identical rows, fold assignment, and training/test split are used for every method.",
+    "folds": 5,
+    "hyperparameter_search": "none",
+    "metrics": ["MAE", "RMSE", "signed bias", "fold-level metrics", "R2 vs training-fold mean", "error stratified by nearest held-out training monitor distance"],
+    "uncertainty": "Report observed coverage and interval width for both the retained pre-correction ±4.059 µg/m³ band and the corrected release's newly calculated 2024 nearest-monitor spatial OOF band on identical matched rows. Both are descriptive development coverage, not a local guarantee.",
+    "selection": "Apply the unchanged predeclared v2 rule: a Gaussian candidate must beat nearest-monitor MAE in at least four of five folds in both 2024 and provisional 2025. No final-evaluation status is implied because these target vintages were already inspected.",
+    "validation_status": "All 2024/2025 target vintages and geographic folds were previously inspected. Results are development evidence, not untouched validation. The 2025 archive is provisional."
+  },
+  "data_correction_hypothesis": "AQS defines Event Type as whether exceptional-event data are included or excluded, and says event rows are multiple records for each monitor. They are alternative calculations, not independent instruments. For an ambient historical target, the corrected preparation selects the inclusive observed value once per POC and only uses No Events where no event occurred. This changes data preparation but does not tune the model or selection rule."
+}
