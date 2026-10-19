@@ -14,9 +14,11 @@ from scipy.stats import qmc, truncnorm
 from .numerics import projector, plume
 from .quality import measurement_quality, select_rows
 from .campaign import observed_weather, assignment
-from .weather_evidence import weather_grid, WEATHER_CONFIG, wrap
+from .weather_evidence import joint_weather_grid, WEATHER_CONFIG, wrap
+from .source_grid import subdivide, location_summary
+from .gaussian_design import grouped_design
 
-MODEL_VERSION = "plume-weather-0.5.0"
+MODEL_VERSION = "plume-robust-0.6.0"
 CONFIG = {
     "weather_bias": WEATHER_CONFIG,
     "source_prior": 0.5,
@@ -34,6 +36,12 @@ CONFIG = {
     "cell_target_m": 20.0,
     "max_cells_axis": 24,
     "sensor_check_tail": 0.01,
+    "adaptive_target_mass": 0.9,
+    "adaptive_max_parents": 96,
+    "adaptive_min_width_m": 10.0,
+    "domain_edge_fraction": 0.1,
+    "domain_edge_mass_limit": 0.5,
+    "max_components": 2000000,
 }
 
 
@@ -161,6 +169,8 @@ def fit(
     spatial_order=None,
     weather_bias_sd=None,
     weather_step_deg=None,
+    _adaptive=True,
+    _cells=None,
 ):
     if not all(
         (
@@ -203,6 +213,11 @@ def fit(
         raise ValueError("Source hypothesis locations must be at least 1 m apart")
     source_xy, cells, cell_prior, continuous = source_cells(anchor_xy)
     original_area = float(np.prod(cells[:, 2:] - cells[:, :2], axis=1).sum())
+    if _cells is not None:
+        cells = _cells
+        source_xy = (cells[:, :2] + cells[:, 2:]) / 2
+        area = np.prod(cells[:, 2:] - cells[:, :2], axis=1)
+        cell_prior = area / area.sum()
     supported_cells = np.ones(len(cells), dtype=bool)
     # Known sensor coordinates are design information, even during a sensor-block
     # holdout. Fixing this support prevents validation from changing the location
@@ -322,11 +337,10 @@ def fit(
         + len(rows) * np.log(2 * np.pi)
     )
     if wind_uncertainty:
-        offsets, offset_prior, raw_scales, raw_speed_prior, weather_summary = (
-            weather_grid(
-                inv, tr, all_met, bias_sd=weather_bias_sd, step_deg=weather_step_deg
-            )
+        offsets, raw_scales, weather_components, weather_summary = joint_weather_grid(
+            inv, tr, all_met, bias_sd=weather_bias_sd, step_deg=weather_step_deg
         )
+        joint_prior = weather_components.sum(axis=0)
     else:
         # Existing internal known-weather mathematical oracle, never used by API.
         offsets = np.array([0.0])
@@ -338,6 +352,8 @@ def fit(
             / 0.3
         )
         raw_speed_prior = np.array(CONFIG["speed_prior"])
+        joint_prior = np.outer(offset_prior, raw_speed_prior)
+        weather_components = joint_prior[None]
         weather_summary = {
             "status": "diagnostic_fixed",
             "weather_warning": False,
@@ -345,35 +361,34 @@ def fit(
             "speed_comparison_factor": 1.0,
             "meaning": "Internal mathematical oracle: directional uncertainty disabled, not an operational weather verification.",
         }
+    signature_rows, signature_index = np.unique(np.column_stack((x,
+        [w.wind_speed_m_s for w in met], [w.wind_from_deg for w in met])), axis=0, return_inverse=True)
     if (
-        len(rows) * len(integration_xy) * len(offsets)
+        len(signature_rows) * len(integration_xy) * len(offsets)
         > WEATHER_CONFIG["max_design_entries"]
     ):
         raise ValueError(
             "Weather uncertainty exceeds the supported numerical workload for this study size. Reduce maximum fitted readings or supply appropriate independent wind comparisons; all raw readings are retained."
         )
     nominal = np.array([w.wind_speed_m_s for w in all_met] + [speed])
-    combined_scales = {}
-    for value, prob in zip(raw_scales, raw_speed_prior):
-        combined_scales[value] = combined_scales.get(value, 0) + prob
-    scale_prior = [
-        (s, p)
-        for s, p in combined_scales.items()
-        if np.all((nominal * s >= 0.8) & (nominal * s <= 8))
-    ]
-    scale_z = sum(p for _, p in scale_prior)
+    retained_speed = np.all((nominal[:, None] * raw_scales >= 0.8) & (nominal[:, None] * raw_scales <= 8), axis=0)
+    joint_prior = joint_prior[:, retained_speed]
+    weather_components = weather_components[:, :, retained_speed]
+    scale_z = joint_prior.sum()
     if not scale_z:
-        raise ValueError(
-            "No weather speed-bias scenarios remain within supported transport speeds."
-        )
-    configs = np.array(
-        [
-            (i, offset, s)
-            for i in range(len(integration_xy))
-            for offset in offsets
-            for s, _ in scale_prior
-        ]
-    )
+        raise ValueError("No weather speed-bias scenarios remain within supported transport speeds.")
+    joint_prior /= scale_z
+    weather_components /= scale_z
+    scales = raw_scales[retained_speed]
+    scale_prior = list(zip(scales, joint_prior.sum(axis=0)))
+    offset_prior = joint_prior.sum(axis=1)
+    weather_angle, weather_speed = np.nonzero(joint_prior > 0)
+    n_weather = len(weather_angle)
+    if len(integration_xy) * n_weather > CONFIG["max_components"]:
+        raise ValueError("Joint source/weather component count exceeds the supported numerical workload; retain raw data and reduce the study dimensions.")
+    configs = np.column_stack((np.repeat(np.arange(len(integration_xy)), n_weather),
+                               np.tile(offsets[weather_angle], len(integration_xy)),
+                               np.tile(scales[weather_speed], len(integration_xy))))
     integration_index = configs[:, 0].astype(int)
     cell_index = integration_cell[integration_index]
     dw, scale = configs[:, 1], configs[:, 2]
@@ -383,28 +398,21 @@ def fit(
     base_configs = np.array(
         [(i, offset) for i in range(len(integration_xy)) for offset in offsets]
     )
-    base_index = np.repeat(np.arange(len(base_configs)), len(scale_prior))
+    base_index = (np.arange(len(integration_xy))[:, None] * len(offsets) + weather_angle[None]).ravel()
     base_integration = base_configs[:, 0].astype(int)
     base_direction = base_configs[:, 1]
-    weather_prior = np.array(
-        [p / scale_z * op for op in offset_prior for _, p in scale_prior]
-    )
+    weather_prior = joint_prior[weather_angle, weather_speed]
     prior = (integration_prior[:, None] * weather_prior).ravel()
     g = plume_columns(
-        x,
-        integration_xy[base_integration],
-        np.array([w.wind_speed_m_s for w in met]),
-        np.array([w.wind_from_deg for w in met]),
-        base_direction,
-        inv.settings.source_height_m,
-        inv.settings.receptor_height_m,
+        signature_rows[:, :2], integration_xy[base_integration],
+        signature_rows[:, 2], signature_rows[:, 3], base_direction,
+        inv.settings.source_height_m, inv.settings.receptor_height_m,
     )
-    white_g = solve_triangular(chol, g, lower=True, check_finite=False)
+    norm, dot, inverse_basis = grouped_design(chol, signature_index, residual, g)
     tau = CONFIG["strength_halfnormal_scale_ug_s"] / scale
-    precision = 1 / tau**2 + np.sum(white_g**2, axis=0)[base_index]
+    precision = 1 / tau**2 + norm[base_index]
     q_sd = 1 / np.sqrt(precision)
-    q_mean = (white_g.T @ white_y)[base_index] / precision
-    del white_g
+    q_mean = dot[base_index] / precision
     log_source = (
         log_bg
         - 0.5 * np.log(precision * tau**2)
@@ -413,9 +421,11 @@ def fit(
         + log_ndtr(q_mean / q_sd)
     )
     qm, qv = positive_normal_moments(q_mean, q_sd)
+    log_prior = np.full_like(prior, -np.inf)
+    np.log(prior, out=log_prior, where=prior > 0)
     log_mass = np.r_[
         log_bg + np.log1p(-CONFIG["source_prior"]),
-        log_source + np.log(prior) + np.log(CONFIG["source_prior"]),
+        log_source + log_prior + np.log(CONFIG["source_prior"]),
     ]
     if background_only:
         log_mass[1:] = -np.inf
@@ -424,11 +434,44 @@ def fit(
     source_probability = float(np.clip(weights[1:].sum(), 0, 1))
     # Conditional source distribution remains defined even if its family mass underflows.
     conditional = np.exp(
-        log_source + np.log(prior) - logsumexp(log_source + np.log(prior))
+        log_source + log_prior - logsumexp(log_source + log_prior)
     )
     cell_weights = np.bincount(
         cell_index, weights=conditional, minlength=len(source_xy)
     )
+    quadrature = {"refined": False, "parents_split": 0, "coarse_cells": len(cells), "limitation": None}
+    if _adaptive and continuous and np.max(cells[:, 2:] - cells[:, :2]) > CONFIG["adaptive_min_width_m"]:
+        refined, count = subdivide(cells, cell_weights, target=CONFIG["adaptive_target_mass"], limit=CONFIG["adaptive_max_parents"])
+        nodes_per_cell = 4 if order == 2 else 1
+        if (len(signature_rows) * len(refined) * nodes_per_cell * len(offsets) <= WEATHER_CONFIG["max_design_entries"]
+            and len(refined) * nodes_per_cell * n_weather <= CONFIG["max_components"]):
+            coarse_count = len(cells)
+            # Drop the largest design before recursing; a second integration never
+            # holds two full plume matrices. Every coarse unselected cell remains.
+            del (g, configs, precision, q_mean, q_sd, qm, qv, weights,
+                 conditional, prior, log_source, log_mass, log_prior,
+                 base_configs, base_index, norm, dot)
+            result = fit(inv, diagnostics=diagnostics, background_only=background_only,
+                         wind_uncertainty=wind_uncertainty, spatial_order=spatial_order,
+                         weather_bias_sd=weather_bias_sd, weather_step_deg=weather_step_deg,
+                         _adaptive=False, _cells=refined)
+            result["quadrature_diagnostics"] = {"refined": True, "parents_split": count,
+                "coarse_cells": coarse_count, "final_cells": len(result["cells_xy"]), "limitation": None,
+                "meaning": "One posterior-directed subdivision; all unselected cells retain their area prior. Finite quadrature is not an accuracy guarantee."}
+            return result
+        quadrature["limitation"] = "Adaptive refinement exceeds the declared design workload; retained coarse integration. Reduce fitted rows or assess numerical sensitivity."
+    node_mass = conditional.reshape(len(integration_xy), n_weather).sum(axis=1)
+    location = location_summary(integration_xy, node_mass, cells, cell_weights,
+                                (anchor_xy.min(axis=0), anchor_xy.max(axis=0)), tr,
+                                edge_fraction=CONFIG["domain_edge_fraction"], edge_limit=CONFIG["domain_edge_mass_limit"])
+    # Attribute posterior weather mass by the actual joint prior responsibilities,
+    # never by selecting only the best source/weather pair.
+    posterior_pair_mass = conditional.reshape(len(integration_xy), n_weather).sum(axis=0)
+    posterior_weather = np.zeros_like(joint_prior)
+    posterior_weather[weather_angle, weather_speed] = posterior_pair_mass
+    responsibilities = np.divide(weather_components, joint_prior[None],
+        out=np.zeros_like(weather_components), where=joint_prior[None] > 0)
+    weather_summary["common_mode_posterior_probability"] = float(np.sum(posterior_weather * responsibilities[1])) if len(responsibilities) > 1 else 0.0
     nearest_anchor = np.argmin(
         np.linalg.norm(source_xy[:, None] - anchor_xy[None], axis=-1), axis=1
     )
@@ -441,10 +484,15 @@ def fit(
     anchor_weights = np.bincount(
         nearest_anchor, weights=cell_weights, minlength=len(anchors)
     )
-    inv_g = cho_solve((chol, True), g, check_finite=False)
+    inv_g = inverse_basis
     inv_y = cho_solve((chol, True), residual, check_finite=False)
 
-    def prediction_parts(
+    first_mass = np.bincount(base_index, weights=weights[1:] * qm, minlength=len(base_configs))
+    base_mass = np.bincount(base_index, weights=weights[1:], minlength=len(base_configs))
+    base_strength_mean = np.divide(first_mass, base_mass, out=np.zeros_like(first_mass), where=base_mass > 0)
+    within_mass = np.bincount(base_index, weights=weights[1:] * (qv + (qm - base_strength_mean[base_index])**2), minlength=len(base_configs))
+
+    def prediction_base(
         points, timestamps=None, sensor_ids=None, weather=None, uncertainties=None
     ):
         """Exact conditional predictive moments and residual strength signatures.
@@ -456,6 +504,8 @@ def fit(
         pts = [p if hasattr(p, "latitude") else type("Point", (), p)() for p in points]
         z = xy(pts)
         count = len(z)
+        if count * len(base_configs) > WEATHER_CONFIG["max_design_entries"]:
+            raise ValueError("Predictive transport design exceeds numerical workload; request fewer target points at once.")
         closest_target = np.maximum(
             np.maximum(
                 cells[None, :, :2] - z[:, None], z[:, None] - cells[None, :, 2:]
@@ -557,18 +607,20 @@ def fit(
                 inv.settings.source_height_m,
                 inv.settings.receptor_height_m,
             ).T
-            - (cross @ inv_g).T
+            - ((cross @ inv_g) @ g).T
         )
-        target_g = target_g[base_index]
-        means = np.vstack((base_mean, base_mean + qm[:, None] * target_g))
-        return means, base_cov, target_g
+        return base_mean, base_cov, target_g
 
     def predictive(
         points, timestamps=None, sensor_ids=None, weather=None, uncertainties=None
     ):
-        means, base_cov, target_g = prediction_parts(
+        if len(weights) * len(points)**2 > WEATHER_CONFIG["max_design_entries"]:
+            raise ValueError("Component predictive covariance exceeds numerical workload; use exact prediction_moments or predictive_draws instead.")
+        base_mean, base_cov, target_base = prediction_base(
             points, timestamps, sensor_ids, weather, uncertainties
         )
+        target_g = target_base[base_index]
+        means = np.vstack((base_mean, base_mean + qm[:, None] * target_g))
         covariances = np.concatenate(
             (
                 base_cov[None],
@@ -586,16 +638,15 @@ def fit(
         Avoid allocating K×d×d component covariances. This supports deterministic
         Bayes-linear prediction design; it is not exact nonlinear Bayes risk.
         """
-        means, base_cov, target_g = prediction_parts(
+        base_mean, base_cov, target_g = prediction_base(
             points, timestamps, sensor_ids, weather, uncertainties
         )
-        average = weights @ means
-        dev = means - average
-        total = (
-            base_cov
-            + (dev.T * weights) @ dev
-            + (target_g.T * (weights[1:] * qv)) @ target_g
-        )
+        increment = first_mass @ target_g
+        average = base_mean + increment
+        dev = base_strength_mean[:, None] * target_g - increment
+        total = (base_cov + (dev.T * base_mass) @ dev
+                 + (target_g.T * within_mass) @ target_g
+                 + weights[0] * np.outer(increment, increment))
         return average, (total + total.T) / 2
 
     def predictive_draws(
@@ -617,7 +668,7 @@ def fit(
             raise ValueError(
                 "Predictive samples must be a power of two between2 and8192"
             )
-        means, base, target_g = prediction_parts(
+        base_mean, base, target_g = prediction_base(
             points, timestamps, sensor_ids, weather, uncertainties
         )
         d = len(points)
@@ -628,7 +679,7 @@ def fit(
         cumulative = np.cumsum(weights)
         cumulative[-1] = 1
         component = np.searchsorted(cumulative, u[:, 0])
-        draw = means[component].copy()
+        draw = np.broadcast_to(base_mean, (samples, d)).copy()
         from scipy.special import ndtri
 
         draw += ndtri(u[:, 1 : d + 1]) @ np.linalg.cholesky(base).T
@@ -637,7 +688,7 @@ def fit(
         qdraw = truncnorm.ppf(
             u[source, -1], -q_mean[k] / q_sd[k], np.inf, loc=q_mean[k], scale=q_sd[k]
         )
-        draw[source] += (qdraw - qm[k])[:, None] * target_g[k]
+        draw[source] += qdraw[:, None] * target_g[base_index[k]]
         return draw
 
     def predictive_log_density(
@@ -653,22 +704,22 @@ def fit(
         Gaussian conditioning gives p(y|q>0)=p(y)*P(q>0|y)/P(q>0).
         These are marginal scores, not a product likelihood for correlated rows.
         """
-        means, base, h = prediction_parts(
+        base_mean, base, h = prediction_base(
             points, timestamps, sensor_ids, weather, uncertainties
         )
         values = np.asarray(observed, float)
         v = np.diag(base)[None]
         bg_log = -0.5 * (
-            np.log(2 * np.pi * np.diag(base)) + (values - means[0]) ** 2 / np.diag(base)
+            np.log(2 * np.pi * np.diag(base)) + (values - base_mean) ** 2 / np.diag(base)
         )
         result = np.log(max(weights[0], np.finfo(float).tiny)) + bg_log
         for begin in range(0, len(q_mean), 8192):
             s = slice(begin, begin + 8192)
-            hs = h[s]
+            hs = h[base_index[s]]
             qm0 = q_mean[s, None]
             qs = q_sd[s, None]
             variance = v + qs**2 * hs**2
-            residual_future = values[None] - means[0] - qm0 * hs
+            residual_future = values[None] - base_mean - qm0 * hs
             conditional_m = qm0 + qs**2 * hs / variance * residual_future
             conditional_sd = qs * np.sqrt(v / variance)
             source_log = (
@@ -693,8 +744,8 @@ def fit(
     )
     average = (
         base_average
-        + g @ effective_mean_mass
-        - latent_cov @ (inv_g @ effective_mean_mass)
+        + (g @ effective_mean_mass)[signature_index]
+        - latent_cov @ (inv_g @ (g @ effective_mean_mass))
     )
     rmse = float(np.sqrt(np.mean((average - y) ** 2)))
     candidate_distance = np.linalg.norm(site_xy[:, None] - corners[None], axis=-1)
@@ -721,12 +772,11 @@ def fit(
             f"node-{int(i)}-wind-{float(o).hex()}-speed-{float(s).hex()}"
             for i, o, s in configs
         ]
-    direction_mass = conditional.reshape(
-        len(integration_xy), len(offsets), len(scale_prior)
-    ).sum(axis=(0, 2))
-    node_direction = conditional.reshape(
-        len(integration_xy), len(offsets), len(scale_prior)
-    ).sum(axis=2)
+    node_pair_mass = conditional.reshape(len(integration_xy), n_weather)
+    node_direction = np.zeros((len(integration_xy), len(offsets)))
+    for j, angle_index in enumerate(weather_angle):
+        node_direction[:, angle_index] += node_pair_mass[:, j]
+    direction_mass = node_direction.sum(axis=0)
     direction_locations = np.divide(
         node_direction.T @ integration_xy,
         direction_mass[:, None],
@@ -758,11 +808,14 @@ def fit(
     )
     e = {
         "meteorology": weather_summary,
+        "location_estimate": location,
+        "quadrature_diagnostics": quadrature,
         "weather_grid": {
             "offsets": offsets,
             "direction_prior": offset_prior,
             "speed_scales": np.array([s for s, _ in scale_prior]),
-            "speed_prior": np.array([p / scale_z for _, p in scale_prior]),
+            "speed_prior": joint_prior.sum(axis=0),
+            "joint_prior": joint_prior,
         },
         "weights": weights,
         "groups": groups,
@@ -776,6 +829,7 @@ def fit(
         "continuous": continuous,
         "spatial_quadrature_order": order,
         "integration_points": len(integration_xy),
+        "transport_signature_groups": len(signature_rows),
         "projection": tr,
         "predictive": predictive,
         "prediction_moments": prediction_moments,
@@ -802,6 +856,7 @@ def fit(
         "profile_context": {
             "observed": y,
             "signatures": g,
+            "signature_index": signature_index,
             "times": t,
             "bg_times": bg_t,
             "window_ids": window_ids,
@@ -851,7 +906,9 @@ def sensor_diagnostics(inv, full_fit, usable):
 
 def region(fitted):
     w, cells = fitted["cell_weights"], fitted["cells_xy"]
-    order = np.argsort(-w, kind="stable")
+    areas = np.prod(cells[:, 2:] - cells[:, :2], axis=1)
+    density = np.divide(w, areas, out=w.copy(), where=areas > 0)
+    order = np.argsort(-density, kind="stable")
     chosen = order[: min(len(w), int(np.searchsorted(np.cumsum(w[order]), 0.9)) + 1)]
     areas = np.prod(cells[:, 2:] - cells[:, :2], axis=1)
     result = []

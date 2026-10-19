@@ -52,7 +52,7 @@ test("paired weather CSV retains independent readings, raw metadata and legacy a
     buffer: Buffer.from(JSON.stringify(saved)),
   });
   await expect(
-    page.getByText(/Previous analysis archived: weather uncertainty/),
+    page.getByText(/Previous analysis archived: joint common-mode weather/),
   ).toBeVisible();
   await expect(
     page.getByText(/1 previous model results retained/),

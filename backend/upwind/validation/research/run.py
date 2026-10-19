@@ -75,7 +75,9 @@ def source_metrics(f, state):
     truth = np.array(f["projection"].transform(p["longitude"], p["latitude"]))
     w = f["cell_weights"]
     cells = f["cells_xy"]
-    order = np.argsort(-w, kind="stable")
+    area = np.prod(cells[:, 2:] - cells[:, :2], axis=1)
+    density = np.divide(w, area, out=w.copy(), where=area > 0)
+    order = np.argsort(-density if "location_estimate" in f else -w, kind="stable")
     mode = int(order[0])
     chosen = order[: min(len(w), int(np.searchsorted(np.cumsum(w[order]), 0.9)) + 1)]
     area = np.prod(cells[:, 2:] - cells[:, :2], axis=1)
@@ -84,6 +86,10 @@ def source_metrics(f, state):
     fraction = float(area[chosen].sum() / area.sum())
     probability = f["source_probability"]
     present = state["source_present"]
+    mean = w @ f["source_xy"]
+    if "location_estimate" in f:
+        estimate = f["location_estimate"]["posterior_mean"]
+        mean = np.array(f["projection"].transform(estimate["longitude"], estimate["latitude"]))
     return {
         "source_probability": probability,
         "source_present": present,
@@ -91,7 +97,7 @@ def source_metrics(f, state):
         "map_error_m": float(np.linalg.norm(f["source_xy"][mode] - truth))
         if present
         else None,
-        "mean_error_m": float(np.linalg.norm(w @ f["source_xy"] - truth))
+        "mean_error_m": float(np.linalg.norm(mean - truth))
         if present
         else None,
         "prior_centroid_error_m": float(

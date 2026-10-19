@@ -148,7 +148,8 @@ def test_unobserved_plume_retains_area_prior_and_background_ambiguity():
 
     inv, _ = make_case("ambiguous", 110000)
     e = ensemble(inv)
-    assert np.allclose(e["cell_weights"], 1 / len(e["cell_weights"]))
+    area = np.prod(e["cells_xy"][:, 2:] - e["cells_xy"][:, :2], axis=1)
+    assert np.allclose(e["cell_weights"], area / area.sum())
     assert e["source_probability"] == pytest.approx(0.5)
     assert analyze(inv)["evidence_status"] == "ambiguous"
 

@@ -41,6 +41,12 @@ test("campaign example preserves periods, explains shared release and exports it
   await expect(page.getByLabel("Weather evidence")).toContainText(
     "not measured calibration",
   );
+  await expect(page.getByLabel("Source location uncertainty")).toContainText(
+    "Spatial RMS spread",
+  );
+  await expect(page.getByLabel("Weather evidence")).toContainText(
+    "Shared weather-error alternative",
+  );
   await page
     .getByText("Cross-period prediction checks", { exact: true })
     .click();

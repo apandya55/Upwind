@@ -285,7 +285,7 @@ def migrate_analysis(inv):
     if inv.result is not None and inv.result.get("model_version") != MODEL_VERSION:
         inv.archived_results = [inv.result] + inv.archived_results
         inv.result = None
-        note = "Previous analysis archived: weather uncertainty now includes unknown persistent station bias. Rerun the current model; narrow legacy settings/provenance alone no longer establish weather calibration. Original observations and raw imports are retained."
+        note = "Previous analysis archived: joint common-mode weather alternatives and adaptive area integration change scientific results. Rerun the current model; comparison metadata alone cannot verify calibration. Original observations and raw imports are retained."
         if note not in inv.compatibility_notes:
             inv.compatibility_notes.append(note)
     return inv

@@ -136,7 +136,10 @@ def diagnose_fit(fitted, noise):
             for column in ((labels == w).astype(float), (labels == w) * trend / 3600)
         ]
     )
-    prof = whiten_profile(c["observed"], c["signatures"], covariance, nuisance)
+    signatures = c["signatures"]
+    if "signature_index" in c:
+        signatures = signatures[c["signature_index"]]
+    prof = whiten_profile(c["observed"], signatures, covariance, nuisance)
     cell = c["source_cell_indices"]
     best = np.argmin(prof["loss"])
     minimum = np.full(len(fitted["source_xy"]), np.inf)

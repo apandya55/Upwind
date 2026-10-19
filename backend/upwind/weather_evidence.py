@@ -20,6 +20,9 @@ WEATHER_CONFIG = {
     "max_design_entries": 28000000,
     "max_comparisons": 128,
     "reference_max_age_s": 14 * 86400,
+    "common_mode_probability": 0.25,
+    "common_mode_direction_sd_deg": 20.0,
+    "common_mode_log_speed_sd": 0.2,
 }
 
 
@@ -283,3 +286,42 @@ def weather_grid(inv, projection, matched, *, bias_sd=None, step_deg=None):
         normal_tail_truncation="Finite approximately±3SD quadrature; not a hard bound on real weather errors.",
     )
     return center + delta, prior, scales, np.array([1 / 6, 2 / 3, 1 / 6]), summary
+
+
+def joint_weather_grid(inv, projection, matched, *, bias_sd=None, step_deg=None):
+    """Joint mixture, retaining correlation of calibration failure with speed.
+
+    A nominal reference comparison cannot rule out a common error shared by the
+    primary and reference. Integrate that alternative rather than inferring
+    verified independence from agreeing observations. The mixture probability
+    and extra scales are explicitly research assumptions, not fitted calibration.
+    """
+    offsets, ap, scales, sp, summary = weather_grid(
+        inv, projection, matched, bias_sd=bias_sd, step_deg=step_deg
+    )
+    probability = WEATHER_CONFIG["common_mode_probability"] if summary["comparison_count"] else 0.0
+    components = [(offsets, ap, scales, sp, 1 - probability)]
+    if probability:
+        sd = np.hypot(summary["total_direction_sd_deg"], WEATHER_CONFIG["common_mode_direction_sd_deg"])
+        step = min(WEATHER_CONFIG["direction_step_deg"] if step_deg is None else step_deg, sd / 2)
+        n = int(np.ceil(WEATHER_CONFIG["normal_extent_sd"] * sd / step))
+        delta = np.arange(-n, n + 1) * step
+        broad_ap = np.exp(-0.5 * (delta / sd)**2)
+        broad_ap /= broad_ap.sum()
+        log_sd = np.hypot(np.hypot(summary["persistent_log_speed_sd"], inv.settings.met_speed_fraction),
+                          WEATHER_CONFIG["common_mode_log_speed_sd"])
+        broad_scales = summary["speed_comparison_factor"] * np.exp(np.sqrt(3) * np.array([-1., 0., 1.]) * log_sd)
+        components.append((summary["direction_center_deg"] + delta, broad_ap, broad_scales, sp, probability))
+    # Repeated central nodes accumulate mass exactly; no rounding merges nearby
+    # but scientifically distinct uncertainty nodes.
+    angles = np.unique(np.concatenate([c[0] for c in components]))
+    speeds = np.unique(np.concatenate([c[2] for c in components]))
+    by_component = np.zeros((len(components), len(angles), len(speeds)))
+    for i, (a, p, s, q, weight) in enumerate(components):
+        by_component[i][np.ix_(np.searchsorted(angles, a), np.searchsorted(speeds, s))] += weight * np.outer(p, q)
+    summary.update(
+        common_mode_prior_probability=probability,
+        common_mode_meaning="Model-averaged common reference-error alternative; 25% prior and 20deg/0.2log-speed extra scales are uncalibrated research assumptions. Agreement cannot verify independence. All alternatives enter predictions and pollution plans; those plans do not purchase weather evidence.",
+        angular_nodes=len(angles),
+    )
+    return angles, speeds, by_component, summary

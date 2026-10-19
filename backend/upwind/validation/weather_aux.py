@@ -44,7 +44,10 @@ def profiles(f, inv):
             for column in ((labels == w).astype(float), (labels == w) * bg / 3600)
         ]
     )
-    prof = whiten_profile(c["observed"], c["signatures"], C, nuisance)
+    signatures = c["signatures"]
+    if "signature_index" in c:
+        signatures = signatures[c["signature_index"]]
+    prof = whiten_profile(c["observed"], signatures, C, nuisance)
     conf = c["configs"]
     rows = []
     best = float(np.min(prof["loss"]))

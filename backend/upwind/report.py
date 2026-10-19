@@ -78,6 +78,13 @@ def scientific_summary(result, esc):
             "Reproducible computation does not establish any of these scientific properties.</p>"
         )
     region = result.get("source_region90")
+    location = result.get("location_estimate")
+    if location:
+        pieces.append(
+            f"<p><strong>Conditional source uncertainty:</strong> spatial RMS {location['spatial_rms_m']:.1f} m; "
+            f"outer-domain-strip mass {100 * location['edge_mass']:.1f}%; domain limited: {esc(location['domain_limited'])}. "
+            f"{esc(location['meaning'])} Coordinates remain in the private JSON export.</p>"
+        )
     if region:
         pieces.append(
             f"<p>Conditional 90% model region: {region['area_m2'] / 1e6:.4f} km² "
@@ -155,6 +162,12 @@ def scientific_summary(result, esc):
     observation = result.get("observability")
     weather = result.get("meteorology_evidence")
     if weather:
+        if "common_mode_posterior_probability" in weather:
+            pieces.append(
+                f"<p>Shared weather-error alternative: prior {100 * weather.get('common_mode_prior_probability', 0):.1f}%; "
+                f"conditional source posterior {100 * weather['common_mode_posterior_probability']:.1f}%. "
+                f"{esc(weather.get('common_mode_meaning', ''))}</p>"
+            )
         pieces.append(
             "<h3>Weather accuracy and source ambiguity</h3>"
             f"<p>{'Independent comparison readings supplied; user-declared provenance.' if weather['status'] == 'comparison_supplied' else 'Weather accuracy UNKNOWN; no qualifying independent comparison.'} "

@@ -359,6 +359,7 @@ def _cached_analysis(payload, configuration=""):
         and source_region["area_m2"] < 0.5 * source_region["domain_area_m2"]
         and not predictive_warning
         and not weather_warning
+        and not e["location_estimate"]["domain_limited"]
     )
     evidence_status = (
         "model_mismatch"
@@ -368,6 +369,12 @@ def _cached_analysis(payload, configuration=""):
         else "ambiguous"
     )
     if e:
+        if e["location_estimate"]["domain_limited"]:
+            warnings.append(
+                "SEARCH DOMAIN LIMIT: at least half of conditional source mass lies in the outer 10% strip of the declared rectangle. Reconsider the search area with independent evidence; this result does not support localization within the chosen area. Edge mass cannot detect every source outside it."
+            )
+        if e["quadrature_diagnostics"].get("limitation"):
+            warnings.append(e["quadrature_diagnostics"]["limitation"])
         if weather_warning:
             warnings.append(
                 "WEATHER COMPARISON MISMATCH: paired weather evidence is inconsistent with a shared station correction or requires a direction change outside its supported local circular approximation. Source localization is not supported."
@@ -454,6 +461,8 @@ def _cached_analysis(payload, configuration=""):
         "observability": None if e is None else observability,
         "study_window_count": 0 if e is None else e["window_count"],
         "meteorology_evidence": None if e is None else e["meteorology"],
+        "location_estimate": None if e is None else e["location_estimate"],
+        "quadrature_diagnostics": None if e is None else e["quadrature_diagnostics"],
         "spatial_quadrature_order": None
         if e is None
         else e["spatial_quadrature_order"],

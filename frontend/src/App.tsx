@@ -63,6 +63,35 @@ function EvidenceDetails({ result }: { result: Result }) {
   );
   return (
     <div className="limits" aria-label="Scientific evidence details">
+      {result.location_estimate && (
+        <section aria-label="Source location uncertainty">
+          <h3>Source estimate and remaining uncertainty</h3>
+          <p>
+            Conditional posterior mean:{" "}
+            {result.location_estimate.posterior_mean.latitude.toFixed(5)},{" "}
+            {result.location_estimate.posterior_mean.longitude.toFixed(5)}.
+            Spatial RMS spread{" "}
+            {result.location_estimate.spatial_rms_m.toFixed(0)} m;
+            {(100 * result.location_estimate.edge_mass).toFixed(1)}% of source
+            mass is near the search boundary.
+          </p>
+          <p>{result.location_estimate.meaning}</p>
+          {result.location_estimate.domain_limited && (
+            <p role="alert">
+              The result depends strongly on the search boundary. Reconsider the
+              area before interpreting a source location.
+            </p>
+          )}
+          {result.quadrature_diagnostics && (
+            <p>
+              {result.quadrature_diagnostics.refined
+                ? `Adaptively refined ${result.quadrature_diagnostics.parents_split} source cells while retaining the rest of the search area.`
+                : "Finite source integration; no adaptive subdivision applied."}
+              {result.quadrature_diagnostics.limitation}
+            </p>
+          )}
+        </section>
+      )}
       {result.meteorology_evidence && (
         <section aria-label="Weather evidence">
           <h3>Weather accuracy and source ambiguity</h3>
@@ -104,6 +133,23 @@ function EvidenceDetails({ result }: { result: Result }) {
             </p>
           )}
           <p>{result.meteorology_evidence.meaning}</p>
+          {result.meteorology_evidence.common_mode_posterior_probability !==
+            undefined && (
+            <p>
+              Shared weather-error alternative: prior{" "}
+              {(
+                (result.meteorology_evidence.common_mode_prior_probability ??
+                  0) * 100
+              ).toFixed(1)}
+              %, conditional source posterior{" "}
+              {(
+                result.meteorology_evidence.common_mode_posterior_probability *
+                100
+              ).toFixed(1)}
+              %.
+              {result.meteorology_evidence.common_mode_meaning}
+            </p>
+          )}
           <p>{result.meteorology_evidence.additional_evidence}</p>
           {!!result.meteorology_evidence.comparisons_used?.length && (
             <details>

@@ -47,7 +47,25 @@ export interface Plan {
   seeds?: number;
 }
 export interface Result {
+  location_estimate?: {
+    posterior_mean: Point;
+    density_mode: Point;
+    spatial_rms_m: number;
+    edge_mass: number;
+    domain_limited: boolean;
+    meaning: string;
+  };
+  quadrature_diagnostics?: {
+    refined: boolean;
+    parents_split: number;
+    coarse_cells: number;
+    final_cells?: number;
+    limitation: string | null;
+  };
   meteorology_evidence?: {
+    common_mode_prior_probability?: number;
+    common_mode_posterior_probability?: number;
+    common_mode_meaning?: string;
     status: "unverified" | "comparison_supplied";
     comparison_count: number;
     comparisons_used?: {
