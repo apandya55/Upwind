@@ -1,0 +1,69 @@
+{
+  "policy": "Four active scientific inversion workers at a time to match four-CPU quota. Fixed nominal workers paused while main shards complete; no data/configuration changed. Wall times include suspension and contention and are not latency guarantees.",
+  "paused_utc": "2026-10-19T03:46:26.028976+00:00",
+  "paused_task_worker_pids": [
+    15858,
+    15860,
+    15862,
+    15866
+  ],
+  "resume_events": [
+    {
+      "shard": 2,
+      "pid": 15862,
+      "resumed_utc": "2026-10-19T04:19:10.341865+00:00",
+      "completed_main_shards": [
+        0
+      ],
+      "actual_shard_from_cmdline": 1,
+      "reported_shard_label_incorrect": true
+    },
+    {
+      "shard": 3,
+      "pid": 15866,
+      "resumed_utc": "2026-10-19T04:20:05.362189+00:00",
+      "completed_main_shards": [
+        0,
+        2
+      ],
+      "actual_shard_from_cmdline": 3,
+      "reported_shard_label_incorrect": false
+    },
+    {
+      "shard": 0,
+      "pid": 15858,
+      "resumed_utc": "2026-10-19T04:20:25.368602+00:00",
+      "completed_main_shards": [
+        0,
+        2,
+        3
+      ],
+      "actual_shard_from_cmdline": 0,
+      "reported_shard_label_incorrect": false
+    },
+    {
+      "shard": 1,
+      "pid": 15860,
+      "resumed_utc": "2026-10-19T04:20:35.372908+00:00",
+      "completed_main_shards": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "actual_shard_from_cmdline": 2,
+      "reported_shard_label_incorrect": true
+    }
+  ],
+  "mapping_correction": {
+    "utc": "2026-10-19T04:21:13.507833+00:00",
+    "explanation": "Parallel process creation order did not match shard order. Corrected scheduler labels using each actual --shard argument; task PIDs and scientific inputs/results were unchanged. Initial resume events retain their original labels plus verified actual labels.",
+    "actual_pid_to_shard": {
+      "15858": 0,
+      "15860": 2,
+      "15862": 1,
+      "15866": 3
+    }
+  },
+  "all_workers_complete_utc": "2026-10-19T04:24:53.786190+00:00"
+}

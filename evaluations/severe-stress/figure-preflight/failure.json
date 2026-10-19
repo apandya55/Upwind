@@ -1,0 +1,47 @@
+{
+  "error": "Matplotlib xerr must not contain negative values",
+  "cause": "Floating-point endpoint roundoff in the plotted Wilson errorbar lengths",
+  "details": [
+    {
+      "family": "characterized_nominal",
+      "count": 48,
+      "n": 48,
+      "value": 1.0,
+      "wilson95": [
+        0.9258973488472576,
+        0.9999999999999999
+      ]
+    },
+    {
+      "family": "direction_characterized",
+      "count": 48,
+      "n": 48,
+      "value": 1.0,
+      "wilson95": [
+        0.9258973488472576,
+        0.9999999999999999
+      ]
+    },
+    {
+      "family": "sensor_dropout",
+      "count": 48,
+      "n": 48,
+      "value": 1.0,
+      "wilson95": [
+        0.9258973488472576,
+        0.9999999999999999
+      ]
+    },
+    {
+      "family": "extreme_readings",
+      "count": 48,
+      "n": 48,
+      "value": 1.0,
+      "wilson95": [
+        0.9258973488472576,
+        0.9999999999999999
+      ]
+    }
+  ],
+  "repair": "Clamp plotting error lengths to zero; statistical JSON/intervals and scientific results unchanged"
+}

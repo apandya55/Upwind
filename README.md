@@ -4,7 +4,11 @@ A local investigation workspace for community **PM2.5 exploration and monitoring
 
 Current release: **plume-weather-0.5.0**. Read the [weather repair results](docs/WEATHER_BIAS_RESULTS.md), [engineering/scientific limits](docs/WEATHER_BIAS_IMPLEMENTATION.md), and [LLM continuation prompt](docs/UPWIND_LLM_EXPORT_PROMPT.md). Synthetic improvements do not establish operational attribution reliability.
 
-The [measured-data intake guide](docs/MEASURED_DATA_VALIDATION.md) documents the repaired EPA archive converter. The [readiness audit](docs/MEASURED_READINESS_AUDIT.md) explains why an inspected secondary Prairie Grass workbook cannot yet serve as a benchmark. Current backend suite:162tests pass; measured field accuracy remains unvalidated.
+The [measured-data intake guide](docs/MEASURED_DATA_VALIDATION.md) documents the repaired EPA archive converter. The [readiness audit](docs/MEASURED_READINESS_AUDIT.md) explains why an inspected secondary Prairie Grass workbook cannot yet serve as a benchmark. Current backend suite:181tests and8browser workflows pass; measured field accuracy remains unvalidated.
+
+## Latest stress results
+
+[Full severe stress report](docs/SEVERE_STRESS_RESULTS.md):1,440fresh synthetic attempts, no inference/prediction crashes, and a repaired JSON request-boundary defect. The model **failed the50moverall median precision target** (117moverall;35mamong accepted nominal cases). Hidden weather bias and other mismatches still produced17accepted wrong regions. This remains a research tool; passing software checks does not validate field attribution. [API repair details](docs/API_REQUEST_HARDENING.md).
 
 ## Run locally
 

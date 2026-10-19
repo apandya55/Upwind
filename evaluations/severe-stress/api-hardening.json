@@ -1,0 +1,25 @@
+{
+  "applied_after_frozen_runs_and_resources_complete": true,
+  "recorded_utc": "2026-10-19T04:28:29.545213+00:00",
+  "before_sha256": "8762f21ba05ae77263fd28631d96519b5381e0d47c5b4cea9a12b1bb05adc396",
+  "after_sha256": "a8ba845c7c0900c57a99b4275365a59d6501b27a6ce419e41c3b8d33ba3899ab",
+  "changed_frozen_paths": [
+    "backend/upwind/api.py"
+  ],
+  "all_other_frozen_paths_unchanged": true,
+  "model_configuration_unchanged": true,
+  "model_version_unchanged": "plume-weather-0.5.0",
+  "completion_evidence_sha256": {
+    "evaluations/severe-stress/shard-0/completion.json": "78d2229da155fae1bccaa1e110ccea3623609fc27758afb7df35029259182d4b",
+    "evaluations/severe-stress/shard-1/completion.json": "58fc63bfa74dceb6c1abcdbfdd05fb5b7d71340f47ff14b983e93bc9f079a507",
+    "evaluations/severe-stress/shard-2/completion.json": "24de604234c631c5d28c6ea75ba1f9c2412086ac9576f9abd861eb23bb56ae3d",
+    "evaluations/severe-stress/shard-3/completion.json": "4243b2fb298b4376812efe6adaa141ffc835d6a0610b528f5af51d82b196cbe5",
+    "evaluations/severe-stress/nominal-0/completion.json": "a006532f81b1cb15a642ded3c009ed2041e346a103fda3d1e86ff4ea98e7a5c1",
+    "evaluations/severe-stress/nominal-1/completion.json": "dd5cdde7770cdd2991e690a27a145b0f375ce0b4f8b8548cae32b1b5093e0cda",
+    "evaluations/severe-stress/nominal-2/completion.json": "5f59433e060f87a30d75273a62a568b76512d4ad148190469296b123be6fb0ce",
+    "evaluations/severe-stress/nominal-3/completion.json": "b36bcaedbedfeb31d2ab362c7e221965a2b017811c8ffc5519ee72f6c49146dc",
+    "evaluations/severe-stress/resources/completion.json": "8df0a84e228ff65a9fea27b10f0f8c11610cdfe70b6fe53f33f9ef48c2f739d4"
+  },
+  "repair": "Reject nonfinite/overflow JSON numbers and nesting beyond64levels with422before handlers/persistence; pass valid finite raw request bytes unchanged",
+  "focused_checks": "13passed; full-suite/browser outcomes are authoritative in their separate final logs"
+}

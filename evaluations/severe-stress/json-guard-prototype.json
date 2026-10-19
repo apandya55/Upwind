@@ -1,0 +1,53 @@
+{
+  "phase": "Isolated prototype only; production API/source unchanged during frozen campaign",
+  "production_api_before_sha256": "8762f21ba05ae77263fd28631d96519b5381e0d47c5b4cea9a12b1bb05adc396",
+  "proposed_api_sha256": "79532a380d946a0f16e8a03f3496342ff8a345b1b37e18824f5a85dd9393881a",
+  "results": [
+    {
+      "case": "deep1200",
+      "status": 422,
+      "records_before": 0,
+      "records_after": 0,
+      "passed": true
+    },
+    {
+      "case": "deep70",
+      "status": 422,
+      "records_before": 0,
+      "records_after": 0,
+      "passed": true
+    },
+    {
+      "case": "nan",
+      "status": 422,
+      "records_before": 0,
+      "records_after": 0,
+      "passed": true
+    },
+    {
+      "case": "inf",
+      "status": 422,
+      "records_before": 0,
+      "records_after": 0,
+      "passed": true
+    },
+    {
+      "case": "overflow",
+      "status": 422,
+      "records_before": 0,
+      "records_after": 0,
+      "passed": true
+    },
+    {
+      "case": "valid_save_reopen",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "case": "raw_csv_nan_text_retained",
+      "status": 200,
+      "passed": true
+    }
+  ],
+  "all_passed": true
+}

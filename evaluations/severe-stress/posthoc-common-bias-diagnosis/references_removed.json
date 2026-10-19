@@ -1,0 +1,198 @@
+{
+  "family": "shared_reference_bias",
+  "seed": 6100001,
+  "model": "plume-weather-0.5.0",
+  "rows_loaded": 96,
+  "raw_extreme_rows": 0,
+  "prediction_scheduled": false,
+  "status": "fitted",
+  "source_probability": 0.999999874047174,
+  "source_present": true,
+  "source_brier": 1.5864114363969825e-14,
+  "map_error_m": 177.64400577871913,
+  "mean_error_m": 202.86333499191124,
+  "prior_centroid_error_m": 157.0499783453481,
+  "region90_covered": false,
+  "region90_area_m2": 69297.8901810837,
+  "region90_area_fraction": 0.425629290617849,
+  "region90_mass": 0.9001320967034578,
+  "source_miss": false,
+  "false_source_alarm": false,
+  "narrow_wrong_region": false,
+  "sharp_wrong_region": false,
+  "warning": false,
+  "weather_warning": false,
+  "diagnostics": {
+    "held_out_sensor": [
+      {
+        "sensor_id": "M00",
+        "rows": 16,
+        "flagged": false,
+        "rows_total": 16,
+        "sensors_total": 1,
+        "sensors_checked": 1,
+        "tail_probability": 0.9033674963396779,
+        "joint_statistic": 9.274300813306164,
+        "contrast_dimensions": 16,
+        "samples": 2048,
+        "integration_resolution": 0.0004880429477794046,
+        "screen_alpha": 0.0016666666666666668,
+        "rmse_ug_m3": 1.1282607673314513,
+        "coverage90": 1.0,
+        "mean_nlpd": 1.751559816383473
+      },
+      {
+        "sensor_id": "M02",
+        "rows": 16,
+        "flagged": false,
+        "rows_total": 16,
+        "sensors_total": 1,
+        "sensors_checked": 1,
+        "tail_probability": 0.03367496339677892,
+        "joint_statistic": 27.520744920568532,
+        "contrast_dimensions": 16,
+        "samples": 2048,
+        "integration_resolution": 0.0004880429477794046,
+        "screen_alpha": 0.0016666666666666668,
+        "rmse_ug_m3": 4.38882903781497,
+        "coverage90": 0.75,
+        "mean_nlpd": 3.1907936151859353
+      },
+      {
+        "sensor_id": "M05",
+        "rows": 16,
+        "flagged": false,
+        "rows_total": 16,
+        "sensors_total": 1,
+        "sensors_checked": 1,
+        "tail_probability": 0.956564177647633,
+        "joint_statistic": 7.717741276896411,
+        "contrast_dimensions": 16,
+        "samples": 2048,
+        "integration_resolution": 0.0004880429477794046,
+        "screen_alpha": 0.0016666666666666668,
+        "rmse_ug_m3": 1.070339473069976,
+        "coverage90": 1.0,
+        "mean_nlpd": 1.7154701445047715
+      }
+    ],
+    "held_out_window": [
+      {
+        "window_id": "period-1",
+        "rows": 24,
+        "flagged": false,
+        "rows_total": 24,
+        "sensors_total": 6,
+        "sensors_checked": 6,
+        "tail_probability": 0.7266959492435334,
+        "joint_statistic": 17.508200648953444,
+        "contrast_dimensions": 22,
+        "samples": 2048,
+        "integration_resolution": 0.0004880429477794046,
+        "screen_alpha": 0.0016666666666666668
+      },
+      {
+        "window_id": "period-2",
+        "rows": 24,
+        "flagged": false,
+        "rows_total": 24,
+        "sensors_total": 6,
+        "sensors_checked": 6,
+        "tail_probability": 0.30356271351878966,
+        "joint_statistic": 24.51541388368481,
+        "contrast_dimensions": 22,
+        "samples": 2048,
+        "integration_resolution": 0.0004880429477794046,
+        "screen_alpha": 0.0016666666666666668
+      },
+      {
+        "window_id": "period-4",
+        "rows": 24,
+        "flagged": false,
+        "rows_total": 24,
+        "sensors_total": 6,
+        "sensors_checked": 6,
+        "tail_probability": 0.9956076134699854,
+        "joint_statistic": 8.426035549524858,
+        "contrast_dimensions": 22,
+        "samples": 2048,
+        "integration_resolution": 0.0004880429477794046,
+        "screen_alpha": 0.0016666666666666668
+      }
+    ],
+    "predictive_warning": false,
+    "sensors_total": 6,
+    "sensors_checked": 3,
+    "windows_checked": 3,
+    "method": "Joint withheld-sensor and withheld-period contrast checks. Exact truncated-strength predictive sampling,2048 scrambled Sobol draws/block; 1% familywise Bonferroni screen over checked blocks. QMC tail resolution and unchecked blocks are explicit; not field calibrated or an adequacy certificate.",
+    "weather_warning": false
+  },
+  "meteorology": {
+    "status": "unverified",
+    "comparison_count": 0,
+    "comparisons_used": [],
+    "unusable_comparisons": [],
+    "primary_source_id": "station-A",
+    "independent_upstream_groups": 0,
+    "direction_comparison_correction_deg": 0.0,
+    "persistent_direction_sd_deg": 20.0,
+    "speed_comparison_factor": 1.0,
+    "persistent_log_speed_sd": 0.2,
+    "weather_warning": false,
+    "comparison_checks": {},
+    "maximum_comparison_distance_m": null,
+    "maximum_comparison_lag_s": null,
+    "meaning": "Bias conditioned on user-supplied paired weather measurements only. Independence/calibration claims are not externally verified; shared upstream systematic errors do not average away. No pollution residual certifies weather. A station comparison does not verify spatial representativeness or clock accuracy elsewhere.",
+    "additional_evidence": "An independent co-located wind comparison or separating wind regimes may help. Pollution-site plans do not include weather hardware, deployment time or cost; budget any new weather instrument separately.",
+    "direction_center_deg": 0.0,
+    "total_direction_sd_deg": 20.223748416156685,
+    "angular_step_deg": 2.0,
+    "angular_nodes": 63,
+    "normal_tail_truncation": "Finite approximately\u00b13SD quadrature; not a hard bound on real weather errors.",
+    "pollution_conditioned_offset_mean_deg": -0.9928939194509638,
+    "source_weather_location_span_m": 330.07663649441196,
+    "alternative_offsets": [
+      {
+        "direction_offset_deg": -4.0,
+        "conditional_source_weight": 0.060299037992790835
+      },
+      {
+        "direction_offset_deg": -6.0,
+        "conditional_source_weight": 0.05819292150606498
+      },
+      {
+        "direction_offset_deg": -2.0,
+        "conditional_source_weight": 0.05785611898190765
+      },
+      {
+        "direction_offset_deg": 0.0,
+        "conditional_source_weight": 0.05332790905690971
+      },
+      {
+        "direction_offset_deg": -8.0,
+        "conditional_source_weight": 0.05238138590904294
+      },
+      {
+        "direction_offset_deg": 2.0,
+        "conditional_source_weight": 0.04759214193236363
+      },
+      {
+        "direction_offset_deg": 12.0,
+        "conditional_source_weight": 0.04603070517185464
+      },
+      {
+        "direction_offset_deg": 14.0,
+        "conditional_source_weight": 0.04532619013533777
+      }
+    ],
+    "inferred_correction_meaning": "Pollution-conditioned offset is model inference, not an independently measured wind correction. All source/weather components enter regions and plans."
+  },
+  "rows_used": 96,
+  "accepted": true,
+  "numeric_ok": true,
+  "analysis_wall_ms": 43300.42984800002,
+  "wall_ms": 43300.43080999985,
+  "process_peak_rss_mib": 863.890625,
+  "variant": "references_removed",
+  "evaluator_oracle_used": false
+}

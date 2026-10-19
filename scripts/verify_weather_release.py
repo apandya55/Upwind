@@ -1,5 +1,6 @@
 """Verify retained release evidence without rerunning or modifying the model."""
 
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -17,9 +18,17 @@ def read(path):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--source",
+        type=Path,
+        default=ROOT,
+        help="Root containing the exact evaluated source; use the retained frozen-source directory for a historical release",
+    )
+    args = parser.parse_args()
     freeze = read(BASE / "final-source-freeze.json")["source_hashes"]
     for name, expected in freeze.items():
-        assert digest(ROOT / name) == expected, name
+        assert digest(args.source / name) == expected, name
     snapshots = {}
     for name, folder in [
         ("baseline-manifest.json", "baseline-source"),
@@ -69,7 +78,10 @@ def main():
     figure = read(BASE / "figure-manifest.json")
     assert digest(BASE / "final-summary.json") == figure["input_sha256"]
     assert digest(ROOT / "scripts/plot_weather_bias.py") == figure["script_sha256"]
-    assert read(BASE / "resources-release/completion.json")["source_hashes_after"] == freeze
+    assert (
+        read(BASE / "resources-release/completion.json")["source_hashes_after"]
+        == freeze
+    )
     result = {
         "passed": True,
         "model": "plume-weather-0.5.0",

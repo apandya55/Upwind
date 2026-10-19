@@ -54,6 +54,8 @@ The original information objective, geometric coverage, spatial spread, wind and
 
 ## Evidence and limitations
 
+The completed [severe stress campaign](SEVERE_STRESS_RESULTS.md) adds1,440fresh synthetic attempts. In the480-world characterized control, regions cover477sources but occupy63%of the domain on average; the117moverall median MAP error fails the predeclared50mtarget. Only82cases are accepted (median35m, zero accepted region misses, Wilson95% upper4.5%). The main mismatch matrix retains17accepted geographic errors, including hidden common weather bias and a source outside the declared domain. These results separate numerical/software reliability from spatial precision and model adequacy. No scientific parameter or support rule was tuned from them. A request-only JSON handling repair was applied after the frozen experiments; its source hashes and tests are recorded separately.
+
 Prior results are preserved. The weather repair protocol separates fresh development/calibration/final seed blocks and holds out layouts, direction-bias magnitude bands, lag ranges and nonlinear spatial/time mismatch. An independent transverse-diffusion generator challenges transport. Compatible-kernel controls test arithmetic under assumptions; synthetic mismatch tests expose conditional failures. They do not validate urban PM2.5 or regulatory attribution. Measured tracer validation remains blocked by NOAA CONNECT403; [the exact retry record](../evaluations/research/external-retry.json) contains the errors. London data without source truth remain import/data-audit evidence only. See [ENGINE_RESEARCH.md](ENGINE_RESEARCH.md) for actually inspected primary/official sources and licenses. No partner adoption or government certification is claimed.
 
 

@@ -1,0 +1,9 @@
+# Nominal confirmation supplement UW-STRESS-2026-04C
+
+Declared while the main campaign is running, before inspecting its accuracy outcomes. No source/model/rule is changed. This supplement addresses sample-size limits:48worlds per condition cannot bound accepted geographic error below5% with a two-sided Wilson95% interval even if every world is accepted and none is wrong.
+
+Run **480fixed characterized-nominal worlds**, seeds6400000–6400479, using exactly the frozen UW-STRESS-2026-04 generator/model. These seeds are disjoint from all prior campaigns and the current960-case challenge. There is no optional stopping at a favorable accepted count. Keep every refusal, crash, abstention and accepted error. No concentration-prediction or planner effect is inferred from this cohort.
+
+Primary confirmation outputs: conditional90% region coverage, accepted geographic error/Wilson95% interval, MAP/mean/centroid median/p90/max errors, geographic area, source presence and warning counts. Apply the same predeclared research targets: medianMAP≤50m, coverage≥90%, and no observed accepted wrong regions, plus accepted-error Wilson95% upper bound≤5% for a strong conditional-error statement. Assess these separately; passing an error bound through broad abstention does not establish useful precision. If fewer than73worlds are accepted, zero observed accepted errors still cannot establish the5% bound. Report the achieved denominator and interval, not a guaranteed claim.
+
+The cohort is a larger **compatible synthetic control with explicitly independent reference weather**, not measured field validation or evidence under hidden common bias, multiple sources or unsupported transport. Those remain in the main campaign. The raw inputs, truth, source hash/configuration before/after, exact supplemental source and outcomes are retained. No production change may be selected from these results; any later repair needs a fresh protocol and holdout.

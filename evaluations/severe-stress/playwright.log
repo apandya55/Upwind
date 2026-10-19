@@ -1,0 +1,17 @@
+
+> upwind-workspace@0.1.0 test:e2e
+> playwright test
+
+
+Running 8 tests using 1 worker
+
+  ✓  1 tests/campaign.spec.ts:3:1 › campaign example preserves periods, explains shared release and exports its result (19.8s)
+  ✓  2 tests/evidence.spec.ts:3:1 › coverage planning renders when reconstruction fields are explicitly unavailable (1.3s)
+  ✓  3 tests/evidence.spec.ts:40:1 › conditional evidence is distinct from field confidence and incomplete diagnostics stay usable (1.4s)
+  ✓  4 tests/weather.spec.ts:3:1 › paired weather CSV retains independent readings, raw metadata and legacy archives (2.1s)
+  ✓  5 tests/workflow.spec.ts:4:1 › complete example: plan, constraints, save, reopen, export and responsive layout (13.2s)
+  ✓  6 tests/workflow.spec.ts:76:1 › new investigation, valid and malformed imports, follow-up, observations and restore (3.1s)
+  ✓  7 tests/workflow.spec.ts:161:1 › offline operation, labelled synthetic CSV reimport, keyboard observation and report (3.0s)
+  ✓  8 tests/workflow.spec.ts:229:1 › candidate permissions, unsupported weather and map interaction (6.4s)
+
+  8 passed (54.7s)

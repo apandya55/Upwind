@@ -1,0 +1,13 @@
+# Request-boundary repair from severe stress
+
+The severe campaign found a concrete request-validation defect in the pre-repair API: a small, deeply nested JSON body returned500 rather than an explicit client refusal. A legacy result with nonstandardNaN metadata was accepted and silently stored/reopened as null. The earlier CSV/overload checks had not covered these request shapes. Original failing probe outputs are retained under evaluations/severe-stress; they must not be described as passing originally.
+
+An isolated prototype was tested while keeping all frozen production files unchanged. The intended repair validates JSON before request handlers or persistence: numbers must be finite and nesting depth is bounded to64levels. Deep parse recursion and invalid numbers return422. Existing8MBbyte and four-request admission limits remain. Quoted text such as `NaN` or brackets in a CSV/comment is not a nonfinite JSON number and must stay preserved. Valid finite request bytes are passed through unchanged; the guard does not rewrite or recalibrate measurements.
+
+The repair is applied only after all960main plus480nominal source attempts and all resource probes finish, preserving their source/configuration hashes. It changes only backend/upwind/api.py among the45frozen source/protocol/lock paths; no likelihood, uncertainty, prior, support rule, planner or numerical source is changed. The scientific model identifier remains plume-weather-0.5.0. The exact evaluated pre-repair API is retained in the source archive, and the final API is copied separately with before/after hashes and completion evidence in api-hardening.json.
+
+Final verification passed all 13 request-boundary regressions, the full 181-test backend suite and eight Chromium workflows on the repaired API. A fresh 64-request overload probe preserved all 17 acknowledged writes; 47 requests received explicit429 responses. The original failing probes remain retained. Authoritative outcomes and hashes are in the retained logs and [severe stress results](SEVERE_STRESS_RESULTS.md).
+
+The historical weather-release verifier remains strict about source identity. Use `scripts/verify_weather_release.py --source evaluations/weather-bias/frozen-source` for that original release after the API-only change. The severe verifier checks both the original archived source and the exact allowed post-campaign API hash; it still rejects numerical/evaluator/protocol drift.
+
+This repair addresses software input handling. It does not repair the accepted wrong source locations observed under hidden weather bias, transport mismatch, multiple sources or an incorrectly declared source domain. Passing software checks is not a field-accuracy certification.

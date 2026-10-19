@@ -1,0 +1,1730 @@
+[
+  {
+    "family": "characterized_nominal",
+    "seed": 6100000,
+    "constant_from_available_data": 12.690150761475055,
+    "model_rmse": 1.7526989407031064,
+    "last_period_mean_rmse": 1.9084552679516649,
+    "prior10_rmse": 4.448664137910895
+  },
+  {
+    "family": "unknown_nominal",
+    "seed": 6100000,
+    "constant_from_available_data": 12.690150761475055,
+    "model_rmse": 1.7449450883516613,
+    "last_period_mean_rmse": 1.9084552679516649,
+    "prior10_rmse": 4.448664137910895
+  },
+  {
+    "family": "direction_unknown",
+    "seed": 6100000,
+    "constant_from_available_data": 13.128335079191267,
+    "model_rmse": 1.7789952600817076,
+    "last_period_mean_rmse": 1.7097111267024947,
+    "prior10_rmse": 4.4795934748263475
+  },
+  {
+    "family": "direction_characterized",
+    "seed": 6100000,
+    "constant_from_available_data": 13.128335079191267,
+    "model_rmse": 1.7788195673589782,
+    "last_period_mean_rmse": 1.7097111267024947,
+    "prior10_rmse": 4.4795934748263475
+  },
+  {
+    "family": "speed_bias",
+    "seed": 6100000,
+    "constant_from_available_data": 13.128335079191267,
+    "model_rmse": 1.7771188023356967,
+    "last_period_mean_rmse": 1.7097111267024947,
+    "prior10_rmse": 4.4795934748263475
+  },
+  {
+    "family": "clock_lag",
+    "seed": 6100000,
+    "constant_from_available_data": 12.569814412401973,
+    "model_rmse": 1.7905144549595637,
+    "last_period_mean_rmse": 2.0137808479923396,
+    "prior10_rmse": 4.448664137910895
+  },
+  {
+    "family": "spatial_winds",
+    "seed": 6100000,
+    "constant_from_available_data": 12.569814412401973,
+    "model_rmse": 1.7931204271660532,
+    "last_period_mean_rmse": 2.0137875302543202,
+    "prior10_rmse": 4.4486721191230405
+  },
+  {
+    "family": "weak",
+    "seed": 6100000,
+    "constant_from_available_data": 13.131993308375272,
+    "model_rmse": 1.7733405947141379,
+    "last_period_mean_rmse": 1.7065091924656788,
+    "prior10_rmse": 4.48037746875596
+  },
+  {
+    "family": "correlated",
+    "seed": 6100000,
+    "constant_from_available_data": 14.168169701425809,
+    "model_rmse": 2.376883607882785,
+    "last_period_mean_rmse": 3.9682604766607827,
+    "prior10_rmse": 7.972032103629657
+  },
+  {
+    "family": "two_sources",
+    "seed": 6100000,
+    "constant_from_available_data": 12.690150761475055,
+    "model_rmse": 1.7461563876590485,
+    "last_period_mean_rmse": 1.908455267951665,
+    "prior10_rmse": 4.448664137910896
+  },
+  {
+    "family": "background",
+    "seed": 6100000,
+    "constant_from_available_data": 12.690150761475055,
+    "model_rmse": 1.7298757972050867,
+    "last_period_mean_rmse": 1.9084552679516649,
+    "prior10_rmse": 4.448664137910895
+  },
+  {
+    "family": "independent_transport",
+    "seed": 6100000,
+    "constant_from_available_data": 12.690150761475055,
+    "model_rmse": 1.7436123021026622,
+    "last_period_mean_rmse": 1.9084552679516649,
+    "prior10_rmse": 4.448664137910895
+  },
+  {
+    "family": "sensor_dropout",
+    "seed": 6100000,
+    "constant_from_available_data": 13.10272479934573,
+    "model_rmse": 1.156599883214727,
+    "last_period_mean_rmse": 1.5638765119215399,
+    "prior10_rmse": 4.448664137910895
+  },
+  {
+    "family": "sensor_bias",
+    "seed": 6100000,
+    "constant_from_available_data": 16.032035469394206,
+    "model_rmse": 2.5274374344929926,
+    "last_period_mean_rmse": 1.9338912168706157,
+    "prior10_rmse": 4.448664137910895
+  },
+  {
+    "family": "shared_reference_bias",
+    "seed": 6100000,
+    "constant_from_available_data": 12.690150761475055,
+    "model_rmse": 1.7577888348722432,
+    "last_period_mean_rmse": 1.9084552679516649,
+    "prior10_rmse": 4.448664137910895
+  },
+  {
+    "family": "source_outside_domain",
+    "seed": 6100000,
+    "constant_from_available_data": 12.690150761475055,
+    "model_rmse": 1.7553735499098353,
+    "last_period_mean_rmse": 1.9084552679516649,
+    "prior10_rmse": 4.448664137910895
+  },
+  {
+    "family": "extreme_readings",
+    "seed": 6100000,
+    "constant_from_available_data": 12.601080693564965,
+    "model_rmse": 1.6456835841801616,
+    "last_period_mean_rmse": 1.9862507450563176,
+    "prior10_rmse": 4.448664137910895
+  },
+  {
+    "family": "shared_lineage",
+    "seed": 6100000,
+    "constant_from_available_data": 12.690150761475055,
+    "model_rmse": 1.7570484536143576,
+    "last_period_mean_rmse": 1.9084552679516649,
+    "prior10_rmse": 4.448664137910895
+  },
+  {
+    "family": "characterized_nominal",
+    "seed": 6100004,
+    "constant_from_available_data": 10.0441300246224,
+    "model_rmse": 1.5977425726672383,
+    "last_period_mean_rmse": 1.1950745751032965,
+    "prior10_rmse": 1.2209934482440967
+  },
+  {
+    "family": "unknown_nominal",
+    "seed": 6100004,
+    "constant_from_available_data": 10.0441300246224,
+    "model_rmse": 1.5794675744472493,
+    "last_period_mean_rmse": 1.1950745751032965,
+    "prior10_rmse": 1.2209934482440967
+  },
+  {
+    "family": "direction_unknown",
+    "seed": 6100004,
+    "constant_from_available_data": 12.09943483251863,
+    "model_rmse": 1.8804826663529184,
+    "last_period_mean_rmse": 1.7544881586664112,
+    "prior10_rmse": 3.2403691541015265
+  },
+  {
+    "family": "direction_characterized",
+    "seed": 6100004,
+    "constant_from_available_data": 12.09943483251863,
+    "model_rmse": 1.8812107063100525,
+    "last_period_mean_rmse": 1.7544881586664112,
+    "prior10_rmse": 3.2403691541015265
+  },
+  {
+    "family": "speed_bias",
+    "seed": 6100004,
+    "constant_from_available_data": 12.09943483251863,
+    "model_rmse": 1.8787661405570564,
+    "last_period_mean_rmse": 1.7544881586664112,
+    "prior10_rmse": 3.2403691541015265
+  },
+  {
+    "family": "clock_lag",
+    "seed": 6100004,
+    "constant_from_available_data": 9.977674002220873,
+    "model_rmse": 1.5715735339270642,
+    "last_period_mean_rmse": 1.234499867868304,
+    "prior10_rmse": 1.2209934482440967
+  },
+  {
+    "family": "spatial_winds",
+    "seed": 6100004,
+    "constant_from_available_data": 9.977674002220873,
+    "model_rmse": 1.5655118931600633,
+    "last_period_mean_rmse": 1.2349399382428046,
+    "prior10_rmse": 1.2214318393831465
+  },
+  {
+    "family": "weak",
+    "seed": 6100004,
+    "constant_from_available_data": 12.098742318226572,
+    "model_rmse": 1.8817252686103112,
+    "last_period_mean_rmse": 1.7547495762666812,
+    "prior10_rmse": 3.2330104430618345
+  },
+  {
+    "family": "correlated",
+    "seed": 6100004,
+    "constant_from_available_data": 10.422489330763742,
+    "model_rmse": 1.9149805613040836,
+    "last_period_mean_rmse": 1.422568761405204,
+    "prior10_rmse": 1.31054461520132
+  },
+  {
+    "family": "two_sources",
+    "seed": 6100004,
+    "constant_from_available_data": 10.044130024622433,
+    "model_rmse": 1.9335492831619858,
+    "last_period_mean_rmse": 1.6119000596044664,
+    "prior10_rmse": 1.6369897851076494
+  },
+  {
+    "family": "background",
+    "seed": 6100004,
+    "constant_from_available_data": 10.0441300246224,
+    "model_rmse": 1.5759972806611682,
+    "last_period_mean_rmse": 1.1950745751032965,
+    "prior10_rmse": 1.2209934482440967
+  },
+  {
+    "family": "independent_transport",
+    "seed": 6100004,
+    "constant_from_available_data": 10.0441300246224,
+    "model_rmse": 1.595687783210109,
+    "last_period_mean_rmse": 1.1950745751032965,
+    "prior10_rmse": 1.2209934482440967
+  },
+  {
+    "family": "sensor_dropout",
+    "seed": 6100004,
+    "constant_from_available_data": 9.701462806763793,
+    "model_rmse": 1.452684848156957,
+    "last_period_mean_rmse": 1.4201255866101392,
+    "prior10_rmse": 1.2209934482440967
+  },
+  {
+    "family": "sensor_bias",
+    "seed": 6100004,
+    "constant_from_available_data": 15.388646672636767,
+    "model_rmse": 4.007744852348179,
+    "last_period_mean_rmse": 4.758560065611267,
+    "prior10_rmse": 1.2209934482440967
+  },
+  {
+    "family": "shared_reference_bias",
+    "seed": 6100004,
+    "constant_from_available_data": 10.0441300246224,
+    "model_rmse": 1.6022039205450378,
+    "last_period_mean_rmse": 1.1950745751032965,
+    "prior10_rmse": 1.2209934482440967
+  },
+  {
+    "family": "source_outside_domain",
+    "seed": 6100004,
+    "constant_from_available_data": 10.0441300246224,
+    "model_rmse": 1.5994668467443849,
+    "last_period_mean_rmse": 1.1950745751032965,
+    "prior10_rmse": 1.2209934482440967
+  },
+  {
+    "family": "extreme_readings",
+    "seed": 6100004,
+    "constant_from_available_data": 10.001515147996603,
+    "model_rmse": 1.5822651458806936,
+    "last_period_mean_rmse": 1.2200862242855992,
+    "prior10_rmse": 1.2209934482440967
+  },
+  {
+    "family": "shared_lineage",
+    "seed": 6100004,
+    "constant_from_available_data": 10.0441300246224,
+    "model_rmse": 1.6003845928797236,
+    "last_period_mean_rmse": 1.1950745751032965,
+    "prior10_rmse": 1.2209934482440967
+  },
+  {
+    "family": "characterized_nominal",
+    "seed": 6100008,
+    "constant_from_available_data": 11.114872942016817,
+    "model_rmse": 1.5792912779153845,
+    "last_period_mean_rmse": 1.713215603595152,
+    "prior10_rmse": 1.5615227463714925
+  },
+  {
+    "family": "unknown_nominal",
+    "seed": 6100008,
+    "constant_from_available_data": 11.114872942016817,
+    "model_rmse": 1.5752021476398306,
+    "last_period_mean_rmse": 1.713215603595152,
+    "prior10_rmse": 1.5615227463714925
+  },
+  {
+    "family": "direction_unknown",
+    "seed": 6100008,
+    "constant_from_available_data": 10.92111642502224,
+    "model_rmse": 1.2392780992087482,
+    "last_period_mean_rmse": 1.1852827889822717,
+    "prior10_rmse": 1.1502999165579675
+  },
+  {
+    "family": "direction_characterized",
+    "seed": 6100008,
+    "constant_from_available_data": 10.92111642502224,
+    "model_rmse": 1.2394553672008128,
+    "last_period_mean_rmse": 1.1852827889822717,
+    "prior10_rmse": 1.1502999165579675
+  },
+  {
+    "family": "speed_bias",
+    "seed": 6100008,
+    "constant_from_available_data": 10.92111642502224,
+    "model_rmse": 1.2328307160985523,
+    "last_period_mean_rmse": 1.1852827889822717,
+    "prior10_rmse": 1.1502999165579675
+  },
+  {
+    "family": "clock_lag",
+    "seed": 6100008,
+    "constant_from_available_data": 11.423450812229108,
+    "model_rmse": 1.6337772447863415,
+    "last_period_mean_rmse": 1.8739920754717605,
+    "prior10_rmse": 1.5615227463714925
+  },
+  {
+    "family": "spatial_winds",
+    "seed": 6100008,
+    "constant_from_available_data": 11.423450812229108,
+    "model_rmse": 1.6516619587535222,
+    "last_period_mean_rmse": 1.8739920754717605,
+    "prior10_rmse": 1.5615227463714925
+  },
+  {
+    "family": "weak",
+    "seed": 6100008,
+    "constant_from_available_data": 10.927159726156754,
+    "model_rmse": 1.2303599832919065,
+    "last_period_mean_rmse": 1.185506927369809,
+    "prior10_rmse": 1.1440733110231405
+  },
+  {
+    "family": "correlated",
+    "seed": 6100008,
+    "constant_from_available_data": 12.729958544855748,
+    "model_rmse": 2.396530528359006,
+    "last_period_mean_rmse": 2.837744477979641,
+    "prior10_rmse": 2.760774327495414
+  },
+  {
+    "family": "two_sources",
+    "seed": 6100008,
+    "constant_from_available_data": 11.114872942016817,
+    "model_rmse": 1.5760974812440185,
+    "last_period_mean_rmse": 1.713215603595152,
+    "prior10_rmse": 1.5615227463714925
+  },
+  {
+    "family": "background",
+    "seed": 6100008,
+    "constant_from_available_data": 11.114872942016817,
+    "model_rmse": 1.5846635364038248,
+    "last_period_mean_rmse": 1.713215603595152,
+    "prior10_rmse": 1.5615227463714925
+  },
+  {
+    "family": "independent_transport",
+    "seed": 6100008,
+    "constant_from_available_data": 11.114872942016817,
+    "model_rmse": 1.5675036419536525,
+    "last_period_mean_rmse": 1.713215603595152,
+    "prior10_rmse": 1.5615227463714925
+  },
+  {
+    "family": "sensor_dropout",
+    "seed": 6100008,
+    "constant_from_available_data": 10.380817301137009,
+    "model_rmse": 1.6319250301530337,
+    "last_period_mean_rmse": 1.525940080174336,
+    "prior10_rmse": 1.5615227463714925
+  },
+  {
+    "family": "sensor_bias",
+    "seed": 6100008,
+    "constant_from_available_data": 13.822098966325795,
+    "model_rmse": 3.643996802722607,
+    "last_period_mean_rmse": 3.8063963744224396,
+    "prior10_rmse": 1.5615227463714925
+  },
+  {
+    "family": "shared_reference_bias",
+    "seed": 6100008,
+    "constant_from_available_data": 11.114872942016817,
+    "model_rmse": 1.578610417537927,
+    "last_period_mean_rmse": 1.713215603595152,
+    "prior10_rmse": 1.5615227463714925
+  },
+  {
+    "family": "source_outside_domain",
+    "seed": 6100008,
+    "constant_from_available_data": 11.114872942016817,
+    "model_rmse": 1.5791663750010836,
+    "last_period_mean_rmse": 1.713215603595152,
+    "prior10_rmse": 1.5615227463714925
+  },
+  {
+    "family": "extreme_readings",
+    "seed": 6100008,
+    "constant_from_available_data": 11.10633675102939,
+    "model_rmse": 1.5545063377459998,
+    "last_period_mean_rmse": 1.709344999789035,
+    "prior10_rmse": 1.5615227463714925
+  },
+  {
+    "family": "shared_lineage",
+    "seed": 6100008,
+    "constant_from_available_data": 11.114872942016817,
+    "model_rmse": 1.57853884911273,
+    "last_period_mean_rmse": 1.713215603595152,
+    "prior10_rmse": 1.5615227463714925
+  },
+  {
+    "family": "characterized_nominal",
+    "seed": 6100001,
+    "constant_from_available_data": 13.777183114538929,
+    "model_rmse": 2.092174542856368,
+    "last_period_mean_rmse": 2.136289423540406,
+    "prior10_rmse": 5.420465908250904
+  },
+  {
+    "family": "unknown_nominal",
+    "seed": 6100001,
+    "constant_from_available_data": 13.777183114538929,
+    "model_rmse": 2.0915662203284024,
+    "last_period_mean_rmse": 2.136289423540406,
+    "prior10_rmse": 5.420465908250904
+  },
+  {
+    "family": "direction_unknown",
+    "seed": 6100001,
+    "constant_from_available_data": 11.943151082088292,
+    "model_rmse": 1.685919586417059,
+    "last_period_mean_rmse": 1.7418696385843462,
+    "prior10_rmse": 3.3563835299216334
+  },
+  {
+    "family": "direction_characterized",
+    "seed": 6100001,
+    "constant_from_available_data": 11.943151082088292,
+    "model_rmse": 1.6838085742986988,
+    "last_period_mean_rmse": 1.7418696385843462,
+    "prior10_rmse": 3.3563835299216334
+  },
+  {
+    "family": "speed_bias",
+    "seed": 6100001,
+    "constant_from_available_data": 11.943151082088292,
+    "model_rmse": 1.6887211258934414,
+    "last_period_mean_rmse": 1.7418696385843462,
+    "prior10_rmse": 3.3563835299216334
+  },
+  {
+    "family": "clock_lag",
+    "seed": 6100001,
+    "constant_from_available_data": 13.746637102822064,
+    "model_rmse": 2.0946893253639516,
+    "last_period_mean_rmse": 2.1563831105380875,
+    "prior10_rmse": 5.420465908250904
+  },
+  {
+    "family": "spatial_winds",
+    "seed": 6100001,
+    "constant_from_available_data": 13.746637102822064,
+    "model_rmse": 2.092028832329883,
+    "last_period_mean_rmse": 2.1563831105380875,
+    "prior10_rmse": 5.420465908250904
+  },
+  {
+    "family": "weak",
+    "seed": 6100001,
+    "constant_from_available_data": 11.950165325113502,
+    "model_rmse": 1.655402212502992,
+    "last_period_mean_rmse": 1.747195527180729,
+    "prior10_rmse": 3.3702274040831552
+  },
+  {
+    "family": "correlated",
+    "seed": 6100001,
+    "constant_from_available_data": 13.439355988291899,
+    "model_rmse": 2.8977948400508065,
+    "last_period_mean_rmse": 3.2457623859260356,
+    "prior10_rmse": 5.84515142537095
+  },
+  {
+    "family": "two_sources",
+    "seed": 6100001,
+    "constant_from_available_data": 13.77718311454097,
+    "model_rmse": 2.099753046519926,
+    "last_period_mean_rmse": 2.136290175095927,
+    "prior10_rmse": 5.420467067150082
+  },
+  {
+    "family": "background",
+    "seed": 6100001,
+    "constant_from_available_data": 13.777183114538929,
+    "model_rmse": 2.089497695462943,
+    "last_period_mean_rmse": 2.136289423540406,
+    "prior10_rmse": 5.420465908250904
+  },
+  {
+    "family": "independent_transport",
+    "seed": 6100001,
+    "constant_from_available_data": 13.777183114538929,
+    "model_rmse": 2.0944046573697537,
+    "last_period_mean_rmse": 2.136289423540406,
+    "prior10_rmse": 5.420465908250904
+  },
+  {
+    "family": "sensor_dropout",
+    "seed": 6100001,
+    "constant_from_available_data": 13.695108336609957,
+    "model_rmse": 2.2385261210828866,
+    "last_period_mean_rmse": 2.190827220002476,
+    "prior10_rmse": 5.420465908250904
+  },
+  {
+    "family": "sensor_bias",
+    "seed": 6100001,
+    "constant_from_available_data": 18.68823979203987,
+    "model_rmse": 3.5203538745935283,
+    "last_period_mean_rmse": 3.8683866454474454,
+    "prior10_rmse": 5.420465908250904
+  },
+  {
+    "family": "shared_reference_bias",
+    "seed": 6100001,
+    "constant_from_available_data": 13.777183114538929,
+    "model_rmse": 2.0886832438780836,
+    "last_period_mean_rmse": 2.136289423540406,
+    "prior10_rmse": 5.420465908250904
+  },
+  {
+    "family": "source_outside_domain",
+    "seed": 6100001,
+    "constant_from_available_data": 13.777183114538929,
+    "model_rmse": 2.110560996277898,
+    "last_period_mean_rmse": 2.136289423540406,
+    "prior10_rmse": 5.420465908250904
+  },
+  {
+    "family": "extreme_readings",
+    "seed": 6100001,
+    "constant_from_available_data": 13.763283596466048,
+    "model_rmse": 2.0762027584980136,
+    "last_period_mean_rmse": 2.145402173637581,
+    "prior10_rmse": 5.420465908250904
+  },
+  {
+    "family": "shared_lineage",
+    "seed": 6100001,
+    "constant_from_available_data": 13.777183114538929,
+    "model_rmse": 2.091251531711706,
+    "last_period_mean_rmse": 2.136289423540406,
+    "prior10_rmse": 5.420465908250904
+  },
+  {
+    "family": "characterized_nominal",
+    "seed": 6100005,
+    "constant_from_available_data": 12.109270029045462,
+    "model_rmse": 1.4512496047411643,
+    "last_period_mean_rmse": 1.5947130197319965,
+    "prior10_rmse": 1.9849977417092441
+  },
+  {
+    "family": "unknown_nominal",
+    "seed": 6100005,
+    "constant_from_available_data": 12.109270029045462,
+    "model_rmse": 1.4493723737609097,
+    "last_period_mean_rmse": 1.5947130197319965,
+    "prior10_rmse": 1.9849977417092441
+  },
+  {
+    "family": "direction_unknown",
+    "seed": 6100005,
+    "constant_from_available_data": 10.477629211361307,
+    "model_rmse": 1.9214697333517077,
+    "last_period_mean_rmse": 2.137023247978306,
+    "prior10_rmse": 2.0113923456927636
+  },
+  {
+    "family": "direction_characterized",
+    "seed": 6100005,
+    "constant_from_available_data": 10.477629211361307,
+    "model_rmse": 1.9259481701982155,
+    "last_period_mean_rmse": 2.137023247978306,
+    "prior10_rmse": 2.0113923456927636
+  },
+  {
+    "family": "speed_bias",
+    "seed": 6100005,
+    "constant_from_available_data": 10.477629211361307,
+    "model_rmse": 1.9219262678437445,
+    "last_period_mean_rmse": 2.137023247978306,
+    "prior10_rmse": 2.0113923456927636
+  },
+  {
+    "family": "clock_lag",
+    "seed": 6100005,
+    "constant_from_available_data": 11.874929021501691,
+    "model_rmse": 1.4533910121836393,
+    "last_period_mean_rmse": 1.502982407069914,
+    "prior10_rmse": 1.9849977417092441
+  },
+  {
+    "family": "spatial_winds",
+    "seed": 6100005,
+    "constant_from_available_data": 11.874929021501691,
+    "model_rmse": 1.4672402623113128,
+    "last_period_mean_rmse": 1.5029824070298956,
+    "prior10_rmse": 1.984997741783973
+  },
+  {
+    "family": "weak",
+    "seed": 6100005,
+    "constant_from_available_data": 10.519417626430135,
+    "model_rmse": 1.923963005372744,
+    "last_period_mean_rmse": 2.125724347295164,
+    "prior10_rmse": 1.9905486022673908
+  },
+  {
+    "family": "correlated",
+    "seed": 6100005,
+    "constant_from_available_data": 11.689473297253102,
+    "model_rmse": 1.6412876525838496,
+    "last_period_mean_rmse": 2.4657446350251093,
+    "prior10_rmse": 1.9888497625954753
+  },
+  {
+    "family": "two_sources",
+    "seed": 6100005,
+    "constant_from_available_data": 12.109270029045462,
+    "model_rmse": 1.4532503016998295,
+    "last_period_mean_rmse": 1.5947130197319965,
+    "prior10_rmse": 1.9849977417092441
+  },
+  {
+    "family": "background",
+    "seed": 6100005,
+    "constant_from_available_data": 12.109270029045462,
+    "model_rmse": 1.4672814921999888,
+    "last_period_mean_rmse": 1.5947130197319965,
+    "prior10_rmse": 1.9849977417092441
+  },
+  {
+    "family": "independent_transport",
+    "seed": 6100005,
+    "constant_from_available_data": 12.109270029045462,
+    "model_rmse": 1.4515297551506625,
+    "last_period_mean_rmse": 1.5947130197319965,
+    "prior10_rmse": 1.9849977417092441
+  },
+  {
+    "family": "sensor_dropout",
+    "seed": 6100005,
+    "constant_from_available_data": 12.017237515889663,
+    "model_rmse": 1.4268371357104512,
+    "last_period_mean_rmse": 1.555126130867792,
+    "prior10_rmse": 1.9849977417092441
+  },
+  {
+    "family": "sensor_bias",
+    "seed": 6100005,
+    "constant_from_available_data": 15.802749368024314,
+    "model_rmse": 3.914767888872884,
+    "last_period_mean_rmse": 4.639936795299659,
+    "prior10_rmse": 1.9849977417092441
+  },
+  {
+    "family": "shared_reference_bias",
+    "seed": 6100005,
+    "constant_from_available_data": 12.109270029045462,
+    "model_rmse": 1.467991611435845,
+    "last_period_mean_rmse": 1.5947130197319965,
+    "prior10_rmse": 1.9849977417092441
+  },
+  {
+    "family": "source_outside_domain",
+    "seed": 6100005,
+    "constant_from_available_data": 12.109270029045462,
+    "model_rmse": 1.407577757991812,
+    "last_period_mean_rmse": 1.5947130197319965,
+    "prior10_rmse": 1.9849977417092441
+  },
+  {
+    "family": "extreme_readings",
+    "seed": 6100005,
+    "constant_from_available_data": 12.120387033053131,
+    "model_rmse": 1.4697786175195018,
+    "last_period_mean_rmse": 1.5997870024679646,
+    "prior10_rmse": 1.9849977417092441
+  },
+  {
+    "family": "shared_lineage",
+    "seed": 6100005,
+    "constant_from_available_data": 12.109270029045462,
+    "model_rmse": 1.44992157651485,
+    "last_period_mean_rmse": 1.5947130197319965,
+    "prior10_rmse": 1.9849977417092441
+  },
+  {
+    "family": "characterized_nominal",
+    "seed": 6100009,
+    "constant_from_available_data": 15.488506749564243,
+    "model_rmse": 1.2920993252253408,
+    "last_period_mean_rmse": 0.9645287694131718,
+    "prior10_rmse": 5.613970434048498
+  },
+  {
+    "family": "unknown_nominal",
+    "seed": 6100009,
+    "constant_from_available_data": 15.488506749564243,
+    "model_rmse": 1.3306251863870278,
+    "last_period_mean_rmse": 0.9645287694131718,
+    "prior10_rmse": 5.613970434048498
+  },
+  {
+    "family": "direction_unknown",
+    "seed": 6100009,
+    "constant_from_available_data": 12.094356654885262,
+    "model_rmse": 1.4045454513418199,
+    "last_period_mean_rmse": 1.4425627945871318,
+    "prior10_rmse": 2.3998283588488025
+  },
+  {
+    "family": "direction_characterized",
+    "seed": 6100009,
+    "constant_from_available_data": 12.094356654885262,
+    "model_rmse": 1.3846323966489933,
+    "last_period_mean_rmse": 1.4425627945871318,
+    "prior10_rmse": 2.3998283588488025
+  },
+  {
+    "family": "speed_bias",
+    "seed": 6100009,
+    "constant_from_available_data": 12.094356654885262,
+    "model_rmse": 1.3881706942121066,
+    "last_period_mean_rmse": 1.4425627945871318,
+    "prior10_rmse": 2.3998283588488025
+  },
+  {
+    "family": "clock_lag",
+    "seed": 6100009,
+    "constant_from_available_data": 15.513780025151162,
+    "model_rmse": 1.1108875988969855,
+    "last_period_mean_rmse": 0.9637552224132497,
+    "prior10_rmse": 5.613970434048498
+  },
+  {
+    "family": "spatial_winds",
+    "seed": 6100009,
+    "constant_from_available_data": 15.513780025151165,
+    "model_rmse": 1.1001561632937886,
+    "last_period_mean_rmse": 0.9637552224132385,
+    "prior10_rmse": 5.613970434048502
+  },
+  {
+    "family": "weak",
+    "seed": 6100009,
+    "constant_from_available_data": 12.08362994124274,
+    "model_rmse": 1.3870863450358561,
+    "last_period_mean_rmse": 1.4468200442919161,
+    "prior10_rmse": 2.3786661950124306
+  },
+  {
+    "family": "correlated",
+    "seed": 6100009,
+    "constant_from_available_data": 13.434809891175597,
+    "model_rmse": 3.9270403201873787,
+    "last_period_mean_rmse": 2.6962965505254264,
+    "prior10_rmse": 5.853835981713104
+  },
+  {
+    "family": "two_sources",
+    "seed": 6100009,
+    "constant_from_available_data": 15.488506749564243,
+    "model_rmse": 1.302256321130238,
+    "last_period_mean_rmse": 0.9625237619555267,
+    "prior10_rmse": 5.614692659388021
+  },
+  {
+    "family": "background",
+    "seed": 6100009,
+    "constant_from_available_data": 15.488506749564243,
+    "model_rmse": 1.3325879015565447,
+    "last_period_mean_rmse": 0.9645287694131718,
+    "prior10_rmse": 5.613970434048498
+  },
+  {
+    "family": "independent_transport",
+    "seed": 6100009,
+    "constant_from_available_data": 15.488506749564243,
+    "model_rmse": 1.2926228866832183,
+    "last_period_mean_rmse": 0.9645287694131718,
+    "prior10_rmse": 5.613970434048498
+  },
+  {
+    "family": "sensor_dropout",
+    "seed": 6100009,
+    "constant_from_available_data": 16.08079905571559,
+    "model_rmse": 1.7754540977598388,
+    "last_period_mean_rmse": 1.1095944794172021,
+    "prior10_rmse": 5.613970434048498
+  },
+  {
+    "family": "sensor_bias",
+    "seed": 6100009,
+    "constant_from_available_data": 21.09137051155494,
+    "model_rmse": 5.703186495656806,
+    "last_period_mean_rmse": 5.643590759006514,
+    "prior10_rmse": 5.613970434048498
+  },
+  {
+    "family": "shared_reference_bias",
+    "seed": 6100009,
+    "constant_from_available_data": 15.488506749564243,
+    "model_rmse": 1.2823866865491613,
+    "last_period_mean_rmse": 0.9645287694131718,
+    "prior10_rmse": 5.613970434048498
+  },
+  {
+    "family": "source_outside_domain",
+    "seed": 6100009,
+    "constant_from_available_data": 15.488506749564243,
+    "model_rmse": 1.2812338707391515,
+    "last_period_mean_rmse": 0.9645287694131718,
+    "prior10_rmse": 5.613970434048498
+  },
+  {
+    "family": "extreme_readings",
+    "seed": 6100009,
+    "constant_from_available_data": 15.753283219540943,
+    "model_rmse": 1.4051143755291977,
+    "last_period_mean_rmse": 0.9889911826596136,
+    "prior10_rmse": 5.613970434048498
+  },
+  {
+    "family": "shared_lineage",
+    "seed": 6100009,
+    "constant_from_available_data": 15.488506749564243,
+    "model_rmse": 1.2817449809052448,
+    "last_period_mean_rmse": 0.9645287694131718,
+    "prior10_rmse": 5.613970434048498
+  },
+  {
+    "family": "characterized_nominal",
+    "seed": 6100002,
+    "constant_from_available_data": 13.087745306757597,
+    "model_rmse": 1.612784707108691,
+    "last_period_mean_rmse": 1.5928895671607368,
+    "prior10_rmse": 3.1687131684716743
+  },
+  {
+    "family": "unknown_nominal",
+    "seed": 6100002,
+    "constant_from_available_data": 13.087745306757597,
+    "model_rmse": 1.6133750842505452,
+    "last_period_mean_rmse": 1.5928895671607368,
+    "prior10_rmse": 3.1687131684716743
+  },
+  {
+    "family": "direction_unknown",
+    "seed": 6100002,
+    "constant_from_available_data": 9.307272205839618,
+    "model_rmse": 1.5425089680105997,
+    "last_period_mean_rmse": 1.62092079904456,
+    "prior10_rmse": 1.9235747252910882
+  },
+  {
+    "family": "direction_characterized",
+    "seed": 6100002,
+    "constant_from_available_data": 9.307272205839618,
+    "model_rmse": 1.542351183080125,
+    "last_period_mean_rmse": 1.62092079904456,
+    "prior10_rmse": 1.9235747252910882
+  },
+  {
+    "family": "speed_bias",
+    "seed": 6100002,
+    "constant_from_available_data": 9.307272205839618,
+    "model_rmse": 1.547513292803448,
+    "last_period_mean_rmse": 1.62092079904456,
+    "prior10_rmse": 1.9235747252910882
+  },
+  {
+    "family": "clock_lag",
+    "seed": 6100002,
+    "constant_from_available_data": 12.861863569068314,
+    "model_rmse": 1.5724695231584624,
+    "last_period_mean_rmse": 1.5619742412544035,
+    "prior10_rmse": 3.1687131684716743
+  },
+  {
+    "family": "spatial_winds",
+    "seed": 6100002,
+    "constant_from_available_data": 12.861863569068314,
+    "model_rmse": 1.5538643379946955,
+    "last_period_mean_rmse": 1.5619742412544035,
+    "prior10_rmse": 3.1687131684716743
+  },
+  {
+    "family": "weak",
+    "seed": 6100002,
+    "constant_from_available_data": 9.304714657462457,
+    "model_rmse": 1.5730354688392554,
+    "last_period_mean_rmse": 1.6265959530577208,
+    "prior10_rmse": 1.929049732906458
+  },
+  {
+    "family": "correlated",
+    "seed": 6100002,
+    "constant_from_available_data": 12.462579591977294,
+    "model_rmse": 2.560088050428452,
+    "last_period_mean_rmse": 2.9781217614564484,
+    "prior10_rmse": 3.3168087081045474
+  },
+  {
+    "family": "two_sources",
+    "seed": 6100002,
+    "constant_from_available_data": 13.087745306757597,
+    "model_rmse": 1.6057917422029193,
+    "last_period_mean_rmse": 1.5928895685069024,
+    "prior10_rmse": 3.1687131750466797
+  },
+  {
+    "family": "background",
+    "seed": 6100002,
+    "constant_from_available_data": 13.087745306757597,
+    "model_rmse": 1.6090102724347788,
+    "last_period_mean_rmse": 1.5928895671607368,
+    "prior10_rmse": 3.1687131684716743
+  },
+  {
+    "family": "independent_transport",
+    "seed": 6100002,
+    "constant_from_available_data": 13.087745306757597,
+    "model_rmse": 1.6100441235874081,
+    "last_period_mean_rmse": 1.5928895671607368,
+    "prior10_rmse": 3.1687131684716743
+  },
+  {
+    "family": "sensor_dropout",
+    "seed": 6100002,
+    "constant_from_available_data": 13.347802710246631,
+    "model_rmse": 1.7131603773690587,
+    "last_period_mean_rmse": 1.6661211310570585,
+    "prior10_rmse": 3.1687131684716743
+  },
+  {
+    "family": "sensor_bias",
+    "seed": 6100002,
+    "constant_from_available_data": 15.604679309488171,
+    "model_rmse": 2.6597504861156,
+    "last_period_mean_rmse": 3.2446220382020794,
+    "prior10_rmse": 3.1687131684716743
+  },
+  {
+    "family": "shared_reference_bias",
+    "seed": 6100002,
+    "constant_from_available_data": 13.087745306757597,
+    "model_rmse": 1.6164650527015492,
+    "last_period_mean_rmse": 1.5928895671607368,
+    "prior10_rmse": 3.1687131684716743
+  },
+  {
+    "family": "source_outside_domain",
+    "seed": 6100002,
+    "constant_from_available_data": 13.087745306757597,
+    "model_rmse": 1.6168643616654121,
+    "last_period_mean_rmse": 1.5928895671607368,
+    "prior10_rmse": 3.1687131684716743
+  },
+  {
+    "family": "extreme_readings",
+    "seed": 6100002,
+    "constant_from_available_data": 12.877780520741155,
+    "model_rmse": 1.603957342096688,
+    "last_period_mean_rmse": 1.5631040667027691,
+    "prior10_rmse": 3.1687131684716743
+  },
+  {
+    "family": "shared_lineage",
+    "seed": 6100002,
+    "constant_from_available_data": 13.087745306757597,
+    "model_rmse": 1.616209238813241,
+    "last_period_mean_rmse": 1.5928895671607368,
+    "prior10_rmse": 3.1687131684716743
+  },
+  {
+    "family": "characterized_nominal",
+    "seed": 6100006,
+    "constant_from_available_data": 11.313124166212637,
+    "model_rmse": 1.3583561983093637,
+    "last_period_mean_rmse": 1.4512642421238484,
+    "prior10_rmse": 1.6298096804967954
+  },
+  {
+    "family": "unknown_nominal",
+    "seed": 6100006,
+    "constant_from_available_data": 11.313124166212637,
+    "model_rmse": 1.356710828416793,
+    "last_period_mean_rmse": 1.4512642421238484,
+    "prior10_rmse": 1.6298096804967954
+  },
+  {
+    "family": "direction_unknown",
+    "seed": 6100006,
+    "constant_from_available_data": 11.323024799432465,
+    "model_rmse": 1.4244669107988392,
+    "last_period_mean_rmse": 1.5596970069512592,
+    "prior10_rmse": 1.335500235424118
+  },
+  {
+    "family": "direction_characterized",
+    "seed": 6100006,
+    "constant_from_available_data": 11.323024799432465,
+    "model_rmse": 1.4219500216334398,
+    "last_period_mean_rmse": 1.5596970069512592,
+    "prior10_rmse": 1.335500235424118
+  },
+  {
+    "family": "speed_bias",
+    "seed": 6100006,
+    "constant_from_available_data": 11.323024799432465,
+    "model_rmse": 1.4195422593768472,
+    "last_period_mean_rmse": 1.5596970069512592,
+    "prior10_rmse": 1.335500235424118
+  },
+  {
+    "family": "clock_lag",
+    "seed": 6100006,
+    "constant_from_available_data": 11.236240263469625,
+    "model_rmse": 1.4802169753945817,
+    "last_period_mean_rmse": 1.4294510001660032,
+    "prior10_rmse": 1.6298096780472653
+  },
+  {
+    "family": "spatial_winds",
+    "seed": 6100006,
+    "constant_from_available_data": 11.27093030112102,
+    "model_rmse": 1.4939335736483248,
+    "last_period_mean_rmse": 1.4798502461689367,
+    "prior10_rmse": 1.6932233614657588
+  },
+  {
+    "family": "weak",
+    "seed": 6100006,
+    "constant_from_available_data": 11.326242678189038,
+    "model_rmse": 1.40843313995914,
+    "last_period_mean_rmse": 1.568768589352984,
+    "prior10_rmse": 1.3272121834170867
+  },
+  {
+    "family": "correlated",
+    "seed": 6100006,
+    "constant_from_available_data": 11.660447086488071,
+    "model_rmse": 2.3897342847421092,
+    "last_period_mean_rmse": 2.6644125746652474,
+    "prior10_rmse": 3.585503283889538
+  },
+  {
+    "family": "two_sources",
+    "seed": 6100006,
+    "constant_from_available_data": 11.313124167949352,
+    "model_rmse": 1.3494490668666992,
+    "last_period_mean_rmse": 1.4514103857914884,
+    "prior10_rmse": 1.6300604018822846
+  },
+  {
+    "family": "background",
+    "seed": 6100006,
+    "constant_from_available_data": 11.313124166190804,
+    "model_rmse": 1.3524370132690613,
+    "last_period_mean_rmse": 1.4512642406897875,
+    "prior10_rmse": 1.6298096780472653
+  },
+  {
+    "family": "independent_transport",
+    "seed": 6100006,
+    "constant_from_available_data": 11.313124166190804,
+    "model_rmse": 1.3641249472210373,
+    "last_period_mean_rmse": 1.4512642406897875,
+    "prior10_rmse": 1.6298096780472653
+  },
+  {
+    "family": "sensor_dropout",
+    "seed": 6100006,
+    "constant_from_available_data": 11.205851148773553,
+    "model_rmse": 1.3795190156936383,
+    "last_period_mean_rmse": 1.4218835638319924,
+    "prior10_rmse": 1.6298096804967954
+  },
+  {
+    "family": "sensor_bias",
+    "seed": 6100006,
+    "constant_from_available_data": 16.42331572083555,
+    "model_rmse": 6.2617875803348335,
+    "last_period_mean_rmse": 5.726230108021689,
+    "prior10_rmse": 1.6298096804967954
+  },
+  {
+    "family": "shared_reference_bias",
+    "seed": 6100006,
+    "constant_from_available_data": 11.313124166212637,
+    "model_rmse": 1.3624673927864255,
+    "last_period_mean_rmse": 1.4512642421238484,
+    "prior10_rmse": 1.6298096804967954
+  },
+  {
+    "family": "source_outside_domain",
+    "seed": 6100006,
+    "constant_from_available_data": 11.313124166212637,
+    "model_rmse": 1.362565718387742,
+    "last_period_mean_rmse": 1.4512642421238484,
+    "prior10_rmse": 1.6298096804967954
+  },
+  {
+    "family": "extreme_readings",
+    "seed": 6100006,
+    "constant_from_available_data": 11.049970079259321,
+    "model_rmse": 1.3178794933158153,
+    "last_period_mean_rmse": 1.3928776126681803,
+    "prior10_rmse": 1.6298096804967954
+  },
+  {
+    "family": "shared_lineage",
+    "seed": 6100006,
+    "constant_from_available_data": 11.313124166212637,
+    "model_rmse": 1.3616829247416178,
+    "last_period_mean_rmse": 1.4512642421238484,
+    "prior10_rmse": 1.6298096804967954
+  },
+  {
+    "family": "characterized_nominal",
+    "seed": 6100010,
+    "constant_from_available_data": 14.160785603317208,
+    "model_rmse": 1.3585883222393038,
+    "last_period_mean_rmse": 1.4650270526262437,
+    "prior10_rmse": 3.913936722556432
+  },
+  {
+    "family": "unknown_nominal",
+    "seed": 6100010,
+    "constant_from_available_data": 14.160785603317208,
+    "model_rmse": 1.3531744931329064,
+    "last_period_mean_rmse": 1.4650270526262437,
+    "prior10_rmse": 3.913936722556432
+  },
+  {
+    "family": "direction_unknown",
+    "seed": 6100010,
+    "constant_from_available_data": 13.973093828895811,
+    "model_rmse": 1.8094186664527279,
+    "last_period_mean_rmse": 1.8498498894002073,
+    "prior10_rmse": 3.998205122870951
+  },
+  {
+    "family": "direction_characterized",
+    "seed": 6100010,
+    "constant_from_available_data": 13.973093828895811,
+    "model_rmse": 1.8117868442220282,
+    "last_period_mean_rmse": 1.8498498894002073,
+    "prior10_rmse": 3.998205122870951
+  },
+  {
+    "family": "speed_bias",
+    "seed": 6100010,
+    "constant_from_available_data": 13.973093828895811,
+    "model_rmse": 1.8261367437747864,
+    "last_period_mean_rmse": 1.8498498894002073,
+    "prior10_rmse": 3.998205122870951
+  },
+  {
+    "family": "clock_lag",
+    "seed": 6100010,
+    "constant_from_available_data": 14.186382370758006,
+    "model_rmse": 1.2478242806634292,
+    "last_period_mean_rmse": 1.4739150343745135,
+    "prior10_rmse": 3.913936722556432
+  },
+  {
+    "family": "spatial_winds",
+    "seed": 6100010,
+    "constant_from_available_data": 14.186382370758006,
+    "model_rmse": 1.273968504381184,
+    "last_period_mean_rmse": 1.4739150343745135,
+    "prior10_rmse": 3.9139367225564334
+  },
+  {
+    "family": "weak",
+    "seed": 6100010,
+    "constant_from_available_data": 13.970798562183752,
+    "model_rmse": 1.8271262510172088,
+    "last_period_mean_rmse": 1.8498053598827446,
+    "prior10_rmse": 3.975142718367994
+  },
+  {
+    "family": "correlated",
+    "seed": 6100010,
+    "constant_from_available_data": 14.323468648985681,
+    "model_rmse": 2.7384306290735014,
+    "last_period_mean_rmse": 4.5188211808277945,
+    "prior10_rmse": 2.9564621690773665
+  },
+  {
+    "family": "two_sources",
+    "seed": 6100010,
+    "constant_from_available_data": 14.160785603317208,
+    "model_rmse": 1.537124886871522,
+    "last_period_mean_rmse": 1.5613747228432386,
+    "prior10_rmse": 4.143435152184458
+  },
+  {
+    "family": "background",
+    "seed": 6100010,
+    "constant_from_available_data": 14.160785603317208,
+    "model_rmse": 1.357161788172737,
+    "last_period_mean_rmse": 1.4650270526262437,
+    "prior10_rmse": 3.913936722556432
+  },
+  {
+    "family": "independent_transport",
+    "seed": 6100010,
+    "constant_from_available_data": 14.160785603317208,
+    "model_rmse": 1.3623308818116122,
+    "last_period_mean_rmse": 1.4650270526262437,
+    "prior10_rmse": 3.913936722556432
+  },
+  {
+    "family": "sensor_dropout",
+    "seed": 6100010,
+    "constant_from_available_data": 14.435842593887969,
+    "model_rmse": 1.3916478737656324,
+    "last_period_mean_rmse": 1.579750977034985,
+    "prior10_rmse": 3.913936722556432
+  },
+  {
+    "family": "sensor_bias",
+    "seed": 6100010,
+    "constant_from_available_data": 19.348942952618344,
+    "model_rmse": 5.807042065542941,
+    "last_period_mean_rmse": 5.850209168601719,
+    "prior10_rmse": 3.913936722556432
+  },
+  {
+    "family": "shared_reference_bias",
+    "seed": 6100010,
+    "constant_from_available_data": 14.160785603317208,
+    "model_rmse": 1.354925422481377,
+    "last_period_mean_rmse": 1.4650270526262437,
+    "prior10_rmse": 3.913936722556432
+  },
+  {
+    "family": "source_outside_domain",
+    "seed": 6100010,
+    "constant_from_available_data": 14.160785603317208,
+    "model_rmse": 1.3575938588093435,
+    "last_period_mean_rmse": 1.4650270526262437,
+    "prior10_rmse": 3.913936722556432
+  },
+  {
+    "family": "extreme_readings",
+    "seed": 6100010,
+    "constant_from_available_data": 14.16871310318859,
+    "model_rmse": 1.383030450085012,
+    "last_period_mean_rmse": 1.467737759908009,
+    "prior10_rmse": 3.913936722556432
+  },
+  {
+    "family": "shared_lineage",
+    "seed": 6100010,
+    "constant_from_available_data": 14.160785603317208,
+    "model_rmse": 1.3561986064163913,
+    "last_period_mean_rmse": 1.4650270526262437,
+    "prior10_rmse": 3.913936722556432
+  },
+  {
+    "family": "characterized_nominal",
+    "seed": 6100003,
+    "constant_from_available_data": 11.021004525721958,
+    "model_rmse": 1.2565465232657096,
+    "last_period_mean_rmse": 1.4860405861298636,
+    "prior10_rmse": 1.8213756954642604
+  },
+  {
+    "family": "unknown_nominal",
+    "seed": 6100003,
+    "constant_from_available_data": 11.021004525721958,
+    "model_rmse": 1.2539409546499316,
+    "last_period_mean_rmse": 1.4860405861298636,
+    "prior10_rmse": 1.8213756954642604
+  },
+  {
+    "family": "direction_unknown",
+    "seed": 6100003,
+    "constant_from_available_data": 16.313771637581272,
+    "model_rmse": 1.5285163586344326,
+    "last_period_mean_rmse": 1.4236030727181117,
+    "prior10_rmse": 6.795880321028909
+  },
+  {
+    "family": "direction_characterized",
+    "seed": 6100003,
+    "constant_from_available_data": 16.313771637581272,
+    "model_rmse": 1.5434393966275453,
+    "last_period_mean_rmse": 1.4236030727181117,
+    "prior10_rmse": 6.795880321028909
+  },
+  {
+    "family": "speed_bias",
+    "seed": 6100003,
+    "constant_from_available_data": 16.313771637581272,
+    "model_rmse": 1.5388720960281281,
+    "last_period_mean_rmse": 1.4236030727181117,
+    "prior10_rmse": 6.795880321028909
+  },
+  {
+    "family": "clock_lag",
+    "seed": 6100003,
+    "constant_from_available_data": 10.813593668294578,
+    "model_rmse": 1.4973649892343148,
+    "last_period_mean_rmse": 1.5049498057313337,
+    "prior10_rmse": 1.8213756954642604
+  },
+  {
+    "family": "spatial_winds",
+    "seed": 6100003,
+    "constant_from_available_data": 10.813593668294578,
+    "model_rmse": 1.4874287297853501,
+    "last_period_mean_rmse": 1.5049498057313337,
+    "prior10_rmse": 1.8213756954642604
+  },
+  {
+    "family": "weak",
+    "seed": 6100003,
+    "constant_from_available_data": 16.32127887177973,
+    "model_rmse": 1.5459699685947512,
+    "last_period_mean_rmse": 1.4194243309893695,
+    "prior10_rmse": 6.76998858888986
+  },
+  {
+    "family": "correlated",
+    "seed": 6100003,
+    "constant_from_available_data": 7.911247111173306,
+    "model_rmse": 2.1626871942605677,
+    "last_period_mean_rmse": 2.4979708351647654,
+    "prior10_rmse": 2.7588592401498886
+  },
+  {
+    "family": "two_sources",
+    "seed": 6100003,
+    "constant_from_available_data": 11.021004525721958,
+    "model_rmse": 1.2422439633136853,
+    "last_period_mean_rmse": 1.4860405861298636,
+    "prior10_rmse": 1.8213756954642604
+  },
+  {
+    "family": "background",
+    "seed": 6100003,
+    "constant_from_available_data": 11.021004525721958,
+    "model_rmse": 1.261562070607184,
+    "last_period_mean_rmse": 1.4860405861298636,
+    "prior10_rmse": 1.8213756954642604
+  },
+  {
+    "family": "independent_transport",
+    "seed": 6100003,
+    "constant_from_available_data": 11.021004525721958,
+    "model_rmse": 1.2590385739157097,
+    "last_period_mean_rmse": 1.4860405861298636,
+    "prior10_rmse": 1.8213756954642604
+  },
+  {
+    "family": "sensor_dropout",
+    "seed": 6100003,
+    "constant_from_available_data": 11.088685699511812,
+    "model_rmse": 1.6198249542229588,
+    "last_period_mean_rmse": 1.4860954575896725,
+    "prior10_rmse": 1.8213756954642604
+  },
+  {
+    "family": "sensor_bias",
+    "seed": 6100003,
+    "constant_from_available_data": 16.38654315197611,
+    "model_rmse": 4.725731238700999,
+    "last_period_mean_rmse": 5.5359826854327645,
+    "prior10_rmse": 1.8213756954642604
+  },
+  {
+    "family": "shared_reference_bias",
+    "seed": 6100003,
+    "constant_from_available_data": 11.021004525721958,
+    "model_rmse": 1.24895077502122,
+    "last_period_mean_rmse": 1.4860405861298636,
+    "prior10_rmse": 1.8213756954642604
+  },
+  {
+    "family": "source_outside_domain",
+    "seed": 6100003,
+    "constant_from_available_data": 11.021004525721958,
+    "model_rmse": 1.2503206620066065,
+    "last_period_mean_rmse": 1.4860405861298636,
+    "prior10_rmse": 1.8213756954642604
+  },
+  {
+    "family": "extreme_readings",
+    "seed": 6100003,
+    "constant_from_available_data": 11.241480604276765,
+    "model_rmse": 1.2126840105779815,
+    "last_period_mean_rmse": 1.497509768615755,
+    "prior10_rmse": 1.8213756954642604
+  },
+  {
+    "family": "shared_lineage",
+    "seed": 6100003,
+    "constant_from_available_data": 11.021004525721958,
+    "model_rmse": 1.2521269584280326,
+    "last_period_mean_rmse": 1.4860405861298636,
+    "prior10_rmse": 1.8213756954642604
+  },
+  {
+    "family": "characterized_nominal",
+    "seed": 6100007,
+    "constant_from_available_data": 12.716328153060026,
+    "model_rmse": 1.5495504448639827,
+    "last_period_mean_rmse": 1.7136762835799766,
+    "prior10_rmse": 3.6582051162484817
+  },
+  {
+    "family": "unknown_nominal",
+    "seed": 6100007,
+    "constant_from_available_data": 12.716328153060026,
+    "model_rmse": 1.5446627520822116,
+    "last_period_mean_rmse": 1.7136762835799766,
+    "prior10_rmse": 3.6582051162484817
+  },
+  {
+    "family": "direction_unknown",
+    "seed": 6100007,
+    "constant_from_available_data": 12.949453403366315,
+    "model_rmse": 1.3815231754275081,
+    "last_period_mean_rmse": 1.5495661407962495,
+    "prior10_rmse": 3.8627191726662824
+  },
+  {
+    "family": "direction_characterized",
+    "seed": 6100007,
+    "constant_from_available_data": 12.949453403366315,
+    "model_rmse": 1.422796167216932,
+    "last_period_mean_rmse": 1.5495661407962495,
+    "prior10_rmse": 3.8627191726662824
+  },
+  {
+    "family": "speed_bias",
+    "seed": 6100007,
+    "constant_from_available_data": 12.949453403366315,
+    "model_rmse": 1.411101954335899,
+    "last_period_mean_rmse": 1.5495661407962495,
+    "prior10_rmse": 3.8627191726662824
+  },
+  {
+    "family": "clock_lag",
+    "seed": 6100007,
+    "constant_from_available_data": 12.763379886749865,
+    "model_rmse": 1.6737798447354397,
+    "last_period_mean_rmse": 1.6987549502370387,
+    "prior10_rmse": 3.6582051162484817
+  },
+  {
+    "family": "spatial_winds",
+    "seed": 6100007,
+    "constant_from_available_data": 12.763379886791958,
+    "model_rmse": 1.6724276090474026,
+    "last_period_mean_rmse": 1.698763794503886,
+    "prior10_rmse": 3.658222462822527
+  },
+  {
+    "family": "weak",
+    "seed": 6100007,
+    "constant_from_available_data": 12.951368223261051,
+    "model_rmse": 1.428383658718019,
+    "last_period_mean_rmse": 1.5506819617675198,
+    "prior10_rmse": 3.8670410500284746
+  },
+  {
+    "family": "correlated",
+    "seed": 6100007,
+    "constant_from_available_data": 9.280485904355258,
+    "model_rmse": 2.75131519783568,
+    "last_period_mean_rmse": 2.6731331002482843,
+    "prior10_rmse": 2.6902016715801502
+  },
+  {
+    "family": "two_sources",
+    "seed": 6100007,
+    "constant_from_available_data": 12.716328153060026,
+    "model_rmse": 1.54261646803089,
+    "last_period_mean_rmse": 1.7136762835799766,
+    "prior10_rmse": 3.6582051162484817
+  },
+  {
+    "family": "background",
+    "seed": 6100007,
+    "constant_from_available_data": 12.716328153060026,
+    "model_rmse": 1.5468692633206733,
+    "last_period_mean_rmse": 1.7136762835799766,
+    "prior10_rmse": 3.6582051162484817
+  },
+  {
+    "family": "independent_transport",
+    "seed": 6100007,
+    "constant_from_available_data": 12.716328153060026,
+    "model_rmse": 1.5561340026299666,
+    "last_period_mean_rmse": 1.7136762835799766,
+    "prior10_rmse": 3.6582051162484817
+  },
+  {
+    "family": "sensor_dropout",
+    "seed": 6100007,
+    "constant_from_available_data": 12.381400958478551,
+    "model_rmse": 1.6383145324008372,
+    "last_period_mean_rmse": 1.8512347362905284,
+    "prior10_rmse": 3.6582051162484817
+  },
+  {
+    "family": "sensor_bias",
+    "seed": 6100007,
+    "constant_from_available_data": 17.078250390134766,
+    "model_rmse": 4.473011244749525,
+    "last_period_mean_rmse": 4.1276470350361,
+    "prior10_rmse": 3.6582051162484817
+  },
+  {
+    "family": "shared_reference_bias",
+    "seed": 6100007,
+    "constant_from_available_data": 12.716328153060026,
+    "model_rmse": 1.5512285497514144,
+    "last_period_mean_rmse": 1.7136762835799766,
+    "prior10_rmse": 3.6582051162484817
+  },
+  {
+    "family": "source_outside_domain",
+    "seed": 6100007,
+    "constant_from_available_data": 12.716328153060026,
+    "model_rmse": 1.552781220416187,
+    "last_period_mean_rmse": 1.7136762835799766,
+    "prior10_rmse": 3.6582051162484817
+  },
+  {
+    "family": "extreme_readings",
+    "seed": 6100007,
+    "constant_from_available_data": 12.849454629808866,
+    "model_rmse": 1.6161121021665428,
+    "last_period_mean_rmse": 1.6745386270095324,
+    "prior10_rmse": 3.6582051162484817
+  },
+  {
+    "family": "shared_lineage",
+    "seed": 6100007,
+    "constant_from_available_data": 12.716328153060026,
+    "model_rmse": 1.5515128348225369,
+    "last_period_mean_rmse": 1.7136762835799766,
+    "prior10_rmse": 3.6582051162484817
+  },
+  {
+    "family": "characterized_nominal",
+    "seed": 6100011,
+    "constant_from_available_data": 13.852003013075437,
+    "model_rmse": 2.2717332532497556,
+    "last_period_mean_rmse": 2.1872972863255624,
+    "prior10_rmse": 4.6144275226780955
+  },
+  {
+    "family": "unknown_nominal",
+    "seed": 6100011,
+    "constant_from_available_data": 13.852003013075437,
+    "model_rmse": 2.271201853278611,
+    "last_period_mean_rmse": 2.1872972863255624,
+    "prior10_rmse": 4.6144275226780955
+  },
+  {
+    "family": "direction_unknown",
+    "seed": 6100011,
+    "constant_from_available_data": 11.071289356195827,
+    "model_rmse": 1.7518620405619278,
+    "last_period_mean_rmse": 1.6633451134446717,
+    "prior10_rmse": 2.193204203649453
+  },
+  {
+    "family": "direction_characterized",
+    "seed": 6100011,
+    "constant_from_available_data": 11.071289356195827,
+    "model_rmse": 1.7197352146315263,
+    "last_period_mean_rmse": 1.6633451134446717,
+    "prior10_rmse": 2.193204203649453
+  },
+  {
+    "family": "speed_bias",
+    "seed": 6100011,
+    "constant_from_available_data": 11.071289356195827,
+    "model_rmse": 1.7316693974401816,
+    "last_period_mean_rmse": 1.6633451134446717,
+    "prior10_rmse": 2.193204203649453
+  },
+  {
+    "family": "clock_lag",
+    "seed": 6100011,
+    "constant_from_available_data": 13.813490433599744,
+    "model_rmse": 2.196404232787254,
+    "last_period_mean_rmse": 2.1914508557683674,
+    "prior10_rmse": 4.6144275226780955
+  },
+  {
+    "family": "spatial_winds",
+    "seed": 6100011,
+    "constant_from_available_data": 13.813490433599744,
+    "model_rmse": 2.1703487169717754,
+    "last_period_mean_rmse": 2.1914508557683674,
+    "prior10_rmse": 4.6144275226780955
+  },
+  {
+    "family": "weak",
+    "seed": 6100011,
+    "constant_from_available_data": 11.070273247033905,
+    "model_rmse": 1.7276358495925481,
+    "last_period_mean_rmse": 1.6671653847348151,
+    "prior10_rmse": 2.198982329593443
+  },
+  {
+    "family": "correlated",
+    "seed": 6100011,
+    "constant_from_available_data": 17.00539053718951,
+    "model_rmse": 2.8256241023290776,
+    "last_period_mean_rmse": 3.0772072519593214,
+    "prior10_rmse": 6.908938383594379
+  },
+  {
+    "family": "two_sources",
+    "seed": 6100011,
+    "constant_from_available_data": 13.852003013075437,
+    "model_rmse": 2.251516670380457,
+    "last_period_mean_rmse": 2.1872972863255624,
+    "prior10_rmse": 4.6144275226780955
+  },
+  {
+    "family": "background",
+    "seed": 6100011,
+    "constant_from_available_data": 13.852003013075437,
+    "model_rmse": 2.280896190717479,
+    "last_period_mean_rmse": 2.1872972863255624,
+    "prior10_rmse": 4.6144275226780955
+  },
+  {
+    "family": "independent_transport",
+    "seed": 6100011,
+    "constant_from_available_data": 13.852003013075437,
+    "model_rmse": 2.2665990497945523,
+    "last_period_mean_rmse": 2.1872972863255624,
+    "prior10_rmse": 4.6144275226780955
+  },
+  {
+    "family": "sensor_dropout",
+    "seed": 6100011,
+    "constant_from_available_data": 13.633146813025903,
+    "model_rmse": 2.324470624433126,
+    "last_period_mean_rmse": 2.219705573562028,
+    "prior10_rmse": 4.6144275226780955
+  },
+  {
+    "family": "sensor_bias",
+    "seed": 6100011,
+    "constant_from_available_data": 19.54171226603823,
+    "model_rmse": 6.334431809715008,
+    "last_period_mean_rmse": 5.889757241743445,
+    "prior10_rmse": 4.6144275226780955
+  },
+  {
+    "family": "shared_reference_bias",
+    "seed": 6100011,
+    "constant_from_available_data": 13.852003013075437,
+    "model_rmse": 2.259525283592502,
+    "last_period_mean_rmse": 2.1872972863255624,
+    "prior10_rmse": 4.6144275226780955
+  },
+  {
+    "family": "source_outside_domain",
+    "seed": 6100011,
+    "constant_from_available_data": 13.852003013075437,
+    "model_rmse": 2.2596098941218004,
+    "last_period_mean_rmse": 2.1872972863255624,
+    "prior10_rmse": 4.6144275226780955
+  },
+  {
+    "family": "extreme_readings",
+    "seed": 6100011,
+    "constant_from_available_data": 13.730899113478344,
+    "model_rmse": 2.2882105924559215,
+    "last_period_mean_rmse": 2.2026035625601685,
+    "prior10_rmse": 4.6144275226780955
+  },
+  {
+    "family": "shared_lineage",
+    "seed": 6100011,
+    "constant_from_available_data": 13.852003013075437,
+    "model_rmse": 2.2597529308675783,
+    "last_period_mean_rmse": 2.1872972863255624,
+    "prior10_rmse": 4.6144275226780955
+  }
+]

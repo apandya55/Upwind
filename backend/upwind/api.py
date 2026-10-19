@@ -1,4 +1,5 @@
 import json
+import math
 import asyncio
 from pathlib import Path
 from fastapi import FastAPI, HTTPException, Request
@@ -15,6 +16,32 @@ app = FastAPI(title="UPWIND", version="0.1.0")
 _post_capacity = asyncio.Semaphore(4)
 
 
+def _finite_json_float(text):
+    value = float(text)
+    if not math.isfinite(value):
+        raise ValueError("JSON numbers must be finite")
+    return value
+
+
+def _reject_json_constant(text):
+    raise ValueError("Nonstandard JSON number: " + text)
+
+
+def _validate_json_body(raw):
+    value = json.loads(
+        raw, parse_float=_finite_json_float, parse_constant=_reject_json_constant
+    )
+    pending = [(value, 0)]
+    while pending:
+        node, depth = pending.pop()
+        if depth > 64:
+            raise ValueError("JSON nesting exceeds64levels")
+        if isinstance(node, dict):
+            pending.extend((item, depth + 1) for item in node.values())
+        elif isinstance(node, list):
+            pending.extend((item, depth + 1) for item in node)
+
+
 @app.middleware("http")
 async def size_limit(request: Request, call_next):
     # Stream limit also covers clients without Content-Length.
@@ -26,6 +53,14 @@ async def size_limit(request: Request, call_next):
                 return Response("Request exceeds 8 MB limit", status_code=413)
             chunks.append(chunk)
         request._body = b"".join(chunks)
+        try:
+            _validate_json_body(request._body)
+        except (ValueError, RecursionError) as exc:
+            return Response(
+                json.dumps({"detail": "Invalid JSON request: " + str(exc)}),
+                status_code=422,
+                media_type="application/json",
+            )
     try:
         return await call_next(request)
     except ValueError as e:

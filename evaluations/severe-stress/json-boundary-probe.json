@@ -1,0 +1,26 @@
+{
+  "phase": "Additional isolated boundary probe; source unchanged",
+  "results": [
+    {
+      "case": "deeply_nested",
+      "status": 500,
+      "records_before": 0,
+      "records_after": 0,
+      "response_preview": "Internal Server Error"
+    },
+    {
+      "case": "invalid_utf8",
+      "status": 400,
+      "records_before": 0,
+      "records_after": 0,
+      "response_preview": "{\"detail\":\"There was an error parsing the body\"}"
+    },
+    {
+      "case": "legacy_nan",
+      "status": 200,
+      "records_before": 0,
+      "records_after": 1,
+      "response_preview": "{\"id\":\"177352951ec243f2a43dafa7f4044134\",\"name\":\"Untitled investigation\",\"concern\":\"\",\"objective\":\"Find useful next moni"
+    }
+  ]
+}

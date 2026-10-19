@@ -1,0 +1,13 @@
+# Stress reporting methods
+
+Declared before inspecting the current campaign's scientific accuracy/prediction outcomes. It changes no source, scenario or acceptance rule.
+
+Report all960main cases and480nominal confirmation cases, including unavailable predictions/refusals. Source metrics and95% Wilson intervals use one world per seed within a condition; do not pool repeated conditions or individual target points as independent campaigns. Keep point accuracy, conditional region coverage/area, acceptance and warning behavior separate. A region miss among accepted positive-source cases is a geographic error; accepted background-only cases and source-family false alarms are separately counted.
+
+For the240scheduled main passive prediction cases, report the216potentially scoreable cases separately from24expected unsupported-weather refusals, retaining any additional failures. Each scored world has12targets. Predictions are retrospective at the last recorded timestamp; they do not test future scheduling or prospective acquisition.
+
+To give concentration RMSE context, calculate a **last-period spatial mean** comparator from available quality-reviewed monitoring measurements in the final study period, before using any target outcomes. It predicts one constant at every unseen target. This uses neither evaluator truth nor source/weather inference. The fixed10µg/m³ background prior mean is a second descriptive no-data comparator. Neither comparator is selected from outcomes. The model's exact conditional predictive intervals/densities are reported without assigning fictional uncertainty intervals to these simple point comparators.
+
+For model-minus-comparator improvements, positive RMSE advantage means comparator RMSE minus model RMSE. Compare paired worlds; report mean, losses and bootstrap95% intervals with5,000resamples/RNG90311. Conditional interval coverage is summarized across worlds; target observations within a world are correlated and cannot be treated as144independent trials. Small per-condition prediction samples (at most12worlds) have limited precision. These are descriptive model diagnostics, not a new planner-superiority test or a calibrated field statement.
+
+Numerical property checks, API retries, fuzz fixtures and unit/browser assertions are engineering checks, not independent real-world observations. Preserve actual elapsed time, source/configuration hashes and finite/refusal/failure counts. Main workers share a four-CPU quota; their wall times include CPU contention and concurrent checks. Fresh resource children and browser workflows run afterward to avoid presenting that contention as a standalone latency guarantee. All historical failed/preflight outputs remain retained.
