@@ -1,0 +1,92 @@
+[
+  {
+    "status": "finished",
+    "analysis_status": "ok",
+    "reason": null,
+    "campaign": false,
+    "inference_limit": 128,
+    "loaded": 10000,
+    "weather": 10000,
+    "sites": 100,
+    "anchors": 25,
+    "rows_fitted": 128,
+    "components": 12097,
+    "finite_scores": true,
+    "wall_seconds": 10.21592647399666,
+    "peak_rss_mib": 320.75390625,
+    "command": [
+      "/workspace/Upwind/.venv/bin/python",
+      "/workspace/Upwind/.local/research/resource_probe.py",
+      "--child",
+      "128"
+    ]
+  },
+  {
+    "status": "finished",
+    "analysis_status": "ok",
+    "reason": null,
+    "campaign": false,
+    "inference_limit": 512,
+    "loaded": 10000,
+    "weather": 10000,
+    "sites": 100,
+    "anchors": 25,
+    "rows_fitted": 512,
+    "components": 12097,
+    "finite_scores": true,
+    "wall_seconds": 11.550714867997158,
+    "peak_rss_mib": 590.96875,
+    "command": [
+      "/workspace/Upwind/.venv/bin/python",
+      "/workspace/Upwind/.local/research/resource_probe.py",
+      "--child",
+      "512"
+    ]
+  },
+  {
+    "status": "finished",
+    "analysis_status": "insufficient_data",
+    "reason": "Inference limit 128 cannot retain all 240 sensor/window groups; increase the inference limit or split the investigation",
+    "campaign": true,
+    "inference_limit": 128,
+    "loaded": 10000,
+    "weather": 10000,
+    "sites": 100,
+    "anchors": 25,
+    "rows_fitted": 0,
+    "components": null,
+    "finite_scores": true,
+    "wall_seconds": 0.9171961409956566,
+    "peak_rss_mib": 198.14453125,
+    "command": [
+      "/workspace/Upwind/.venv/bin/python",
+      "/workspace/Upwind/.local/research/resource_probe.py",
+      "--child",
+      "128",
+      "--campaign"
+    ]
+  },
+  {
+    "status": "finished",
+    "analysis_status": "insufficient_data",
+    "reason": "Inference limit 24 cannot retain all 40 distinct sensors; increase the inference limit or split the investigation",
+    "campaign": true,
+    "inference_limit": 512,
+    "loaded": 10000,
+    "weather": 10000,
+    "sites": 100,
+    "anchors": 25,
+    "rows_fitted": 0,
+    "components": null,
+    "finite_scores": true,
+    "wall_seconds": 7.2809610910044285,
+    "peak_rss_mib": 1507.02734375,
+    "command": [
+      "/workspace/Upwind/.venv/bin/python",
+      "/workspace/Upwind/.local/research/resource_probe.py",
+      "--child",
+      "512",
+      "--campaign"
+    ]
+  }
+]

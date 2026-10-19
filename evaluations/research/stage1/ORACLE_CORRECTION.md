@@ -1,0 +1,1 @@
+The known-background oracle subtracted drift*epoch, whereas the generator uses drift*(epoch-1.5)/3. Those known-background rows are invalid and retained for audit. Other oracle rows are unaffected. The corrected script/outcomes are in stage1-corrected; this fixes the evaluator against its independently inspected defining equation, not the production engine.

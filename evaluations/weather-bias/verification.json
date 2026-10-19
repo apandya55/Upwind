@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "model": "plume-weather-0.5.0",
+  "protocol": "UW-WEATHER-2026-03",
+  "source_freeze_sha256": "3058ca0666caa1c6033d078e0740477e73d59a89205b56a33360acc2ef7f8253",
+  "frozen_files": 43,
+  "snapshots": {
+    "baseline-source": 62,
+    "calibration-source": 43,
+    "frozen-source": 84
+  },
+  "counts": {
+    "calibration": {
+      "source_outcomes": 448,
+      "followup_fits": 0
+    },
+    "final": {
+      "source_outcomes": 896,
+      "followup_fits": 360
+    }
+  },
+  "final_budget_checks": true,
+  "report_and_figure_hashes": true,
+  "scope": "Artifact integrity and declared counts; not physical validation or operational certification"
+}

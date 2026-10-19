@@ -1,0 +1,15 @@
+"""Previously inspected original0.3-development population. No fresh-test claim."""
+from pathlib import Path
+import time
+from upwind.validation.overhaul import make_world,FAMILIES
+from upwind.validation.research.run import evaluate,source_hashes,write
+OUT=Path('evaluations/research/original-development-comparison');OUT.mkdir(exist_ok=False)
+before=source_hashes();rows=[];started=time.perf_counter()
+(OUT/'script.py.txt').write_text(Path(__file__).read_text())
+for family in FAMILIES:
+ for seed in range(410000,410040):
+  inv,old=make_world(family,seed,'development')
+  state={'family':'original-'+family,'seed':seed,'split':'development','previous':old,'source_xy':old['source_xy'],'source_present':family!='background_only'}
+  rows.extend([evaluate(inv,state),evaluate(inv,state,old=True)])
+ write(OUT/'science.json',rows);print(family,flush=True)
+write(OUT/'metadata.json',{'source_hashes_before':before,'source_hashes_after':source_hashes(),'source_hashes_unchanged':before==source_hashes(),'split':'previously inspected development','worlds':len(rows)//2,'crashes':sum(r['status']=='crash' for r in rows),'wall_seconds':time.perf_counter()-started})

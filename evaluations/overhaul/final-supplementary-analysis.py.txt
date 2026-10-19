@@ -1,0 +1,43 @@
+"""Post-evaluation descriptive analysis. Does not fit, select or tune a model."""
+from pathlib import Path
+import json,hashlib
+import numpy as np
+
+root=Path('/workspace/Upwind')
+p=root/'evaluations/overhaul/new-final'
+science=json.loads((p/'science.json').read_text())
+followup=json.loads((p/'followup.json').read_text())
+rng=np.random.default_rng(90210)
+
+def interval(values):
+    values=np.asarray(values,float)
+    means=values[rng.integers(0,len(values),(5000,len(values)))].mean(axis=1)
+    return {'n':len(values),'mean':float(values.mean()),'percentile95':np.quantile(means,[.025,.975]).tolist()}
+
+paired=[]
+for family in sorted({r['family'] for r in science}):
+    old={r['seed']:r for r in science if r['family']==family and r['model']=='legacy-0.2.1'}
+    new={r['seed']:r for r in science if r['family']==family and r['model']=='mixture-0.3.0'}
+    differences=[old[seed]['prediction']['rmse_ug_m3']-row['prediction']['rmse_ug_m3'] for seed,row in new.items() if 'prediction' in old[seed] and 'prediction' in row]
+    if differences:
+        paired.append({'family':family,'target':'whole-held-sensor RMSE, old minus new (positive favors new)','uncertainty':interval(differences)})
+planner=[]
+for family in sorted({r['family'] for r in followup}):
+    values=[]
+    for r in followup:
+        if r['family']!=family or r['method']!='new' or r['status']!='retained': continue
+        random=[o['prediction']['rmse_ug_m3'] for o in followup if o['family']==family and o['seed']==r['seed'] and o['method'].startswith('random-') and o['status']=='retained']
+        assert len(random)==20
+        values.append(float(np.mean(random))-r['prediction']['rmse_ug_m3'])
+    if values: planner.append({'family':family,'target':'realized target RMSE, random20 mean minus new','uncertainty':interval(values)})
+rule=[]
+for family in sorted({r['family'] for r in science}):
+    rows=[r for r in science if r['family']==family and r['model']=='mixture-0.3.0']
+    fitted=[r for r in rows if r['status']=='retained']
+    selected=[r for r in fitted if r['source_probability']>=.9 and r['region90_area_fraction']<.5 and not r['mismatch_warning']]
+    rule.append({'family':family,'generated':len(rows),'fitted':len(fitted),'frozen_product_rule_source_supported':len(selected),'source_regions_missed_among_supported':sum(r['source_present'] and not r['region90_truth_covered'] for r in selected)})
+result={'status':'Supplementary descriptive analysis after final evaluation; no model change or metric replacement','bootstrap':{'method':'paired within-condition seed resampling, percentile interval','replicates':5000,'rng_seed':90210,'caution':'n=12 planner intervals are imprecise; do not pool dependent families or infer field generalization'},'paired_prediction':paired,'paired_planner':planner,'frozen_product_evidence_rule':rule,'inputs':{name:hashlib.sha256((p/name).read_bytes()).hexdigest() for name in ('science.json','followup.json','metadata.json')},'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
+out=root/'evaluations/overhaul/final-supplementary-analysis.json'
+out.write_text(json.dumps(result,indent=2)+'\n')
+(root/'evaluations/overhaul/final-supplementary-analysis.py.txt').write_text(Path(__file__).read_text())
+print(json.dumps({'planner':planner,'rule':rule},indent=2))

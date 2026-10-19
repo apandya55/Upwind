@@ -1,0 +1,2083 @@
+{
+  "investigation": {
+    "id": "",
+    "name": "Synthetic weather-bias holdout",
+    "concern": "",
+    "objective": "Find useful next monitoring sites",
+    "area": [
+      -92.00980987359002,
+      42.99279838414516,
+      -91.98405523185555,
+      43.007200075826134
+    ],
+    "synthetic": true,
+    "measurements": [
+      {
+        "latitude": 43.001422545923,
+        "longitude": -91.99971812685352,
+        "timestamp": "2026-08-10T09:00:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M00",
+        "pm25_ug_m3": 12.909643945014945,
+        "uncertainty_ug_m3": 1.3562534539201332,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.998408348064615,
+        "longitude": -91.99861531309193,
+        "timestamp": "2026-08-10T09:00:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M01",
+        "pm25_ug_m3": 13.114758205348707,
+        "uncertainty_ug_m3": 1.4496119437197847,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00035651910634,
+        "longitude": -91.99711149705624,
+        "timestamp": "2026-08-10T09:00:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M02",
+        "pm25_ug_m3": 11.274275406598157,
+        "uncertainty_ug_m3": 0.8152961472091977,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99879935907415,
+        "longitude": -91.99550743899285,
+        "timestamp": "2026-08-10T09:00:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M03",
+        "pm25_ug_m3": 11.216969725070836,
+        "uncertainty_ug_m3": 0.8578326470017696,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00110382286772,
+        "longitude": -91.9923247597491,
+        "timestamp": "2026-08-10T09:00:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M04",
+        "pm25_ug_m3": 14.20340882697333,
+        "uncertainty_ug_m3": 1.2284196797174942,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99981397513028,
+        "longitude": -91.98944578545013,
+        "timestamp": "2026-08-10T09:00:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M05",
+        "pm25_ug_m3": 11.684726821241718,
+        "uncertainty_ug_m3": 1.25378337374029,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.001422545923,
+        "longitude": -91.99971812685352,
+        "timestamp": "2026-08-10T09:05:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M00",
+        "pm25_ug_m3": 12.732151495256499,
+        "uncertainty_ug_m3": 1.1186854326527276,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.998408348064615,
+        "longitude": -91.99861531309193,
+        "timestamp": "2026-08-10T09:05:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M01",
+        "pm25_ug_m3": 10.972995984892773,
+        "uncertainty_ug_m3": 1.3219597207057912,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00035651910634,
+        "longitude": -91.99711149705624,
+        "timestamp": "2026-08-10T09:05:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M02",
+        "pm25_ug_m3": 10.00853197739449,
+        "uncertainty_ug_m3": 1.2041257858210972,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99879935907415,
+        "longitude": -91.99550743899285,
+        "timestamp": "2026-08-10T09:05:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M03",
+        "pm25_ug_m3": 12.35412119962702,
+        "uncertainty_ug_m3": 1.3960780601813692,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00110382286772,
+        "longitude": -91.9923247597491,
+        "timestamp": "2026-08-10T09:05:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M04",
+        "pm25_ug_m3": 13.98315374602678,
+        "uncertainty_ug_m3": 1.2303902290751711,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99981397513028,
+        "longitude": -91.98944578545013,
+        "timestamp": "2026-08-10T09:05:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M05",
+        "pm25_ug_m3": 12.16547306332399,
+        "uncertainty_ug_m3": 1.1716023534698854,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.001422545923,
+        "longitude": -91.99971812685352,
+        "timestamp": "2026-08-10T09:10:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M00",
+        "pm25_ug_m3": 11.671678989698405,
+        "uncertainty_ug_m3": 0.9024907041837203,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.998408348064615,
+        "longitude": -91.99861531309193,
+        "timestamp": "2026-08-10T09:10:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M01",
+        "pm25_ug_m3": 10.997811815773193,
+        "uncertainty_ug_m3": 1.3264256335394586,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00035651910634,
+        "longitude": -91.99711149705624,
+        "timestamp": "2026-08-10T09:10:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M02",
+        "pm25_ug_m3": 13.543774233311051,
+        "uncertainty_ug_m3": 1.325600926669303,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99879935907415,
+        "longitude": -91.99550743899285,
+        "timestamp": "2026-08-10T09:10:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M03",
+        "pm25_ug_m3": 11.335897386475141,
+        "uncertainty_ug_m3": 1.1551354198433097,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00110382286772,
+        "longitude": -91.9923247597491,
+        "timestamp": "2026-08-10T09:10:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M04",
+        "pm25_ug_m3": 13.068088676790639,
+        "uncertainty_ug_m3": 1.4060663645841633,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99981397513028,
+        "longitude": -91.98944578545013,
+        "timestamp": "2026-08-10T09:10:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M05",
+        "pm25_ug_m3": 13.331147316524387,
+        "uncertainty_ug_m3": 1.0836934179750328,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.001422545923,
+        "longitude": -91.99971812685352,
+        "timestamp": "2026-08-10T09:15:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M00",
+        "pm25_ug_m3": 13.860931299970968,
+        "uncertainty_ug_m3": 0.9536338567809725,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.998408348064615,
+        "longitude": -91.99861531309193,
+        "timestamp": "2026-08-10T09:15:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M01",
+        "pm25_ug_m3": 14.429702851242576,
+        "uncertainty_ug_m3": 1.1450467425419915,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00035651910634,
+        "longitude": -91.99711149705624,
+        "timestamp": "2026-08-10T09:15:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M02",
+        "pm25_ug_m3": 11.451301272245306,
+        "uncertainty_ug_m3": 1.4878312060926058,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99879935907415,
+        "longitude": -91.99550743899285,
+        "timestamp": "2026-08-10T09:15:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M03",
+        "pm25_ug_m3": 12.9099071426583,
+        "uncertainty_ug_m3": 1.0783124294465223,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00110382286772,
+        "longitude": -91.9923247597491,
+        "timestamp": "2026-08-10T09:15:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M04",
+        "pm25_ug_m3": 14.105625611428936,
+        "uncertainty_ug_m3": 1.3477531018968423,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99981397513028,
+        "longitude": -91.98944578545013,
+        "timestamp": "2026-08-10T09:15:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M05",
+        "pm25_ug_m3": 13.488063379552727,
+        "uncertainty_ug_m3": 1.2096036512332817,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.001422545923,
+        "longitude": -91.99971812685352,
+        "timestamp": "2026-08-10T11:00:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M00",
+        "pm25_ug_m3": 11.146605054279693,
+        "uncertainty_ug_m3": 1.238075524748317,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.998408348064615,
+        "longitude": -91.99861531309193,
+        "timestamp": "2026-08-10T11:00:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M01",
+        "pm25_ug_m3": 9.986554848985643,
+        "uncertainty_ug_m3": 1.3913456714645007,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00035651910634,
+        "longitude": -91.99711149705624,
+        "timestamp": "2026-08-10T11:00:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M02",
+        "pm25_ug_m3": 10.72910511856288,
+        "uncertainty_ug_m3": 1.4730097713680617,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99879935907415,
+        "longitude": -91.99550743899285,
+        "timestamp": "2026-08-10T11:00:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M03",
+        "pm25_ug_m3": 9.864337051732212,
+        "uncertainty_ug_m3": 0.9858690108209087,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00110382286772,
+        "longitude": -91.9923247597491,
+        "timestamp": "2026-08-10T11:00:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M04",
+        "pm25_ug_m3": 12.14645246112302,
+        "uncertainty_ug_m3": 1.3787058449161027,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99981397513028,
+        "longitude": -91.98944578545013,
+        "timestamp": "2026-08-10T11:00:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M05",
+        "pm25_ug_m3": 11.428763645505446,
+        "uncertainty_ug_m3": 0.9836069877618254,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.001422545923,
+        "longitude": -91.99971812685352,
+        "timestamp": "2026-08-10T11:05:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M00",
+        "pm25_ug_m3": 11.113422171156978,
+        "uncertainty_ug_m3": 0.943097686756586,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.998408348064615,
+        "longitude": -91.99861531309193,
+        "timestamp": "2026-08-10T11:05:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M01",
+        "pm25_ug_m3": 13.127463886275912,
+        "uncertainty_ug_m3": 1.1109234746369983,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00035651910634,
+        "longitude": -91.99711149705624,
+        "timestamp": "2026-08-10T11:05:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M02",
+        "pm25_ug_m3": 10.527156741887671,
+        "uncertainty_ug_m3": 1.2063104951955923,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99879935907415,
+        "longitude": -91.99550743899285,
+        "timestamp": "2026-08-10T11:05:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M03",
+        "pm25_ug_m3": 9.991253052427917,
+        "uncertainty_ug_m3": 1.4503856669631374,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00110382286772,
+        "longitude": -91.9923247597491,
+        "timestamp": "2026-08-10T11:05:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M04",
+        "pm25_ug_m3": 12.89383064229763,
+        "uncertainty_ug_m3": 1.0913684017853404,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99981397513028,
+        "longitude": -91.98944578545013,
+        "timestamp": "2026-08-10T11:05:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M05",
+        "pm25_ug_m3": 12.376857530141356,
+        "uncertainty_ug_m3": 1.318745940686453,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.001422545923,
+        "longitude": -91.99971812685352,
+        "timestamp": "2026-08-10T11:10:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M00",
+        "pm25_ug_m3": 11.085869697344132,
+        "uncertainty_ug_m3": 1.2622745052884208,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.998408348064615,
+        "longitude": -91.99861531309193,
+        "timestamp": "2026-08-10T11:10:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M01",
+        "pm25_ug_m3": 12.871556530556573,
+        "uncertainty_ug_m3": 1.3269967038305635,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00035651910634,
+        "longitude": -91.99711149705624,
+        "timestamp": "2026-08-10T11:10:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M02",
+        "pm25_ug_m3": 11.436238672247038,
+        "uncertainty_ug_m3": 0.994839556208467,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99879935907415,
+        "longitude": -91.99550743899285,
+        "timestamp": "2026-08-10T11:10:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M03",
+        "pm25_ug_m3": 11.179496112117096,
+        "uncertainty_ug_m3": 1.4277615926520237,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00110382286772,
+        "longitude": -91.9923247597491,
+        "timestamp": "2026-08-10T11:10:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M04",
+        "pm25_ug_m3": 9.630697580281147,
+        "uncertainty_ug_m3": 1.3470218639430023,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99981397513028,
+        "longitude": -91.98944578545013,
+        "timestamp": "2026-08-10T11:10:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M05",
+        "pm25_ug_m3": 10.138839308487412,
+        "uncertainty_ug_m3": 1.4117698100150247,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.001422545923,
+        "longitude": -91.99971812685352,
+        "timestamp": "2026-08-10T11:15:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M00",
+        "pm25_ug_m3": 11.71369948626219,
+        "uncertainty_ug_m3": 0.9576578872590256,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.998408348064615,
+        "longitude": -91.99861531309193,
+        "timestamp": "2026-08-10T11:15:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M01",
+        "pm25_ug_m3": 11.691417561588537,
+        "uncertainty_ug_m3": 1.039833321159918,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00035651910634,
+        "longitude": -91.99711149705624,
+        "timestamp": "2026-08-10T11:15:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M02",
+        "pm25_ug_m3": 12.782624203483515,
+        "uncertainty_ug_m3": 0.8392144931444866,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99879935907415,
+        "longitude": -91.99550743899285,
+        "timestamp": "2026-08-10T11:15:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M03",
+        "pm25_ug_m3": 11.341295997835356,
+        "uncertainty_ug_m3": 0.9539167423791918,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00110382286772,
+        "longitude": -91.9923247597491,
+        "timestamp": "2026-08-10T11:15:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M04",
+        "pm25_ug_m3": 11.249360837424753,
+        "uncertainty_ug_m3": 0.9712400761919697,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99981397513028,
+        "longitude": -91.98944578545013,
+        "timestamp": "2026-08-10T11:15:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M05",
+        "pm25_ug_m3": 12.807008438854366,
+        "uncertainty_ug_m3": 0.8615830479752602,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.001422545923,
+        "longitude": -91.99971812685352,
+        "timestamp": "2026-08-10T13:00:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M00",
+        "pm25_ug_m3": 14.6429165532533,
+        "uncertainty_ug_m3": 1.4657562901418757,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.998408348064615,
+        "longitude": -91.99861531309193,
+        "timestamp": "2026-08-10T13:00:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M01",
+        "pm25_ug_m3": 10.587839036347347,
+        "uncertainty_ug_m3": 0.8525877911648898,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00035651910634,
+        "longitude": -91.99711149705624,
+        "timestamp": "2026-08-10T13:00:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M02",
+        "pm25_ug_m3": 10.225672235784153,
+        "uncertainty_ug_m3": 0.8970379662586131,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99879935907415,
+        "longitude": -91.99550743899285,
+        "timestamp": "2026-08-10T13:00:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M03",
+        "pm25_ug_m3": 10.531564144047492,
+        "uncertainty_ug_m3": 1.1593909125076125,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00110382286772,
+        "longitude": -91.9923247597491,
+        "timestamp": "2026-08-10T13:00:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M04",
+        "pm25_ug_m3": 12.173455560007291,
+        "uncertainty_ug_m3": 0.8508699941997253,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99981397513028,
+        "longitude": -91.98944578545013,
+        "timestamp": "2026-08-10T13:00:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M05",
+        "pm25_ug_m3": 13.020147045753241,
+        "uncertainty_ug_m3": 1.376155675426255,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.001422545923,
+        "longitude": -91.99971812685352,
+        "timestamp": "2026-08-10T13:05:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M00",
+        "pm25_ug_m3": 13.735673149422064,
+        "uncertainty_ug_m3": 0.990226663551051,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.998408348064615,
+        "longitude": -91.99861531309193,
+        "timestamp": "2026-08-10T13:05:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M01",
+        "pm25_ug_m3": 11.275891682068998,
+        "uncertainty_ug_m3": 1.408662069701346,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00035651910634,
+        "longitude": -91.99711149705624,
+        "timestamp": "2026-08-10T13:05:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M02",
+        "pm25_ug_m3": 12.6961334723819,
+        "uncertainty_ug_m3": 0.9998281488484456,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99879935907415,
+        "longitude": -91.99550743899285,
+        "timestamp": "2026-08-10T13:05:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M03",
+        "pm25_ug_m3": 12.450650943537129,
+        "uncertainty_ug_m3": 1.055176398732992,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00110382286772,
+        "longitude": -91.9923247597491,
+        "timestamp": "2026-08-10T13:05:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M04",
+        "pm25_ug_m3": 12.347462020941292,
+        "uncertainty_ug_m3": 1.1937434343503157,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99981397513028,
+        "longitude": -91.98944578545013,
+        "timestamp": "2026-08-10T13:05:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M05",
+        "pm25_ug_m3": 11.367934041995758,
+        "uncertainty_ug_m3": 1.2975101505431645,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.001422545923,
+        "longitude": -91.99971812685352,
+        "timestamp": "2026-08-10T13:10:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M00",
+        "pm25_ug_m3": 16.350996237277123,
+        "uncertainty_ug_m3": 1.05992849005518,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.998408348064615,
+        "longitude": -91.99861531309193,
+        "timestamp": "2026-08-10T13:10:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M01",
+        "pm25_ug_m3": 13.589730858037957,
+        "uncertainty_ug_m3": 1.2819455339733274,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00035651910634,
+        "longitude": -91.99711149705624,
+        "timestamp": "2026-08-10T13:10:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M02",
+        "pm25_ug_m3": 9.282718424222875,
+        "uncertainty_ug_m3": 1.456510796761279,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99879935907415,
+        "longitude": -91.99550743899285,
+        "timestamp": "2026-08-10T13:10:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M03",
+        "pm25_ug_m3": 11.732596362582923,
+        "uncertainty_ug_m3": 1.4412408402827048,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00110382286772,
+        "longitude": -91.9923247597491,
+        "timestamp": "2026-08-10T13:10:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M04",
+        "pm25_ug_m3": 12.836743433528541,
+        "uncertainty_ug_m3": 0.9140077449639291,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99981397513028,
+        "longitude": -91.98944578545013,
+        "timestamp": "2026-08-10T13:10:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M05",
+        "pm25_ug_m3": 9.768216505467889,
+        "uncertainty_ug_m3": 1.3369543224521512,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.001422545923,
+        "longitude": -91.99971812685352,
+        "timestamp": "2026-08-10T13:15:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M00",
+        "pm25_ug_m3": 14.047679479140154,
+        "uncertainty_ug_m3": 0.8328811417710373,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.998408348064615,
+        "longitude": -91.99861531309193,
+        "timestamp": "2026-08-10T13:15:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M01",
+        "pm25_ug_m3": 12.348874589735301,
+        "uncertainty_ug_m3": 1.3947324225262425,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00035651910634,
+        "longitude": -91.99711149705624,
+        "timestamp": "2026-08-10T13:15:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M02",
+        "pm25_ug_m3": 12.659713116149614,
+        "uncertainty_ug_m3": 1.211867900993349,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99879935907415,
+        "longitude": -91.99550743899285,
+        "timestamp": "2026-08-10T13:15:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M03",
+        "pm25_ug_m3": 11.253948989898621,
+        "uncertainty_ug_m3": 1.0915468708981706,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00110382286772,
+        "longitude": -91.9923247597491,
+        "timestamp": "2026-08-10T13:15:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M04",
+        "pm25_ug_m3": 11.763872054838457,
+        "uncertainty_ug_m3": 0.8197263994028349,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99981397513028,
+        "longitude": -91.98944578545013,
+        "timestamp": "2026-08-10T13:15:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M05",
+        "pm25_ug_m3": 11.964844977332694,
+        "uncertainty_ug_m3": 0.9730559477233833,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.001422545923,
+        "longitude": -91.99971812685352,
+        "timestamp": "2026-08-10T15:00:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M00",
+        "pm25_ug_m3": 12.86334426578571,
+        "uncertainty_ug_m3": 1.4595766507110195,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.998408348064615,
+        "longitude": -91.99861531309193,
+        "timestamp": "2026-08-10T15:00:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M01",
+        "pm25_ug_m3": 14.595260623428874,
+        "uncertainty_ug_m3": 1.094601599674923,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00035651910634,
+        "longitude": -91.99711149705624,
+        "timestamp": "2026-08-10T15:00:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M02",
+        "pm25_ug_m3": 7.534455719730635,
+        "uncertainty_ug_m3": 1.3864586464806345,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99879935907415,
+        "longitude": -91.99550743899285,
+        "timestamp": "2026-08-10T15:00:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M03",
+        "pm25_ug_m3": 15.456712825035899,
+        "uncertainty_ug_m3": 1.0190884847859836,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00110382286772,
+        "longitude": -91.9923247597491,
+        "timestamp": "2026-08-10T15:00:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M04",
+        "pm25_ug_m3": 11.566520680884723,
+        "uncertainty_ug_m3": 1.2966824896670568,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99981397513028,
+        "longitude": -91.98944578545013,
+        "timestamp": "2026-08-10T15:00:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M05",
+        "pm25_ug_m3": 10.046361458559534,
+        "uncertainty_ug_m3": 1.0657166435961456,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.001422545923,
+        "longitude": -91.99971812685352,
+        "timestamp": "2026-08-10T15:05:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M00",
+        "pm25_ug_m3": 13.244622348187438,
+        "uncertainty_ug_m3": 1.3385043591397947,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.998408348064615,
+        "longitude": -91.99861531309193,
+        "timestamp": "2026-08-10T15:05:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M01",
+        "pm25_ug_m3": 13.537497098128396,
+        "uncertainty_ug_m3": 1.137523439400709,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00035651910634,
+        "longitude": -91.99711149705624,
+        "timestamp": "2026-08-10T15:05:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M02",
+        "pm25_ug_m3": 11.273988179131358,
+        "uncertainty_ug_m3": 0.9685816429285757,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99879935907415,
+        "longitude": -91.99550743899285,
+        "timestamp": "2026-08-10T15:05:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M03",
+        "pm25_ug_m3": 14.595024268808528,
+        "uncertainty_ug_m3": 1.1644265152111637,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00110382286772,
+        "longitude": -91.9923247597491,
+        "timestamp": "2026-08-10T15:05:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M04",
+        "pm25_ug_m3": 11.760676412537553,
+        "uncertainty_ug_m3": 0.8296543277278916,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99981397513028,
+        "longitude": -91.98944578545013,
+        "timestamp": "2026-08-10T15:05:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M05",
+        "pm25_ug_m3": 13.426606096787605,
+        "uncertainty_ug_m3": 1.4798203292327603,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.001422545923,
+        "longitude": -91.99971812685352,
+        "timestamp": "2026-08-10T15:10:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M00",
+        "pm25_ug_m3": 12.631987995756479,
+        "uncertainty_ug_m3": 0.9612511596346358,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.998408348064615,
+        "longitude": -91.99861531309193,
+        "timestamp": "2026-08-10T15:10:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M01",
+        "pm25_ug_m3": 13.817408255507132,
+        "uncertainty_ug_m3": 1.0055195194727964,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00035651910634,
+        "longitude": -91.99711149705624,
+        "timestamp": "2026-08-10T15:10:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M02",
+        "pm25_ug_m3": 12.895372255575946,
+        "uncertainty_ug_m3": 1.0545818240098943,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99879935907415,
+        "longitude": -91.99550743899285,
+        "timestamp": "2026-08-10T15:10:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M03",
+        "pm25_ug_m3": 10.98973325430755,
+        "uncertainty_ug_m3": 1.0358327936708702,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00110382286772,
+        "longitude": -91.9923247597491,
+        "timestamp": "2026-08-10T15:10:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M04",
+        "pm25_ug_m3": 13.46585340853804,
+        "uncertainty_ug_m3": 1.4583792477123554,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99981397513028,
+        "longitude": -91.98944578545013,
+        "timestamp": "2026-08-10T15:10:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M05",
+        "pm25_ug_m3": 11.015950282282882,
+        "uncertainty_ug_m3": 0.8845643594338297,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.001422545923,
+        "longitude": -91.99971812685352,
+        "timestamp": "2026-08-10T15:15:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M00",
+        "pm25_ug_m3": 12.39830454476576,
+        "uncertainty_ug_m3": 1.1596177122860232,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.998408348064615,
+        "longitude": -91.99861531309193,
+        "timestamp": "2026-08-10T15:15:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M01",
+        "pm25_ug_m3": 10.503842945108431,
+        "uncertainty_ug_m3": 0.8122672688922903,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00035651910634,
+        "longitude": -91.99711149705624,
+        "timestamp": "2026-08-10T15:15:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M02",
+        "pm25_ug_m3": 10.849667514079274,
+        "uncertainty_ug_m3": 1.451086501166277,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99879935907415,
+        "longitude": -91.99550743899285,
+        "timestamp": "2026-08-10T15:15:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M03",
+        "pm25_ug_m3": 12.033570662146825,
+        "uncertainty_ug_m3": 1.1644763425135434,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 43.00110382286772,
+        "longitude": -91.9923247597491,
+        "timestamp": "2026-08-10T15:15:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M04",
+        "pm25_ug_m3": 14.108062270676056,
+        "uncertainty_ug_m3": 1.0558665248178745,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      },
+      {
+        "latitude": 42.99981397513028,
+        "longitude": -91.98944578545013,
+        "timestamp": "2026-08-10T15:15:00+00:00",
+        "origin": "synthetic",
+        "sensor_id": "M05",
+        "pm25_ug_m3": 10.713899795212033,
+        "uncertainty_ug_m3": 1.1126922607387164,
+        "humidity_percent": null,
+        "temperature_c": null,
+        "flags": []
+      }
+    ],
+    "weather": [
+      {
+        "latitude": 42.99999998521737,
+        "longitude": -91.99816043390088,
+        "timestamp": "2026-08-10T09:00:00+00:00",
+        "origin": "synthetic",
+        "wind_speed_m_s": 3.279316520531545,
+        "wind_from_deg": 211.74578684285362,
+        "role": "primary",
+        "source_id": "station-A",
+        "upstream_id": "instrument-A",
+        "direction_systematic_sd_deg": null,
+        "speed_systematic_fraction": null,
+        "direction_random_sd_deg": 2,
+        "comparison_provenance": "",
+        "provenance": "Synthetic station measurement; evaluator withholds calibration truth"
+      },
+      {
+        "latitude": 42.99999998521737,
+        "longitude": -91.99816043390088,
+        "timestamp": "2026-08-10T09:05:00+00:00",
+        "origin": "synthetic",
+        "wind_speed_m_s": 3.279316520531545,
+        "wind_from_deg": 211.74578684285362,
+        "role": "primary",
+        "source_id": "station-A",
+        "upstream_id": "instrument-A",
+        "direction_systematic_sd_deg": null,
+        "speed_systematic_fraction": null,
+        "direction_random_sd_deg": 2,
+        "comparison_provenance": "",
+        "provenance": "Synthetic station measurement; evaluator withholds calibration truth"
+      },
+      {
+        "latitude": 42.99999998521737,
+        "longitude": -91.99816043390088,
+        "timestamp": "2026-08-10T09:10:00+00:00",
+        "origin": "synthetic",
+        "wind_speed_m_s": 3.279316520531545,
+        "wind_from_deg": 211.74578684285362,
+        "role": "primary",
+        "source_id": "station-A",
+        "upstream_id": "instrument-A",
+        "direction_systematic_sd_deg": null,
+        "speed_systematic_fraction": null,
+        "direction_random_sd_deg": 2,
+        "comparison_provenance": "",
+        "provenance": "Synthetic station measurement; evaluator withholds calibration truth"
+      },
+      {
+        "latitude": 42.99999998521737,
+        "longitude": -91.99816043390088,
+        "timestamp": "2026-08-10T09:15:00+00:00",
+        "origin": "synthetic",
+        "wind_speed_m_s": 3.279316520531545,
+        "wind_from_deg": 211.74578684285362,
+        "role": "primary",
+        "source_id": "station-A",
+        "upstream_id": "instrument-A",
+        "direction_systematic_sd_deg": null,
+        "speed_systematic_fraction": null,
+        "direction_random_sd_deg": 2,
+        "comparison_provenance": "",
+        "provenance": "Synthetic station measurement; evaluator withholds calibration truth"
+      },
+      {
+        "latitude": 42.99999998521737,
+        "longitude": -91.99816043390088,
+        "timestamp": "2026-08-10T11:00:00+00:00",
+        "origin": "synthetic",
+        "wind_speed_m_s": 3.279316520531545,
+        "wind_from_deg": 242.2375903040634,
+        "role": "primary",
+        "source_id": "station-A",
+        "upstream_id": "instrument-A",
+        "direction_systematic_sd_deg": null,
+        "speed_systematic_fraction": null,
+        "direction_random_sd_deg": 2,
+        "comparison_provenance": "",
+        "provenance": "Synthetic station measurement; evaluator withholds calibration truth"
+      },
+      {
+        "latitude": 42.99999998521737,
+        "longitude": -91.99816043390088,
+        "timestamp": "2026-08-10T11:05:00+00:00",
+        "origin": "synthetic",
+        "wind_speed_m_s": 3.279316520531545,
+        "wind_from_deg": 242.2375903040634,
+        "role": "primary",
+        "source_id": "station-A",
+        "upstream_id": "instrument-A",
+        "direction_systematic_sd_deg": null,
+        "speed_systematic_fraction": null,
+        "direction_random_sd_deg": 2,
+        "comparison_provenance": "",
+        "provenance": "Synthetic station measurement; evaluator withholds calibration truth"
+      },
+      {
+        "latitude": 42.99999998521737,
+        "longitude": -91.99816043390088,
+        "timestamp": "2026-08-10T11:10:00+00:00",
+        "origin": "synthetic",
+        "wind_speed_m_s": 3.279316520531545,
+        "wind_from_deg": 242.2375903040634,
+        "role": "primary",
+        "source_id": "station-A",
+        "upstream_id": "instrument-A",
+        "direction_systematic_sd_deg": null,
+        "speed_systematic_fraction": null,
+        "direction_random_sd_deg": 2,
+        "comparison_provenance": "",
+        "provenance": "Synthetic station measurement; evaluator withholds calibration truth"
+      },
+      {
+        "latitude": 42.99999998521737,
+        "longitude": -91.99816043390088,
+        "timestamp": "2026-08-10T11:15:00+00:00",
+        "origin": "synthetic",
+        "wind_speed_m_s": 3.279316520531545,
+        "wind_from_deg": 242.2375903040634,
+        "role": "primary",
+        "source_id": "station-A",
+        "upstream_id": "instrument-A",
+        "direction_systematic_sd_deg": null,
+        "speed_systematic_fraction": null,
+        "direction_random_sd_deg": 2,
+        "comparison_provenance": "",
+        "provenance": "Synthetic station measurement; evaluator withholds calibration truth"
+      },
+      {
+        "latitude": 42.99999998521737,
+        "longitude": -91.99816043390088,
+        "timestamp": "2026-08-10T13:00:00+00:00",
+        "origin": "synthetic",
+        "wind_speed_m_s": 3.279316520531545,
+        "wind_from_deg": 288.220386004137,
+        "role": "primary",
+        "source_id": "station-A",
+        "upstream_id": "instrument-A",
+        "direction_systematic_sd_deg": null,
+        "speed_systematic_fraction": null,
+        "direction_random_sd_deg": 2,
+        "comparison_provenance": "",
+        "provenance": "Synthetic station measurement; evaluator withholds calibration truth"
+      },
+      {
+        "latitude": 42.99999998521737,
+        "longitude": -91.99816043390088,
+        "timestamp": "2026-08-10T13:05:00+00:00",
+        "origin": "synthetic",
+        "wind_speed_m_s": 3.279316520531545,
+        "wind_from_deg": 288.220386004137,
+        "role": "primary",
+        "source_id": "station-A",
+        "upstream_id": "instrument-A",
+        "direction_systematic_sd_deg": null,
+        "speed_systematic_fraction": null,
+        "direction_random_sd_deg": 2,
+        "comparison_provenance": "",
+        "provenance": "Synthetic station measurement; evaluator withholds calibration truth"
+      },
+      {
+        "latitude": 42.99999998521737,
+        "longitude": -91.99816043390088,
+        "timestamp": "2026-08-10T13:10:00+00:00",
+        "origin": "synthetic",
+        "wind_speed_m_s": 3.279316520531545,
+        "wind_from_deg": 288.220386004137,
+        "role": "primary",
+        "source_id": "station-A",
+        "upstream_id": "instrument-A",
+        "direction_systematic_sd_deg": null,
+        "speed_systematic_fraction": null,
+        "direction_random_sd_deg": 2,
+        "comparison_provenance": "",
+        "provenance": "Synthetic station measurement; evaluator withholds calibration truth"
+      },
+      {
+        "latitude": 42.99999998521737,
+        "longitude": -91.99816043390088,
+        "timestamp": "2026-08-10T13:15:00+00:00",
+        "origin": "synthetic",
+        "wind_speed_m_s": 3.279316520531545,
+        "wind_from_deg": 288.220386004137,
+        "role": "primary",
+        "source_id": "station-A",
+        "upstream_id": "instrument-A",
+        "direction_systematic_sd_deg": null,
+        "speed_systematic_fraction": null,
+        "direction_random_sd_deg": 2,
+        "comparison_provenance": "",
+        "provenance": "Synthetic station measurement; evaluator withholds calibration truth"
+      },
+      {
+        "latitude": 42.99999998521737,
+        "longitude": -91.99816043390088,
+        "timestamp": "2026-08-10T15:00:00+00:00",
+        "origin": "synthetic",
+        "wind_speed_m_s": 3.279316520531545,
+        "wind_from_deg": 324.40765951201195,
+        "role": "primary",
+        "source_id": "station-A",
+        "upstream_id": "instrument-A",
+        "direction_systematic_sd_deg": null,
+        "speed_systematic_fraction": null,
+        "direction_random_sd_deg": 2,
+        "comparison_provenance": "",
+        "provenance": "Synthetic station measurement; evaluator withholds calibration truth"
+      },
+      {
+        "latitude": 42.99999998521737,
+        "longitude": -91.99816043390088,
+        "timestamp": "2026-08-10T15:05:00+00:00",
+        "origin": "synthetic",
+        "wind_speed_m_s": 3.279316520531545,
+        "wind_from_deg": 324.40765951201195,
+        "role": "primary",
+        "source_id": "station-A",
+        "upstream_id": "instrument-A",
+        "direction_systematic_sd_deg": null,
+        "speed_systematic_fraction": null,
+        "direction_random_sd_deg": 2,
+        "comparison_provenance": "",
+        "provenance": "Synthetic station measurement; evaluator withholds calibration truth"
+      },
+      {
+        "latitude": 42.99999998521737,
+        "longitude": -91.99816043390088,
+        "timestamp": "2026-08-10T15:10:00+00:00",
+        "origin": "synthetic",
+        "wind_speed_m_s": 3.279316520531545,
+        "wind_from_deg": 324.40765951201195,
+        "role": "primary",
+        "source_id": "station-A",
+        "upstream_id": "instrument-A",
+        "direction_systematic_sd_deg": null,
+        "speed_systematic_fraction": null,
+        "direction_random_sd_deg": 2,
+        "comparison_provenance": "",
+        "provenance": "Synthetic station measurement; evaluator withholds calibration truth"
+      },
+      {
+        "latitude": 42.99999998521737,
+        "longitude": -91.99816043390088,
+        "timestamp": "2026-08-10T15:15:00+00:00",
+        "origin": "synthetic",
+        "wind_speed_m_s": 3.279316520531545,
+        "wind_from_deg": 324.40765951201195,
+        "role": "primary",
+        "source_id": "station-A",
+        "upstream_id": "instrument-A",
+        "direction_systematic_sd_deg": null,
+        "speed_systematic_fraction": null,
+        "direction_random_sd_deg": 2,
+        "comparison_provenance": "",
+        "provenance": "Synthetic station measurement; evaluator withholds calibration truth"
+      }
+    ],
+    "study_windows": [
+      {
+        "id": "period-1",
+        "start": "2026-08-10T09:00:00+00:00",
+        "end": "2026-08-10T09:15:00+00:00"
+      },
+      {
+        "id": "period-2",
+        "start": "2026-08-10T11:00:00+00:00",
+        "end": "2026-08-10T11:15:00+00:00"
+      },
+      {
+        "id": "period-3",
+        "start": "2026-08-10T13:00:00+00:00",
+        "end": "2026-08-10T13:15:00+00:00"
+      },
+      {
+        "id": "period-4",
+        "start": "2026-08-10T15:00:00+00:00",
+        "end": "2026-08-10T15:15:00+00:00"
+      }
+    ],
+    "sites": [
+      {
+        "latitude": 43.001422545923,
+        "longitude": -91.99971812685352,
+        "id": "M00",
+        "name": "Monitor0",
+        "kind": "sensor",
+        "allowed": false,
+        "power": false,
+        "access": false,
+        "cost": 100,
+        "windows": [
+          "steady-window"
+        ]
+      },
+      {
+        "latitude": 42.998408348064615,
+        "longitude": -91.99861531309193,
+        "id": "M01",
+        "name": "Monitor1",
+        "kind": "sensor",
+        "allowed": false,
+        "power": false,
+        "access": false,
+        "cost": 100,
+        "windows": [
+          "steady-window"
+        ]
+      },
+      {
+        "latitude": 43.00035651910634,
+        "longitude": -91.99711149705624,
+        "id": "M02",
+        "name": "Monitor2",
+        "kind": "sensor",
+        "allowed": false,
+        "power": false,
+        "access": false,
+        "cost": 100,
+        "windows": [
+          "steady-window"
+        ]
+      },
+      {
+        "latitude": 42.99879935907415,
+        "longitude": -91.99550743899285,
+        "id": "M03",
+        "name": "Monitor3",
+        "kind": "sensor",
+        "allowed": false,
+        "power": false,
+        "access": false,
+        "cost": 100,
+        "windows": [
+          "steady-window"
+        ]
+      },
+      {
+        "latitude": 43.00110382286772,
+        "longitude": -91.9923247597491,
+        "id": "M04",
+        "name": "Monitor4",
+        "kind": "sensor",
+        "allowed": false,
+        "power": false,
+        "access": false,
+        "cost": 100,
+        "windows": [
+          "steady-window"
+        ]
+      },
+      {
+        "latitude": 42.99981397513028,
+        "longitude": -91.98944578545013,
+        "id": "M05",
+        "name": "Monitor5",
+        "kind": "sensor",
+        "allowed": false,
+        "power": false,
+        "access": false,
+        "cost": 100,
+        "windows": [
+          "steady-window"
+        ]
+      },
+      {
+        "latitude": 42.99869478385374,
+        "longitude": -91.9998160472837,
+        "id": "C00",
+        "name": "Candidate0",
+        "kind": "candidate",
+        "allowed": true,
+        "power": true,
+        "access": true,
+        "cost": 90.0,
+        "windows": [
+          "steady-window"
+        ]
+      },
+      {
+        "latitude": 43.00018002962162,
+        "longitude": -91.99981604285298,
+        "id": "C01",
+        "name": "Candidate1",
+        "kind": "candidate",
+        "allowed": true,
+        "power": true,
+        "access": true,
+        "cost": 110.0,
+        "windows": [
+          "steady-window"
+        ]
+      },
+      {
+        "latitude": 43.00148524528008,
+        "longitude": -91.99981603895908,
+        "id": "C02",
+        "name": "Candidate2",
+        "kind": "candidate",
+        "allowed": true,
+        "power": true,
+        "access": true,
+        "cost": 120.0,
+        "windows": [
+          "steady-window"
+        ]
+      },
+      {
+        "latitude": 42.99869476388134,
+        "longitude": -91.99785388497692,
+        "id": "C03",
+        "name": "Candidate3",
+        "kind": "candidate",
+        "allowed": true,
+        "power": true,
+        "access": true,
+        "cost": 100.0,
+        "windows": [
+          "steady-window"
+        ]
+      },
+      {
+        "latitude": 43.00018000964857,
+        "longitude": -91.99785383328532,
+        "id": "C04",
+        "name": "Candidate4",
+        "kind": "candidate",
+        "allowed": true,
+        "power": true,
+        "access": true,
+        "cost": 90.0,
+        "windows": [
+          "steady-window"
+        ]
+      },
+      {
+        "latitude": 43.00148522530644,
+        "longitude": -91.99785378785651,
+        "id": "C05",
+        "name": "Candidate5",
+        "kind": "candidate",
+        "allowed": true,
+        "power": true,
+        "access": true,
+        "cost": 110.0,
+        "windows": [
+          "steady-window"
+        ]
+      },
+      {
+        "latitude": 42.998694696474516,
+        "longitude": -91.99552381724082,
+        "id": "C06",
+        "name": "Candidate6",
+        "kind": "candidate",
+        "allowed": true,
+        "power": true,
+        "access": true,
+        "cost": 120.0,
+        "windows": [
+          "steady-window"
+        ]
+      },
+      {
+        "latitude": 43.0001799422395,
+        "longitude": -91.9955237094269,
+        "id": "C07",
+        "name": "Candidate7",
+        "kind": "candidate",
+        "allowed": true,
+        "power": true,
+        "access": true,
+        "cost": 100.0,
+        "windows": [
+          "steady-window"
+        ]
+      },
+      {
+        "latitude": 43.001485157895424,
+        "longitude": -91.9955236146754,
+        "id": "C08",
+        "name": "Candidate8",
+        "kind": "candidate",
+        "allowed": true,
+        "power": true,
+        "access": true,
+        "cost": 90.0,
+        "windows": [
+          "steady-window"
+        ]
+      },
+      {
+        "latitude": 42.99869453953682,
+        "longitude": -91.99251925622337,
+        "id": "C09",
+        "name": "Candidate9",
+        "kind": "candidate",
+        "allowed": true,
+        "power": true,
+        "access": true,
+        "cost": 110.0,
+        "windows": [
+          "steady-window"
+        ]
+      },
+      {
+        "latitude": 43.00017978529663,
+        "longitude": -91.99251907604122,
+        "id": "C10",
+        "name": "Candidate10",
+        "kind": "candidate",
+        "allowed": true,
+        "power": true,
+        "access": true,
+        "cost": 120.0,
+        "windows": [
+          "steady-window"
+        ]
+      },
+      {
+        "latitude": 43.00148500094797,
+        "longitude": -91.99251891768941,
+        "id": "C11",
+        "name": "Candidate11",
+        "kind": "candidate",
+        "allowed": true,
+        "power": true,
+        "access": true,
+        "cost": 100.0,
+        "windows": [
+          "steady-window"
+        ]
+      }
+    ],
+    "source_locations": [
+      {
+        "latitude": 42.9980195391232,
+        "longitude": -92.00551852106538
+      },
+      {
+        "latitude": 42.99999986695633,
+        "longitude": -92.00551869829033
+      },
+      {
+        "latitude": 43.0019801941017,
+        "longitude": -92.00551887553104
+      },
+      {
+        "latitude": 42.99801962602479,
+        "longitude": -92.00324979574157
+      },
+      {
+        "latitude": 42.999999953861774,
+        "longitude": -92.00324990010735
+      },
+      {
+        "latitude": 43.00198028101097,
+        "longitude": -92.00325000448245
+      },
+      {
+        "latitude": 42.99801966795634,
+        "longitude": -92.00098107041299
+      },
+      {
+        "latitude": 42.999999995795164,
+        "longitude": -92.00098110191965
+      },
+      {
+        "latitude": 43.00198032294622,
+        "longitude": -92.00098113342912
+      }
+    ],
+    "assumptions": {
+      "steady": true,
+      "open_terrain": true,
+      "local_weather": true,
+      "constant_release_across_windows": true,
+      "note": "Synthetic assumptions, not verification"
+    },
+    "settings": {
+      "budget": 250.0,
+      "equipment_limit": 2,
+      "window": "steady-window",
+      "noise_ug_m3": 1.2,
+      "seed": 17,
+      "inference_limit": 128,
+      "selection_seed": 0,
+      "objective": "scenario_information",
+      "met_direction_sd_deg": 3.0,
+      "met_speed_fraction": 0.05,
+      "met_uncertainty_provenance": "Short-period declared uncertainty; persistent station accuracy unknown",
+      "source_height_m": 5,
+      "receptor_height_m": 2
+    },
+    "imports": [],
+    "observations": [],
+    "instruments": {},
+    "result": null,
+    "plan_history": [],
+    "archived_results": [],
+    "compatibility_notes": []
+  },
+  "private_truth": {
+    "family": "weak",
+    "seed": 1210012,
+    "split": "final",
+    "source_xy": [
+      -133.57237920777237,
+      204.4609521250922
+    ],
+    "source_present": true,
+    "strength": 356.12221106251866,
+    "secondary_xy": [
+      -404.8778042864959,
+      91.06712005450112
+    ],
+    "secondary_strength": 0.0,
+    "true_angles": [
+      211.37463913431688,
+      241.86644259552665,
+      287.8492382956003,
+      324.0365118034752
+    ],
+    "actual_initial_angles": [
+      211.37463913431688,
+      211.37463913431688,
+      211.37463913431688,
+      211.37463913431688,
+      211.37463913431688,
+      211.37463913431688,
+      211.37463913431688,
+      211.37463913431688,
+      211.37463913431688,
+      211.37463913431688,
+      211.37463913431688,
+      211.37463913431688,
+      211.37463913431688,
+      211.37463913431688,
+      211.37463913431688,
+      211.37463913431688,
+      211.37463913431688,
+      211.37463913431688,
+      211.37463913431688,
+      211.37463913431688,
+      211.37463913431688,
+      211.37463913431688,
+      211.37463913431688,
+      211.37463913431688,
+      241.86644259552665,
+      241.86644259552665,
+      241.86644259552665,
+      241.86644259552665,
+      241.86644259552665,
+      241.86644259552665,
+      241.86644259552665,
+      241.86644259552665,
+      241.86644259552665,
+      241.86644259552665,
+      241.86644259552665,
+      241.86644259552665,
+      241.86644259552665,
+      241.86644259552665,
+      241.86644259552665,
+      241.86644259552665,
+      241.86644259552665,
+      241.86644259552665,
+      241.86644259552665,
+      241.86644259552665,
+      241.86644259552665,
+      241.86644259552665,
+      241.86644259552665,
+      241.86644259552665,
+      287.8492382956003,
+      287.8492382956003,
+      287.8492382956003,
+      287.8492382956003,
+      287.8492382956003,
+      287.8492382956003,
+      287.8492382956003,
+      287.8492382956003,
+      287.8492382956003,
+      287.8492382956003,
+      287.8492382956003,
+      287.8492382956003,
+      287.8492382956003,
+      287.8492382956003,
+      287.8492382956003,
+      287.8492382956003,
+      287.8492382956003,
+      287.8492382956003,
+      287.8492382956003,
+      287.8492382956003,
+      287.8492382956003,
+      287.8492382956003,
+      287.8492382956003,
+      287.8492382956003,
+      324.0365118034752,
+      324.0365118034752,
+      324.0365118034752,
+      324.0365118034752,
+      324.0365118034752,
+      324.0365118034752,
+      324.0365118034752,
+      324.0365118034752,
+      324.0365118034752,
+      324.0365118034752,
+      324.0365118034752,
+      324.0365118034752,
+      324.0365118034752,
+      324.0365118034752,
+      324.0365118034752,
+      324.0365118034752,
+      324.0365118034752,
+      324.0365118034752,
+      324.0365118034752,
+      324.0365118034752,
+      324.0365118034752,
+      324.0365118034752,
+      324.0365118034752,
+      324.0365118034752
+    ],
+    "speed": 3.3011373517270526,
+    "station_direction_bias_deg": 0.37114770853673384,
+    "station_speed_factor": 0.9933899050931366,
+    "clock_lag_minutes": 0.0,
+    "spatial_direction_amplitude_deg": 0.0,
+    "background": [
+      12.804866767092422,
+      11.252213212341175,
+      12.354853460095175,
+      12.356417981388969
+    ],
+    "mechanism": "neutral",
+    "monitor_xy": [
+      [
+        22.98367891072136,
+        158.03457722328054
+      ],
+      [
+        112.91162486906738,
+        -176.82001339664663
+      ],
+      [
+        235.52996359006605,
+        39.61073329456634
+      ],
+      [
+        366.3349046944636,
+        -133.3726767074321
+      ],
+      [
+        625.835313791338,
+        122.6553026507905
+      ],
+      [
+        860.6034622765718,
+        -20.611953537066487
+      ]
+    ],
+    "candidate_xy": [
+      [
+        15.0,
+        -145.0
+      ],
+      [
+        15.0,
+        20.0
+      ],
+      [
+        15.0,
+        165.0
+      ],
+      [
+        175.0,
+        -145.0
+      ],
+      [
+        175.0,
+        20.0
+      ],
+      [
+        175.0,
+        165.0
+      ],
+      [
+        365.0,
+        -145.0
+      ],
+      [
+        365.0,
+        20.0
+      ],
+      [
+        365.0,
+        165.0
+      ],
+      [
+        610.0,
+        -145.0
+      ],
+      [
+        610.0,
+        20.0
+      ],
+      [
+        610.0,
+        165.0
+      ]
+    ],
+    "target_xy": [
+      [
+        15.0,
+        -145.0
+      ],
+      [
+        15.0,
+        20.0
+      ],
+      [
+        15.0,
+        165.0
+      ],
+      [
+        175.0,
+        -145.0
+      ],
+      [
+        175.0,
+        20.0
+      ],
+      [
+        175.0,
+        165.0
+      ],
+      [
+        365.0,
+        -145.0
+      ],
+      [
+        365.0,
+        20.0
+      ],
+      [
+        365.0,
+        165.0
+      ],
+      [
+        610.0,
+        -145.0
+      ],
+      [
+        610.0,
+        20.0
+      ],
+      [
+        610.0,
+        165.0
+      ]
+    ],
+    "future_latent": [
+      12.867971959740228,
+      12.597157538362882,
+      12.953529338636121,
+      12.213940774001713,
+      10.343364286001098,
+      13.172160573823588,
+      12.2396449837374,
+      12.811322522596617,
+      11.730501692179617,
+      12.9900582441517,
+      11.246473941919735,
+      11.506871783978744,
+      13.040317236296131,
+      12.258529353612525,
+      12.751593563378798,
+      12.313217685963021,
+      11.774429227988882,
+      14.222627260177283,
+      12.501982320598488,
+      12.97097390887276,
+      12.974734964541815,
+      12.61688892047227,
+      10.699468197754245,
+      13.109864346634769
+    ],
+    "future_sigma": [
+      1.4725370404453613,
+      0.8128825714679826,
+      1.4390197706221117,
+      1.1306224140025583,
+      1.282147625567825,
+      1.0716160770250347,
+      1.1634936696532385,
+      1.3366526143489472,
+      0.9811673052481682,
+      1.3913455981784555,
+      0.9090874782079608,
+      1.1375419871920944,
+      1.160837139800003,
+      1.2290256342817611,
+      1.0336833088945363,
+      0.9186137244441663,
+      1.0733275011097072,
+      1.392590316795316,
+      1.2231156394498084,
+      1.2711895962002102,
+      1.0313996837193815,
+      0.9390341965459871,
+      0.8034263110252762,
+      0.91174561495962
+    ],
+    "future_noise_seed": 4210012,
+    "last_timestamp": "2026-08-10T15:15:00+00:00",
+    "true_max_initial_increment_ug_m3": 0.24166726825057155
+  }
+}

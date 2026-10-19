@@ -1,0 +1,96 @@
+{
+  "source_hashes": {
+    "backend/upwind/design.py": "3f7a671d189decdcc925ad1760b0cca8e2835901129470221b3e4fea35f618cb",
+    "backend/tests/test_design.py": "7029808b764d4069b7714287957d6f523a1cedb692c50bbd2faa3916e225fcba"
+  },
+  "cases": [
+    {
+      "case": "equal_means_different_shapes",
+      "evidence": "independently integrated scalar toy; not field validation",
+      "exact_information_nats": 0.6931013552692596,
+      "estimates": [
+        {
+          "estimate_nats": 0.6931024181180285,
+          "numerical_budget": 128,
+          "replicate_range_nats": 8.9371668393734e-05
+        },
+        {
+          "estimate_nats": 0.69313337450889,
+          "numerical_budget": 512,
+          "replicate_range_nats": 2.6882819643248013e-05
+        },
+        {
+          "estimate_nats": 0.6931390839060487,
+          "numerical_budget": 2048,
+          "replicate_range_nats": 1.3799663612923396e-06
+        }
+      ]
+    },
+    {
+      "case": "separated_binary",
+      "evidence": "independently integrated scalar toy; not field validation",
+      "exact_information_nats": 0.6931471805599452,
+      "estimates": [
+        {
+          "estimate_nats": 0.6931471805599453,
+          "numerical_budget": 128,
+          "replicate_range_nats": 0.0
+        },
+        {
+          "estimate_nats": 0.6931471805599453,
+          "numerical_budget": 512,
+          "replicate_range_nats": 0.0
+        },
+        {
+          "estimate_nats": 0.6931471805599453,
+          "numerical_budget": 2048,
+          "replicate_range_nats": 0.0
+        }
+      ]
+    },
+    {
+      "case": "equal_means_different_variance",
+      "evidence": "independently integrated scalar toy; not field validation",
+      "exact_information_nats": 0.49245534356738635,
+      "estimates": [
+        {
+          "estimate_nats": 0.4924660070534002,
+          "numerical_budget": 128,
+          "replicate_range_nats": 0.003893047690486706
+        },
+        {
+          "estimate_nats": 0.4921330657938679,
+          "numerical_budget": 512,
+          "replicate_range_nats": 0.0005499391422516542
+        },
+        {
+          "estimate_nats": 0.4923709347681082,
+          "numerical_budget": 2048,
+          "replicate_range_nats": 0.00011752715189872198
+        }
+      ]
+    },
+    {
+      "case": "identical_predictive_groups",
+      "evidence": "independently integrated scalar toy; not field validation",
+      "exact_information_nats": 1.747013594279116e-17,
+      "estimates": [
+        {
+          "estimate_nats": 0.0,
+          "numerical_budget": 128,
+          "replicate_range_nats": 0.0
+        },
+        {
+          "estimate_nats": 0.0,
+          "numerical_budget": 512,
+          "replicate_range_nats": 0.0
+        },
+        {
+          "estimate_nats": -2.220446049250313e-16,
+          "numerical_budget": 2048,
+          "replicate_range_nats": 0.0
+        }
+      ]
+    }
+  ]
+}

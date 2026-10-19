@@ -1,0 +1,163 @@
+"""Exactly reproduce0.4 biased-weather failures with private evaluator truth."""
+
+import argparse, importlib.util, importlib, json, time
+from pathlib import Path
+import numpy as np
+
+p = argparse.ArgumentParser()
+p.add_argument("--out", type=Path, required=True)
+p.add_argument("--limit", type=int, default=40)
+args = p.parse_args()
+ROOT = Path(__file__).resolve().parents[1]
+OUT = args.out
+OUT.mkdir(exist_ok=False, parents=True)
+name = "_upwind_weather_baseline"
+p = ROOT / "evaluations/weather-bias/baseline-source/backend/upwind"
+spec = importlib.util.spec_from_file_location(
+    name, p / "__init__.py", submodule_search_locations=[str(p)]
+)
+pkg = importlib.util.module_from_spec(spec)
+import sys
+
+sys.modules[name] = pkg
+spec.loader.exec_module(pkg)
+mod = importlib.import_module(name + ".inference")
+models = importlib.import_module(name + ".models")
+from upwind.validation.research.cases import world
+from upwind.validation.research.run import source_metrics
+
+old = json.loads((ROOT / "evaluations/research/final/science.json").read_text())
+old = {
+    r["seed"]: r
+    for r in old
+    if r["family"] == "biased_met_campaign" and r["model"] == "plume-campaign-0.4.0"
+}
+rows = []
+accepted = []
+start = time.perf_counter()
+for seed in range(910000, 910000 + args.limit):
+    inv, state = world("biased_met_campaign", seed, "final")
+    data = inv.model_dump()
+    data = {k: v for k, v in data.items() if k in models.Investigation.model_fields}
+    data["weather"] = [
+        {k: v for k, v in w.items() if k in models.Weather.model_fields}
+        for w in data["weather"]
+        if w["role"] == "primary"
+    ]
+    inv = models.Investigation.model_validate(data)
+    f = mod.fit(inv, diagnostics=True)
+    metrics = source_metrics(f, state)
+    accepted_rule = bool(
+        f["source_probability"] >= 0.9
+        and metrics["region90_area_fraction"] < 0.5
+        and not f["diagnostics"]["predictive_warning"]
+    )
+    for key in [
+        "source_probability",
+        "region90_area_fraction",
+        "map_error_m",
+        "mean_error_m",
+    ]:
+        assert abs(metrics[key] - old[seed][key]) < 1e-10
+    assert accepted_rule == old[seed]["accepted"]
+    record = {
+        "seed": seed,
+        **metrics,
+        "accepted": accepted_rule,
+        "diagnostics": f["diagnostics"],
+    }
+    rows.append(record)
+    if accepted_rule:
+        c = f["profile_context"]
+        k = int(np.argmax(f["weights"][1:]))
+        base_k = k // 3
+        h = c["signatures"][:, base_k]
+        times = c["times"]
+        xy = np.column_stack(
+            f["projection"].transform(
+                [r.longitude for r in f["rows"]], [r.latitude for r in f["rows"]]
+            )
+        )
+        C = mod._base_cov(
+            xy,
+            times,
+            c["sensor_ids"],
+            xy,
+            times,
+            c["sensor_ids"],
+            inv.settings.noise_ug_m3,
+            c["window_ids"],
+            c["window_ids"],
+            c["bg_times"],
+            c["bg_times"],
+        ) + np.diag(c["sigma"] ** 2)
+        scale = [0.95, 1, 1.05][k % 3]
+        tau = 30000 / scale
+        invh = np.linalg.solve(C, h)
+        prec = 1 / tau**2 + h @ invh
+        m = h @ np.linalg.solve(C, c["observed"] - 10) / prec
+        qm, qv = mod.positive_normal_moments(m, 1 / np.sqrt(prec))
+        residual = c["observed"] - 10 - float(qm) * h
+        backgrounds = []
+        for w in sorted(set(c["window_ids"])):
+            mask = (c["window_ids"] == w).astype(float)
+            slope = mask * c["bg_times"] / 3600
+            sol = np.linalg.solve(C, residual)
+            backgrounds.append(
+                {
+                    "window": int(w),
+                    "posterior_background_mean": float(10 + 400 * mask @ sol),
+                    "posterior_trend_ug_m3_hour": float(100 * slope @ sol),
+                }
+            )
+        configs = c["configs"]
+        alternative = []
+        for j in np.argsort(-f["weights"][1:])[:20]:
+            source_cell = c["source_cell_indices"][int(j) // 3]
+            alternative.append(
+                {
+                    "cell_center_xy_m": f["source_xy"][source_cell].tolist(),
+                    "direction_offset_deg": float(configs[int(j) // 3, 1]),
+                    "speed_scale": [0.95, 1, 1.05][int(j) % 3],
+                    "joint_weight": float(f["weights"][j + 1]),
+                }
+            )
+        record.update(
+            input=inv.model_dump(),
+            simulated_truth=state,
+            profile_summary={
+                "best_component_effective_strength_mean_ug_s": float(qm),
+                "strength_sd_ug_s": float(np.sqrt(qv)),
+                "backgrounds": backgrounds,
+                "alternatives": alternative,
+            },
+            acceptance_reason="P(source)>=.9, conditional90%area<.5domain, zero joint predictive warnings. No independent meteorological quality check exists. Narrow declared3deg restricts coherent offsets to+-6.75deg.",
+            met_bias_actual_deg=[
+                float(
+                    (w.wind_from_deg - state["true_angles"][j // 4] + 180) % 360 - 180
+                )
+                for j, w in enumerate(inv.weather)
+            ],
+        )
+        accepted.append(record)
+    print(seed, accepted_rule, flush=True)
+(OUT / "all40.json").write_text(json.dumps(rows, indent=2) + "\n")
+(OUT / "accepted18-diagnostics.json").write_text(json.dumps(accepted, indent=2) + "\n")
+(OUT / "script.py.txt").write_text(Path(__file__).read_text())
+(OUT / "summary.json").write_text(
+    json.dumps(
+        {
+            "all_cases": args.limit,
+            "accepted": len(accepted),
+            "accepted_wrong": sum(not r["region90_covered"] for r in accepted),
+            "warnings": sum(r["diagnostics"]["predictive_warning"] for r in rows),
+            "exact_reproduction": True,
+            "wall_seconds": time.perf_counter() - start,
+        },
+        indent=2,
+    )
+    + "\n"
+)
+assert all(not r["region90_covered"] for r in accepted)
+if args.limit == 40:
+    assert len(accepted) == 18

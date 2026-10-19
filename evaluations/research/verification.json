@@ -1,0 +1,48 @@
+{
+  "final_source_hashes_unchanged": true,
+  "baseline_files_preserved": true,
+  "baseline_file_count": 113,
+  "report-manifest.json_hashes_match": true,
+  "report-manifest.json_script_matches": true,
+  "final/figures.json_hashes_match": true,
+  "final/figures.json_script_matches": true,
+  "science_statuses": {
+    "fitted": 480,
+    "refused": 480
+  },
+  "followup_statuses": {
+    "fitted": 1200
+  },
+  "followup_constraints": true,
+  "final_crashes": 0,
+  "calibration_confirmation": {
+    "rows": 576,
+    "identical_excluding_timings": true,
+    "confirmation_source_unchanged": true,
+    "matches_final_freeze": true
+  },
+  "broken_local_links": [],
+  "current_health": {
+    "status": "ok",
+    "version": "0.1.0",
+    "model_version": "plume-campaign-0.4.0",
+    "evidence": "synthetic evaluations only"
+  },
+  "pytest": 99,
+  "chromium_workflows": 7,
+  "production_build": "passed; existing large-bundle warning",
+  "ruff": "F401/F821 passed",
+  "field_validation": "not performed; verified HTTPS NOAA retries CONNECT403",
+  "deployment": "private loopback, no push or deployment",
+  "plots_visually_inspected": [
+    "source-coverage-area",
+    "planner-realized-outcomes",
+    "development-ablations"
+  ],
+  "report_manifests_rechecked": true,
+  "backend_tests_xml_verified": 99,
+  "chromium_log_verified": 7,
+  "isolated_api_probe_stopped": true,
+  "source_change_after_final": false,
+  "organizational_attribution_readiness": "Not established: confident failures in held-out weather/release challenges; no measured validation"
+}

@@ -1,0 +1,35 @@
+{
+  "production_sources_unchanged": true,
+  "maximum_numerical_component_count_confirmed": true,
+  "all_finished_with_finite_scores": true,
+  "timeout_seconds": 30,
+  "address_space_ceiling_mib": 2048,
+  "results": [
+    {
+      "inference_limit": 128,
+      "loaded_readings": 10000,
+      "weather_rows": 10000,
+      "monitor_sites": 40,
+      "candidate_sites": 60,
+      "source_anchors": 25,
+      "components_actual": 12097,
+      "rows_fitted": 128,
+      "wall_ms": 15584.685519999766,
+      "peak_rss_mib": 550.71875,
+      "excluded_domain_area_m2": 0.0
+    },
+    {
+      "inference_limit": 512,
+      "loaded_readings": 10000,
+      "weather_rows": 10000,
+      "monitor_sites": 40,
+      "candidate_sites": 60,
+      "source_anchors": 25,
+      "components_actual": 12097,
+      "rows_fitted": 512,
+      "wall_ms": 19944.22525900154,
+      "peak_rss_mib": 1290.1640625,
+      "excluded_domain_area_m2": 0.0
+    }
+  ]
+}

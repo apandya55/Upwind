@@ -1,0 +1,93 @@
+
+> upwind-workspace@0.1.0 test:e2e
+> playwright test
+
+[WebServer] INFO:     Started server process [82359]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+[WebServer] (node:82370) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:82383) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 8 tests using 1 worker
+
+(node:82410) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/campaign.spec.ts:3:1 › campaign example preserves periods, explains shared release and exports its result (8.4s)
+(node:82572) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 tests/evidence.spec.ts:3:1 › coverage planning renders when reconstruction fields are explicitly unavailable (3.3s)
+  ✓  3 tests/evidence.spec.ts:40:1 › conditional evidence is distinct from field confidence and incomplete diagnostics stay usable (3.2s)
+  ✘  4 tests/weather.spec.ts:3:1 › paired weather CSV retains independent readings, raw metadata and legacy archives (45.1s)
+(node:82913) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  5 tests/workflow.spec.ts:4:1 › complete example: plan, constraints, save, reopen, export and responsive layout (8.2s)
+  ✓  6 tests/workflow.spec.ts:76:1 › new investigation, valid and malformed imports, follow-up, observations and restore (4.0s)
+  ✓  7 tests/workflow.spec.ts:161:1 › offline operation, labelled synthetic CSV reimport, keyboard observation and report (3.4s)
+  ✓  8 tests/workflow.spec.ts:229:1 › candidate permissions, unsupported weather and map interaction (4.9s)
+
+
+  1) tests/campaign.spec.ts:3:1 › campaign example preserves periods, explains shared release and exports its result 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByLabel('Scientific evidence details')
+    Expected substring: "4 separately steady periods"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toContainText" getByLabel('Scientific evidence details') with timeout 5000ms
+      - waiting for getByLabel('Scientific evidence details')
+
+
+      30 |     .getByRole("button", { name: "Analyze current study", exact: true })
+      31 |     .click();
+    > 32 |   await expect(page.getByLabel("Scientific evidence details")).toContainText(
+         |                                                                ^
+      33 |     "4 separately steady periods",
+      34 |   );
+      35 |   await expect(page.getByLabel("Scientific evidence details")).toContainText(
+        at /workspace/Upwind/frontend/tests/campaign.spec.ts:32:64
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/campaign-campaign-example--2e4ef-ease-and-exports-its-result/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/campaign-campaign-example--2e4ef-ease-and-exports-its-result/error-context.md
+
+  2) tests/weather.spec.ts:3:1 › paired weather CSV retains independent readings, raw metadata and legacy archives 
+
+    Test timeout of 45000ms exceeded.
+
+    Error: locator.selectOption: Test timeout of 45000ms exceeded.
+    Call log:
+      - waiting for getByLabel('Data kind')
+
+
+       7 |   await page.goto("/");
+       8 |   await page.getByRole("button", { name: "Import data", exact: true }).click();
+    >  9 |   await page.getByLabel("Table type").selectOption("weather");
+         |                                      ^
+      10 |   const csv =
+      11 |     "timestamp,latitude,longitude,wind_speed_m_s,wind_from_deg,role,source_id,upstream_id,direction_systematic_sd_deg,speed_systematic_fraction,direction_random_sd_deg,comparison_provenance\n2025-06-12T10:00Z,0,0,2.5,270,primary,A,instrument-A,,,,\n2025-06-12T10:00Z,0,0,2.4,245,reference,B,instrument-B,2,.03,1,independent paired instrument\n";
+      12 |   await page
+        at /workspace/Upwind/frontend/tests/weather.spec.ts:9:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/weather-paired-weather-CSV-c48ff-etadata-and-legacy-archives/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/weather-paired-weather-CSV-c48ff-etadata-and-legacy-archives/error-context.md
+
+  2 failed
+    tests/campaign.spec.ts:3:1 › campaign example preserves periods, explains shared release and exports its result 
+    tests/weather.spec.ts:3:1 › paired weather CSV retains independent readings, raw metadata and legacy archives 
+  6 passed (1.5m)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "upwind"
+version = "0.1.0"
+description = "Local community air monitoring investigations and experimental scenario planning"
+requires-python = ">=3.12"
+dependencies = ["fastapi==0.141.1", "pydantic==2.13.4", "numpy==2.3.5", "scipy==1.17.0", "pandas==2.2.3", "pyproj==3.7.2", "uvicorn==0.52.1"]
+
+[project.optional-dependencies]
+dev = ["pytest==8.4.2", "httpx==0.28.1"]
+
+[project.scripts]
+upwind = "upwind.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["backend"]
+
+[tool.pytest.ini_options]
+testpaths = ["backend/tests"]

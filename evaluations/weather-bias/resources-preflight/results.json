@@ -1,0 +1,69 @@
+[
+  {
+    "status": "finished",
+    "analysis_status": "ok",
+    "reason": null,
+    "rows_loaded": 10000,
+    "weather": 10000,
+    "sites": 100,
+    "anchors": 25,
+    "rows_fitted": 128,
+    "components": 150337,
+    "finite_scores": true,
+    "seconds": 37.18418855199707,
+    "peak_rss_mib": 1273.90234375,
+    "campaign": false,
+    "limit": 128,
+    "characterized": false
+  },
+  {
+    "status": "child_failure",
+    "exit_code": 1,
+    "stderr": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/workspace/Upwind/backend/upwind/validation/weather_aux.py\", line 364, in <module>\n    main()\n  File \"/workspace/Upwind/backend/upwind/validation/weather_aux.py\", line 354, in main\n    resource_child(a.limit, a.campaign, a.characterized), allow_nan=False\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/Upwind/backend/upwind/validation/weather_aux.py\", line 271, in resource_child\n    result = analyze(inv)\n             ^^^^^^^^^^^^\n  File \"/workspace/Upwind/backend/upwind/engine.py\", line 120, in analyze\n    _cached_analysis(json.dumps(payload, sort_keys=True), configuration)\n  File \"/workspace/Upwind/backend/upwind/engine.py\", line 141, in _cached_analysis\n    e = fit(inv, diagnostics=True)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/Upwind/backend/upwind/inference.py\", line 370, in fit\n    g = plume(\n        ^^^^^^\n  File \"/workspace/Upwind/backend/upwind/numerics.py\", line 60, in plume\n    cross = delta[..., 0] * (-fy) + delta[..., 1] * fx\n                                    ~~~~~~~~~~~~~~^~~~\nnumpy._core._exceptions._ArrayMemoryError: Unable to allocate 196. MiB for an array with shape (50112, 512) and data type float64\n",
+    "campaign": false,
+    "limit": 512,
+    "characterized": false
+  },
+  {
+    "status": "finished",
+    "analysis_status": "insufficient_data",
+    "reason": "Inference limit 128 cannot retain all 240 sensor/window groups; increase the inference limit or split the investigation",
+    "rows_loaded": 10000,
+    "weather": 10000,
+    "sites": 100,
+    "anchors": 25,
+    "rows_fitted": 0,
+    "components": null,
+    "finite_scores": true,
+    "seconds": 1.3255455550024635,
+    "peak_rss_mib": 212.3671875,
+    "campaign": true,
+    "limit": 128,
+    "characterized": false
+  },
+  {
+    "status": "finished",
+    "analysis_status": "insufficient_data",
+    "reason": "Weather uncertainty exceeds the supported numerical workload for this study size. Reduce maximum fitted readings or supply appropriate independent wind comparisons; all raw readings are retained.",
+    "rows_loaded": 10000,
+    "weather": 10000,
+    "sites": 100,
+    "anchors": 25,
+    "rows_fitted": 0,
+    "components": null,
+    "finite_scores": true,
+    "seconds": 1.287718858999142,
+    "peak_rss_mib": 220.37890625,
+    "campaign": true,
+    "limit": 512,
+    "characterized": false
+  },
+  {
+    "status": "child_failure",
+    "exit_code": 1,
+    "stderr": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/workspace/Upwind/backend/upwind/validation/weather_aux.py\", line 364, in <module>\n    main()\n  File \"/workspace/Upwind/backend/upwind/validation/weather_aux.py\", line 354, in main\n    resource_child(a.limit, a.campaign, a.characterized), allow_nan=False\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/Upwind/backend/upwind/validation/weather_aux.py\", line 271, in resource_child\n    result = analyze(inv)\n             ^^^^^^^^^^^^\n  File \"/workspace/Upwind/backend/upwind/engine.py\", line 120, in analyze\n    _cached_analysis(json.dumps(payload, sort_keys=True), configuration)\n  File \"/workspace/Upwind/backend/upwind/engine.py\", line 141, in _cached_analysis\n    e = fit(inv, diagnostics=True)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/Upwind/backend/upwind/inference.py\", line 370, in fit\n    g = plume(\n        ^^^^^^\n  File \"/workspace/Upwind/backend/upwind/numerics.py\", line 66, in plume\n    vertical = np.exp(-0.5 * ((z - height) / sz) ** 2) + np.exp(\n                                                         ^^^^^^^\nnumpy._core._exceptions._ArrayMemoryError: Unable to allocate 117. MiB for an array with shape (29952, 512) and data type float64\n",
+    "campaign": true,
+    "limit": 512,
+    "characterized": true
+  }
+]

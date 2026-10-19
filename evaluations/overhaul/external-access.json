@@ -1,0 +1,433 @@
+{
+  "audit_date_utc": "2026-10-18T18:20:44.639540+00:00",
+  "curl_verification": [
+    {
+      "attempted_at_utc": "2026-10-18T18:22:00.913254+00:00",
+      "command": [
+        "curl",
+        "--fail",
+        "--show-error",
+        "--location",
+        "--connect-timeout",
+        "20",
+        "--max-time",
+        "60",
+        "--output",
+        "/dev/null",
+        "https://www.arl.noaa.gov/research/atmospheric-transport-and-dispersion/atd-programs-datem/"
+      ],
+      "exit_code": 22,
+      "response_inspection": {
+        "attempted_at_utc": "2026-10-18T18:22:11.370383+00:00",
+        "command": [
+          "curl",
+          "--include",
+          "--silent",
+          "--show-error",
+          "--location",
+          "--connect-timeout",
+          "20",
+          "--max-time",
+          "30",
+          "https://www.arl.noaa.gov/research/atmospheric-transport-and-dispersion/atd-programs-datem/"
+        ],
+        "exit_code": 56,
+        "stderr": "curl: (56) CONNECT tunnel failed, response 403\n",
+        "stdout": "HTTP/1.1 403 Forbidden\ncontent-length: 16\ncontent-type: text/plain\ndate: Sun, 18 Oct 2026 18:22:11 GMT\nserver: envoy\nconnection: close\n\n"
+      },
+      "stderr": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\ncurl: (22) The requested URL returned error: 403\n",
+      "stdout": "",
+      "url": "https://www.arl.noaa.gov/research/atmospheric-transport-and-dispersion/atd-programs-datem/"
+    },
+    {
+      "attempted_at_utc": "2026-10-18T18:22:00.914725+00:00",
+      "command": [
+        "curl",
+        "--fail",
+        "--show-error",
+        "--location",
+        "--connect-timeout",
+        "20",
+        "--max-time",
+        "60",
+        "--output",
+        "/dev/null",
+        "https://www.arl.noaa.gov/datem/"
+      ],
+      "exit_code": 22,
+      "response_inspection": {
+        "attempted_at_utc": "2026-10-18T18:22:11.377301+00:00",
+        "command": [
+          "curl",
+          "--include",
+          "--silent",
+          "--show-error",
+          "--location",
+          "--connect-timeout",
+          "20",
+          "--max-time",
+          "30",
+          "https://www.arl.noaa.gov/datem/"
+        ],
+        "exit_code": 56,
+        "stderr": "curl: (56) CONNECT tunnel failed, response 403\n",
+        "stdout": "HTTP/1.1 403 Forbidden\ncontent-length: 16\ncontent-type: text/plain\ndate: Sun, 18 Oct 2026 18:22:11 GMT\nserver: envoy\nconnection: close\n\n"
+      },
+      "stderr": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\ncurl: (22) The requested URL returned error: 403\n",
+      "stdout": "",
+      "url": "https://www.arl.noaa.gov/datem/"
+    },
+    {
+      "attempted_at_utc": "2026-10-18T18:22:00.913939+00:00",
+      "command": [
+        "curl",
+        "--fail",
+        "--show-error",
+        "--location",
+        "--connect-timeout",
+        "20",
+        "--max-time",
+        "60",
+        "--output",
+        "/dev/null",
+        "https://ready.arl.noaa.gov/documents/Tutorial_2021/html/conc_local.html"
+      ],
+      "exit_code": 22,
+      "response_inspection": {
+        "attempted_at_utc": "2026-10-18T18:22:11.383761+00:00",
+        "command": [
+          "curl",
+          "--include",
+          "--silent",
+          "--show-error",
+          "--location",
+          "--connect-timeout",
+          "20",
+          "--max-time",
+          "30",
+          "https://ready.arl.noaa.gov/documents/Tutorial_2021/html/conc_local.html"
+        ],
+        "exit_code": 56,
+        "stderr": "curl: (56) CONNECT tunnel failed, response 403\n",
+        "stdout": "HTTP/1.1 403 Forbidden\ncontent-length: 16\ncontent-type: text/plain\ndate: Sun, 18 Oct 2026 18:22:11 GMT\nserver: envoy\nconnection: close\n\n"
+      },
+      "stderr": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\ncurl: (22) The requested URL returned error: 403\n",
+      "stdout": "",
+      "url": "https://ready.arl.noaa.gov/documents/Tutorial_2021/html/conc_local.html"
+    }
+  ],
+  "external_localization_validation": {
+    "controlled_release_files_acquired": 0,
+    "measured_case_fits": 0,
+    "reason": "Official NOAA DATEM/Sagebrush index and tutorial requests fail at configured egress proxy CONNECT 403 before origin response. No release history, source/receptor geometry, concentration units, meteorology, campaign truth or data terms were acquired.",
+    "status": "not_performed"
+  },
+  "failed_repository_candidates": [
+    {
+      "command": "git ls-remote https://github.com/avehtari/Bayesian_workflow.git HEAD",
+      "exit_code": 128,
+      "repository": "https://github.com/avehtari/Bayesian_workflow.git",
+      "stderr": "remote: Repository not found.\nfatal: repository not found",
+      "used_as_evidence": false
+    },
+    {
+      "command": "git ls-remote https://github.com/avehtari/BayesianWorkflow.git HEAD",
+      "exit_code": 128,
+      "repository": "https://github.com/avehtari/BayesianWorkflow.git",
+      "stderr": "remote: Repository not found.\nfatal: repository not found",
+      "used_as_evidence": false
+    }
+  ],
+  "git_repositories": [
+    {
+      "acquisition": "git clone --depth 1 https://github.com/stan-dev/docs.git .local/overhaul-research/stan-docs",
+      "executed_upstream_code": false,
+      "files": [
+        {
+          "bytes": 23713,
+          "path": "src/stan-users-guide/posterior-predictive-checks.qmd",
+          "permalink": "https://github.com/stan-dev/docs/blob/235171991f7040b0b0ebb59e974d1299af5a049b/src/stan-users-guide/posterior-predictive-checks.qmd",
+          "sha256": "f820aa4343c1521ed3339513f8b399507707307b2a726255e5504e7ad62cc405"
+        },
+        {
+          "bytes": 20040,
+          "path": "src/stan-users-guide/simulation-based-calibration.qmd",
+          "permalink": "https://github.com/stan-dev/docs/blob/235171991f7040b0b0ebb59e974d1299af5a049b/src/stan-users-guide/simulation-based-calibration.qmd",
+          "sha256": "95e644616260ab4dc5ef4bdcc2ce8e43b566ad3ac8d896711de27dd28a77a3a4"
+        },
+        {
+          "bytes": 17004,
+          "path": "src/stan-users-guide/cross-validation.qmd",
+          "permalink": "https://github.com/stan-dev/docs/blob/235171991f7040b0b0ebb59e974d1299af5a049b/src/stan-users-guide/cross-validation.qmd",
+          "sha256": "9bc78943cc2d24df80d84c5733815ed338a9de26eb65a695af1a4055938ee0f7"
+        },
+        {
+          "bytes": 26736,
+          "path": "src/stan-users-guide/finite-mixtures.qmd",
+          "permalink": "https://github.com/stan-dev/docs/blob/235171991f7040b0b0ebb59e974d1299af5a049b/src/stan-users-guide/finite-mixtures.qmd",
+          "sha256": "8a35b3e7f860fc803a633601be1219aaae3bcf86f82f9b4b357412f6802a4bb8"
+        },
+        {
+          "bytes": 62502,
+          "path": "src/bibtex/all.bib",
+          "permalink": "https://github.com/stan-dev/docs/blob/235171991f7040b0b0ebb59e974d1299af5a049b/src/bibtex/all.bib",
+          "sha256": "cd0c2220c1dd1c64bb72f5888ad1ba28f7cfeefb84de2c186cf203245c7e3369"
+        },
+        {
+          "bytes": 16175,
+          "path": "LICENSE",
+          "permalink": "https://github.com/stan-dev/docs/blob/235171991f7040b0b0ebb59e974d1299af5a049b/LICENSE",
+          "sha256": "20744faff05b219aef3a84287215e47b033a317b88eed672ca3f67681178a1ad"
+        }
+      ],
+      "name": "stan-docs",
+      "repository": "https://github.com/stan-dev/docs.git",
+      "revision": "235171991f7040b0b0ebb59e974d1299af5a049b",
+      "status": "acquired_and_inspected"
+    },
+    {
+      "acquisition": "git clone --depth 1 https://github.com/noaa-oar-arl/utilhysplit.git .local/overhaul-research/utilhysplit",
+      "executed_upstream_code": false,
+      "files": [
+        {
+          "bytes": 5935,
+          "path": "README.md",
+          "permalink": "https://github.com/noaa-oar-arl/utilhysplit/blob/8df38a0c4d6066bc2631db80ca0fa3c468f8ae61/README.md",
+          "sha256": "5371f9afdb40070bf3eae399bb972406d85e4f2dbc1f4494553d1c388d5fd29c"
+        },
+        {
+          "bytes": 3554,
+          "path": "setup.py",
+          "permalink": "https://github.com/noaa-oar-arl/utilhysplit/blob/8df38a0c4d6066bc2631db80ca0fa3c468f8ae61/setup.py",
+          "sha256": "1506f30ddb40a31b37f5df630b500d14352892480e594dc53b69508adfe0669f"
+        },
+        {
+          "bytes": 18660,
+          "path": "utilhysplit/evaluation/datem.py",
+          "permalink": "https://github.com/noaa-oar-arl/utilhysplit/blob/8df38a0c4d6066bc2631db80ca0fa3c468f8ae61/utilhysplit/evaluation/datem.py",
+          "sha256": "838376670e66e64d53b171946e89388843e644726ec0791c3e93fffb86fd9872"
+        }
+      ],
+      "name": "utilhysplit",
+      "repository": "https://github.com/noaa-oar-arl/utilhysplit.git",
+      "revision": "8df38a0c4d6066bc2631db80ca0fa3c468f8ae61",
+      "status": "acquired_and_inspected"
+    },
+    {
+      "acquisition": "git clone --depth 1 https://github.com/jgabry/bayes-vis-paper.git .local/overhaul-research/bayes-vis-paper",
+      "executed_upstream_code": false,
+      "files": [
+        {
+          "bytes": 963,
+          "path": "README.md",
+          "permalink": "https://github.com/jgabry/bayes-vis-paper/blob/3214d1b7905869b5388bf33e8d1d9e230b61e8a4/README.md",
+          "sha256": "edb373cedb35888e82eed8f3575bacc0ab3255038eb7cf5b09fc37b982896577"
+        },
+        {
+          "bytes": 40855,
+          "path": "bayes-vis.tex",
+          "permalink": "https://github.com/jgabry/bayes-vis-paper/blob/3214d1b7905869b5388bf33e8d1d9e230b61e8a4/bayes-vis.tex",
+          "sha256": "d0234d08f40ad87dba306d814d1d2d6f1b3ae212e9ddaf7ea3352e4b0c0df554"
+        }
+      ],
+      "name": "bayes-vis-paper",
+      "repository": "https://github.com/jgabry/bayes-vis-paper.git",
+      "revision": "3214d1b7905869b5388bf33e8d1d9e230b61e8a4",
+      "status": "acquired_and_inspected"
+    }
+  ],
+  "licensing": {
+    "bayes_vis_paper": "README identifies published paper DOI10.1111/rssa.12378 and author manuscript; no repository-wide license located. Manuscript inspected locally as reference only; no manuscript/data redistributed.",
+    "noaa_campaign_data": "Unverified because blocked; do not infer public-domain terms from NOAA hosting.",
+    "stan_docs": "Inspected LICENSE: code BSD-3-Clause; text/images CC BY-ND 4.0. Used as method reference; no upstream text/code copied into production.",
+    "utilhysplit": "setup.py declares MIT; no standalone LICENSE located; README NOAA as-is/no-endorsement disclaimer inspected. No upstream code copied or executed. This is not a license for DATEM campaign measurements."
+  },
+  "reproduction": {
+    "noaa_index": "curl --fail --show-error --location --connect-timeout 20 --max-time 60 https://www.arl.noaa.gov/research/atmospheric-transport-and-dispersion/atd-programs-datem/ --output .local/overhaul-research/datem-index.html",
+    "post_access": "Inspect official page hyperlinks before downloading a campaign archive. Retain archive and metadata checksum, release schedule/heights, receptor geometry/heights, units and averaging period, meteorology/stability, timezone, missing-value codes and data license. Do not fabricate a file URL or convert unknown tracer units into PM2.5.",
+    "sagebrush_tutorial": "curl --fail --show-error --location --connect-timeout 20 --max-time 60 https://ready.arl.noaa.gov/documents/Tutorial_2021/html/conc_local.html --output .local/overhaul-research/sagebrush-tutorial.html"
+  },
+  "requests": [
+    {
+      "attempted_at_utc": "2026-10-18T18:17:32.979332+00:00",
+      "exception": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "exception_type": "URLError",
+      "method": "GET",
+      "name": "noaa_datem",
+      "status": "blocked",
+      "timeout_seconds": 25,
+      "transport": "urllib.request default verified HTTPS and configured environment proxy",
+      "url": "https://www.arl.noaa.gov/research/atmospheric-transport-and-dispersion/atd-programs-datem/"
+    },
+    {
+      "attempted_at_utc": "2026-10-18T18:17:32.980175+00:00",
+      "exception": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "exception_type": "URLError",
+      "method": "GET",
+      "name": "noaa_datem_legacy",
+      "status": "blocked",
+      "timeout_seconds": 25,
+      "transport": "urllib.request default verified HTTPS and configured environment proxy",
+      "url": "https://www.arl.noaa.gov/datem/"
+    },
+    {
+      "attempted_at_utc": "2026-10-18T18:17:32.980474+00:00",
+      "exception": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "exception_type": "URLError",
+      "method": "GET",
+      "name": "noaa_sagebrush_tutorial",
+      "status": "blocked",
+      "timeout_seconds": 25,
+      "transport": "urllib.request default verified HTTPS and configured environment proxy",
+      "url": "https://ready.arl.noaa.gov/documents/Tutorial_2021/html/conc_local.html"
+    },
+    {
+      "attempted_at_utc": "2026-10-18T18:17:32.980710+00:00",
+      "exception": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "exception_type": "URLError",
+      "method": "GET",
+      "name": "stan_ppc",
+      "status": "blocked",
+      "timeout_seconds": 25,
+      "transport": "urllib.request default verified HTTPS and configured environment proxy",
+      "url": "https://mc-stan.org/docs/stan-users-guide/posterior-predictive-checks.html"
+    },
+    {
+      "attempted_at_utc": "2026-10-18T18:17:32.980927+00:00",
+      "exception": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "exception_type": "URLError",
+      "method": "GET",
+      "name": "stan_sbc",
+      "status": "blocked",
+      "timeout_seconds": 25,
+      "transport": "urllib.request default verified HTTPS and configured environment proxy",
+      "url": "https://mc-stan.org/docs/stan-users-guide/simulation-based-calibration.html"
+    },
+    {
+      "attempted_at_utc": "2026-10-18T18:17:32.981199+00:00",
+      "exception": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "exception_type": "URLError",
+      "method": "GET",
+      "name": "bayesian_workflow",
+      "status": "blocked",
+      "timeout_seconds": 25,
+      "transport": "urllib.request default verified HTTPS and configured environment proxy",
+      "url": "https://arxiv.org/abs/2011.01808"
+    },
+    {
+      "attempted_at_utc": "2026-10-18T18:17:32.981467+00:00",
+      "exception": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "exception_type": "URLError",
+      "method": "GET",
+      "name": "simulation_calibration",
+      "status": "blocked",
+      "timeout_seconds": 25,
+      "transport": "urllib.request default verified HTTPS and configured environment proxy",
+      "url": "https://arxiv.org/abs/1805.09294",
+      "verification_note": "Initial candidate arXiv identifier was unverified and is not cited as evidence. Correct identifier found in inspected Stan bibliography is 1804.06788."
+    },
+    {
+      "attempted_at_utc": "2026-10-18T18:17:32.981859+00:00",
+      "exception": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "exception_type": "URLError",
+      "method": "GET",
+      "name": "epa_aermod",
+      "status": "blocked",
+      "timeout_seconds": 25,
+      "transport": "urllib.request default verified HTTPS and configured environment proxy",
+      "url": "https://www3.epa.gov/ttn/scram/models/aermod/aermod_mfd.pdf"
+    },
+    {
+      "attempted_at_utc": "2026-10-18T18:17:32.991867+00:00",
+      "exception": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "exception_type": "URLError",
+      "method": "GET",
+      "name": "epa_models",
+      "status": "blocked",
+      "timeout_seconds": 25,
+      "transport": "urllib.request default verified HTTPS and configured environment proxy",
+      "url": "https://www.epa.gov/scram/air-quality-dispersion-modeling-preferred-and-recommended-models"
+    },
+    {
+      "attempted_at_utc": "2026-10-18T18:18:48.303470+00:00",
+      "bytes": 23713,
+      "http_status": 200,
+      "local_path": ".local/overhaul-research/stan-src_stan-users-guide_posterior-predictive-checks.qmd",
+      "method": "GET",
+      "name": "stan_source_src_stan-users-guide_posterior-predictive-checks.qmd",
+      "sha256": "f820aa4343c1521ed3339513f8b399507707307b2a726255e5504e7ad62cc405",
+      "status": "acquired",
+      "timeout_seconds": 20,
+      "transport": "urllib.request default verified HTTPS and configured environment proxy",
+      "url": "https://raw.githubusercontent.com/stan-dev/docs/235171991f7040b0b0ebb59e974d1299af5a049b/src/stan-users-guide/posterior-predictive-checks.qmd"
+    },
+    {
+      "attempted_at_utc": "2026-10-18T18:18:48.303911+00:00",
+      "bytes": 20040,
+      "http_status": 200,
+      "local_path": ".local/overhaul-research/stan-src_stan-users-guide_simulation-based-calibration.qmd",
+      "method": "GET",
+      "name": "stan_source_src_stan-users-guide_simulation-based-calibration.qmd",
+      "sha256": "95e644616260ab4dc5ef4bdcc2ce8e43b566ad3ac8d896711de27dd28a77a3a4",
+      "status": "acquired",
+      "timeout_seconds": 20,
+      "transport": "urllib.request default verified HTTPS and configured environment proxy",
+      "url": "https://raw.githubusercontent.com/stan-dev/docs/235171991f7040b0b0ebb59e974d1299af5a049b/src/stan-users-guide/simulation-based-calibration.qmd"
+    },
+    {
+      "attempted_at_utc": "2026-10-18T18:18:48.304229+00:00",
+      "exception": "HTTP Error 404: Not Found",
+      "exception_type": "HTTPError",
+      "method": "GET",
+      "name": "stan_source_src_stan-users-guide_held-out-evaluation-and-cross-validation.qmd",
+      "status": "blocked_or_missing",
+      "timeout_seconds": 20,
+      "transport": "urllib.request default verified HTTPS and configured environment proxy",
+      "url": "https://raw.githubusercontent.com/stan-dev/docs/235171991f7040b0b0ebb59e974d1299af5a049b/src/stan-users-guide/held-out-evaluation-and-cross-validation.qmd"
+    },
+    {
+      "attempted_at_utc": "2026-10-18T18:18:48.304500+00:00",
+      "bytes": 16175,
+      "http_status": 200,
+      "local_path": ".local/overhaul-research/stan-LICENSE",
+      "method": "GET",
+      "name": "stan_source_LICENSE",
+      "sha256": "20744faff05b219aef3a84287215e47b033a317b88eed672ca3f67681178a1ad",
+      "status": "acquired",
+      "timeout_seconds": 20,
+      "transport": "urllib.request default verified HTTPS and configured environment proxy",
+      "url": "https://raw.githubusercontent.com/stan-dev/docs/235171991f7040b0b0ebb59e974d1299af5a049b/LICENSE"
+    },
+    {
+      "attempted_at_utc": "2026-10-18T18:18:48.304713+00:00",
+      "exception": "HTTP Error 404: Not Found",
+      "exception_type": "HTTPError",
+      "method": "GET",
+      "name": "stan_source_LICENSE.md",
+      "status": "blocked_or_missing",
+      "timeout_seconds": 20,
+      "transport": "urllib.request default verified HTTPS and configured environment proxy",
+      "url": "https://raw.githubusercontent.com/stan-dev/docs/235171991f7040b0b0ebb59e974d1299af5a049b/LICENSE.md"
+    },
+    {
+      "attempted_at_utc": "2026-10-18T18:20:44.626354+00:00",
+      "exception": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "exception_type": "URLError",
+      "method": "GET",
+      "name": "sbc_primary_correct_identifier",
+      "status": "blocked",
+      "timeout_seconds": 20,
+      "transport": "urllib.request default verified HTTPS and configured environment proxy",
+      "url": "https://arxiv.org/abs/1804.06788"
+    }
+  ],
+  "schema_version": 1,
+  "scope": "UPWIND scientific-engine overhaul: independent external-data acquisition and method-source inspection",
+  "security_and_provenance": {
+    "credentials_requested": false,
+    "network_policy_bypassed": false,
+    "notes": "Official GitHub repositories were acquired through the already permitted platform Git proxy. Direct denied hosts were not tunneled through a third party. Large Stan documentation checkout is ignored local research storage, not an application dependency.",
+    "raw_campaign_data_redistributed": false,
+    "tls_verification_disabled": false
+  }
+}

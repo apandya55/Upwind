@@ -1,0 +1,37 @@
+[
+  {
+    "case": "empty_sites",
+    "exception": "IndexError",
+    "message": "too many indices for array: array is 1-dimensional, but 2 were indexed"
+  },
+  {
+    "case": "tiny_uncertainty",
+    "status": "insufficient_data",
+    "reason": "Singular matrix",
+    "plans": 0
+  },
+  {
+    "case": "huge_uncertainty",
+    "status": "ok",
+    "reason": null,
+    "plans": 4
+  },
+  {
+    "case": "hidden_calm",
+    "status": "ok",
+    "reason": null,
+    "plans": 4
+  },
+  {
+    "case": "duplicate_sources",
+    "status": "infeasible",
+    "reason": "No feasible plan: check budget, permission, power, access, and supported window.",
+    "plans": 4
+  },
+  {
+    "case": "zero_information",
+    "status": "infeasible",
+    "reason": "No feasible plan: check budget, permission, power, access, and supported window.",
+    "plans": 4
+  }
+]

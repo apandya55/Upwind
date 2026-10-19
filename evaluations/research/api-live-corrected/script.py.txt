@@ -1,0 +1,32 @@
+"""Local isolated API stress; no real investigation records or external writes."""
+import concurrent.futures,hashlib,json,time,urllib.request,urllib.error
+from collections import Counter
+from pathlib import Path
+URL='http://127.0.0.1:8002/api';OUT=Path('evaluations/research/api-live-corrected');OUT.mkdir(exist_ok=False)
+(OUT/'script.py.txt').write_text(Path(__file__).read_text())
+def call(path,data=None,raw=None):
+ req=urllib.request.Request(URL+path,data=(raw if raw is not None else json.dumps(data).encode()) if data is not None or raw is not None else None,headers={'Content-Type':'application/json'})
+ try:
+  with urllib.request.urlopen(req,timeout=45) as r:return r.status,r.read().decode()
+ except urllib.error.HTTPError as e:return e.code,e.read().decode()
+start=time.perf_counter();code,body=call('/health');assert code==200 and json.loads(body)['model_version']=='plume-campaign-0.4.0'
+demo=json.loads(call('/demo')[1]);campaign=json.loads(call('/demo/campaign')[1])
+def save(i):
+ data={**demo,'name':f'SYNTHETIC bounded-write-probe-{i}'}
+ code,body=call('/investigations',data);return code,json.loads(body)
+with concurrent.futures.ThreadPoolExecutor(max_workers=32) as pool:writes=list(pool.map(save,range(64)))
+accepted=[body for code,body in writes if code==200];assert all(code in (200,429) for code,_ in writes)
+for inv in accepted:
+ code,body=call('/investigations/'+inv['id']);assert code==200 and json.loads(body)['name']==inv['name']
+def analysis(i):
+ return call('/analyze',{**campaign,'name':f'SYNTHETIC bounded-analysis-{i}'})
+with concurrent.futures.ThreadPoolExecutor(max_workers=16) as pool:analyses=list(pool.map(analysis,range(16)))
+assert all(code in (200,429) for code,_ in analyses)
+for code,body in analyses:
+ if code==200:
+  result=json.loads(body);assert result['study_window_count']==4 and result['rows_used']==96 and result['status']=='ok'
+bad=[call('/analyze',raw=b'{'),call('/analyze',{'settings':{'noise_ug_m3':True}}),call('/analyze',{'measurements':demo['measurements']*(10001//len(demo['measurements'])+1)}),call('/import/csv',raw=b'x'*8000001)]
+(OUT/'validation-statuses.json').write_text(json.dumps([x[0] for x in bad]));assert [x[0] for x in bad]==[422,422,422,413]
+assert call('/health')[0]==200
+result={'health':json.loads(body) if False else json.loads(call('/health')[1]),'writes':dict(Counter(code for code,_ in writes)),'acknowledged_writes_verified':len(accepted),'analysis':dict(Counter(code for code,_ in analyses)),'malformed_boolean_oversize_rows_statuses':[x[0] for x in bad],'recovery_health':200,'wall_seconds':time.perf_counter()-start,'storage':'.local/research-api-probe','note':'One loopback process,32 simultaneous write clients/16 analysis clients. Finite synthetic fixture. Not a shared deployment SLA.'}
+(OUT/'results.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result),flush=True)

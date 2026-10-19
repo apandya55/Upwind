@@ -1,0 +1,88 @@
+{
+  "evidence": "development-used sensitivity analysis; no final worlds or field validation",
+  "model_version": "plume-mixture-0.3.0",
+  "protocol": "UW-OVERHAUL-2026-01",
+  "seeds": [
+    410000,
+    410001
+  ],
+  "phase": "planner",
+  "configuration": {
+    "source_prior": 0.5,
+    "strength_halfnormal_scale_ug_s": 30000.0,
+    "background_mean_ug_m3": 10.0,
+    "background_sd_ug_m3": 20.0,
+    "background_trend_sd_ug_m3_hour": 10.0,
+    "instrument_bias_sd_ug_m3": 1.0,
+    "spatial_scale_m": 150.0,
+    "temporal_scale_s": 600.0,
+    "wind_offsets_deg": [
+      -45,
+      -30,
+      -15,
+      0,
+      15,
+      30,
+      45
+    ],
+    "wind_offset_sd_deg": 20.0,
+    "speed_scales": [
+      0.7,
+      1.0,
+      1.3
+    ],
+    "speed_prior": [
+      0.25,
+      0.5,
+      0.25
+    ],
+    "cell_target_m": 20.0,
+    "max_cells_axis": 24,
+    "sensor_check_tail": 0.01
+  },
+  "source_hashes_before": {
+    "backend/upwind/__init__.py": "d7bcae2ddfb987a50558586828981e11aabe5e085c248bbcc2817d44b206f5d4",
+    "backend/upwind/api.py": "801ceb905803c51b2c3842f6c6c0436d69e46a05ec05376326a7b2d83b9bc0c7",
+    "backend/upwind/cli.py": "b4a51e428eaae948ddcda932e6ea5005e017c36bf592587b8c6583a9ed68abf7",
+    "backend/upwind/design.py": "3f7a671d189decdcc925ad1760b0cca8e2835901129470221b3e4fea35f618cb",
+    "backend/upwind/engine.py": "f527c4a2e21fed9b8bae090a9493b28ca02f13da9deacc415276f717efae9a10",
+    "backend/upwind/evaluation.py": "f32ea0c945933ebc23935e26a35ded8c2f636233f1d4098bd8e68405e711ae68",
+    "backend/upwind/fixtures.py": "f3e764f82283dbca2ba0066aa0452297e1f48259d22861ea1fa47084c37f8929",
+    "backend/upwind/importers.py": "26ec2d1cb58a5dbf2accedf25c4101d8f9efab97169b1d35f824ab305e205112",
+    "backend/upwind/inference.py": "f33f3c79138f67e6ceb54d0e7c81e0f93ca04bb8c73b448d511edbd6b32f13d7",
+    "backend/upwind/legacy.py": "6949dffea3002ded8d7bf3cb8064d35746d84a7053b2792e860caf021d981fe5",
+    "backend/upwind/models.py": "aa0e850fc110793b82d7bea0a4730266f61c89c5f3cc8bbcd5641b7da70e77b1",
+    "backend/upwind/numerics.py": "d64a30504d559b003fb76a6c7f267f998399b26a7f2425d90f531c6feb1c2fd6",
+    "backend/upwind/quality.py": "c3ae259dfe7db9aa98ad5c49f7aa648f26c2bb49cc70422e5f5cb095a06cc062",
+    "backend/upwind/report.py": "6fe77b0d40547156e136e44ef903b2c27c97d529c2db38724e3ae864414ca88d",
+    "backend/upwind/store.py": "a33538736b48d10bf7bc52a7f86c796dde06ded8655f184b2a1c5374d450cc83",
+    "backend/upwind/validation/__init__.py": "36f9cccf5e2df393dcb980bfac4303b49c45566db3c5648821480f5e88537b13",
+    "backend/upwind/validation/api_checks.py": "bf686b6fc2db3e777d11b439898ce34a0d1634c853b927fd610399154ea4cfff",
+    "backend/upwind/validation/cases.py": "95f5df3803ff9b4d869041d7f1b5f722ca7c69a870aa72775d5b7e8ece98883c",
+    "backend/upwind/validation/engineering.py": "be19565685f2b545fbd847e3ea7274fb6d1f9cd980721227c8106ba05d5484be",
+    "backend/upwind/validation/external.py": "1abf6fa937f16121c07f872face55e850c779b6cee53569b66b00fb8a2f91483",
+    "backend/upwind/validation/overhaul.py": "0c80126661f13bee577e4f263f672634372aab91e3423cb6f206a916e6457d77",
+    "backend/upwind/validation/reporting.py": "507425843f8756384119b01ca28d39513f0f599919e9c3c3f0c227fa7b45d599",
+    "backend/upwind/validation/resources.py": "328442aab53bbcb007168adadcf6e540d1f0e2766243048e9681eac01609a0c3",
+    "backend/upwind/validation/run.py": "d4182d7bd35ba45b6edbf0888b112b8608d8dfdb6747d4980457e9530786b801",
+    "backend/upwind/validation/science.py": "9d55d2a49b35da386d09db9f21f1e6ef222d7c4c0d7e812a263f9ff5cb77d4d7",
+    "backend/upwind/weather.py": "2acbcd7192c2b5177340b71575ca5a17b686c8456883926b9816010c849b9113",
+    "docs/ENGINE_EVALUATION_PROTOCOL.md": "a84061f03277f5bcba77683ff2dab1a2f1e8e308b375af82b926ab9589d4af75",
+    "scripts/overhaul_ablations.py": "3afc3759282c3cb1d170cb4dd86815956fc31ba0a71407665ca55a44a35377e9"
+  },
+  "command": [
+    "scripts/overhaul_ablations.py",
+    "--phase",
+    "planner",
+    "--limit-seeds",
+    "2",
+    "--out",
+    "evaluations/overhaul/ablations-planner-dev"
+  ],
+  "python": "3.12.14",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.41",
+  "utc": "2026-10-18T18:27:21.993892+00:00",
+  "blas_threads": "1",
+  "status": "interrupted_development_probe",
+  "reason": "Calculator supplied ordinal component keys rather than canonical inference component keys. Retained incomplete artifact; revised run uses production keys."
+}

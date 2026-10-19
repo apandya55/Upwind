@@ -1,0 +1,257 @@
+{
+  "scientific": {
+    "weak_signal": {
+      "runs": 40,
+      "fits": 40,
+      "unique_maps": 40,
+      "map_error_median": 128.0624847422171,
+      "within_100m_unique_map": 6,
+      "mismatch_warnings": 0,
+      "truth_coverage_wilson95": [
+        0.9123754607496077,
+        1
+      ]
+    },
+    "strong_signal": {
+      "runs": 40,
+      "fits": 40,
+      "unique_maps": 40,
+      "map_error_median": 0.0,
+      "within_100m_unique_map": 40,
+      "mismatch_warnings": 0,
+      "truth_coverage_wilson95": [
+        0.9123754607496077,
+        1
+      ]
+    },
+    "ambiguous": {
+      "runs": 40,
+      "fits": 40,
+      "unique_maps": 0,
+      "map_error_median": null,
+      "within_100m_unique_map": 0,
+      "mismatch_warnings": 0,
+      "truth_coverage_wilson95": [
+        0.9123754607496077,
+        1
+      ]
+    },
+    "high_noise": {
+      "runs": 40,
+      "fits": 40,
+      "unique_maps": 40,
+      "map_error_median": 0.0,
+      "within_100m_unique_map": 40,
+      "mismatch_warnings": 0,
+      "truth_coverage_wilson95": [
+        0.9123754607496077,
+        1
+      ]
+    },
+    "background_shift": {
+      "runs": 40,
+      "fits": 40,
+      "unique_maps": 40,
+      "map_error_median": 0.0,
+      "within_100m_unique_map": 40,
+      "mismatch_warnings": 0,
+      "truth_coverage_wilson95": [
+        0.9123754607496077,
+        1
+      ]
+    },
+    "changing_background": {
+      "runs": 40,
+      "fits": 40,
+      "unique_maps": 40,
+      "map_error_median": 0.0,
+      "within_100m_unique_map": 40,
+      "mismatch_warnings": 40,
+      "truth_coverage_wilson95": [
+        0.9123754607496077,
+        1
+      ]
+    },
+    "two_sources": {
+      "runs": 40,
+      "fits": 40,
+      "unique_maps": 40,
+      "map_error_median": 0.0,
+      "within_100m_unique_map": 40,
+      "mismatch_warnings": 0,
+      "truth_coverage_wilson95": [
+        0.9123754607496077,
+        1
+      ]
+    },
+    "off_grid": {
+      "runs": 40,
+      "fits": 40,
+      "unique_maps": 40,
+      "map_error_median": 80.62257748138455,
+      "within_100m_unique_map": 22,
+      "mismatch_warnings": 0,
+      "truth_coverage_wilson95": null
+    },
+    "direction_bias": {
+      "runs": 40,
+      "fits": 40,
+      "unique_maps": 40,
+      "map_error_median": 128.0624847422171,
+      "within_100m_unique_map": 14,
+      "mismatch_warnings": 0,
+      "truth_coverage_wilson95": [
+        0.14186967895549518,
+        0.40194259066970106
+      ]
+    },
+    "speed_bias": {
+      "runs": 40,
+      "fits": 40,
+      "unique_maps": 40,
+      "map_error_median": 0.0,
+      "within_100m_unique_map": 40,
+      "mismatch_warnings": 0,
+      "truth_coverage_wilson95": [
+        0.8711834051199223,
+        0.9955732825922052
+      ]
+    },
+    "clustered": {
+      "runs": 40,
+      "fits": 40,
+      "unique_maps": 40,
+      "map_error_median": 0.0,
+      "within_100m_unique_map": 40,
+      "mismatch_warnings": 0,
+      "truth_coverage_wilson95": [
+        0.9123754607496077,
+        1
+      ]
+    },
+    "missing_sensor": {
+      "runs": 40,
+      "fits": 40,
+      "unique_maps": 40,
+      "map_error_median": 0.0,
+      "within_100m_unique_map": 40,
+      "mismatch_warnings": 0,
+      "truth_coverage_wilson95": [
+        0.9123754607496077,
+        1
+      ]
+    },
+    "calm": {
+      "runs": 40,
+      "fits": 0,
+      "unique_maps": 0,
+      "map_error_median": null,
+      "within_100m_unique_map": 0,
+      "mismatch_warnings": 0,
+      "truth_coverage_wilson95": null
+    },
+    "variable": {
+      "runs": 40,
+      "fits": 0,
+      "unique_maps": 0,
+      "map_error_median": null,
+      "within_100m_unique_map": 0,
+      "mismatch_warnings": 0,
+      "truth_coverage_wilson95": null
+    },
+    "missing_weather": {
+      "runs": 40,
+      "fits": 0,
+      "unique_maps": 0,
+      "map_error_median": null,
+      "within_100m_unique_map": 0,
+      "mismatch_warnings": 0,
+      "truth_coverage_wilson95": null
+    },
+    "insufficient_sensors": {
+      "runs": 40,
+      "fits": 0,
+      "unique_maps": 0,
+      "map_error_median": null,
+      "within_100m_unique_map": 0,
+      "mismatch_warnings": 0,
+      "truth_coverage_wilson95": null
+    }
+  },
+  "paired_followup": [
+    {
+      "case": "strong_signal",
+      "error_model": "matched",
+      "seeds": 40,
+      "entropy_advantage_vs_random_mean": 0.8318527860057591,
+      "empirical_difference_q05_q95": [
+        -0.7109046202217436,
+        1.8045937095474318
+      ],
+      "entropy_wins": 27,
+      "ties": 0,
+      "wins_wilson95": [
+        0.52017458088898,
+        0.7991568303733828
+      ],
+      "worse_predictive_rmse_than_random_mean": 13,
+      "negative_entropy_changes": 6
+    },
+    {
+      "case": "strong_signal",
+      "error_model": "mismatched",
+      "seeds": 40,
+      "entropy_advantage_vs_random_mean": 0.6135144055380289,
+      "empirical_difference_q05_q95": [
+        -0.5789378650626459,
+        1.672905531094324
+      ],
+      "entropy_wins": 30,
+      "ties": 0,
+      "wins_wilson95": [
+        0.598057409330299,
+        0.8581303210445048
+      ],
+      "worse_predictive_rmse_than_random_mean": 14,
+      "negative_entropy_changes": 3
+    },
+    {
+      "case": "weak_signal",
+      "error_model": "matched",
+      "seeds": 40,
+      "entropy_advantage_vs_random_mean": 0.0007022478752912615,
+      "empirical_difference_q05_q95": [
+        -0.001073747725593861,
+        0.003478181669222719
+      ],
+      "entropy_wins": 24,
+      "ties": 0,
+      "wins_wilson95": [
+        0.445956198273935,
+        0.7365188938759863
+      ],
+      "worse_predictive_rmse_than_random_mean": 16,
+      "negative_entropy_changes": 14
+    },
+    {
+      "case": "weak_signal",
+      "error_model": "mismatched",
+      "seeds": 40,
+      "entropy_advantage_vs_random_mean": 0.019743421763440752,
+      "empirical_difference_q05_q95": [
+        -0.006002655512381657,
+        0.1059110971723872
+      ],
+      "entropy_wins": 27,
+      "ties": 0,
+      "wins_wilson95": [
+        0.52017458088898,
+        0.7991568303733828
+      ],
+      "worse_predictive_rmse_than_random_mean": 16,
+      "negative_entropy_changes": 8
+    }
+  ],
+  "engineering_checks": 72167,
+  "source_model": "plume-ensemble-0.2.1"
+}

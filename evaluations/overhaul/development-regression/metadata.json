@@ -1,0 +1,68 @@
+{
+  "protocol": "UW-OVERHAUL-2026-01-old-development-regression",
+  "evidence": "development-used, not untouched final",
+  "model": "plume-mixture-0.3.0",
+  "baseline_model": "plume-ensemble-0.2.1",
+  "worlds": 640,
+  "seeds": [
+    220000,
+    220039
+  ],
+  "configuration": {
+    "source_prior": 0.5,
+    "strength_halfnormal_scale_ug_s": 30000.0,
+    "background_mean_ug_m3": 10.0,
+    "background_sd_ug_m3": 20.0,
+    "background_trend_sd_ug_m3_hour": 10.0,
+    "instrument_bias_sd_ug_m3": 1.0,
+    "spatial_scale_m": 150.0,
+    "temporal_scale_s": 600.0,
+    "wind_offsets_deg": [
+      -45,
+      -30,
+      -15,
+      0,
+      15,
+      30,
+      45
+    ],
+    "wind_offset_sd_deg": 20.0,
+    "speed_scales": [
+      0.7,
+      1.0,
+      1.3
+    ],
+    "speed_prior": [
+      0.25,
+      0.5,
+      0.25
+    ],
+    "cell_target_m": 20.0,
+    "max_cells_axis": 24,
+    "sensor_check_tail": 0.01
+  },
+  "generated_utc": "2026-10-18T18:28:09.929194+00:00",
+  "python": "3.12.14",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.41",
+  "numpy": "2.3.5",
+  "source_hashes_before": {
+    "inference.py": "8abda2a606bf4daad902e456aa0f911a387cecc08779887caf97696092554a5c",
+    "quality.py": "c3ae259dfe7db9aa98ad5c49f7aa648f26c2bb49cc70422e5f5cb095a06cc062",
+    "weather.py": "2acbcd7192c2b5177340b71575ca5a17b686c8456883926b9816010c849b9113",
+    "numerics.py": "d64a30504d559b003fb76a6c7f267f998399b26a7f2425d90f531c6feb1c2fd6",
+    "models.py": "aa0e850fc110793b82d7bea0a4730266f61c89c5f3cc8bbcd5641b7da70e77b1"
+  },
+  "original_generator_sha256": "95f5df3803ff9b4d869041d7f1b5f722ca7c69a870aa72775d5b7e8ece98883c",
+  "evaluator_sha256": "0d3e9a39e823532e9b9c5c923ec03dea2109f0965476e2035fc8c687c1d41266",
+  "protocol_sha256": "8097f6a40a1d2f78fb9ab0f70e51ec17064998ce44ce5938e42f9be133593a1d",
+  "source_hashes_after": {
+    "inference.py": "8abda2a606bf4daad902e456aa0f911a387cecc08779887caf97696092554a5c",
+    "quality.py": "c3ae259dfe7db9aa98ad5c49f7aa648f26c2bb49cc70422e5f5cb095a06cc062",
+    "weather.py": "2acbcd7192c2b5177340b71575ca5a17b686c8456883926b9816010c849b9113",
+    "numerics.py": "d64a30504d559b003fb76a6c7f267f998399b26a7f2425d90f531c6feb1c2fd6",
+    "models.py": "aa0e850fc110793b82d7bea0a4730266f61c89c5f3cc8bbcd5641b7da70e77b1"
+  },
+  "wall_seconds": 41.80609700900095,
+  "peak_rss_mib": 77.51953125,
+  "source_unchanged_during_run": true
+}

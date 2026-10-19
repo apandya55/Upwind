@@ -1,0 +1,19 @@
+{
+  "status": "post-evaluation report generation only; no inference/planning changes",
+  "report": "docs/ENGINE_CHALLENGE_RESULTS.md",
+  "report_sha256": "9a4e8f23d02cdeced34e0369c7755c5b3fc4efad2fd7f64a5fa33b448c2da868",
+  "renderer": "evaluations/overhaul/challenge-report-renderer.py.txt",
+  "renderer_sha256": "997c77ef1c7324892aa1279334efdf9aa8b0216faece16ec0be12c30ecc219a5",
+  "command": ".venv/bin/python evaluations/overhaul/challenge-report-renderer.py.txt",
+  "input_sha256": {
+    "evaluations/overhaul/new-final/summary.json": "79f5c7d11335f46c871d127deb675907e1d3321480fbbdf4329adae43110a27d",
+    "evaluations/overhaul/new-final/metadata.json": "5a57a08666c65533d85cf1c25a793ec0c880d9f7e2749839f5f46fbdaa3f8521",
+    "evaluations/overhaul/new-final/science.json": "0f5a097b2031638b724f46f52710d50e89029265533786d8709e5ffcab405000",
+    "evaluations/overhaul/new-final/followup.json": "1bec7997004cb6866f2403b12a4828456ffec2a0be6126e3f032ed0802fa196c",
+    "evaluations/overhaul/new-final/stability.json": "3bf31d936e87b16db8103fd4a8a041a537f317bb7ed5ae678fd1dff592838161",
+    "evaluations/overhaul/new-final/truth.json": "83904cc3509ab5e9311c5592df7c7b6146ce034f32aa7fa7aabe302bbef55ace",
+    "evaluations/overhaul/new-final/posthoc-prior-reference.json": "9d026e114c0833dce6f000e1852f7a79dcb6e4325ee27415735a6b399aac054f",
+    "evaluations/overhaul/new-development-supplementary-frozen/supplementary.json": "0fae8af2255154af8e6f7d91ab7c49104786797ce87d42e6fdead89c29afe79d",
+    "evaluations/overhaul/final-supplementary-analysis.json": "4500101c5d7083ddb4809421d710347aa35984d582ca04c969bc3d31e25e76a3"
+  }
+}

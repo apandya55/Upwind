@@ -1,0 +1,1757 @@
+{
+  "scope": "Descriptive final results; no policy tuning. Presence calibration is conditional on synthetic case construction and is not location/responsibility calibration. Conditions share seed blocks.",
+  "acceptance": [
+    {
+      "family": "background_campaign",
+      "accepted": true,
+      "fitted": 40,
+      "n": 0,
+      "present": 0,
+      "covered": 0,
+      "coverage_wilson95": null,
+      "map_error_m": null,
+      "mean_error_m": null,
+      "region90_area_fraction": null,
+      "source_brier": null
+    },
+    {
+      "family": "background_campaign",
+      "accepted": false,
+      "fitted": 40,
+      "n": 40,
+      "present": 0,
+      "covered": 0,
+      "coverage_wilson95": null,
+      "map_error_m": null,
+      "mean_error_m": null,
+      "region90_area_fraction": {
+        "n": 40,
+        "mean": 0.7195080091533181,
+        "min": 0.5011441647597255,
+        "p10": 0.6693363844393594,
+        "median": 0.736842105263158,
+        "p90": 0.7670480549199088,
+        "max": 0.7711670480549201
+      },
+      "source_brier": {
+        "n": 40,
+        "mean": 0.08326893394709381,
+        "min": 0.026784049723439732,
+        "p10": 0.0426889922766143,
+        "median": 0.07139313151803339,
+        "p90": 0.1404036212143624,
+        "max": 0.3135826012772039
+      }
+    },
+    {
+      "family": "biased_met_campaign",
+      "accepted": true,
+      "fitted": 40,
+      "n": 18,
+      "present": 18,
+      "covered": 0,
+      "coverage_wilson95": [
+        0,
+        0.1758845505823749
+      ],
+      "map_error_m": {
+        "n": 18,
+        "mean": 161.7053202102926,
+        "min": 87.4768651249794,
+        "p10": 112.98891781406572,
+        "median": 151.52224511892638,
+        "p90": 219.01775557957166,
+        "max": 299.88400501102143
+      },
+      "mean_error_m": {
+        "n": 18,
+        "mean": 156.398255193929,
+        "min": 84.22863343315883,
+        "p10": 111.25785979268942,
+        "median": 149.46898850002876,
+        "p90": 209.606781996297,
+        "max": 236.35533903224595
+      },
+      "region90_area_fraction": {
+        "n": 18,
+        "mean": 0.057208237986270026,
+        "min": 0.004576659038901588,
+        "p10": 0.010068649885583503,
+        "median": 0.027459954233409575,
+        "p90": 0.14370709382151037,
+        "max": 0.2242562929061786
+      },
+      "source_brier": {
+        "n": 18,
+        "mean": 0.0005111354594939207,
+        "min": 0.0,
+        "p10": 0.0,
+        "median": 8.095023370689459e-12,
+        "p90": 0.00019826031672333806,
+        "max": 0.00855231119718447
+      }
+    },
+    {
+      "family": "biased_met_campaign",
+      "accepted": false,
+      "fitted": 40,
+      "n": 22,
+      "present": 22,
+      "covered": 6,
+      "coverage_wilson95": [
+        0.1315058201581444,
+        0.4815212369900198
+      ],
+      "map_error_m": {
+        "n": 22,
+        "mean": 220.83777252222308,
+        "min": 111.92069130844604,
+        "p10": 133.49857305179805,
+        "median": 233.37163574743352,
+        "p90": 285.17939195833617,
+        "max": 318.26296752736386
+      },
+      "mean_error_m": {
+        "n": 22,
+        "mean": 176.76033855773355,
+        "min": 40.99938370203859,
+        "p10": 74.172889022949,
+        "median": 187.06915959158252,
+        "p90": 242.39170103073346,
+        "max": 314.96447457268664
+      },
+      "region90_area_fraction": {
+        "n": 22,
+        "mean": 0.5064489286457251,
+        "min": 0.17162471395881,
+        "p10": 0.202974828375286,
+        "median": 0.5800915331807781,
+        "p90": 0.7505720823798627,
+        "max": 0.7688787185354693
+      },
+      "source_brier": {
+        "n": 22,
+        "mean": 0.3321082279439236,
+        "min": 0.04801189723414569,
+        "p10": 0.06266896649723963,
+        "median": 0.32175724148033374,
+        "p90": 0.5872680386517359,
+        "max": 0.6639368299614856
+      }
+    },
+    {
+      "family": "boundary_campaign",
+      "accepted": true,
+      "fitted": 40,
+      "n": 6,
+      "present": 6,
+      "covered": 6,
+      "coverage_wilson95": [
+        0.6096569663469354,
+        0.9999999999999999
+      ],
+      "map_error_m": {
+        "n": 6,
+        "mean": 19.56258973420982,
+        "min": 5.872548326554844,
+        "p10": 7.108492549593555,
+        "median": 17.65084224135872,
+        "p90": 33.92843441167717,
+        "max": 36.205476050149905
+      },
+      "mean_error_m": {
+        "n": 6,
+        "mean": 25.023950357487724,
+        "min": 9.327947385710655,
+        "p10": 10.207281457502216,
+        "median": 22.643147261155836,
+        "p90": 42.22142235380511,
+        "max": 46.05791917822158
+      },
+      "region90_area_fraction": {
+        "n": 6,
+        "mean": 0.036994660564454586,
+        "min": 0.006864988558352384,
+        "p10": 0.008009153318077783,
+        "median": 0.022883295194507988,
+        "p90": 0.08009153318077798,
+        "max": 0.12128146453089235
+      },
+      "source_brier": {
+        "n": 6,
+        "mean": 0.00019691950674606684,
+        "min": 0.0,
+        "p10": 0.0,
+        "median": 6.162975822039155e-33,
+        "p90": 0.0005907585202382005,
+        "max": 0.001181517040476401
+      }
+    },
+    {
+      "family": "boundary_campaign",
+      "accepted": false,
+      "fitted": 40,
+      "n": 34,
+      "present": 34,
+      "covered": 34,
+      "coverage_wilson95": [
+        0.8984820937803899,
+        1
+      ],
+      "map_error_m": {
+        "n": 34,
+        "mean": 114.7398324042478,
+        "min": 4.827456883499975,
+        "p10": 12.48739558555135,
+        "median": 44.23667484180079,
+        "p90": 362.11257538121464,
+        "max": 454.03278972750627
+      },
+      "mean_error_m": {
+        "n": 34,
+        "mean": 157.00326649934382,
+        "min": 27.736525129545477,
+        "p10": 56.291090522971494,
+        "median": 151.84616868294927,
+        "p90": 261.3199766757992,
+        "max": 318.07098412064914
+      },
+      "region90_area_fraction": {
+        "n": 34,
+        "mean": 0.5448916408668731,
+        "min": 0.011441647597253989,
+        "p10": 0.11693363844393595,
+        "median": 0.6258581235697941,
+        "p90": 0.7491990846681923,
+        "max": 0.7871853546910756
+      },
+      "source_brier": {
+        "n": 34,
+        "mean": 0.36059313455252945,
+        "min": 0.0,
+        "p10": 0.05650795533197382,
+        "median": 0.3908168089346043,
+        "p90": 0.5862326049516249,
+        "max": 0.6416773321231751
+      }
+    },
+    {
+      "family": "changing_release_campaign",
+      "accepted": true,
+      "fitted": 40,
+      "n": 20,
+      "present": 20,
+      "covered": 13,
+      "coverage_wilson95": [
+        0.43285051021946463,
+        0.8188104521320554
+      ],
+      "map_error_m": {
+        "n": 20,
+        "mean": 77.93150545082172,
+        "min": 15.304644426162527,
+        "p10": 31.27335515771305,
+        "median": 70.02399603252516,
+        "p90": 148.28798913162362,
+        "max": 185.3442681879563
+      },
+      "mean_error_m": {
+        "n": 20,
+        "mean": 78.30358342681035,
+        "min": 22.260585436051734,
+        "p10": 27.463588559682574,
+        "median": 79.65724278021054,
+        "p90": 134.28179250843186,
+        "max": 157.88523505266167
+      },
+      "region90_area_fraction": {
+        "n": 20,
+        "mean": 0.11864988558352407,
+        "min": 0.020594965675057232,
+        "p10": 0.05858123569794054,
+        "median": 0.09267734553775749,
+        "p90": 0.2203661327231123,
+        "max": 0.26544622425629305
+      },
+      "source_brier": {
+        "n": 20,
+        "mean": 0.000891038589791642,
+        "min": 0.0,
+        "p10": 1.109335647967048e-32,
+        "median": 1.8313044119692239e-09,
+        "p90": 0.003012763917167047,
+        "max": 0.0073695063081454385
+      }
+    },
+    {
+      "family": "changing_release_campaign",
+      "accepted": false,
+      "fitted": 40,
+      "n": 20,
+      "present": 20,
+      "covered": 19,
+      "coverage_wilson95": [
+        0.7638641064874331,
+        0.9911187805671268
+      ],
+      "map_error_m": {
+        "n": 20,
+        "mean": 112.17583608517464,
+        "min": 1.2959009161912536,
+        "p10": 20.594941796836583,
+        "median": 74.6783480603834,
+        "p90": 225.24504628283188,
+        "max": 500.9427296626938
+      },
+      "mean_error_m": {
+        "n": 20,
+        "mean": 130.8297283948087,
+        "min": 24.113261884099266,
+        "p10": 62.4934789741866,
+        "median": 99.06837217038887,
+        "p90": 249.89734569435993,
+        "max": 265.4098200981976
+      },
+      "region90_area_fraction": {
+        "n": 20,
+        "mean": 0.5032036613272312,
+        "min": 0.009153318077803204,
+        "p10": 0.23066361556064088,
+        "median": 0.5366132723112129,
+        "p90": 0.759038901601831,
+        "max": 0.7963386727688789
+      },
+      "source_brier": {
+        "n": 20,
+        "mean": 0.25748961419026134,
+        "min": 0.0,
+        "p10": 0.016426070133784,
+        "median": 0.24208591147754466,
+        "p90": 0.5093906191394452,
+        "max": 0.6446201467891615
+      }
+    },
+    {
+      "family": "correlated_campaign",
+      "accepted": true,
+      "fitted": 40,
+      "n": 9,
+      "present": 9,
+      "covered": 6,
+      "coverage_wilson95": [
+        0.35419734749908977,
+        0.879418401317257
+      ],
+      "map_error_m": {
+        "n": 9,
+        "mean": 66.3083203190863,
+        "min": 17.640769572053443,
+        "p10": 21.12217425679321,
+        "median": 57.381502738192175,
+        "p90": 114.03383107732256,
+        "max": 120.64728726014107
+      },
+      "mean_error_m": {
+        "n": 9,
+        "mean": 61.697508565664194,
+        "min": 11.548673312922697,
+        "p10": 14.551912412839854,
+        "median": 70.83896876050697,
+        "p90": 111.98920912682136,
+        "max": 115.98652937238288
+      },
+      "region90_area_fraction": {
+        "n": 9,
+        "mean": 0.0912789219425375,
+        "min": 0.018306636155606376,
+        "p10": 0.025629290617848948,
+        "median": 0.10068649885583525,
+        "p90": 0.13546910755148733,
+        "max": 0.13729977116704806
+      },
+      "source_brier": {
+        "n": 9,
+        "mean": 0.00019508319285837435,
+        "min": 1.232595164407831e-32,
+        "p10": 3.0923372136566952e-27,
+        "median": 6.319742578967299e-10,
+        "p90": 0.0005327001812294698,
+        "max": 0.001278026873933098
+      }
+    },
+    {
+      "family": "correlated_campaign",
+      "accepted": false,
+      "fitted": 40,
+      "n": 31,
+      "present": 31,
+      "covered": 20,
+      "coverage_wilson95": [
+        0.469476380428149,
+        0.7888355225843418
+      ],
+      "map_error_m": {
+        "n": 31,
+        "mean": 145.74882120042693,
+        "min": 2.855503007761643,
+        "p10": 9.038743601499911,
+        "median": 116.72723194504667,
+        "p90": 302.13417703356214,
+        "max": 484.39530290960766
+      },
+      "mean_error_m": {
+        "n": 31,
+        "mean": 121.47212642367539,
+        "min": 6.022963868081796,
+        "p10": 24.629179792554044,
+        "median": 94.78471197367553,
+        "p90": 291.7298555751393,
+        "max": 396.61434985679546
+      },
+      "region90_area_fraction": {
+        "n": 31,
+        "mean": 0.19568908245367983,
+        "min": 0.0022883295194507957,
+        "p10": 0.029748283752860413,
+        "median": 0.13043478260869565,
+        "p90": 0.44393592677345556,
+        "max": 0.5469107551487417
+      },
+      "source_brier": {
+        "n": 31,
+        "mean": 0.06657619604459034,
+        "min": 0.0,
+        "p10": 1.1624655531931994e-25,
+        "median": 4.1334212288446954e-05,
+        "p90": 0.21250833450231416,
+        "max": 0.44654713292871157
+      }
+    },
+    {
+      "family": "independent_transport",
+      "accepted": true,
+      "fitted": 40,
+      "n": 27,
+      "present": 27,
+      "covered": 24,
+      "coverage_wilson95": [
+        0.7194181745602705,
+        0.9614803521050127
+      ],
+      "map_error_m": {
+        "n": 27,
+        "mean": 60.85964809425746,
+        "min": 7.062200187939808,
+        "p10": 14.513557798700074,
+        "median": 37.35650129498515,
+        "p90": 155.63665524331074,
+        "max": 308.87828958047487
+      },
+      "mean_error_m": {
+        "n": 27,
+        "mean": 50.15635772749664,
+        "min": 11.533266388444957,
+        "p10": 12.797656894361198,
+        "median": 33.89109566329143,
+        "p90": 111.51342541422771,
+        "max": 155.97120931533235
+      },
+      "region90_area_fraction": {
+        "n": 27,
+        "mean": 0.08576998050682264,
+        "min": 0.009153318077803185,
+        "p10": 0.013272311212814648,
+        "median": 0.07322654462242559,
+        "p90": 0.17711670480549205,
+        "max": 0.23112128146453104
+      },
+      "source_brier": {
+        "n": 27,
+        "mean": 5.6660435007747214e-05,
+        "min": 0.0,
+        "p10": 0.0,
+        "median": 4.397922677981034e-22,
+        "p90": 9.737447613793124e-06,
+        "max": 0.0012120176298229196
+      }
+    },
+    {
+      "family": "independent_transport",
+      "accepted": false,
+      "fitted": 40,
+      "n": 13,
+      "present": 13,
+      "covered": 13,
+      "coverage_wilson95": [
+        0.7718981569447083,
+        1
+      ],
+      "map_error_m": {
+        "n": 13,
+        "mean": 161.85675618922477,
+        "min": 23.09288019689644,
+        "p10": 30.262778676230532,
+        "median": 148.68453178246105,
+        "p90": 277.3518273881593,
+        "max": 354.01021511052807
+      },
+      "mean_error_m": {
+        "n": 13,
+        "mean": 149.3984419773422,
+        "min": 46.89298532909821,
+        "p10": 57.5742283462549,
+        "median": 125.07761396535518,
+        "p90": 250.22847494409086,
+        "max": 302.38625233743335
+      },
+      "region90_area_fraction": {
+        "n": 13,
+        "mean": 0.5470867804963915,
+        "min": 0.10526315789473689,
+        "p10": 0.20640732265446227,
+        "median": 0.5972540045766591,
+        "p90": 0.7267734553775744,
+        "max": 0.7620137299771169
+      },
+      "source_brier": {
+        "n": 13,
+        "mean": 0.32783333490930666,
+        "min": 6.095502163643428e-18,
+        "p10": 0.058301792647011394,
+        "median": 0.29709005249454956,
+        "p90": 0.5235656698636751,
+        "max": 0.6942890520301627
+      }
+    },
+    {
+      "family": "informative_campaign",
+      "accepted": true,
+      "fitted": 40,
+      "n": 25,
+      "present": 25,
+      "covered": 23,
+      "coverage_wilson95": [
+        0.7503348787704218,
+        0.977780066308908
+      ],
+      "map_error_m": {
+        "n": 25,
+        "mean": 42.55620151668466,
+        "min": 9.038743601499911,
+        "p10": 10.496544011218807,
+        "median": 22.28655541375068,
+        "p90": 108.07187836840734,
+        "max": 158.24082912722167
+      },
+      "mean_error_m": {
+        "n": 25,
+        "mean": 50.1747255225554,
+        "min": 5.827764069770683,
+        "p10": 14.27211652318562,
+        "median": 33.792112304653976,
+        "p90": 95.12923436358692,
+        "max": 154.21054934711123
+      },
+      "region90_area_fraction": {
+        "n": 25,
+        "mean": 0.11578947368421053,
+        "min": 0.011441647597253982,
+        "p10": 0.03157894736842105,
+        "median": 0.10068649885583528,
+        "p90": 0.21647597254004594,
+        "max": 0.2677345537757438
+      },
+      "source_brier": {
+        "n": 25,
+        "mean": 0.0010986753566283316,
+        "min": 0.0,
+        "p10": 1.9721522630525313e-32,
+        "median": 1.5590837119769793e-10,
+        "p90": 0.004752193148173307,
+        "max": 0.006494053710804279
+      }
+    },
+    {
+      "family": "informative_campaign",
+      "accepted": false,
+      "fitted": 40,
+      "n": 15,
+      "present": 15,
+      "covered": 15,
+      "coverage_wilson95": [
+        0.7961107336956521,
+        1
+      ],
+      "map_error_m": {
+        "n": 15,
+        "mean": 97.25366743526347,
+        "min": 1.2959009161912536,
+        "p10": 10.95839642203385,
+        "median": 28.085241620486112,
+        "p90": 233.396581495439,
+        "max": 354.01021511052807
+      },
+      "mean_error_m": {
+        "n": 15,
+        "mean": 126.9432265227296,
+        "min": 54.95230268541937,
+        "p10": 58.10504599392903,
+        "median": 86.23769989201628,
+        "p90": 239.0670905625119,
+        "max": 269.20743968816157
+      },
+      "region90_area_fraction": {
+        "n": 15,
+        "mean": 0.5240274599542336,
+        "min": 0.23569794050343268,
+        "p10": 0.2727688787185356,
+        "median": 0.5446224256292908,
+        "p90": 0.7487414187643022,
+        "max": 0.7620137299771169
+      },
+      "source_brier": {
+        "n": 15,
+        "mean": 0.28634689217056875,
+        "min": 0.027909811945899265,
+        "p10": 0.07034865139683558,
+        "median": 0.24859198557861423,
+        "p90": 0.49138500982113786,
+        "max": 0.670029198686857
+      }
+    },
+    {
+      "family": "same_wind_repetition",
+      "accepted": true,
+      "fitted": 40,
+      "n": 7,
+      "present": 7,
+      "covered": 7,
+      "coverage_wilson95": [
+        0.6456611570247934,
+        1
+      ],
+      "map_error_m": {
+        "n": 7,
+        "mean": 71.13131750642508,
+        "min": 11.586756459620311,
+        "p10": 16.99675736626976,
+        "median": 67.53597968385868,
+        "p90": 115.40853724519381,
+        "max": 148.4376428434628
+      },
+      "mean_error_m": {
+        "n": 7,
+        "mean": 92.53213645972367,
+        "min": 20.879929486847328,
+        "p10": 21.7238438410301,
+        "median": 93.36414839583112,
+        "p90": 156.33634259405412,
+        "max": 210.76390340670326
+      },
+      "region90_area_fraction": {
+        "n": 7,
+        "mean": 0.20496894409937894,
+        "min": 0.08924485125858121,
+        "p10": 0.1331807780320366,
+        "median": 0.20366132723112132,
+        "p90": 0.2842105263157896,
+        "max": 0.30892448512585813
+      },
+      "source_brier": {
+        "n": 7,
+        "mean": 0.0005508742193124109,
+        "min": 4.930380657631324e-32,
+        "p10": 6.49233865866003e-16,
+        "median": 3.227935553081419e-12,
+        "p90": 0.00157845597085079,
+        "max": 0.003675995012694078
+      }
+    },
+    {
+      "family": "same_wind_repetition",
+      "accepted": false,
+      "fitted": 40,
+      "n": 33,
+      "present": 33,
+      "covered": 32,
+      "coverage_wilson95": [
+        0.8468093832683193,
+        0.9946307279103482
+      ],
+      "map_error_m": {
+        "n": 33,
+        "mean": 222.52481364491558,
+        "min": 9.932808271776942,
+        "p10": 69.93309199411927,
+        "median": 164.06396170160713,
+        "p90": 373.9151786866546,
+        "max": 546.9343274705067
+      },
+      "mean_error_m": {
+        "n": 33,
+        "mean": 142.88409906017804,
+        "min": 11.314965214708536,
+        "p10": 66.7089816107558,
+        "median": 133.58616871385888,
+        "p90": 224.62927216316697,
+        "max": 335.4691224409389
+      },
+      "region90_area_fraction": {
+        "n": 33,
+        "mean": 0.6968310103321546,
+        "min": 0.2631578947368422,
+        "p10": 0.5235697940503434,
+        "median": 0.7459954233409611,
+        "p90": 0.7935926773455378,
+        "max": 0.8352402745995425
+      },
+      "source_brier": {
+        "n": 33,
+        "mean": 0.28524439577847777,
+        "min": 0.013621730875791074,
+        "p10": 0.07090907782757758,
+        "median": 0.3201243749132225,
+        "p90": 0.41311361017551446,
+        "max": 0.4395235205276584
+      }
+    },
+    {
+      "family": "single_window_original",
+      "accepted": true,
+      "fitted": 40,
+      "n": 0,
+      "present": 0,
+      "covered": 0,
+      "coverage_wilson95": null,
+      "map_error_m": null,
+      "mean_error_m": null,
+      "region90_area_fraction": null,
+      "source_brier": null
+    },
+    {
+      "family": "single_window_original",
+      "accepted": false,
+      "fitted": 40,
+      "n": 40,
+      "present": 40,
+      "covered": 39,
+      "coverage_wilson95": [
+        0.8711834051199223,
+        0.9955732825922052
+      ],
+      "map_error_m": {
+        "n": 40,
+        "mean": 181.92435028060677,
+        "min": 35.438029364055886,
+        "p10": 74.45728701160105,
+        "median": 188.81426237395783,
+        "p90": 281.23946918537905,
+        "max": 357.0272607238439
+      },
+      "mean_error_m": {
+        "n": 40,
+        "mean": 82.44621838996483,
+        "min": 12.682955316591183,
+        "p10": 35.31106980335986,
+        "median": 86.72741917298725,
+        "p90": 115.1826547408657,
+        "max": 163.19779408831786
+      },
+      "region90_area_fraction": {
+        "n": 40,
+        "mean": 0.8494851258581237,
+        "min": 0.6521739130434783,
+        "p10": 0.8274599542334098,
+        "median": 0.8581235697940505,
+        "p90": 0.8720823798627004,
+        "max": 0.8810068649885584
+      },
+      "source_brier": {
+        "n": 40,
+        "mean": 0.27379138061558383,
+        "min": 0.04466011303118832,
+        "p10": 0.18120974351732316,
+        "median": 0.3035892265220279,
+        "p90": 0.3290266870380888,
+        "max": 0.35481704227260186
+      }
+    },
+    {
+      "family": "two_sources_campaign",
+      "accepted": true,
+      "fitted": 40,
+      "n": 30,
+      "present": 30,
+      "covered": 15,
+      "coverage_wilson95": [
+        0.33153851227173764,
+        0.6684614877282624
+      ],
+      "map_error_m": {
+        "n": 30,
+        "mean": 134.550131305305,
+        "min": 4.445207073204145,
+        "p10": 10.475524275879682,
+        "median": 91.70183229071004,
+        "p90": 360.7535840743404,
+        "max": 463.81101334311103
+      },
+      "mean_error_m": {
+        "n": 30,
+        "mean": 128.2525678333139,
+        "min": 9.103585993233306,
+        "p10": 20.260681997811254,
+        "median": 78.96683654356335,
+        "p90": 319.2438478736412,
+        "max": 443.6493462842581
+      },
+      "region90_area_fraction": {
+        "n": 30,
+        "mean": 0.11151792524790238,
+        "min": 0.0137299771167048,
+        "p10": 0.025171624713958823,
+        "median": 0.10068649885583526,
+        "p90": 0.24164759725400473,
+        "max": 0.2631578947368422
+      },
+      "source_brier": {
+        "n": 30,
+        "mean": 0.00010890879881104286,
+        "min": 0.0,
+        "p10": 0.0,
+        "median": 8.628566525540746e-14,
+        "p90": 0.0004522110571564486,
+        "max": 0.0012700894286856322
+      }
+    },
+    {
+      "family": "two_sources_campaign",
+      "accepted": false,
+      "fitted": 40,
+      "n": 10,
+      "present": 10,
+      "covered": 8,
+      "coverage_wilson95": [
+        0.49015684672072335,
+        0.9433190520193067
+      ],
+      "map_error_m": {
+        "n": 10,
+        "mean": 186.70959216195698,
+        "min": 28.085241620486112,
+        "p10": 58.36800855663577,
+        "median": 162.0619652061227,
+        "p90": 336.66612245363325,
+        "max": 410.9725414470603
+      },
+      "mean_error_m": {
+        "n": 10,
+        "mean": 163.1414708696663,
+        "min": 59.62470265042884,
+        "p10": 89.45109634842608,
+        "median": 147.83255227891516,
+        "p90": 249.29944546115306,
+        "max": 322.2890495173289
+      },
+      "region90_area_fraction": {
+        "n": 10,
+        "mean": 0.4608695652173914,
+        "min": 0.10983981693363848,
+        "p10": 0.274599542334096,
+        "median": 0.41647597254004587,
+        "p90": 0.7144164759725402,
+        "max": 0.7185354691075517
+      },
+      "source_brier": {
+        "n": 10,
+        "mean": 0.19971404171715684,
+        "min": 4.44966854351227e-30,
+        "p10": 0.009432683371430236,
+        "median": 0.15148282658144435,
+        "p90": 0.4744207633447138,
+        "max": 0.48733542856038137
+      }
+    },
+    {
+      "family": "unsupported_campaign",
+      "accepted": true,
+      "fitted": 0,
+      "n": 0,
+      "present": 0,
+      "covered": 0,
+      "coverage_wilson95": null,
+      "map_error_m": null,
+      "mean_error_m": null,
+      "region90_area_fraction": null,
+      "source_brier": null
+    },
+    {
+      "family": "unsupported_campaign",
+      "accepted": false,
+      "fitted": 0,
+      "n": 0,
+      "present": 0,
+      "covered": 0,
+      "coverage_wilson95": null,
+      "map_error_m": null,
+      "mean_error_m": null,
+      "region90_area_fraction": null,
+      "source_brier": null
+    },
+    {
+      "family": "weak_campaign",
+      "accepted": true,
+      "fitted": 40,
+      "n": 0,
+      "present": 0,
+      "covered": 0,
+      "coverage_wilson95": null,
+      "map_error_m": null,
+      "mean_error_m": null,
+      "region90_area_fraction": null,
+      "source_brier": null
+    },
+    {
+      "family": "weak_campaign",
+      "accepted": false,
+      "fitted": 40,
+      "n": 40,
+      "present": 40,
+      "covered": 27,
+      "coverage_wilson95": [
+        0.52017458088898,
+        0.7991568303733828
+      ],
+      "map_error_m": {
+        "n": 40,
+        "mean": 242.20150069604466,
+        "min": 10.845737715351078,
+        "p10": 94.06254556744949,
+        "median": 215.9497793535951,
+        "p90": 426.84325497787364,
+        "max": 518.7219316576374
+      },
+      "mean_error_m": {
+        "n": 40,
+        "mean": 160.51142755063705,
+        "min": 10.562610076026115,
+        "p10": 81.06699446723714,
+        "median": 159.1302673635546,
+        "p90": 255.8234393031682,
+        "max": 301.3395171758278
+      },
+      "region90_area_fraction": {
+        "n": 40,
+        "mean": 0.7370137299771169,
+        "min": 0.4782608695652176,
+        "p10": 0.7043478260869566,
+        "median": 0.7505720823798628,
+        "p90": 0.7757437070938217,
+        "max": 0.7871853546910756
+      },
+      "source_brier": {
+        "n": 40,
+        "mean": 0.5467922781578085,
+        "min": 0.35345322951267355,
+        "p10": 0.45106291173069807,
+        "median": 0.543648941247,
+        "p90": 0.6520111217413486,
+        "max": 0.6993946940186698
+      }
+    }
+  ],
+  "reliability_bins": [
+    {
+      "family": "background_campaign",
+      "bin": [
+        0,
+        0.2
+      ],
+      "n": 4,
+      "mean_source_probability": 0.18440510362789037,
+      "source_present_count": 0,
+      "presence_wilson95": [
+        0,
+        0.48990002040399916
+      ]
+    },
+    {
+      "family": "background_campaign",
+      "bin": [
+        0.2,
+        0.4
+      ],
+      "n": 34,
+      "mean_source_probability": 0.27823933274771895,
+      "source_present_count": 0,
+      "presence_wilson95": [
+        0,
+        0.10151790621961015
+      ]
+    },
+    {
+      "family": "background_campaign",
+      "bin": [
+        0.4,
+        0.6
+      ],
+      "n": 2,
+      "mean_source_probability": 0.4885150686083868,
+      "source_present_count": 0,
+      "presence_wilson95": [
+        0,
+        0.6576280471103807
+      ]
+    },
+    {
+      "family": "background_campaign",
+      "bin": [
+        0.6,
+        0.8
+      ],
+      "n": 0,
+      "mean_source_probability": null,
+      "source_present_count": 0,
+      "presence_wilson95": null
+    },
+    {
+      "family": "background_campaign",
+      "bin": [
+        0.8,
+        1.0
+      ],
+      "n": 0,
+      "mean_source_probability": null,
+      "source_present_count": 0,
+      "presence_wilson95": null
+    },
+    {
+      "family": "biased_met_campaign",
+      "bin": [
+        0,
+        0.2
+      ],
+      "n": 2,
+      "mean_source_probability": 0.18819393067377668,
+      "source_present_count": 2,
+      "presence_wilson95": [
+        0.34237195288961925,
+        1
+      ]
+    },
+    {
+      "family": "biased_met_campaign",
+      "bin": [
+        0.2,
+        0.4
+      ],
+      "n": 8,
+      "mean_source_probability": 0.29653209206771614,
+      "source_present_count": 8,
+      "presence_wilson95": [
+        0.6755843804891231,
+        1
+      ]
+    },
+    {
+      "family": "biased_met_campaign",
+      "bin": [
+        0.4,
+        0.6
+      ],
+      "n": 6,
+      "mean_source_probability": 0.49554391229419575,
+      "source_present_count": 6,
+      "presence_wilson95": [
+        0.6096569663469354,
+        0.9999999999999999
+      ]
+    },
+    {
+      "family": "biased_met_campaign",
+      "bin": [
+        0.6,
+        0.8
+      ],
+      "n": 6,
+      "mean_source_probability": 0.7246490666210322,
+      "source_present_count": 6,
+      "presence_wilson95": [
+        0.6096569663469354,
+        0.9999999999999999
+      ]
+    },
+    {
+      "family": "biased_met_campaign",
+      "bin": [
+        0.8,
+        1.0
+      ],
+      "n": 18,
+      "mean_source_probability": 0.9926471658456231,
+      "source_present_count": 18,
+      "presence_wilson95": [
+        0.8241154494176252,
+        1
+      ]
+    },
+    {
+      "family": "boundary_campaign",
+      "bin": [
+        0,
+        0.2
+      ],
+      "n": 1,
+      "mean_source_probability": 0.19895235340013934,
+      "source_present_count": 1,
+      "presence_wilson95": [
+        0.20654329147389294,
+        1
+      ]
+    },
+    {
+      "family": "boundary_campaign",
+      "bin": [
+        0.2,
+        0.4
+      ],
+      "n": 19,
+      "mean_source_probability": 0.29984846759272404,
+      "source_present_count": 19,
+      "presence_wilson95": [
+        0.8318156346315496,
+        1
+      ]
+    },
+    {
+      "family": "boundary_campaign",
+      "bin": [
+        0.4,
+        0.6
+      ],
+      "n": 8,
+      "mean_source_probability": 0.514779125532146,
+      "source_present_count": 8,
+      "presence_wilson95": [
+        0.6755843804891231,
+        1
+      ]
+    },
+    {
+      "family": "boundary_campaign",
+      "bin": [
+        0.6,
+        0.8
+      ],
+      "n": 3,
+      "mean_source_probability": 0.6996980056325519,
+      "source_present_count": 3,
+      "presence_wilson95": [
+        0.43849391955098227,
+        1
+      ]
+    },
+    {
+      "family": "boundary_campaign",
+      "bin": [
+        0.8,
+        1.0
+      ],
+      "n": 9,
+      "mean_source_probability": 0.9749348993053112,
+      "source_present_count": 9,
+      "presence_wilson95": [
+        0.7008472464490407,
+        1
+      ]
+    },
+    {
+      "family": "changing_release_campaign",
+      "bin": [
+        0,
+        0.2
+      ],
+      "n": 1,
+      "mean_source_probability": 0.1971176008971417,
+      "source_present_count": 1,
+      "presence_wilson95": [
+        0.20654329147389294,
+        1
+      ]
+    },
+    {
+      "family": "changing_release_campaign",
+      "bin": [
+        0.2,
+        0.4
+      ],
+      "n": 6,
+      "mean_source_probability": 0.31543732482305215,
+      "source_present_count": 6,
+      "presence_wilson95": [
+        0.6096569663469354,
+        0.9999999999999999
+      ]
+    },
+    {
+      "family": "changing_release_campaign",
+      "bin": [
+        0.4,
+        0.6
+      ],
+      "n": 5,
+      "mean_source_probability": 0.5097111483669909,
+      "source_present_count": 5,
+      "presence_wilson95": [
+        0.5655085052479191,
+        1
+      ]
+    },
+    {
+      "family": "changing_release_campaign",
+      "bin": [
+        0.6,
+        0.8
+      ],
+      "n": 4,
+      "mean_source_probability": 0.6761538017688586,
+      "source_present_count": 4,
+      "presence_wilson95": [
+        0.5100999795960008,
+        1
+      ]
+    },
+    {
+      "family": "changing_release_campaign",
+      "bin": [
+        0.8,
+        1.0
+      ],
+      "n": 24,
+      "mean_source_probability": 0.9720693775755557,
+      "source_present_count": 24,
+      "presence_wilson95": [
+        0.8620194241710247,
+        1
+      ]
+    },
+    {
+      "family": "correlated_campaign",
+      "bin": [
+        0,
+        0.2
+      ],
+      "n": 0,
+      "mean_source_probability": null,
+      "source_present_count": 0,
+      "presence_wilson95": null
+    },
+    {
+      "family": "correlated_campaign",
+      "bin": [
+        0.2,
+        0.4
+      ],
+      "n": 2,
+      "mean_source_probability": 0.33594722289868695,
+      "source_present_count": 2,
+      "presence_wilson95": [
+        0.34237195288961925,
+        1
+      ]
+    },
+    {
+      "family": "correlated_campaign",
+      "bin": [
+        0.4,
+        0.6
+      ],
+      "n": 4,
+      "mean_source_probability": 0.525716334465494,
+      "source_present_count": 4,
+      "presence_wilson95": [
+        0.5100999795960008,
+        1
+      ]
+    },
+    {
+      "family": "correlated_campaign",
+      "bin": [
+        0.6,
+        0.8
+      ],
+      "n": 1,
+      "mean_source_probability": 0.6262916959549327,
+      "source_present_count": 1,
+      "presence_wilson95": [
+        0.20654329147389294,
+        1
+      ]
+    },
+    {
+      "family": "correlated_campaign",
+      "bin": [
+        0.8,
+        1.0
+      ],
+      "n": 33,
+      "mean_source_probability": 0.9706163950477537,
+      "source_present_count": 33,
+      "presence_wilson95": [
+        0.8957265699643882,
+        1
+      ]
+    },
+    {
+      "family": "independent_transport",
+      "bin": [
+        0,
+        0.2
+      ],
+      "n": 1,
+      "mean_source_probability": 0.16675990733152862,
+      "source_present_count": 1,
+      "presence_wilson95": [
+        0.20654329147389294,
+        1
+      ]
+    },
+    {
+      "family": "independent_transport",
+      "bin": [
+        0.2,
+        0.4
+      ],
+      "n": 5,
+      "mean_source_probability": 0.33071753692610034,
+      "source_present_count": 5,
+      "presence_wilson95": [
+        0.5655085052479191,
+        1
+      ]
+    },
+    {
+      "family": "independent_transport",
+      "bin": [
+        0.4,
+        0.6
+      ],
+      "n": 5,
+      "mean_source_probability": 0.4915685892508854,
+      "source_present_count": 5,
+      "presence_wilson95": [
+        0.5655085052479191,
+        1
+      ]
+    },
+    {
+      "family": "independent_transport",
+      "bin": [
+        0.6,
+        0.8
+      ],
+      "n": 0,
+      "mean_source_probability": null,
+      "source_present_count": 0,
+      "presence_wilson95": null
+    },
+    {
+      "family": "independent_transport",
+      "bin": [
+        0.8,
+        1.0
+      ],
+      "n": 29,
+      "mean_source_probability": 0.9933680634289255,
+      "source_present_count": 29,
+      "presence_wilson95": [
+        0.8830264055344442,
+        1
+      ]
+    },
+    {
+      "family": "informative_campaign",
+      "bin": [
+        0,
+        0.2
+      ],
+      "n": 1,
+      "mean_source_probability": 0.18144688707032763,
+      "source_present_count": 1,
+      "presence_wilson95": [
+        0.20654329147389294,
+        1
+      ]
+    },
+    {
+      "family": "informative_campaign",
+      "bin": [
+        0.2,
+        0.4
+      ],
+      "n": 5,
+      "mean_source_probability": 0.338540219539318,
+      "source_present_count": 5,
+      "presence_wilson95": [
+        0.5655085052479191,
+        1
+      ]
+    },
+    {
+      "family": "informative_campaign",
+      "bin": [
+        0.4,
+        0.6
+      ],
+      "n": 4,
+      "mean_source_probability": 0.5007869742228658,
+      "source_present_count": 4,
+      "presence_wilson95": [
+        0.5100999795960008,
+        1
+      ]
+    },
+    {
+      "family": "informative_campaign",
+      "bin": [
+        0.6,
+        0.8
+      ],
+      "n": 4,
+      "mean_source_probability": 0.691533020384209,
+      "source_present_count": 4,
+      "presence_wilson95": [
+        0.5100999795960008,
+        1
+      ]
+    },
+    {
+      "family": "informative_campaign",
+      "bin": [
+        0.8,
+        1.0
+      ],
+      "n": 26,
+      "mean_source_probability": 0.9765242707578012,
+      "source_present_count": 26,
+      "presence_wilson95": [
+        0.8712669561953784,
+        1
+      ]
+    },
+    {
+      "family": "same_wind_repetition",
+      "bin": [
+        0,
+        0.2
+      ],
+      "n": 0,
+      "mean_source_probability": null,
+      "source_present_count": 0,
+      "presence_wilson95": null
+    },
+    {
+      "family": "same_wind_repetition",
+      "bin": [
+        0.2,
+        0.4
+      ],
+      "n": 10,
+      "mean_source_probability": 0.3672747668639809,
+      "source_present_count": 10,
+      "presence_wilson95": [
+        0.7224598312333834,
+        1
+      ]
+    },
+    {
+      "family": "same_wind_repetition",
+      "bin": [
+        0.4,
+        0.6
+      ],
+      "n": 16,
+      "mean_source_probability": 0.4472269303350781,
+      "source_present_count": 16,
+      "presence_wilson95": [
+        0.8063865817272802,
+        1
+      ]
+    },
+    {
+      "family": "same_wind_repetition",
+      "bin": [
+        0.6,
+        0.8
+      ],
+      "n": 6,
+      "mean_source_probability": 0.7206030213939864,
+      "source_present_count": 6,
+      "presence_wilson95": [
+        0.6096569663469354,
+        0.9999999999999999
+      ]
+    },
+    {
+      "family": "same_wind_repetition",
+      "bin": [
+        0.8,
+        1.0
+      ],
+      "n": 8,
+      "mean_source_probability": 0.976133611218102,
+      "source_present_count": 8,
+      "presence_wilson95": [
+        0.6755843804891231,
+        1
+      ]
+    },
+    {
+      "family": "single_window_original",
+      "bin": [
+        0,
+        0.2
+      ],
+      "n": 0,
+      "mean_source_probability": null,
+      "source_present_count": 0,
+      "presence_wilson95": null
+    },
+    {
+      "family": "single_window_original",
+      "bin": [
+        0.2,
+        0.4
+      ],
+      "n": 0,
+      "mean_source_probability": null,
+      "source_present_count": 0,
+      "presence_wilson95": null
+    },
+    {
+      "family": "single_window_original",
+      "bin": [
+        0.4,
+        0.6
+      ],
+      "n": 37,
+      "mean_source_probability": 0.4638376029654177,
+      "source_present_count": 37,
+      "presence_wilson95": [
+        0.9059390425448564,
+        1
+      ]
+    },
+    {
+      "family": "single_window_original",
+      "bin": [
+        0.6,
+        0.8
+      ],
+      "n": 3,
+      "mean_source_probability": 0.7240412669160704,
+      "source_present_count": 3,
+      "presence_wilson95": [
+        0.43849391955098227,
+        1
+      ]
+    },
+    {
+      "family": "single_window_original",
+      "bin": [
+        0.8,
+        1.0
+      ],
+      "n": 0,
+      "mean_source_probability": null,
+      "source_present_count": 0,
+      "presence_wilson95": null
+    },
+    {
+      "family": "two_sources_campaign",
+      "bin": [
+        0,
+        0.2
+      ],
+      "n": 0,
+      "mean_source_probability": null,
+      "source_present_count": 0,
+      "presence_wilson95": null
+    },
+    {
+      "family": "two_sources_campaign",
+      "bin": [
+        0.2,
+        0.4
+      ],
+      "n": 3,
+      "mean_source_probability": 0.32407048638439057,
+      "source_present_count": 3,
+      "presence_wilson95": [
+        0.43849391955098227,
+        1
+      ]
+    },
+    {
+      "family": "two_sources_campaign",
+      "bin": [
+        0.4,
+        0.6
+      ],
+      "n": 2,
+      "mean_source_probability": 0.5782319387838799,
+      "source_present_count": 2,
+      "presence_wilson95": [
+        0.34237195288961925,
+        1
+      ]
+    },
+    {
+      "family": "two_sources_campaign",
+      "bin": [
+        0.6,
+        0.8
+      ],
+      "n": 2,
+      "mean_source_probability": 0.6725838882297879,
+      "source_present_count": 2,
+      "presence_wilson95": [
+        0.34237195288961925,
+        1
+      ]
+    },
+    {
+      "family": "two_sources_campaign",
+      "bin": [
+        0.8,
+        1.0
+      ],
+      "n": 33,
+      "mean_source_probability": 0.9865371097438425,
+      "source_present_count": 33,
+      "presence_wilson95": [
+        0.8957265699643882,
+        1
+      ]
+    },
+    {
+      "family": "unsupported_campaign",
+      "bin": [
+        0,
+        0.2
+      ],
+      "n": 0,
+      "mean_source_probability": null,
+      "source_present_count": 0,
+      "presence_wilson95": null
+    },
+    {
+      "family": "unsupported_campaign",
+      "bin": [
+        0.2,
+        0.4
+      ],
+      "n": 0,
+      "mean_source_probability": null,
+      "source_present_count": 0,
+      "presence_wilson95": null
+    },
+    {
+      "family": "unsupported_campaign",
+      "bin": [
+        0.4,
+        0.6
+      ],
+      "n": 0,
+      "mean_source_probability": null,
+      "source_present_count": 0,
+      "presence_wilson95": null
+    },
+    {
+      "family": "unsupported_campaign",
+      "bin": [
+        0.6,
+        0.8
+      ],
+      "n": 0,
+      "mean_source_probability": null,
+      "source_present_count": 0,
+      "presence_wilson95": null
+    },
+    {
+      "family": "unsupported_campaign",
+      "bin": [
+        0.8,
+        1.0
+      ],
+      "n": 0,
+      "mean_source_probability": null,
+      "source_present_count": 0,
+      "presence_wilson95": null
+    },
+    {
+      "family": "weak_campaign",
+      "bin": [
+        0,
+        0.2
+      ],
+      "n": 5,
+      "mean_source_probability": 0.18061979633182212,
+      "source_present_count": 5,
+      "presence_wilson95": [
+        0.5655085052479191,
+        1
+      ]
+    },
+    {
+      "family": "weak_campaign",
+      "bin": [
+        0.2,
+        0.4
+      ],
+      "n": 34,
+      "mean_source_probability": 0.27036919204048604,
+      "source_present_count": 34,
+      "presence_wilson95": [
+        0.8984820937803899,
+        1
+      ]
+    },
+    {
+      "family": "weak_campaign",
+      "bin": [
+        0.4,
+        0.6
+      ],
+      "n": 1,
+      "mean_source_probability": 0.4054806735583161,
+      "source_present_count": 1,
+      "presence_wilson95": [
+        0.20654329147389294,
+        1
+      ]
+    },
+    {
+      "family": "weak_campaign",
+      "bin": [
+        0.6,
+        0.8
+      ],
+      "n": 0,
+      "mean_source_probability": null,
+      "source_present_count": 0,
+      "presence_wilson95": null
+    },
+    {
+      "family": "weak_campaign",
+      "bin": [
+        0.8,
+        1.0
+      ],
+      "n": 0,
+      "mean_source_probability": null,
+      "source_present_count": 0,
+      "presence_wilson95": null
+    }
+  ]
+}

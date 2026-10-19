@@ -1,0 +1,510 @@
+"""Bounded single-source ensemble and correlated, nuisance-aware monitoring design.
+
+All probabilities are conditional scenario weights, never calibrated attribution.
+See docs/SCIENCE.md for equations and unsupported conditions.
+"""
+
+from datetime import datetime
+from functools import lru_cache
+from itertools import combinations, product
+import hashlib
+import json
+import time
+import numpy as np
+from pyproj import CRS, Transformer
+from scipy.special import logsumexp
+from .models import Investigation
+
+MODEL_VERSION = "plume-ensemble-0.1.0"
+BAD_FLAGS = {"negative", "duplicate", "extreme_review"}
+
+
+def projector(latitude, longitude):
+    """Local azimuthal equidistant coordinates: x east, y north, metres."""
+    crs = CRS.from_proj4(
+        f"+proj=aeqd +lat_0={latitude} +lon_0={longitude} +datum=WGS84 +units=m"
+    )
+    return Transformer.from_crs("EPSG:4326", crs, always_xy=True)
+
+
+def flow_vector(wind_from_deg):
+    radians = np.deg2rad(wind_from_deg)
+    return np.array([-np.sin(radians), -np.cos(radians)])
+
+
+def plume(receptors, source, strength, speed, direction):
+    """Steady Gaussian ground-reflected plume, ug/s -> ug/m³; fixed 5 m release.
+
+    Educational rural neutral approximation sigma_y=.08*x/sqrt(1+.0001*x),
+    sigma_z=.06*x/sqrt(1+.0015*x). No prediction within 20m or beyond 3km.
+    """
+    delta = np.asarray(receptors) - np.asarray(source)
+    theta = np.deg2rad(direction)
+    fx, fy = -np.sin(theta), -np.cos(theta)
+    down = delta[..., 0] * fx + delta[..., 1] * fy
+    cross = delta[..., 0] * (-fy) + delta[..., 1] * fx
+    x = np.maximum(down, 20)
+    sy, sz = 0.08 * x / np.sqrt(1 + 0.0001 * x), 0.06 * x / np.sqrt(1 + 0.0015 * x)
+    vertical = np.exp(-0.5 * ((2 - 5) / sz) ** 2) + np.exp(-0.5 * ((2 + 5) / sz) ** 2)
+    c = (
+        strength
+        / (2 * np.pi * speed * sy * sz)
+        * np.exp(-0.5 * (cross / sy) ** 2)
+        * vertical
+    )
+    return np.where((down >= 20) & (np.linalg.norm(delta, axis=-1) <= 3000), c, 0)
+
+
+def clean_measurements(inv):
+    rows, seen = [], set()
+    for m in inv.measurements:
+        key = m.sensor_id, m.timestamp
+        if (
+            key not in seen
+            and m.pm25_ug_m3 >= 0
+            and not BAD_FLAGS.intersection(m.flags)
+        ):
+            rows.append(m)
+            seen.add(key)
+    return rows
+
+
+def matched_weather(inv, rows):
+    if not inv.weather:
+        raise ValueError(
+            "Local meteorology is missing. Import wind data or use spatial coverage planning."
+        )
+    out = []
+    for m in rows:
+        t = datetime.fromisoformat(m.timestamp.replace("Z", "+00:00"))
+        eligible = []
+        tr = projector(m.latitude, m.longitude)
+        for w in inv.weather:
+            wt = datetime.fromisoformat(w.timestamp.replace("Z", "+00:00"))
+            dt = abs((wt - t).total_seconds())
+            x, y = tr.transform(w.longitude, w.latitude)
+            if dt <= 1800 and np.hypot(x, y) <= 3000:
+                eligible.append((dt, w))
+        if not eligible:
+            raise ValueError(
+                "No weather within 30 minutes and 3 km of every retained measurement."
+            )
+        out.append(min(eligible, key=lambda z: z[0])[1])
+    directions = np.array([w.wind_from_deg for w in out])
+    mean = np.rad2deg(np.angle(np.mean(np.exp(1j * np.deg2rad(directions))))) % 360
+    spread = np.max(np.abs((directions - mean + 180) % 360 - 180))
+    speeds = np.array([w.wind_speed_m_s for w in out])
+    if speeds.min() < 0.8 or speeds.max() > 8:
+        raise ValueError(
+            "Calm (<0.8 m/s) or strong (>8 m/s) winds are unsupported by this approximation."
+        )
+    if spread > 25 or speeds.max() / speeds.min() > 2:
+        raise ValueError(
+            "Weather is too variable for a steady plume (direction deviation >25° or speed ratio >2)."
+        )
+    timestamps = [
+        datetime.fromisoformat(m.timestamp.replace("Z", "+00:00")) for m in rows
+    ]
+    if (max(timestamps) - min(timestamps)).total_seconds() > 3600:
+        raise ValueError(
+            "Select a single steady period of at most one hour for reconstruction."
+        )
+    return out, float(mean), float(np.median(speeds))
+
+
+def ensemble(inv):
+    if not all(
+        [
+            inv.assumptions.steady,
+            inv.assumptions.open_terrain,
+            inv.assumptions.local_weather,
+        ]
+    ):
+        raise ValueError(
+            "Confirm steady conditions, open terrain, and representative local weather to enable experimental reconstruction."
+        )
+    rows = clean_measurements(inv)
+    if len({m.sensor_id for m in rows}) < 2:
+        raise ValueError(
+            "At least two distinct sensors with usable readings are required for scenario comparison."
+        )
+    # Bound computation without favoring the newest readings; evenly select rows.
+    if len(rows) > 40:
+        rows = [rows[i] for i in np.linspace(0, len(rows) - 1, 40, dtype=int)]
+    met, wind, speed = matched_weather(inv, rows)
+    if len(inv.source_locations) < 2:
+        raise ValueError(
+            "Mark at least two plausible source scenario locations (maximum 25)."
+        )
+    lat, lon = (
+        np.mean([p.latitude for p in inv.source_locations]),
+        np.mean([p.longitude for p in inv.source_locations]),
+    )
+    tr = projector(lat, lon)
+    xy = lambda points: np.array(
+        [tr.transform(p.longitude, p.latitude) for p in points]
+    )
+    source_xy, measured_xy, site_xy = xy(inv.source_locations), xy(rows), xy(inv.sites)
+    if (
+        max(np.linalg.norm(measured_xy, axis=1)) > 3000
+        or max(np.linalg.norm(source_xy, axis=1)) > 1500
+    ):
+        raise ValueError(
+            "Study area exceeds supported short-range geometry (3 km receptors, 1.5 km source radius)."
+        )
+    # Full factorial, uniform prior over locations and nuisance grid, capped at 2025.
+    configs = list(
+        product(
+            range(len(source_xy)),
+            [1500.0, 5000.0, 12000.0],
+            [4.0, 10.0, 18.0],
+            [-12.0, 0.0, 12.0],
+            [0.85, 1.15],
+        )
+    )
+    # max = 25*3*3*3*2 = 1350 scenarios
+    predictions, candidates = [], []
+    for loc, q, bg, dw, scale in configs:
+        predictions.append(
+            [
+                bg
+                + float(
+                    plume(
+                        np.array([pt]),
+                        source_xy[loc],
+                        q,
+                        w.wind_speed_m_s * scale,
+                        w.wind_from_deg + dw,
+                    )[0]
+                )
+                for pt, w in zip(measured_xy, met)
+            ]
+        )
+        candidates.append(
+            bg + plume(site_xy, source_xy[loc], q, speed * scale, wind + dw)
+            if len(site_xy)
+            else []
+        )
+    pred, cp = np.array(predictions), np.array(candidates)
+    sigma = np.array([m.uncertainty_ug_m3 or inv.settings.noise_ug_m3 for m in rows])
+    ids = np.array([m.sensor_id for m in rows])
+    # Shared 1 ug/m³ instrument bias: repeated readings do not become independent truth.
+    covariance = np.diag(sigma**2) + (ids[:, None] == ids[None, :]).astype(float)
+    residual = np.array([m.pm25_ug_m3 for m in rows]) - pred
+    ll = -0.5 * np.einsum("si,ij,sj->s", residual, np.linalg.inv(covariance), residual)
+    weights = np.exp(ll - logsumexp(ll))
+    groups = np.array([c[0] for c in configs])
+    lp = np.bincount(groups, weights=weights, minlength=len(source_xy))
+    mean_prediction = weights @ pred
+    rmse = float(
+        np.sqrt(
+            np.mean((mean_prediction - np.array([m.pm25_ug_m3 for m in rows])) ** 2)
+        )
+    )
+    return {
+        "weights": weights,
+        "groups": groups,
+        "location_weights": lp,
+        "candidate_predictions": cp,
+        "site_xy": site_xy,
+        "source_xy": source_xy,
+        "wind": wind,
+        "speed": speed,
+        "rmse": rmse,
+        "rows_used": len(rows),
+        "scenario_count": len(configs),
+        "configs": configs,
+        "projection": tr,
+    }
+
+
+def eligible_indices(inv):
+    return [
+        i
+        for i, s in enumerate(inv.sites)
+        if s.kind == "candidate"
+        and s.allowed
+        and s.power
+        and s.access
+        and inv.settings.window in s.windows
+        and s.cost <= inv.settings.budget
+    ]
+
+
+def information_matrices(e, noise):
+    p, w, groups = e["candidate_predictions"], e["weights"], e["groups"]
+    mu = w @ p
+    within = np.zeros((p.shape[1], p.shape[1]))
+    between = np.zeros_like(within)
+    for loc, prob in enumerate(e["location_weights"]):
+        if prob < 1e-14:
+            continue
+        mask = groups == loc
+        conditional = w[mask] / prob
+        local_mean = conditional @ p[mask]
+        dev = p[mask] - local_mean
+        within += prob * (dev.T * conditional) @ dev
+        between += prob * np.outer(local_mean - mu, local_mean - mu)
+    d = np.linalg.norm(e["site_xy"][:, None, :] - e["site_xy"][None, :, :], axis=-1)
+    # Correlated local/model error plus independent instrument noise. Near sites redundant.
+    r = within + noise**2 * (np.eye(len(d)) + np.exp(-d / 150))
+    return r, between
+
+
+def select_plan(inv, method, score, eligible, rng):
+    chosen, remaining = [], inv.settings.budget
+    indices = eligible.copy()
+    if method == "random":
+        rng.shuffle(indices)
+    while len(chosen) < inv.settings.equipment_limit:
+        feasible = [
+            i
+            for i in indices
+            if i not in chosen and inv.sites[i].cost <= remaining + 1e-9
+        ]
+        if not feasible:
+            break
+        if method == "information":
+            gains = [
+                ((score(chosen + [i]) - score(chosen)) / max(inv.sites[i].cost, 1), i)
+                for i in feasible
+            ]
+            _, best = max(gains, key=lambda x: (round(x[0], 12), -x[1]))
+        elif method == "spread":
+            tr = projector(
+                inv.sites[feasible[0]].latitude, inv.sites[feasible[0]].longitude
+            )
+            xy = lambda i: np.array(
+                tr.transform(inv.sites[i].longitude, inv.sites[i].latitude)
+            )
+            anchors = chosen + [
+                i for i, s in enumerate(inv.sites) if s.kind == "sensor"
+            ]
+            best = max(
+                feasible,
+                key=lambda i: min(
+                    [np.linalg.norm(xy(i) - xy(j)) for j in anchors] or [0]
+                ),
+            )
+        elif method == "wind":
+            # Score function injected with wind order by caller.
+            best = feasible[0]
+        else:
+            best = feasible[0]
+        chosen.append(best)
+        remaining -= inv.sites[best].cost
+    return chosen
+
+
+def analyze(inv: Investigation):
+    # Validate a JSON round-trip so default numbers and imported numbers have the
+    # same schema types (e.g. 350 and 350.0). Archives must reproduce their hash.
+    canonical = Investigation.model_validate_json(inv.model_dump_json())
+    payload = canonical.model_dump(exclude={"result", "plan_history", "id"})
+    return json.loads(_cached_analysis(json.dumps(payload, sort_keys=True)))
+
+
+@lru_cache(maxsize=32)
+def _cached_analysis(payload):
+    inv = Investigation.model_validate_json(payload)
+    started = time.perf_counter()
+    key = hashlib.sha256((MODEL_VERSION + payload).encode()).hexdigest()
+    warnings = [
+        "Experimental conditional scenario weights; no field-validated attribution.",
+        "Future measurement scheduling is unsupported. This compares sites in a specified observed steady window.",
+    ]
+    if inv.synthetic:
+        warnings.insert(
+            0,
+            "SYNTHETIC investigation: contains simulated inputs; no field validation. See row origins for imported or synthetic measurements/weather.",
+        )
+    eligible = eligible_indices(inv)
+    e, reason = None, None
+    try:
+        e = ensemble(inv)
+    except (ValueError, OverflowError) as exc:
+        reason = str(exc)
+    if inv.settings.objective == "scenario_information" and e is None:
+        return json.dumps(
+            {
+                "status": "insufficient_data",
+                "reason": reason,
+                "warnings": warnings,
+                "model_version": MODEL_VERSION,
+                "input_hash": key,
+                "plans": [],
+                "sources": [],
+            }
+        )
+    if inv.settings.objective == "scenario_information":
+        r, b = information_matrices(e, inv.settings.noise_ug_m3)
+
+        def score(indices):
+            if not indices:
+                return 0.0
+            ix = np.ix_(indices, indices)
+            return max(
+                0.0,
+                float(
+                    0.5
+                    * (np.linalg.slogdet((r + b)[ix])[1] - np.linalg.slogdet(r[ix])[1])
+                ),
+            )
+
+        interpretation = "Approximate location information (nats); Gaussian moments marginalize strength, background, and weather uncertainty. Not a probability or health benefit."
+    else:
+        if not inv.sites:
+            return json.dumps(
+                {
+                    "status": "infeasible",
+                    "reason": "Add candidate sites.",
+                    "plans": [],
+                    "sources": [],
+                    "warnings": warnings,
+                    "model_version": MODEL_VERSION,
+                    "input_hash": key,
+                }
+            )
+        tr = projector(inv.sites[0].latitude, inv.sites[0].longitude)
+        xy = np.array([tr.transform(s.longitude, s.latitude) for s in inv.sites])
+        anchors = [i for i, s in enumerate(inv.sites) if s.kind == "sensor"]
+        targets = xy[eligible]
+
+        def covered(indices):
+            points = indices + anchors
+            return (
+                float(
+                    np.exp(
+                        -np.linalg.norm(
+                            targets[:, None, :] - xy[points][None, :, :], axis=-1
+                        ).min(axis=1)
+                        / 400
+                    ).mean()
+                )
+                if points and len(targets)
+                else 0.0
+            )
+
+        baseline = covered([])
+        score = lambda indices: max(0.0, covered(indices) - baseline)
+        interpretation = "Increment in mean spatial coverage kernel over eligible sites; exp(-distance/400m). Descriptive geometry, not pollution prediction."
+        if reason:
+            warnings.append("Source reconstruction unavailable: " + reason)
+    rng = np.random.default_rng(inv.settings.seed)
+    plans = []
+
+    def pack(method, selected):
+        return {
+            "method": method,
+            "site_ids": [inv.sites[i].id for i in selected],
+            "cost": sum(inv.sites[i].cost for i in selected),
+            "score": score(selected),
+            "equipment": len(selected),
+            "window": inv.settings.window,
+        }
+
+    optimized = select_plan(inv, "information", score, eligible, rng)
+    # Exact small-case search makes objective/cost tradeoffs independently inspectable.
+    exact = len(eligible) <= 12
+    feasible_count, ties = 0, 0
+    if exact:
+        best_score = -1.0
+        for k in range(min(inv.settings.equipment_limit, len(eligible)) + 1):
+            for subset in combinations(eligible, k):
+                if sum(inv.sites[i].cost for i in subset) <= inv.settings.budget + 1e-9:
+                    feasible_count += 1
+                    val = score(list(subset))
+                    if val > best_score + 1e-10:
+                        best_score, optimized, ties = val, list(subset), 1
+                    elif abs(val - best_score) <= 1e-10:
+                        ties += 1
+    plans.append(
+        pack("Optimized" if not exact else "Optimized · exhaustive", optimized)
+    )
+    plans.append(
+        pack("Spatial spread", select_plan(inv, "spread", score, eligible, rng))
+    )
+    randoms = [
+        pack(
+            "Random",
+            select_plan(
+                inv,
+                "random",
+                score,
+                eligible,
+                np.random.default_rng(inv.settings.seed + i),
+            ),
+        )
+        for i in range(20)
+    ]
+    random_plan = randoms[0] | {
+        "method": "Random · seed " + str(inv.settings.seed),
+        "mean_score": float(np.mean([p["score"] for p in randoms])),
+        "min_score": min(p["score"] for p in randoms),
+        "max_score": max(p["score"] for p in randoms),
+        "seeds": 20,
+    }
+    plans.append(random_plan)
+    if e is not None:
+        flow = flow_vector(e["wind"])
+        center = np.mean(e["source_xy"], axis=0)
+
+        def wind_priority(i):
+            delta = e["site_xy"][i] - center
+            return -(
+                float(delta @ flow)
+                - abs(float(flow[0] * delta[1] - flow[1] * delta[0]))
+            )
+
+        ranked = sorted(eligible, key=wind_priority)
+        plans.append(
+            pack("Wind corridor", select_plan(inv, "wind", score, ranked, rng))
+        )
+    sources = (
+        []
+        if e is None
+        else [
+            {
+                "id": f"S{i + 1}",
+                **p.model_dump(),
+                "weight": float(e["location_weights"][i]),
+            }
+            for i, p in enumerate(inv.source_locations)
+        ]
+    )
+    entropy = (
+        None
+        if e is None
+        else float(
+            -np.sum(
+                e["location_weights"]
+                * np.log(np.maximum(e["location_weights"], 1e-300))
+            )
+        )
+    )
+    if e and e["rmse"] > inv.settings.noise_ug_m3 * 3:
+        warnings.append(
+            "MODEL MISMATCH: fitted residual exceeds 3× nominal noise. Single-source model may be inadequate; do not interpret sharp weights as accuracy."
+        )
+    result = {
+        "status": "ok" if optimized else "infeasible",
+        "reason": None
+        if optimized
+        else "No feasible plan: check budget, permission, power, access, and supported window.",
+        "plans": plans,
+        "sources": sources,
+        "interpretation": interpretation,
+        "warnings": warnings,
+        "model_version": MODEL_VERSION,
+        "input_hash": key,
+        "eligible_sites": len(eligible),
+        "exact_search": exact,
+        "feasible_subsets": feasible_count if exact else None,
+        "ties": ties if exact else None,
+        "entropy_nats": entropy,
+        "fitted_rmse_ug_m3": None if e is None else e["rmse"],
+        "rows_used": 0 if e is None else e["rows_used"],
+        "scenario_count": 0 if e is None else e["scenario_count"],
+        "runtime_ms": round((time.perf_counter() - started) * 1000, 2),
+    }
+    return json.dumps(result, allow_nan=False)

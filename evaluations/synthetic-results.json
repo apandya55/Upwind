@@ -1,0 +1,1186 @@
+{
+  "evidence": "SYNTHETIC ONLY; no independent field validation",
+  "model_version": "plume-ensemble-0.1.0",
+  "protocol": "docs/EVALUATION_PROTOCOL.md",
+  "generated_utc": "2026-10-18T06:22:34.349014+00:00",
+  "hardware": {
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.41",
+    "machine": "x86_64",
+    "processor": "INTEL(R) XEON(R) PLATINUM 8573C",
+    "python": "3.12.14",
+    "python_processes": 1,
+    "blas_threads": "library default; not pinned"
+  },
+  "summary": {
+    "cases": 24,
+    "completed_inference": 15,
+    "refused": 9,
+    "truth_in_90_set": 15,
+    "median_localization_error_m": 680.0735250351271,
+    "max_runtime_ms": 1093.42,
+    "status": "experimental; inspect all mismatches and ambiguity, no field accuracy claim"
+  },
+  "results": [
+    {
+      "case": "identifiable",
+      "seed": 101,
+      "status": "ok",
+      "reason": null,
+      "warnings": [
+        "SYNTHETIC investigation: contains simulated inputs; no field validation. See row origins for imported or synthetic measurements/weather.",
+        "Experimental conditional scenario weights; no field-validated attribution.",
+        "Future measurement scheduling is unsupported. This compares sites in a specified observed steady window."
+      ],
+      "runtime_ms": 409.76,
+      "localization_error_m": 680.0735250351271,
+      "credible_grid_points_90": 6,
+      "credible_hull_m2": 359999.9996745525,
+      "truth_in_90_set": true,
+      "entropy_nats": 1.7905360107098645,
+      "fitted_rmse_ug_m3": 1.5510023303837928,
+      "plans": [
+        {
+          "method": "Optimized \u00b7 exhaustive",
+          "site_ids": [
+            "C1",
+            "C9"
+          ],
+          "cost": 290.0,
+          "score": 0.0014307946272698047,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Spatial spread",
+          "site_ids": [
+            "C6",
+            "C9"
+          ],
+          "cost": 240.0,
+          "score": 0.0012614937653765423,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Random \u00b7 seed 42",
+          "site_ids": [
+            "C4",
+            "C1"
+          ],
+          "cost": 270.0,
+          "score": 0.0008498483169119275,
+          "equipment": 2,
+          "window": "steady-window",
+          "mean_score": 0.0004448482511316243,
+          "min_score": 4.883316411730121e-05,
+          "max_score": 0.0012614937653765423,
+          "seeds": 20
+        },
+        {
+          "method": "Wind corridor",
+          "site_ids": [
+            "C8",
+            "C3"
+          ],
+          "cost": 350.0,
+          "score": 4.883316411730121e-05,
+          "equipment": 2,
+          "window": "steady-window"
+        }
+      ],
+      "held_out_sensor": "M3",
+      "held_out_rmse_ug_m3": 1.2170116475585508
+    },
+    {
+      "case": "identifiable",
+      "seed": 202,
+      "status": "ok",
+      "reason": null,
+      "warnings": [
+        "SYNTHETIC investigation: contains simulated inputs; no field validation. See row origins for imported or synthetic measurements/weather.",
+        "Experimental conditional scenario weights; no field-validated attribution.",
+        "Future measurement scheduling is unsupported. This compares sites in a specified observed steady window."
+      ],
+      "runtime_ms": 374.26,
+      "localization_error_m": 0.0,
+      "credible_grid_points_90": 6,
+      "credible_hull_m2": 359999.9996745525,
+      "truth_in_90_set": true,
+      "entropy_nats": 1.7910062320179505,
+      "fitted_rmse_ug_m3": 1.4353384903253985,
+      "plans": [
+        {
+          "method": "Optimized \u00b7 exhaustive",
+          "site_ids": [
+            "C1",
+            "C9"
+          ],
+          "cost": 290.0,
+          "score": 0.0015643530627631463,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Spatial spread",
+          "site_ids": [
+            "C6",
+            "C9"
+          ],
+          "cost": 240.0,
+          "score": 0.001170158417712841,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Random \u00b7 seed 42",
+          "site_ids": [
+            "C4",
+            "C1"
+          ],
+          "cost": 270.0,
+          "score": 0.0010512261538941914,
+          "equipment": 2,
+          "window": "steady-window",
+          "mean_score": 0.0005120771432903348,
+          "min_score": 6.25315846196628e-05,
+          "max_score": 0.001170158417712841,
+          "seeds": 20
+        },
+        {
+          "method": "Wind corridor",
+          "site_ids": [
+            "C8",
+            "C3"
+          ],
+          "cost": 350.0,
+          "score": 6.25315846196628e-05,
+          "equipment": 2,
+          "window": "steady-window"
+        }
+      ],
+      "held_out_sensor": "M3",
+      "held_out_rmse_ug_m3": 1.4677818490812586
+    },
+    {
+      "case": "identifiable",
+      "seed": 303,
+      "status": "ok",
+      "reason": null,
+      "warnings": [
+        "SYNTHETIC investigation: contains simulated inputs; no field validation. See row origins for imported or synthetic measurements/weather.",
+        "Experimental conditional scenario weights; no field-validated attribution.",
+        "Future measurement scheduling is unsupported. This compares sites in a specified observed steady window."
+      ],
+      "runtime_ms": 365.75,
+      "localization_error_m": 680.0735250351271,
+      "credible_grid_points_90": 6,
+      "credible_hull_m2": 359999.9996745525,
+      "truth_in_90_set": true,
+      "entropy_nats": 1.7901061942635879,
+      "fitted_rmse_ug_m3": 1.688176221702543,
+      "plans": [
+        {
+          "method": "Optimized \u00b7 exhaustive",
+          "site_ids": [
+            "C1",
+            "C9"
+          ],
+          "cost": 290.0,
+          "score": 0.0014046174560071734,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Spatial spread",
+          "site_ids": [
+            "C6",
+            "C9"
+          ],
+          "cost": 240.0,
+          "score": 0.0012753346633957996,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Random \u00b7 seed 42",
+          "site_ids": [
+            "C4",
+            "C1"
+          ],
+          "cost": 270.0,
+          "score": 0.0008145801540919706,
+          "equipment": 2,
+          "window": "steady-window",
+          "mean_score": 0.00043751784115411143,
+          "min_score": 4.9569168975693856e-05,
+          "max_score": 0.0012753346633957996,
+          "seeds": 20
+        },
+        {
+          "method": "Wind corridor",
+          "site_ids": [
+            "C8",
+            "C3"
+          ],
+          "cost": 350.0,
+          "score": 4.9569168975693856e-05,
+          "equipment": 2,
+          "window": "steady-window"
+        }
+      ],
+      "held_out_sensor": "M3",
+      "held_out_rmse_ug_m3": 1.8109324952136292
+    },
+    {
+      "case": "ambiguous",
+      "seed": 101,
+      "status": "ok",
+      "reason": null,
+      "warnings": [
+        "SYNTHETIC investigation: contains simulated inputs; no field validation. See row origins for imported or synthetic measurements/weather.",
+        "Experimental conditional scenario weights; no field-validated attribution.",
+        "Future measurement scheduling is unsupported. This compares sites in a specified observed steady window."
+      ],
+      "runtime_ms": 528.66,
+      "localization_error_m": 680.0735250351271,
+      "credible_grid_points_90": 6,
+      "credible_hull_m2": 359999.9996745525,
+      "truth_in_90_set": true,
+      "entropy_nats": 1.7917421947871444,
+      "fitted_rmse_ug_m3": 1.565239705750768,
+      "plans": [
+        {
+          "method": "Optimized \u00b7 exhaustive",
+          "site_ids": [
+            "C1",
+            "C9"
+          ],
+          "cost": 290.0,
+          "score": 0.0013692031470942112,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Spatial spread",
+          "site_ids": [
+            "C7",
+            "C1"
+          ],
+          "cost": 310.0,
+          "score": 0.0007172477893400142,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Random \u00b7 seed 42",
+          "site_ids": [
+            "C4",
+            "C1"
+          ],
+          "cost": 270.0,
+          "score": 0.0008878360957198517,
+          "equipment": 2,
+          "window": "steady-window",
+          "mean_score": 0.0004758087513946796,
+          "min_score": 7.370379158544438e-05,
+          "max_score": 0.0010929915898576503,
+          "seeds": 20
+        },
+        {
+          "method": "Wind corridor",
+          "site_ids": [
+            "C8",
+            "C3"
+          ],
+          "cost": 350.0,
+          "score": 7.370379158544438e-05,
+          "equipment": 2,
+          "window": "steady-window"
+        }
+      ],
+      "held_out_sensor": "M3",
+      "held_out_rmse_ug_m3": 1.239992681611365
+    },
+    {
+      "case": "ambiguous",
+      "seed": 202,
+      "status": "ok",
+      "reason": null,
+      "warnings": [
+        "SYNTHETIC investigation: contains simulated inputs; no field validation. See row origins for imported or synthetic measurements/weather.",
+        "Experimental conditional scenario weights; no field-validated attribution.",
+        "Future measurement scheduling is unsupported. This compares sites in a specified observed steady window."
+      ],
+      "runtime_ms": 615.18,
+      "localization_error_m": 680.0735250351271,
+      "credible_grid_points_90": 6,
+      "credible_hull_m2": 359999.9996745525,
+      "truth_in_90_set": true,
+      "entropy_nats": 1.7917403083366978,
+      "fitted_rmse_ug_m3": 1.4301270668852832,
+      "plans": [
+        {
+          "method": "Optimized \u00b7 exhaustive",
+          "site_ids": [
+            "C1",
+            "C9"
+          ],
+          "cost": 290.0,
+          "score": 0.0013688570402634603,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Spatial spread",
+          "site_ids": [
+            "C7",
+            "C1"
+          ],
+          "cost": 310.0,
+          "score": 0.0007171282678268831,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Random \u00b7 seed 42",
+          "site_ids": [
+            "C4",
+            "C1"
+          ],
+          "cost": 270.0,
+          "score": 0.000887514078383056,
+          "equipment": 2,
+          "window": "steady-window",
+          "mean_score": 0.00047567252022491236,
+          "min_score": 7.371149096524476e-05,
+          "max_score": 0.0010926852641199858,
+          "seeds": 20
+        },
+        {
+          "method": "Wind corridor",
+          "site_ids": [
+            "C8",
+            "C3"
+          ],
+          "cost": 350.0,
+          "score": 7.371149096524476e-05,
+          "equipment": 2,
+          "window": "steady-window"
+        }
+      ],
+      "held_out_sensor": "M3",
+      "held_out_rmse_ug_m3": 1.4876146594868247
+    },
+    {
+      "case": "ambiguous",
+      "seed": 303,
+      "status": "ok",
+      "reason": null,
+      "warnings": [
+        "SYNTHETIC investigation: contains simulated inputs; no field validation. See row origins for imported or synthetic measurements/weather.",
+        "Experimental conditional scenario weights; no field-validated attribution.",
+        "Future measurement scheduling is unsupported. This compares sites in a specified observed steady window."
+      ],
+      "runtime_ms": 583.12,
+      "localization_error_m": 680.0735250351271,
+      "credible_grid_points_90": 6,
+      "credible_hull_m2": 359999.9996745525,
+      "truth_in_90_set": true,
+      "entropy_nats": 1.791748605296139,
+      "fitted_rmse_ug_m3": 1.7052367795930112,
+      "plans": [
+        {
+          "method": "Optimized \u00b7 exhaustive",
+          "site_ids": [
+            "C1",
+            "C9"
+          ],
+          "cost": 290.0,
+          "score": 0.001370557776799064,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Spatial spread",
+          "site_ids": [
+            "C7",
+            "C1"
+          ],
+          "cost": 310.0,
+          "score": 0.0007177143685885845,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Random \u00b7 seed 42",
+          "site_ids": [
+            "C4",
+            "C1"
+          ],
+          "cost": 270.0,
+          "score": 0.0008890950923428065,
+          "equipment": 2,
+          "window": "steady-window",
+          "mean_score": 0.00047634154124618353,
+          "min_score": 7.367395085200457e-05,
+          "max_score": 0.0010941908500754494,
+          "seeds": 20
+        },
+        {
+          "method": "Wind corridor",
+          "site_ids": [
+            "C8",
+            "C3"
+          ],
+          "cost": 350.0,
+          "score": 7.367395085200457e-05,
+          "equipment": 2,
+          "window": "steady-window"
+        }
+      ],
+      "held_out_sensor": "M3",
+      "held_out_rmse_ug_m3": 1.8236319470578255
+    },
+    {
+      "case": "noisy",
+      "seed": 101,
+      "status": "ok",
+      "reason": null,
+      "warnings": [
+        "SYNTHETIC investigation: contains simulated inputs; no field validation. See row origins for imported or synthetic measurements/weather.",
+        "Experimental conditional scenario weights; no field-validated attribution.",
+        "Future measurement scheduling is unsupported. This compares sites in a specified observed steady window."
+      ],
+      "runtime_ms": 463.46,
+      "localization_error_m": 680.0735250351271,
+      "credible_grid_points_90": 6,
+      "credible_hull_m2": 359999.9996745525,
+      "truth_in_90_set": true,
+      "entropy_nats": 1.7861930330018079,
+      "fitted_rmse_ug_m3": 5.18841518345276,
+      "plans": [
+        {
+          "method": "Optimized \u00b7 exhaustive",
+          "site_ids": [
+            "C6",
+            "C9"
+          ],
+          "cost": 240.0,
+          "score": 0.0016437926345052034,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Spatial spread",
+          "site_ids": [
+            "C6",
+            "C9"
+          ],
+          "cost": 240.0,
+          "score": 0.0016437926345052034,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Random \u00b7 seed 42",
+          "site_ids": [
+            "C4",
+            "C1"
+          ],
+          "cost": 270.0,
+          "score": 0.000849044663603582,
+          "equipment": 2,
+          "window": "steady-window",
+          "mean_score": 0.0004916468316218614,
+          "min_score": 4.7476831934289976e-05,
+          "max_score": 0.0016437926345052034,
+          "seeds": 20
+        },
+        {
+          "method": "Wind corridor",
+          "site_ids": [
+            "C8",
+            "C3"
+          ],
+          "cost": 350.0,
+          "score": 4.7476831934289976e-05,
+          "equipment": 2,
+          "window": "steady-window"
+        }
+      ],
+      "held_out_sensor": "M3",
+      "held_out_rmse_ug_m3": 4.1267008486504695
+    },
+    {
+      "case": "noisy",
+      "seed": 202,
+      "status": "ok",
+      "reason": null,
+      "warnings": [
+        "SYNTHETIC investigation: contains simulated inputs; no field validation. See row origins for imported or synthetic measurements/weather.",
+        "Experimental conditional scenario weights; no field-validated attribution.",
+        "Future measurement scheduling is unsupported. This compares sites in a specified observed steady window."
+      ],
+      "runtime_ms": 1093.42,
+      "localization_error_m": 427.20018726587483,
+      "credible_grid_points_90": 6,
+      "credible_hull_m2": 359999.9996745525,
+      "truth_in_90_set": true,
+      "entropy_nats": 1.6951285822996476,
+      "fitted_rmse_ug_m3": 4.6922842454008356,
+      "plans": [
+        {
+          "method": "Optimized \u00b7 exhaustive",
+          "site_ids": [
+            "C1",
+            "C2"
+          ],
+          "cost": 330.0,
+          "score": 0.006180974660288108,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Spatial spread",
+          "site_ids": [
+            "C6",
+            "C9"
+          ],
+          "cost": 240.0,
+          "score": 0.001081199020958934,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Random \u00b7 seed 42",
+          "site_ids": [
+            "C4",
+            "C1"
+          ],
+          "cost": 270.0,
+          "score": 0.0012897082913130298,
+          "equipment": 2,
+          "window": "steady-window",
+          "mean_score": 0.0016384817071820822,
+          "min_score": 0.0003193611189500345,
+          "max_score": 0.005948684176083852,
+          "seeds": 20
+        },
+        {
+          "method": "Wind corridor",
+          "site_ids": [
+            "C8",
+            "C3"
+          ],
+          "cost": 350.0,
+          "score": 0.0009081149544813982,
+          "equipment": 2,
+          "window": "steady-window"
+        }
+      ],
+      "held_out_sensor": "M3",
+      "held_out_rmse_ug_m3": 4.954876667713963
+    },
+    {
+      "case": "noisy",
+      "seed": 303,
+      "status": "ok",
+      "reason": null,
+      "warnings": [
+        "SYNTHETIC investigation: contains simulated inputs; no field validation. See row origins for imported or synthetic measurements/weather.",
+        "Experimental conditional scenario weights; no field-validated attribution.",
+        "Future measurement scheduling is unsupported. This compares sites in a specified observed steady window."
+      ],
+      "runtime_ms": 773.13,
+      "localization_error_m": 680.0735250351271,
+      "credible_grid_points_90": 6,
+      "credible_hull_m2": 359999.9996745525,
+      "truth_in_90_set": true,
+      "entropy_nats": 1.7846150265995853,
+      "fitted_rmse_ug_m3": 5.037674324031004,
+      "plans": [
+        {
+          "method": "Optimized \u00b7 exhaustive",
+          "site_ids": [
+            "C6",
+            "C9"
+          ],
+          "cost": 240.0,
+          "score": 0.0016236582199651295,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Spatial spread",
+          "site_ids": [
+            "C6",
+            "C9"
+          ],
+          "cost": 240.0,
+          "score": 0.0016236582199651295,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Random \u00b7 seed 42",
+          "site_ids": [
+            "C4",
+            "C1"
+          ],
+          "cost": 270.0,
+          "score": 0.0007442721709942646,
+          "equipment": 2,
+          "window": "steady-window",
+          "mean_score": 0.0004617327044766917,
+          "min_score": 4.956044671722282e-05,
+          "max_score": 0.0016236582199651295,
+          "seeds": 20
+        },
+        {
+          "method": "Wind corridor",
+          "site_ids": [
+            "C8",
+            "C3"
+          ],
+          "cost": 350.0,
+          "score": 4.956044671722282e-05,
+          "equipment": 2,
+          "window": "steady-window"
+        }
+      ],
+      "held_out_sensor": "M3",
+      "held_out_rmse_ug_m3": 6.14676919376501
+    },
+    {
+      "case": "missing_sensors",
+      "seed": 101,
+      "status": "insufficient_data",
+      "reason": "At least two distinct sensors with usable readings are required for scenario comparison.",
+      "warnings": [
+        "SYNTHETIC investigation: contains simulated inputs; no field validation. See row origins for imported or synthetic measurements/weather.",
+        "Experimental conditional scenario weights; no field-validated attribution.",
+        "Future measurement scheduling is unsupported. This compares sites in a specified observed steady window."
+      ],
+      "runtime_ms": 1.41
+    },
+    {
+      "case": "missing_sensors",
+      "seed": 202,
+      "status": "insufficient_data",
+      "reason": "At least two distinct sensors with usable readings are required for scenario comparison.",
+      "warnings": [
+        "SYNTHETIC investigation: contains simulated inputs; no field validation. See row origins for imported or synthetic measurements/weather.",
+        "Experimental conditional scenario weights; no field-validated attribution.",
+        "Future measurement scheduling is unsupported. This compares sites in a specified observed steady window."
+      ],
+      "runtime_ms": 0.46
+    },
+    {
+      "case": "missing_sensors",
+      "seed": 303,
+      "status": "insufficient_data",
+      "reason": "At least two distinct sensors with usable readings are required for scenario comparison.",
+      "warnings": [
+        "SYNTHETIC investigation: contains simulated inputs; no field validation. See row origins for imported or synthetic measurements/weather.",
+        "Experimental conditional scenario weights; no field-validated attribution.",
+        "Future measurement scheduling is unsupported. This compares sites in a specified observed steady window."
+      ],
+      "runtime_ms": 0.62
+    },
+    {
+      "case": "background_change",
+      "seed": 101,
+      "status": "ok",
+      "reason": null,
+      "warnings": [
+        "SYNTHETIC investigation: contains simulated inputs; no field validation. See row origins for imported or synthetic measurements/weather.",
+        "Experimental conditional scenario weights; no field-validated attribution.",
+        "Future measurement scheduling is unsupported. This compares sites in a specified observed steady window.",
+        "MODEL MISMATCH: fitted residual exceeds 3\u00d7 nominal noise. Single-source model may be inadequate; do not interpret sharp weights as accuracy."
+      ],
+      "runtime_ms": 603.9,
+      "localization_error_m": 0.0,
+      "credible_grid_points_90": 6,
+      "credible_hull_m2": 359999.9996745525,
+      "truth_in_90_set": true,
+      "entropy_nats": 1.7907789150006033,
+      "fitted_rmse_ug_m3": 6.0494861774585145,
+      "plans": [
+        {
+          "method": "Optimized \u00b7 exhaustive",
+          "site_ids": [
+            "C1",
+            "C9"
+          ],
+          "cost": 290.0,
+          "score": 0.0016149815675370327,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Spatial spread",
+          "site_ids": [
+            "C6",
+            "C9"
+          ],
+          "cost": 240.0,
+          "score": 0.001237088703736955,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Random \u00b7 seed 42",
+          "site_ids": [
+            "C4",
+            "C1"
+          ],
+          "cost": 270.0,
+          "score": 0.001077075141719508,
+          "equipment": 2,
+          "window": "steady-window",
+          "mean_score": 0.0005160364201991063,
+          "min_score": 5.383019290272628e-05,
+          "max_score": 0.001237088703736955,
+          "seeds": 20
+        },
+        {
+          "method": "Wind corridor",
+          "site_ids": [
+            "C8",
+            "C3"
+          ],
+          "cost": 350.0,
+          "score": 5.383019290272628e-05,
+          "equipment": 2,
+          "window": "steady-window"
+        }
+      ],
+      "held_out_sensor": "M3",
+      "held_out_rmse_ug_m3": 6.255851266983292
+    },
+    {
+      "case": "background_change",
+      "seed": 202,
+      "status": "ok",
+      "reason": null,
+      "warnings": [
+        "SYNTHETIC investigation: contains simulated inputs; no field validation. See row origins for imported or synthetic measurements/weather.",
+        "Experimental conditional scenario weights; no field-validated attribution.",
+        "Future measurement scheduling is unsupported. This compares sites in a specified observed steady window.",
+        "MODEL MISMATCH: fitted residual exceeds 3\u00d7 nominal noise. Single-source model may be inadequate; do not interpret sharp weights as accuracy."
+      ],
+      "runtime_ms": 638.26,
+      "localization_error_m": 427.20018726587483,
+      "credible_grid_points_90": 6,
+      "credible_hull_m2": 359999.9996745525,
+      "truth_in_90_set": true,
+      "entropy_nats": 1.7796440427133695,
+      "fitted_rmse_ug_m3": 6.455705428062374,
+      "plans": [
+        {
+          "method": "Optimized \u00b7 exhaustive",
+          "site_ids": [
+            "C1",
+            "C2"
+          ],
+          "cost": 330.0,
+          "score": 0.0021162188061429887,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Spatial spread",
+          "site_ids": [
+            "C6",
+            "C9"
+          ],
+          "cost": 240.0,
+          "score": 0.0010840406676271286,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Random \u00b7 seed 42",
+          "site_ids": [
+            "C4",
+            "C1"
+          ],
+          "cost": 270.0,
+          "score": 0.001292885841667868,
+          "equipment": 2,
+          "window": "steady-window",
+          "mean_score": 0.0007457138781428619,
+          "min_score": 0.00019303639687784369,
+          "max_score": 0.0014684273827345606,
+          "seeds": 20
+        },
+        {
+          "method": "Wind corridor",
+          "site_ids": [
+            "C8",
+            "C3"
+          ],
+          "cost": 350.0,
+          "score": 0.00019303639687784369,
+          "equipment": 2,
+          "window": "steady-window"
+        }
+      ],
+      "held_out_sensor": "M3",
+      "held_out_rmse_ug_m3": 6.6627150890096996
+    },
+    {
+      "case": "background_change",
+      "seed": 303,
+      "status": "ok",
+      "reason": null,
+      "warnings": [
+        "SYNTHETIC investigation: contains simulated inputs; no field validation. See row origins for imported or synthetic measurements/weather.",
+        "Experimental conditional scenario weights; no field-validated attribution.",
+        "Future measurement scheduling is unsupported. This compares sites in a specified observed steady window.",
+        "MODEL MISMATCH: fitted residual exceeds 3\u00d7 nominal noise. Single-source model may be inadequate; do not interpret sharp weights as accuracy."
+      ],
+      "runtime_ms": 565.66,
+      "localization_error_m": 0.0,
+      "credible_grid_points_90": 6,
+      "credible_hull_m2": 359999.9996745525,
+      "truth_in_90_set": true,
+      "entropy_nats": 1.7909980957467224,
+      "fitted_rmse_ug_m3": 6.411245440210232,
+      "plans": [
+        {
+          "method": "Optimized \u00b7 exhaustive",
+          "site_ids": [
+            "C1",
+            "C9"
+          ],
+          "cost": 290.0,
+          "score": 0.001591222096833711,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Spatial spread",
+          "site_ids": [
+            "C6",
+            "C9"
+          ],
+          "cost": 240.0,
+          "score": 0.0012595505703227872,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Random \u00b7 seed 42",
+          "site_ids": [
+            "C4",
+            "C1"
+          ],
+          "cost": 270.0,
+          "score": 0.0010340275224756112,
+          "equipment": 2,
+          "window": "steady-window",
+          "mean_score": 0.0005030931771619951,
+          "min_score": 5.169673360239102e-05,
+          "max_score": 0.0012595505703227872,
+          "seeds": 20
+        },
+        {
+          "method": "Wind corridor",
+          "site_ids": [
+            "C8",
+            "C3"
+          ],
+          "cost": 350.0,
+          "score": 5.169673360239102e-05,
+          "equipment": 2,
+          "window": "steady-window"
+        }
+      ],
+      "held_out_sensor": "M3",
+      "held_out_rmse_ug_m3": 6.822102637362256
+    },
+    {
+      "case": "calm",
+      "seed": 101,
+      "status": "insufficient_data",
+      "reason": "Calm (<0.8 m/s) or strong (>8 m/s) winds are unsupported by this approximation.",
+      "warnings": [
+        "SYNTHETIC investigation: contains simulated inputs; no field validation. See row origins for imported or synthetic measurements/weather.",
+        "Experimental conditional scenario weights; no field-validated attribution.",
+        "Future measurement scheduling is unsupported. This compares sites in a specified observed steady window."
+      ],
+      "runtime_ms": 145.87
+    },
+    {
+      "case": "calm",
+      "seed": 202,
+      "status": "insufficient_data",
+      "reason": "Calm (<0.8 m/s) or strong (>8 m/s) winds are unsupported by this approximation.",
+      "warnings": [
+        "SYNTHETIC investigation: contains simulated inputs; no field validation. See row origins for imported or synthetic measurements/weather.",
+        "Experimental conditional scenario weights; no field-validated attribution.",
+        "Future measurement scheduling is unsupported. This compares sites in a specified observed steady window."
+      ],
+      "runtime_ms": 162.85
+    },
+    {
+      "case": "calm",
+      "seed": 303,
+      "status": "insufficient_data",
+      "reason": "Calm (<0.8 m/s) or strong (>8 m/s) winds are unsupported by this approximation.",
+      "warnings": [
+        "SYNTHETIC investigation: contains simulated inputs; no field validation. See row origins for imported or synthetic measurements/weather.",
+        "Experimental conditional scenario weights; no field-validated attribution.",
+        "Future measurement scheduling is unsupported. This compares sites in a specified observed steady window."
+      ],
+      "runtime_ms": 178.49
+    },
+    {
+      "case": "multiple_sources",
+      "seed": 101,
+      "status": "ok",
+      "reason": null,
+      "warnings": [
+        "SYNTHETIC investigation: contains simulated inputs; no field validation. See row origins for imported or synthetic measurements/weather.",
+        "Experimental conditional scenario weights; no field-validated attribution.",
+        "Future measurement scheduling is unsupported. This compares sites in a specified observed steady window."
+      ],
+      "runtime_ms": 551.35,
+      "localization_error_m": 680.0735250351271,
+      "credible_grid_points_90": 6,
+      "credible_hull_m2": 359999.9996745525,
+      "truth_in_90_set": true,
+      "entropy_nats": 1.7905215450849323,
+      "fitted_rmse_ug_m3": 1.586639985913716,
+      "plans": [
+        {
+          "method": "Optimized \u00b7 exhaustive",
+          "site_ids": [
+            "C1",
+            "C9"
+          ],
+          "cost": 290.0,
+          "score": 0.001449392054666987,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Spatial spread",
+          "site_ids": [
+            "C6",
+            "C9"
+          ],
+          "cost": 240.0,
+          "score": 0.0012839633073520318,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Random \u00b7 seed 42",
+          "site_ids": [
+            "C4",
+            "C1"
+          ],
+          "cost": 270.0,
+          "score": 0.0008566236739651067,
+          "equipment": 2,
+          "window": "steady-window",
+          "mean_score": 0.00044908814187007986,
+          "min_score": 4.8440626781776075e-05,
+          "max_score": 0.0012839633073520318,
+          "seeds": 20
+        },
+        {
+          "method": "Wind corridor",
+          "site_ids": [
+            "C8",
+            "C3"
+          ],
+          "cost": 350.0,
+          "score": 4.8440626781776075e-05,
+          "equipment": 2,
+          "window": "steady-window"
+        }
+      ],
+      "held_out_sensor": "M3",
+      "held_out_rmse_ug_m3": 1.3493810719926538
+    },
+    {
+      "case": "multiple_sources",
+      "seed": 202,
+      "status": "ok",
+      "reason": null,
+      "warnings": [
+        "SYNTHETIC investigation: contains simulated inputs; no field validation. See row origins for imported or synthetic measurements/weather.",
+        "Experimental conditional scenario weights; no field-validated attribution.",
+        "Future measurement scheduling is unsupported. This compares sites in a specified observed steady window."
+      ],
+      "runtime_ms": 496.01,
+      "localization_error_m": 0.0,
+      "credible_grid_points_90": 6,
+      "credible_hull_m2": 359999.9996745525,
+      "truth_in_90_set": true,
+      "entropy_nats": 1.7909031452933966,
+      "fitted_rmse_ug_m3": 1.4754832984146233,
+      "plans": [
+        {
+          "method": "Optimized \u00b7 exhaustive",
+          "site_ids": [
+            "C1",
+            "C9"
+          ],
+          "cost": 290.0,
+          "score": 0.0015780089091337324,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Spatial spread",
+          "site_ids": [
+            "C6",
+            "C9"
+          ],
+          "cost": 240.0,
+          "score": 0.0011908741704749204,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Random \u00b7 seed 42",
+          "site_ids": [
+            "C4",
+            "C1"
+          ],
+          "cost": 270.0,
+          "score": 0.001054915865143613,
+          "equipment": 2,
+          "window": "steady-window",
+          "mean_score": 0.0005148187795039671,
+          "min_score": 6.18112292167794e-05,
+          "max_score": 0.0011908741704749204,
+          "seeds": 20
+        },
+        {
+          "method": "Wind corridor",
+          "site_ids": [
+            "C8",
+            "C3"
+          ],
+          "cost": 350.0,
+          "score": 6.18112292167794e-05,
+          "equipment": 2,
+          "window": "steady-window"
+        }
+      ],
+      "held_out_sensor": "M3",
+      "held_out_rmse_ug_m3": 1.5840225234348861
+    },
+    {
+      "case": "multiple_sources",
+      "seed": 303,
+      "status": "ok",
+      "reason": null,
+      "warnings": [
+        "SYNTHETIC investigation: contains simulated inputs; no field validation. See row origins for imported or synthetic measurements/weather.",
+        "Experimental conditional scenario weights; no field-validated attribution.",
+        "Future measurement scheduling is unsupported. This compares sites in a specified observed steady window."
+      ],
+      "runtime_ms": 564.79,
+      "localization_error_m": 680.0735250351271,
+      "credible_grid_points_90": 6,
+      "credible_hull_m2": 359999.9996745525,
+      "truth_in_90_set": true,
+      "entropy_nats": 1.7900932324029044,
+      "fitted_rmse_ug_m3": 1.715369843931479,
+      "plans": [
+        {
+          "method": "Optimized \u00b7 exhaustive",
+          "site_ids": [
+            "C1",
+            "C9"
+          ],
+          "cost": 290.0,
+          "score": 0.0014235642073243682,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Spatial spread",
+          "site_ids": [
+            "C6",
+            "C9"
+          ],
+          "cost": 240.0,
+          "score": 0.0012977227645811773,
+          "equipment": 2,
+          "window": "steady-window"
+        },
+        {
+          "method": "Random \u00b7 seed 42",
+          "site_ids": [
+            "C4",
+            "C1"
+          ],
+          "cost": 270.0,
+          "score": 0.0008211025281332773,
+          "equipment": 2,
+          "window": "steady-window",
+          "mean_score": 0.0004416606590621708,
+          "min_score": 4.917849598040647e-05,
+          "max_score": 0.0012977227645816214,
+          "seeds": 20
+        },
+        {
+          "method": "Wind corridor",
+          "site_ids": [
+            "C8",
+            "C3"
+          ],
+          "cost": 350.0,
+          "score": 4.917849598040647e-05,
+          "equipment": 2,
+          "window": "steady-window"
+        }
+      ],
+      "held_out_sensor": "M3",
+      "held_out_rmse_ug_m3": 1.886987001941636
+    },
+    {
+      "case": "variable_wind",
+      "seed": 101,
+      "status": "insufficient_data",
+      "reason": "Weather is too variable for a steady plume (direction deviation >25\u00b0 or speed ratio >2).",
+      "warnings": [
+        "SYNTHETIC investigation: contains simulated inputs; no field validation. See row origins for imported or synthetic measurements/weather.",
+        "Experimental conditional scenario weights; no field-validated attribution.",
+        "Future measurement scheduling is unsupported. This compares sites in a specified observed steady window."
+      ],
+      "runtime_ms": 155.66
+    },
+    {
+      "case": "variable_wind",
+      "seed": 202,
+      "status": "insufficient_data",
+      "reason": "Weather is too variable for a steady plume (direction deviation >25\u00b0 or speed ratio >2).",
+      "warnings": [
+        "SYNTHETIC investigation: contains simulated inputs; no field validation. See row origins for imported or synthetic measurements/weather.",
+        "Experimental conditional scenario weights; no field-validated attribution.",
+        "Future measurement scheduling is unsupported. This compares sites in a specified observed steady window."
+      ],
+      "runtime_ms": 154.0
+    },
+    {
+      "case": "variable_wind",
+      "seed": 303,
+      "status": "insufficient_data",
+      "reason": "Weather is too variable for a steady plume (direction deviation >25\u00b0 or speed ratio >2).",
+      "warnings": [
+        "SYNTHETIC investigation: contains simulated inputs; no field validation. See row origins for imported or synthetic measurements/weather.",
+        "Experimental conditional scenario weights; no field-validated attribution.",
+        "Future measurement scheduling is unsupported. This compares sites in a specified observed steady window."
+      ],
+      "runtime_ms": 157.44
+    }
+  ]
+}

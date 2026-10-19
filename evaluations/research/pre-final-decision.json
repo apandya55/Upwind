@@ -1,0 +1,8 @@
+{
+  "model": "plume-campaign-0.4.0",
+  "calibration_summary_sha256": "3b3f655f1699335d49dedcc1296875ddf100cded0899eac761f24f84c99c0f9e",
+  "decision": "No threshold or physical-model tuning. Fixed experimental source rule remains P>=.9,area<.5,no warning. Recommendations stay research_only. No organizational attribution-readiness claim.",
+  "evidence": "Calibration0.4 has24/24 conditional coverage but only5/24 accepted informative campaigns; biased met9/24 coverage and all4 accepted miss; independent stretched transport20/24 coverage with4/16 accepted misses. No weakening/strengthening of policy to hide these failures.",
+  "engineering_corrections_after_calibration": "Exact unique component keys only when two-decimal speed labels collide at tiny valid user fractions; fresh target-instrument IDs if a user ID collides. Normal study settings/IDs unchanged. No changes to likelihood, priors, physics, inference moments, test thresholds or planner objective. Focused17research tests pass. Full calibration confirmation rerun under final frozen source; no model selection from it.",
+  "baseline_planner": "0.3 refuses multi-period input. Empty/no-update records are not equal-capability comparisons; report campaign baseline as not applicable."
+}

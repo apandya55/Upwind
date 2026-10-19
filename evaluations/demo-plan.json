@@ -1,0 +1,118 @@
+{
+  "status": "ok",
+  "reason": null,
+  "plans": [
+    {
+      "method": "Optimized \u00b7 exhaustive",
+      "site_ids": [
+        "C1",
+        "C9"
+      ],
+      "cost": 290.0,
+      "score": 0.0012332306522212892,
+      "equipment": 2,
+      "window": "steady-window"
+    },
+    {
+      "method": "Spatial spread",
+      "site_ids": [
+        "C6",
+        "C9"
+      ],
+      "cost": 240.0,
+      "score": 0.0009824114623786817,
+      "equipment": 2,
+      "window": "steady-window"
+    },
+    {
+      "method": "Random \u00b7 seed 42",
+      "site_ids": [
+        "C4",
+        "C1"
+      ],
+      "cost": 270.0,
+      "score": 0.000801305345047489,
+      "equipment": 2,
+      "window": "steady-window",
+      "mean_score": 0.00040863413711208184,
+      "min_score": 5.234599764203077e-05,
+      "max_score": 0.0009824114623786817,
+      "seeds": 20
+    },
+    {
+      "method": "Wind corridor",
+      "site_ids": [
+        "C8",
+        "C3"
+      ],
+      "cost": 350.0,
+      "score": 5.234599764203077e-05,
+      "equipment": 2,
+      "window": "steady-window"
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "latitude": 0.0022609236886742194,
+      "longitude": -0.005839049349787332,
+      "weight": 0.16796763252003363
+    },
+    {
+      "id": "S2",
+      "latitude": -0.0013565542132090566,
+      "longitude": -0.005839049347860646,
+      "weight": 0.1681059909629251
+    },
+    {
+      "id": "S3",
+      "latitude": 0.005878401590376497,
+      "longitude": -0.005839049367127481,
+      "weight": 0.1673776934141517
+    },
+    {
+      "id": "S4",
+      "latitude": 0.0009043694768164942,
+      "longitude": -0.0022457882104840615,
+      "weight": 0.16072007173206265
+    },
+    {
+      "id": "S5",
+      "latitude": -0.0027131084304313846,
+      "longitude": -0.002245788211966125,
+      "weight": 0.1676386890081703
+    },
+    {
+      "id": "S6",
+      "latitude": 0.0,
+      "longitude": -0.008533995199135454,
+      "weight": 0.16818992236265654
+    }
+  ],
+  "interpretation": "Approximate location information (nats); Gaussian moments marginalize strength, background, and weather uncertainty. Not a probability or health benefit.",
+  "warnings": [
+    "SYNTHETIC investigation: contains simulated inputs; no field validation. See row origins for imported or synthetic measurements/weather.",
+    "Experimental conditional scenario weights; no field-validated attribution.",
+    "Future measurement scheduling is unsupported. This compares sites in a specified observed steady window."
+  ],
+  "model_version": "plume-ensemble-0.2.1",
+  "input_hash": "2ff4f5e8296972a9191a12e17ebca663bd4d34e6f0aefa214de120ade2195953",
+  "eligible_sites": 9,
+  "exact_search": true,
+  "feasible_subsets": 39,
+  "ties": 1,
+  "entropy_nats": 1.791629553699126,
+  "fitted_rmse_ug_m3": 1.2489847395972353,
+  "standardized_residual_rms": 0.6179709918460435,
+  "rows_used": 21,
+  "rows_input": 21,
+  "quality": {
+    "input_rows": 21,
+    "usable_unique_rows": 21,
+    "excluded_rows": 0,
+    "identical_duplicates": 0,
+    "conflicting_keys": []
+  },
+  "scenario_count": 324,
+  "runtime_ms": 12.84
+}

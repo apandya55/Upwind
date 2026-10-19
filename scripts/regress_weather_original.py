@@ -1,0 +1,27 @@
+"""Reproduce development-used original0.4 regressions, never fresh validation."""
+
+import argparse, json
+from pathlib import Path
+from upwind.validation.research.cases import world
+from upwind.validation.weather_bias import evaluate, write, hashes
+
+p = argparse.ArgumentParser()
+p.add_argument("--offset", type=int, default=0)
+p.add_argument("--count", type=int, default=10)
+p.add_argument("--out", type=Path, required=True)
+a = p.parse_args()
+a.out.mkdir(exist_ok=False, parents=True)
+write(
+    a.out / "metadata.json",
+    dict(
+        source_hashes=hashes(),
+        description="Development-used regression, original0.4 final seeds; never fresh validation",
+    ),
+)
+for seed in range(910000 + a.offset, 910000 + a.offset + a.count):
+    for family in ["biased_met_campaign", "informative_campaign"]:
+        inv, state = world(family, seed, "final")
+        r = evaluate(inv, state)
+        with (a.out / "science.jsonl").open("a") as f:
+            f.write(json.dumps(r) + "\n")
+        print(seed, family, r.get("accepted"), r.get("region90_covered"), flush=True)

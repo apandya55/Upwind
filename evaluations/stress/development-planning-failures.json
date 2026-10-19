@@ -1,0 +1,298 @@
+{
+  "checks": 110,
+  "failed_groups": 5,
+  "failures": [
+    {
+      "name": "site permutation invariance",
+      "details": {
+        "seed": 111005
+      }
+    },
+    {
+      "name": "site permutation invariance",
+      "details": {
+        "seed": 111009
+      }
+    },
+    {
+      "name": "site permutation invariance",
+      "details": {
+        "seed": 112001
+      }
+    },
+    {
+      "name": "site permutation invariance",
+      "details": {
+        "seed": 112003
+      }
+    },
+    {
+      "name": "site permutation invariance",
+      "details": {
+        "seed": 112005
+      }
+    }
+  ],
+  "instances": [
+    {
+      "seed": 111000,
+      "large": false,
+      "sites": 10,
+      "status": "ok",
+      "exact_search": true,
+      "best_score": 0.3060222695455619,
+      "baseline_scores": [
+        0.2956900146185718,
+        0.27429506725403885
+      ],
+      "wall_ms": 16.419
+    },
+    {
+      "seed": 111001,
+      "large": false,
+      "sites": 5,
+      "status": "ok",
+      "exact_search": true,
+      "best_score": 0.782959463983177,
+      "baseline_scores": [
+        0.782959463983177,
+        0.782959463983177
+      ],
+      "wall_ms": 11.574
+    },
+    {
+      "seed": 111002,
+      "large": false,
+      "sites": 7,
+      "status": "ok",
+      "exact_search": true,
+      "best_score": 0.23109583180702203,
+      "baseline_scores": [
+        0.23109583180702203,
+        0.23109583180702203
+      ],
+      "wall_ms": 11.176
+    },
+    {
+      "seed": 111003,
+      "large": false,
+      "sites": 5,
+      "status": "ok",
+      "exact_search": true,
+      "best_score": 0.3338621787139669,
+      "baseline_scores": [
+        0.3338621787139669,
+        0.3338621787139669
+      ],
+      "wall_ms": 10.528
+    },
+    {
+      "seed": 111004,
+      "large": false,
+      "sites": 4,
+      "status": "ok",
+      "exact_search": true,
+      "best_score": 0.8875882085271923,
+      "baseline_scores": [
+        0.8875882085271923,
+        0.8875882085271923
+      ],
+      "wall_ms": 10.608
+    },
+    {
+      "seed": 111005,
+      "large": false,
+      "sites": 4,
+      "status": "ok",
+      "exact_search": true,
+      "best_score": 0.9375251106761616,
+      "baseline_scores": [
+        0.9375251106761616,
+        0.9375251106761616
+      ],
+      "wall_ms": 13.143
+    },
+    {
+      "seed": 111006,
+      "large": false,
+      "sites": 4,
+      "status": "ok",
+      "exact_search": true,
+      "best_score": 0.3718207685999755,
+      "baseline_scores": [
+        0.3718207685999755,
+        0.3718207685999755
+      ],
+      "wall_ms": 19.81
+    },
+    {
+      "seed": 111007,
+      "large": false,
+      "sites": 7,
+      "status": "ok",
+      "exact_search": true,
+      "best_score": 0.43602099263243926,
+      "baseline_scores": [
+        0.41101812162636153,
+        0.4241200593999275
+      ],
+      "wall_ms": 20.07
+    },
+    {
+      "seed": 111008,
+      "large": false,
+      "sites": 8,
+      "status": "ok",
+      "exact_search": true,
+      "best_score": 0.3896646659902784,
+      "baseline_scores": [
+        0.3896646659902784,
+        0.2878340902806862
+      ],
+      "wall_ms": 11.181
+    },
+    {
+      "seed": 111009,
+      "large": false,
+      "sites": 4,
+      "status": "ok",
+      "exact_search": true,
+      "best_score": 0.8684715442201371,
+      "baseline_scores": [
+        0.8684715442201371,
+        0.8684715442201371
+      ],
+      "wall_ms": 9.129
+    },
+    {
+      "seed": 112000,
+      "large": true,
+      "sites": 43,
+      "status": "ok",
+      "exact_search": false,
+      "best_score": 0.38520531974213346,
+      "baseline_scores": [
+        0.3713615305931639,
+        0.3323013786726666
+      ],
+      "wall_ms": 15.171
+    },
+    {
+      "seed": 112001,
+      "large": true,
+      "sites": 63,
+      "status": "ok",
+      "exact_search": false,
+      "best_score": 0.40060532719231023,
+      "baseline_scores": [
+        0.36946987817041804,
+        0.36819386456227554
+      ],
+      "wall_ms": 45.445
+    },
+    {
+      "seed": 112002,
+      "large": true,
+      "sites": 48,
+      "status": "ok",
+      "exact_search": false,
+      "best_score": 0.24185200958500452,
+      "baseline_scores": [
+        0.17858268232180666,
+        0.2247195472751085
+      ],
+      "wall_ms": 14.119
+    },
+    {
+      "seed": 112003,
+      "large": true,
+      "sites": 51,
+      "status": "ok",
+      "exact_search": false,
+      "best_score": 0.2512179427199577,
+      "baseline_scores": [
+        0.24950532446738424,
+        0.21328316026499658
+      ],
+      "wall_ms": 22.729
+    },
+    {
+      "seed": 112004,
+      "large": true,
+      "sites": 40,
+      "status": "ok",
+      "exact_search": false,
+      "best_score": 0.09044981705909283,
+      "baseline_scores": [
+        0.05211687643940882,
+        0.04719571887613122
+      ],
+      "wall_ms": 12.579
+    },
+    {
+      "seed": 112005,
+      "large": true,
+      "sites": 56,
+      "status": "ok",
+      "exact_search": false,
+      "best_score": 0.3542447913826734,
+      "baseline_scores": [
+        0.22893497199575677,
+        0.23876097391076634
+      ],
+      "wall_ms": 19.171
+    },
+    {
+      "seed": 112006,
+      "large": true,
+      "sites": 55,
+      "status": "ok",
+      "exact_search": false,
+      "best_score": 0.1773761204617758,
+      "baseline_scores": [
+        0.15457324079868778,
+        0.11308985124481835
+      ],
+      "wall_ms": 18.049
+    },
+    {
+      "seed": 112007,
+      "large": true,
+      "sites": 47,
+      "status": "ok",
+      "exact_search": false,
+      "best_score": 0.22446918823753256,
+      "baseline_scores": [
+        0.12342659470326242,
+        0.22446918823753256
+      ],
+      "wall_ms": 11.621
+    },
+    {
+      "seed": 112008,
+      "large": true,
+      "sites": 59,
+      "status": "ok",
+      "exact_search": false,
+      "best_score": 0.1669790211495034,
+      "baseline_scores": [
+        0.04132216423953531,
+        0.1669790211495034
+      ],
+      "wall_ms": 10.131
+    },
+    {
+      "seed": 112009,
+      "large": true,
+      "sites": 60,
+      "status": "ok",
+      "exact_search": false,
+      "best_score": 0.4267750885131725,
+      "baseline_scores": [
+        0.38284619365590505,
+        0.4018514918305508
+      ],
+      "wall_ms": 23.387
+    }
+  ]
+}

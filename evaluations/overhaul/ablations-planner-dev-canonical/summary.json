@@ -1,0 +1,133 @@
+{
+  "worlds": 6,
+  "plans": 36,
+  "source_hashes_unchanged": false,
+  "groups": [
+    {
+      "family": "direction_bias",
+      "default_plans": [
+        [
+          "C02",
+          "C05"
+        ],
+        [
+          "C00",
+          "C08"
+        ]
+      ],
+      "fine_plans": [
+        [
+          "C02",
+          "C05"
+        ],
+        [
+          "C00",
+          "C04"
+        ]
+      ],
+      "default_error": [
+        235.681942384595,
+        245.7423075146163
+      ],
+      "fine_error": [
+        235.681942384595,
+        245.7423075146163
+      ],
+      "default_rmse": [
+        1.8668068139740235,
+        1.3450164147516104
+      ],
+      "fine_rmse": [
+        1.8668068139740235,
+        1.2105128050053888
+      ],
+      "changed_plans": 1,
+      "minimum_rank_correlation": 0.6708860759493671,
+      "maximum_replicate_disagreement_nats": 0.020308824564597705
+    },
+    {
+      "family": "strong_signal",
+      "default_plans": [
+        [
+          "C01",
+          "C05"
+        ],
+        [
+          "C00",
+          "C01"
+        ]
+      ],
+      "fine_plans": [
+        [
+          "C01",
+          "C02"
+        ],
+        [
+          "C01",
+          "C04"
+        ]
+      ],
+      "default_error": [
+        156.0271754773448,
+        145.83208178874264
+      ],
+      "fine_error": [
+        156.0271754773448,
+        145.83208178874264
+      ],
+      "default_rmse": [
+        1.8979478363160034,
+        0.8788056840219072
+      ],
+      "fine_rmse": [
+        1.7547808268064777,
+        1.0152188926536099
+      ],
+      "changed_plans": 2,
+      "minimum_rank_correlation": 0.8187682570593965,
+      "maximum_replicate_disagreement_nats": 0.022576951181793925
+    },
+    {
+      "family": "weak_signal",
+      "default_plans": [
+        [
+          "C00",
+          "C02"
+        ],
+        [
+          "C00",
+          "C02"
+        ]
+      ],
+      "fine_plans": [
+        [
+          "C00",
+          "C05"
+        ],
+        [
+          "C00",
+          "C02"
+        ]
+      ],
+      "default_error": [
+        265.9406408470853,
+        241.38051230651465
+      ],
+      "fine_error": [
+        265.9406408470853,
+        241.38051230651465
+      ],
+      "default_rmse": [
+        1.2880232566560885,
+        1.1904506845890621
+      ],
+      "fine_rmse": [
+        1.4042621874600354,
+        1.1904506845890621
+      ],
+      "changed_plans": 1,
+      "minimum_rank_correlation": 0.3536270691333982,
+      "maximum_replicate_disagreement_nats": 0.020632285410264073
+    }
+  ]
+}

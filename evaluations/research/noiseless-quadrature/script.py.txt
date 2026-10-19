@@ -1,0 +1,22 @@
+"""Development noiseless truth-access integration diagnostic; not deployable."""
+import json,time
+from pathlib import Path
+from upwind.validation.research.cases import world,forward
+from upwind.validation.research.run import source_metrics,source_hashes,write
+from upwind.inference import fit,CONFIG
+OUT=Path('evaluations/research/noiseless-quadrature');OUT.mkdir(exist_ok=False);before=source_hashes();rows=[];started=time.perf_counter()
+(OUT/'script.py.txt').write_text(Path(__file__).read_text())
+for seed in (710000,710001,710002):
+ inv,state=world('informative_campaign',seed,'development')
+ for j,row in enumerate(inv.measurements):
+  w=j//24;xy=state['monitor_xy'][j%6]
+  row.pm25_ug_m3=float(state['background'][w]+forward([xy],state['source_xy'],state['strength'],state['speed'],state['true_angles'][w],state['mechanism'])[0])
+ for j,met in enumerate(inv.weather):met.wind_from_deg=state['true_angles'][j//4];met.wind_speed_m_s=state['speed']
+ for spacing in (20,10,5):
+  for order in (1,2):
+   CONFIG['cell_target_m']=spacing;CONFIG['max_cells_axis']=96
+   f=fit(inv,diagnostics=False,spatial_order=order)
+   rows.append({'seed':seed,'spacing_m':spacing,'quadrature_order':order,'source_cells':len(f['source_xy']),'integration_points':f['integration_points'],**source_metrics(f,state)})
+   write(OUT/'results.json',rows);print(seed,spacing,order,flush=True)
+CONFIG['cell_target_m']=20.;CONFIG['max_cells_axis']=24
+write(OUT/'metadata.json',{'source_hashes_before':before,'source_hashes_after':source_hashes(),'source_hashes_unchanged':before==source_hashes(),'wall_seconds':time.perf_counter()-started,'meaning':'Truth access removes measurement noise/field/bias and supplies correct nominal met. Noise assumptions remain unchanged. Tests integration under compatible scalar transport, not field coverage.'})

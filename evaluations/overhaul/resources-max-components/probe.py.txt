@@ -1,0 +1,74 @@
+"""Maximum schema and numerical-component capacity probe; not 10k-row inversion."""
+from __future__ import annotations
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+import platform
+import resource
+import subprocess
+import sys
+import time
+
+ROOT = Path('/workspace/Upwind')
+OUT = ROOT / 'evaluations/overhaul/resources-max-components'
+
+
+def hashes():
+    return {str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted((ROOT/'backend/upwind').rglob('*.py'))}
+
+
+def child(limit):
+    import numpy as np
+    from upwind.models import Point
+    from upwind.validation.resources import scale_case
+    from upwind.validation.cases import point, scalar_plume
+    from upwind.engine import analyze
+    ceiling=2*1024**3
+    resource.setrlimit(resource.RLIMIT_AS,(ceiling,ceiling))
+    started=time.perf_counter()
+    inv=scale_case(10000)
+    monitors=[(800+(i%5)*100,-500+(i//5)*140) for i in range(40)]
+    candidates=[(1500+(j%10)*50,-400+(j//10)*160) for j in range(60)]
+    for site in inv.sites:
+        p=monitors[int(site.id[1:])] if site.kind=='sensor' else candidates[int(site.id[1:])]
+        coords=point(p);site.latitude=coords['latitude'];site.longitude=coords['longitude']
+    for row in inv.measurements:
+        p=monitors[int(row.sensor_id[1:])];coords=point(p)
+        row.latitude=coords['latitude'];row.longitude=coords['longitude']
+        row.pm25_ug_m3=10+scalar_plume(p,(-400,0),5000,2.3,270)
+    local=point((1000,0))
+    for row in inv.weather:
+        row.latitude=local['latitude'];row.longitude=local['longitude']
+    inv.source_locations=[Point(**point((x,y))) for x in (-600,-300,0,300,600) for y in (-600,-300,0,300,600)]
+    inv.settings.inference_limit=limit
+    result=analyze(inv)
+    hwm=next((float(line.split()[1])/1024 for line in Path('/proc/self/status').read_text().splitlines() if line.startswith('VmHWM:')),None)
+    return {'status':'finished','analysis_status':result['status'],'inference_limit':limit,'loaded_readings':len(inv.measurements),'weather_rows':len(inv.weather),'monitor_sites':sum(s.kind=='sensor' for s in inv.sites),'candidate_sites':sum(s.kind=='candidate' for s in inv.sites),'source_anchors':len(inv.source_locations),'source_cells_expected':576,'components_expected':12097,'components_actual':result.get('scenario_count'),'rows_fitted':result.get('rows_used'),'rows_usable':result.get('rows_input'),'excluded_domain_area_m2':result.get('source_region90',{}).get('excluded_domain_area_m2'),'wall_ms':(time.perf_counter()-started)*1000,'peak_rss_mib':hwm,'address_space_ceiling_mib':2048,'finite_scores':bool(all(np.isfinite(p['score']) for p in result.get('plans',[]))),'planning_diagnostics':result.get('planning_diagnostics'),'warnings':result.get('warnings',[])}
+
+
+def main():
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--child-limit',type=int);args=parser.parse_args()
+    if args.child_limit:
+        print(json.dumps(child(args.child_limit),allow_nan=False),flush=True);return
+    OUT.mkdir(parents=True,exist_ok=True)
+    if (OUT/'results.json').exists():raise SystemExit('Preserve prior results; output already exists')
+    (OUT/'probe.py.txt').write_text(Path(__file__).read_text())
+    before=hashes()
+    metadata={'evidence':'engineering maximum-component probe; bounded row inference, no full-data10k claim','command':sys.argv,'production_hashes_before':before,'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'python':platform.python_version(),'platform':platform.platform(),'cpu':next((line.split(':',1)[1].strip() for line in Path('/proc/cpuinfo').read_text().splitlines() if line.startswith('model name')),None),'blas_threads':1,'timeout_seconds':30,'address_space_ceiling_mib':2048,'geometry':'40 monitors x800..1200,y-500..480;60 candidates x1500..1950,y-400..400;25 anchors5x5 within +-600m;weather1000m east;allAEQD0,0'}
+    (OUT/'metadata.json').write_text(json.dumps(metadata,indent=2)+'\n')
+    results=[]
+    for limit in (128,512):
+        command=[sys.executable,str(Path(__file__).resolve()),'--child-limit',str(limit)];started=time.perf_counter()
+        try:
+            proc=subprocess.run(command,cwd=ROOT,env={**os.environ,'OPENBLAS_NUM_THREADS':'1','OMP_NUM_THREADS':'1'},capture_output=True,text=True,timeout=30)
+            row=json.loads(proc.stdout) if proc.returncode==0 else {'status':'child_failure','exit_code':proc.returncode,'stderr':proc.stderr[-6000:],'stdout':proc.stdout[-4000:]}
+        except subprocess.TimeoutExpired as exc:
+            row={'status':'timeout','timeout_seconds':30,'partial_stdout':None if not exc.stdout else str(exc.stdout)[-2000:],'partial_stderr':None if not exc.stderr else str(exc.stderr)[-2000:]}
+        row.update(inference_limit=limit,subprocess_wall_seconds=time.perf_counter()-started,command=command);results.append(row)
+        (OUT/'results.json').write_text(json.dumps(results,indent=2,allow_nan=False)+'\n')
+        print(json.dumps(row,allow_nan=False),flush=True)
+    metadata['production_hashes_after']=hashes();metadata['production_sources_unchanged']=before==metadata['production_hashes_after'];(OUT/'metadata.json').write_text(json.dumps(metadata,indent=2)+'\n')
+
+if __name__=='__main__':main()

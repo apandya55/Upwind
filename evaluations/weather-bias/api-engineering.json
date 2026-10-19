@@ -1,0 +1,24 @@
+{
+  "concurrent_requests": 64,
+  "workers": 32,
+  "response_statuses": {
+    "200": 36,
+    "429": 28
+  },
+  "acknowledged_writes": 36,
+  "stored_before_bad_requests": 36,
+  "all_acknowledged_writes_preserved": true,
+  "malformed_statuses": [
+    422,
+    422,
+    422,
+    422
+  ],
+  "oversized_status": 413,
+  "no_partial_bad_writes": true,
+  "request_after_overload": 200,
+  "fuzzed_csv_cases": 500,
+  "unexpected_csv_errors": [],
+  "wall_ms": 571.64,
+  "passed": true
+}

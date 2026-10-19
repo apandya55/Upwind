@@ -1,0 +1,3224 @@
+{
+  "model": "plume-campaign-0.4.0",
+  "science_results": 288,
+  "followup_results": 400,
+  "crashes": 0,
+  "conditions": [
+    {
+      "family": "single_window_original",
+      "model": "baseline-0.3.0",
+      "generated": 12,
+      "statuses": {
+        "fitted": 12
+      },
+      "accepted": 2,
+      "accepted_region_misses": 0,
+      "map_error_m": {
+        "n": 12,
+        "mean": 145.75712129583937,
+        "min": 15.566183650368083,
+        "p10": 61.43457910865963,
+        "median": 114.62415728105998,
+        "p90": 303.0711334940219,
+        "max": 347.5981551408306
+      },
+      "mean_error_m": {
+        "n": 12,
+        "mean": 63.50266551647389,
+        "min": 26.044879321376143,
+        "p10": 28.13404491563591,
+        "median": 44.65630603775857,
+        "p90": 112.60699824594444,
+        "max": 113.32541333652671
+      },
+      "prior_centroid_error_m": {
+        "n": 12,
+        "mean": 78.74831693508769,
+        "min": 39.177386663218044,
+        "p10": 47.09243198419649,
+        "median": 79.46088376710654,
+        "p90": 101.12460553228824,
+        "max": 115.47142658648231
+      },
+      "region90_area_fraction": {
+        "n": 12,
+        "mean": 0.719298245614035,
+        "min": 0.39816933638443935,
+        "p10": 0.4768878718535469,
+        "median": 0.8066361556064072,
+        "p90": 0.8441647597254004,
+        "max": 0.8466819221967964
+      },
+      "region90_area_m2": {
+        "n": 12,
+        "mean": 117114.3702483916,
+        "min": 64828.95150547233,
+        "p10": 77645.70973414043,
+        "median": 131334.51382574136,
+        "p90": 137444.82879522265,
+        "max": 137854.6669943952
+      },
+      "source_probability": {
+        "n": 12,
+        "mean": 0.6202933513718196,
+        "min": 0.365843971293721,
+        "p10": 0.3980748755733093,
+        "median": 0.5085857098109001,
+        "p90": 0.9948134058608583,
+        "max": 0.9998952749239791
+      },
+      "source_brier": {
+        "n": 12,
+        "mean": 0.20218118665117557,
+        "min": 1.0967341547579931e-08,
+        "p10": 5.919231629962373e-05,
+        "median": 0.24408594783628695,
+        "p90": 0.3623282778964265,
+        "max": 0.402153868744519
+      },
+      "wall_ms": {
+        "n": 12,
+        "mean": 529.3946685827299,
+        "min": 500.8936169979279,
+        "p10": 505.9924306013272,
+        "median": 526.2032645005092,
+        "p90": 553.2740443974035,
+        "max": 563.3067179951468
+      },
+      "region90_covered": {
+        "count": 11,
+        "n": 12,
+        "wilson95": [
+          0.6461140782014047,
+          0.9851352905492264
+        ]
+      },
+      "source_miss": {
+        "count": 6,
+        "n": 12,
+        "wilson95": [
+          0.2537781703934222,
+          0.7462218296065778
+        ]
+      },
+      "false_source_alarm": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "narrow_wrong_region": {
+        "count": 0,
+        "n": 12,
+        "wilson95": [
+          0,
+          0.2425007574992425
+        ]
+      },
+      "sharp_wrong_region": {
+        "count": 0,
+        "n": 12,
+        "wilson95": [
+          0,
+          0.2425007574992425
+        ]
+      },
+      "warning": {
+        "count": 0,
+        "n": 12,
+        "wilson95": [
+          0,
+          0.2425007574992425
+        ]
+      },
+      "prediction_rmse_ug_m3": {
+        "n": 12,
+        "mean": 1.5252911771416366,
+        "min": 0.5129732274241577,
+        "p10": 0.9190621937906693,
+        "median": 1.3821633194776735,
+        "p90": 2.4437048543359996,
+        "max": 2.881568682939
+      },
+      "prediction_nlpd": {
+        "n": 12,
+        "mean": 1.9437560014332107,
+        "min": 1.6429276946900537,
+        "p10": 1.7066459003248864,
+        "median": 1.8408017519606523,
+        "p90": 2.331111279097588,
+        "max": 2.415068090711749
+      },
+      "prediction_interval90_coverage": {
+        "n": 12,
+        "mean": 0.9583333333333334,
+        "min": 0.75,
+        "p10": 0.775,
+        "median": 1.0,
+        "p90": 1.0,
+        "max": 1.0
+      },
+      "prediction_interval90_width": {
+        "n": 12,
+        "mean": 7.263219489724481,
+        "min": 6.459097630208121,
+        "p10": 6.596149284873729,
+        "median": 6.819185440218277,
+        "p90": 8.606354760526848,
+        "max": 10.039624757908687
+      }
+    },
+    {
+      "family": "single_window_original",
+      "model": "plume-campaign-0.4.0",
+      "generated": 12,
+      "statuses": {
+        "fitted": 12
+      },
+      "accepted": 2,
+      "accepted_region_misses": 0,
+      "map_error_m": {
+        "n": 12,
+        "mean": 145.75712129583937,
+        "min": 15.566183650368083,
+        "p10": 61.43457910865963,
+        "median": 114.62415728105998,
+        "p90": 303.0711334940219,
+        "max": 347.5981551408306
+      },
+      "mean_error_m": {
+        "n": 12,
+        "mean": 63.50266551647391,
+        "min": 26.044879321376115,
+        "p10": 28.134044915635926,
+        "median": 44.65630603775858,
+        "p90": 112.60699824594447,
+        "max": 113.3254133365267
+      },
+      "prior_centroid_error_m": {
+        "n": 12,
+        "mean": 78.74831693508769,
+        "min": 39.177386663218044,
+        "p10": 47.09243198419649,
+        "median": 79.46088376710654,
+        "p90": 101.12460553228824,
+        "max": 115.47142658648231
+      },
+      "region90_area_fraction": {
+        "n": 12,
+        "mean": 0.719298245614035,
+        "min": 0.39816933638443935,
+        "p10": 0.4768878718535469,
+        "median": 0.8066361556064072,
+        "p90": 0.8441647597254004,
+        "max": 0.8466819221967964
+      },
+      "region90_area_m2": {
+        "n": 12,
+        "mean": 117114.3702483916,
+        "min": 64828.95150547233,
+        "p10": 77645.70973414043,
+        "median": 131334.51382574136,
+        "p90": 137444.82879522265,
+        "max": 137854.6669943952
+      },
+      "source_probability": {
+        "n": 12,
+        "mean": 0.6202933513718195,
+        "min": 0.36584397129372087,
+        "p10": 0.39807487557330923,
+        "median": 0.5085857098109001,
+        "p90": 0.9948134058608582,
+        "max": 0.9998952749239789
+      },
+      "source_brier": {
+        "n": 12,
+        "mean": 0.20218118665117557,
+        "min": 1.0967341547626439e-08,
+        "p10": 5.9192316299624396e-05,
+        "median": 0.24408594783628695,
+        "p90": 0.3623282778964265,
+        "max": 0.402153868744519
+      },
+      "wall_ms": {
+        "n": 12,
+        "mean": 218.83971258466772,
+        "min": 205.85519300220767,
+        "p10": 206.63080549784354,
+        "median": 210.70479500485817,
+        "p90": 231.60672040175996,
+        "max": 269.2639640008565
+      },
+      "region90_covered": {
+        "count": 11,
+        "n": 12,
+        "wilson95": [
+          0.6461140782014047,
+          0.9851352905492264
+        ]
+      },
+      "source_miss": {
+        "count": 6,
+        "n": 12,
+        "wilson95": [
+          0.2537781703934222,
+          0.7462218296065778
+        ]
+      },
+      "false_source_alarm": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "narrow_wrong_region": {
+        "count": 0,
+        "n": 12,
+        "wilson95": [
+          0,
+          0.2425007574992425
+        ]
+      },
+      "sharp_wrong_region": {
+        "count": 0,
+        "n": 12,
+        "wilson95": [
+          0,
+          0.2425007574992425
+        ]
+      },
+      "warning": {
+        "count": 0,
+        "n": 12,
+        "wilson95": [
+          0,
+          0.2425007574992425
+        ]
+      },
+      "prediction_rmse_ug_m3": {
+        "n": 12,
+        "mean": 1.5252911771416366,
+        "min": 0.5129732274241576,
+        "p10": 0.9190621937906674,
+        "median": 1.3821633194776726,
+        "p90": 2.4437048543359983,
+        "max": 2.881568682939012
+      },
+      "prediction_nlpd": {
+        "n": 12,
+        "mean": 1.9431019939803222,
+        "min": 1.6423446029422044,
+        "p10": 1.7057164806036882,
+        "median": 1.838154667543742,
+        "p90": 2.3311760231871377,
+        "max": 2.415103198117104
+      },
+      "prediction_interval90_coverage": {
+        "n": 12,
+        "mean": 0.9583333333333334,
+        "min": 0.75,
+        "p10": 0.775,
+        "median": 1.0,
+        "p90": 1.0,
+        "max": 1.0
+      },
+      "prediction_interval90_width": {
+        "n": 12,
+        "mean": 7.2600389254758895,
+        "min": 6.459663669832533,
+        "p10": 6.589494312270553,
+        "median": 6.847769824514643,
+        "p90": 8.638118670150314,
+        "max": 9.907512165064542
+      }
+    },
+    {
+      "family": "informative_campaign",
+      "model": "baseline-0.3.0",
+      "generated": 12,
+      "statuses": {
+        "refused": 12
+      },
+      "accepted": 0,
+      "accepted_region_misses": 0,
+      "map_error_m": null,
+      "mean_error_m": null,
+      "prior_centroid_error_m": null,
+      "region90_area_fraction": null,
+      "region90_area_m2": null,
+      "source_probability": null,
+      "source_brier": null,
+      "wall_ms": null,
+      "region90_covered": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "source_miss": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "false_source_alarm": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "narrow_wrong_region": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "sharp_wrong_region": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "warning": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "prediction_rmse_ug_m3": null,
+      "prediction_nlpd": null,
+      "prediction_interval90_coverage": null,
+      "prediction_interval90_width": null
+    },
+    {
+      "family": "informative_campaign",
+      "model": "plume-campaign-0.4.0",
+      "generated": 12,
+      "statuses": {
+        "fitted": 12
+      },
+      "accepted": 10,
+      "accepted_region_misses": 0,
+      "map_error_m": {
+        "n": 12,
+        "mean": 69.61500513065423,
+        "min": 9.129376543861607,
+        "p10": 14.372508974440352,
+        "median": 22.58140625061187,
+        "p90": 182.07487783018829,
+        "max": 293.98902827952196
+      },
+      "mean_error_m": {
+        "n": 12,
+        "mean": 46.89789429775964,
+        "min": 9.058372894179469,
+        "p10": 16.527028155920206,
+        "median": 23.715619416508815,
+        "p90": 84.70655441178175,
+        "max": 191.1153496775216
+      },
+      "prior_centroid_error_m": {
+        "n": 12,
+        "mean": 157.90933497151573,
+        "min": 75.3138515874993,
+        "p10": 96.21786384504921,
+        "median": 162.72743181024885,
+        "p90": 216.8586169681368,
+        "max": 247.37725780643092
+      },
+      "region90_area_fraction": {
+        "n": 12,
+        "mean": 0.14816933638443938,
+        "min": 0.0022883295194508027,
+        "p10": 0.020594965675057208,
+        "median": 0.08924485125858124,
+        "p90": 0.3958810068649886,
+        "max": 0.5995423340961098
+      },
+      "region90_area_m2": {
+        "n": 12,
+        "mean": 24123.39103818726,
+        "min": 372.56202375578806,
+        "p10": 3353.05821380209,
+        "median": 14529.918926475724,
+        "p90": 64453.2301097513,
+        "max": 97611.25022401639
+      },
+      "source_probability": {
+        "n": 12,
+        "mean": 0.8893849111044961,
+        "min": 0.24165088375574267,
+        "p10": 0.5130523185946985,
+        "median": 0.9999764019996895,
+        "p90": 1.0,
+        "max": 1.0
+      },
+      "source_brier": {
+        "n": 12,
+        "mean": 0.07209002115345149,
+        "min": 0.0,
+        "p10": 0.0,
+        "median": 5.8617990900368e-10,
+        "p90": 0.26022172104989977,
+        "max": 0.5750933821084461
+      },
+      "wall_ms": {
+        "n": 12,
+        "mean": 1369.8733050841838,
+        "min": 1344.2694850018597,
+        "p10": 1346.4694207010325,
+        "median": 1366.868188000808,
+        "p90": 1395.4025271043065,
+        "max": 1408.553055000084
+      },
+      "region90_covered": {
+        "count": 12,
+        "n": 12,
+        "wilson95": [
+          0.7574992425007574,
+          1
+        ]
+      },
+      "source_miss": {
+        "count": 2,
+        "n": 12,
+        "wilson95": [
+          0.04696414761482223,
+          0.44803635738467273
+        ]
+      },
+      "false_source_alarm": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "narrow_wrong_region": {
+        "count": 0,
+        "n": 12,
+        "wilson95": [
+          0,
+          0.2425007574992425
+        ]
+      },
+      "sharp_wrong_region": {
+        "count": 0,
+        "n": 12,
+        "wilson95": [
+          0,
+          0.2425007574992425
+        ]
+      },
+      "warning": {
+        "count": 0,
+        "n": 12,
+        "wilson95": [
+          0,
+          0.2425007574992425
+        ]
+      },
+      "prediction_rmse_ug_m3": {
+        "n": 12,
+        "mean": 1.6913051785453936,
+        "min": 0.8677994890438802,
+        "p10": 1.212926657786132,
+        "median": 1.5988358864989214,
+        "p90": 2.2482366575145307,
+        "max": 2.948274189577101
+      },
+      "prediction_nlpd": {
+        "n": 12,
+        "mean": 1.9690605226227635,
+        "min": 1.7511737907945641,
+        "p10": 1.811077287014582,
+        "median": 1.9533001049806789,
+        "p90": 2.14238518117082,
+        "max": 2.189721111120436
+      },
+      "prediction_interval90_coverage": {
+        "n": 12,
+        "mean": 0.9635416666666666,
+        "min": 0.875,
+        "p10": 0.9375,
+        "median": 0.96875,
+        "p90": 1.0,
+        "max": 1.0
+      },
+      "prediction_interval90_width": {
+        "n": 12,
+        "mean": 7.3102308575064034,
+        "min": 6.573523630776798,
+        "p10": 6.716882420935738,
+        "median": 6.9808615720595615,
+        "p90": 8.30546816269057,
+        "max": 9.142836187470701
+      }
+    },
+    {
+      "family": "same_wind_repetition",
+      "model": "baseline-0.3.0",
+      "generated": 12,
+      "statuses": {
+        "refused": 12
+      },
+      "accepted": 0,
+      "accepted_region_misses": 0,
+      "map_error_m": null,
+      "mean_error_m": null,
+      "prior_centroid_error_m": null,
+      "region90_area_fraction": null,
+      "region90_area_m2": null,
+      "source_probability": null,
+      "source_brier": null,
+      "wall_ms": null,
+      "region90_covered": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "source_miss": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "false_source_alarm": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "narrow_wrong_region": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "sharp_wrong_region": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "warning": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "prediction_rmse_ug_m3": null,
+      "prediction_nlpd": null,
+      "prediction_interval90_coverage": null,
+      "prediction_interval90_width": null
+    },
+    {
+      "family": "same_wind_repetition",
+      "model": "plume-campaign-0.4.0",
+      "generated": 12,
+      "statuses": {
+        "fitted": 12
+      },
+      "accepted": 9,
+      "accepted_region_misses": 0,
+      "map_error_m": {
+        "n": 12,
+        "mean": 93.60928829378697,
+        "min": 10.669894513133766,
+        "p10": 18.28262252230646,
+        "median": 52.502673008797686,
+        "p90": 238.0218354409035,
+        "max": 443.0793724871973
+      },
+      "mean_error_m": {
+        "n": 12,
+        "mean": 87.47722104039381,
+        "min": 31.229966322594,
+        "p10": 34.287438620766196,
+        "median": 86.05784705555777,
+        "p90": 127.59076173029226,
+        "max": 222.700006638892
+      },
+      "prior_centroid_error_m": {
+        "n": 12,
+        "mean": 157.90933497151573,
+        "min": 75.3138515874993,
+        "p10": 96.21786384504921,
+        "median": 162.72743181024885,
+        "p90": 216.8586169681368,
+        "max": 247.37725780643092
+      },
+      "region90_area_fraction": {
+        "n": 12,
+        "mean": 0.26887871853546913,
+        "min": 0.06864988558352399,
+        "p10": 0.11578947368421053,
+        "median": 0.1990846681922197,
+        "p90": 0.6164759725400459,
+        "max": 0.6750572082379863
+      },
+      "region90_area_m2": {
+        "n": 12,
+        "mean": 43776.03779130507,
+        "min": 11176.860712673626,
+        "p10": 18851.63840204286,
+        "median": 32412.896066753543,
+        "p90": 100368.20919980925,
+        "max": 109905.7970079574
+      },
+      "source_probability": {
+        "n": 12,
+        "mean": 0.8529042721870609,
+        "min": 0.3304527705635304,
+        "p10": 0.42110390269135883,
+        "median": 0.9696611791107645,
+        "p90": 0.9999702423540577,
+        "max": 0.999999999999998
+      },
+      "source_brier": {
+        "n": 12,
+        "mean": 0.0754432380203501,
+        "min": 3.993608332681372e-30,
+        "p10": 8.855036940930841e-09,
+        "median": 0.001466096013992799,
+        "p90": 0.3475881130182016,
+        "max": 0.4482934924460525
+      },
+      "wall_ms": {
+        "n": 12,
+        "mean": 1346.8756554975698,
+        "min": 1328.7895120010944,
+        "p10": 1333.9158478964237,
+        "median": 1341.2156034974032,
+        "p90": 1363.1738800977473,
+        "max": 1376.3983289973112
+      },
+      "region90_covered": {
+        "count": 12,
+        "n": 12,
+        "wilson95": [
+          0.7574992425007574,
+          1
+        ]
+      },
+      "source_miss": {
+        "count": 2,
+        "n": 12,
+        "wilson95": [
+          0.04696414761482223,
+          0.44803635738467273
+        ]
+      },
+      "false_source_alarm": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "narrow_wrong_region": {
+        "count": 0,
+        "n": 12,
+        "wilson95": [
+          0,
+          0.2425007574992425
+        ]
+      },
+      "sharp_wrong_region": {
+        "count": 0,
+        "n": 12,
+        "wilson95": [
+          0,
+          0.2425007574992425
+        ]
+      },
+      "warning": {
+        "count": 0,
+        "n": 12,
+        "wilson95": [
+          0,
+          0.2425007574992425
+        ]
+      },
+      "prediction_rmse_ug_m3": {
+        "n": 12,
+        "mean": 2.249885616128428,
+        "min": 1.0251316942989057,
+        "p10": 1.210639395960686,
+        "median": 1.9193238521590663,
+        "p90": 3.598985489386074,
+        "max": 5.419792593031665
+      },
+      "prediction_nlpd": {
+        "n": 12,
+        "mean": 2.425923117606316,
+        "min": 1.8429218963674603,
+        "p10": 1.8642201443610762,
+        "median": 2.0843770903213157,
+        "p90": 3.275272863118911,
+        "max": 4.561652032169384
+      },
+      "prediction_interval90_coverage": {
+        "n": 12,
+        "mean": 0.8697916666666666,
+        "min": 0.125,
+        "p10": 0.70625,
+        "median": 0.9375,
+        "p90": 1.0,
+        "max": 1.0
+      },
+      "prediction_interval90_width": {
+        "n": 12,
+        "mean": 7.589760702103184,
+        "min": 6.65751660250594,
+        "p10": 6.7749965022544885,
+        "median": 7.339055190509797,
+        "p90": 8.80478673834507,
+        "max": 9.316046656916885
+      }
+    },
+    {
+      "family": "weak_campaign",
+      "model": "baseline-0.3.0",
+      "generated": 12,
+      "statuses": {
+        "refused": 12
+      },
+      "accepted": 0,
+      "accepted_region_misses": 0,
+      "map_error_m": null,
+      "mean_error_m": null,
+      "prior_centroid_error_m": null,
+      "region90_area_fraction": null,
+      "region90_area_m2": null,
+      "source_probability": null,
+      "source_brier": null,
+      "wall_ms": null,
+      "region90_covered": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "source_miss": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "false_source_alarm": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "narrow_wrong_region": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "sharp_wrong_region": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "warning": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "prediction_rmse_ug_m3": null,
+      "prediction_nlpd": null,
+      "prediction_interval90_coverage": null,
+      "prediction_interval90_width": null
+    },
+    {
+      "family": "weak_campaign",
+      "model": "plume-campaign-0.4.0",
+      "generated": 12,
+      "statuses": {
+        "fitted": 12
+      },
+      "accepted": 0,
+      "accepted_region_misses": 0,
+      "map_error_m": {
+        "n": 12,
+        "mean": 170.86993529577114,
+        "min": 18.974057123547794,
+        "p10": 74.71714152943927,
+        "median": 152.89300687322276,
+        "p90": 305.1763177286901,
+        "max": 330.31219450856145
+      },
+      "mean_error_m": {
+        "n": 12,
+        "mean": 146.2904166594786,
+        "min": 74.19335913894909,
+        "p10": 91.9825866896872,
+        "median": 130.3581467397967,
+        "p90": 207.75540451803107,
+        "max": 208.2428903784646
+      },
+      "prior_centroid_error_m": {
+        "n": 12,
+        "mean": 157.90933497151573,
+        "min": 75.3138515874993,
+        "p10": 96.21786384504921,
+        "median": 162.72743181024885,
+        "p90": 216.8586169681368,
+        "max": 247.37725780643092
+      },
+      "region90_area_fraction": {
+        "n": 12,
+        "mean": 0.7015636918382914,
+        "min": 0.517162471395881,
+        "p10": 0.6491990846681921,
+        "median": 0.7231121281464532,
+        "p90": 0.7471395881006866,
+        "max": 0.748283752860412
+      },
+      "region90_area_m2": {
+        "n": 12,
+        "mean": 114221.30711646196,
+        "min": 84199.01736880804,
+        "p10": 105695.84613951697,
+        "median": 117729.59950682896,
+        "p90": 121641.50075626472,
+        "max": 121827.78176814262
+      },
+      "source_probability": {
+        "n": 12,
+        "mean": 0.18315292992603158,
+        "min": 0.13209753185726797,
+        "p10": 0.1329192859394838,
+        "median": 0.1830401116131955,
+        "p90": 0.2388457079862573,
+        "max": 0.3054887608447613
+      },
+      "source_brier": {
+        "n": 12,
+        "mean": 0.6697023288683687,
+        "min": 0.48234586131294516,
+        "p10": 0.579480146082423,
+        "median": 0.6674289294820929,
+        "p90": 0.751829178804539,
+        "max": 0.7532546942082461
+      },
+      "wall_ms": {
+        "n": 12,
+        "mean": 1340.7343953325228,
+        "min": 1332.0763969968539,
+        "p10": 1333.5448613986955,
+        "median": 1338.440712999727,
+        "p90": 1349.2557620978914,
+        "max": 1357.7611229993636
+      },
+      "region90_covered": {
+        "count": 10,
+        "n": 12,
+        "wilson95": [
+          0.5519636426153274,
+          0.9530358523851776
+        ]
+      },
+      "source_miss": {
+        "count": 12,
+        "n": 12,
+        "wilson95": [
+          0.7574992425007574,
+          1
+        ]
+      },
+      "false_source_alarm": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "narrow_wrong_region": {
+        "count": 0,
+        "n": 12,
+        "wilson95": [
+          0,
+          0.2425007574992425
+        ]
+      },
+      "sharp_wrong_region": {
+        "count": 0,
+        "n": 12,
+        "wilson95": [
+          0,
+          0.2425007574992425
+        ]
+      },
+      "warning": {
+        "count": 0,
+        "n": 12,
+        "wilson95": [
+          0,
+          0.2425007574992425
+        ]
+      },
+      "prediction_rmse_ug_m3": {
+        "n": 12,
+        "mean": 1.4182865897379058,
+        "min": 0.9881276124166638,
+        "p10": 1.033196490588666,
+        "median": 1.467735643522074,
+        "p90": 1.673541005776633,
+        "max": 1.9777597693640447
+      },
+      "prediction_nlpd": {
+        "n": 12,
+        "mean": 1.8712871096011263,
+        "min": 1.7261141142103804,
+        "p10": 1.761341643660083,
+        "median": 1.8786253635465948,
+        "p90": 1.947587081689943,
+        "max": 2.0760039885226114
+      },
+      "prediction_interval90_coverage": {
+        "n": 12,
+        "mean": 0.984375,
+        "min": 0.9375,
+        "p10": 0.9375,
+        "median": 1.0,
+        "p90": 1.0,
+        "max": 1.0
+      },
+      "prediction_interval90_width": {
+        "n": 12,
+        "mean": 6.733356929308225,
+        "min": 6.521487090827861,
+        "p10": 6.602736326997173,
+        "median": 6.7264483706361125,
+        "p90": 6.848433337961313,
+        "max": 6.97955767282917
+      }
+    },
+    {
+      "family": "background_campaign",
+      "model": "baseline-0.3.0",
+      "generated": 12,
+      "statuses": {
+        "refused": 12
+      },
+      "accepted": 0,
+      "accepted_region_misses": 0,
+      "map_error_m": null,
+      "mean_error_m": null,
+      "prior_centroid_error_m": null,
+      "region90_area_fraction": null,
+      "region90_area_m2": null,
+      "source_probability": null,
+      "source_brier": null,
+      "wall_ms": null,
+      "region90_covered": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "source_miss": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "false_source_alarm": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "narrow_wrong_region": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "sharp_wrong_region": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "warning": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "prediction_rmse_ug_m3": null,
+      "prediction_nlpd": null,
+      "prediction_interval90_coverage": null,
+      "prediction_interval90_width": null
+    },
+    {
+      "family": "background_campaign",
+      "model": "plume-campaign-0.4.0",
+      "generated": 12,
+      "statuses": {
+        "fitted": 12
+      },
+      "accepted": 0,
+      "accepted_region_misses": 0,
+      "map_error_m": null,
+      "mean_error_m": null,
+      "prior_centroid_error_m": null,
+      "region90_area_fraction": {
+        "n": 12,
+        "mean": 0.6428299008390542,
+        "min": 0.30434782608695654,
+        "p10": 0.41967963386727697,
+        "median": 0.7105263157894737,
+        "p90": 0.7331807780320366,
+        "max": 0.7459954233409611
+      },
+      "region90_area_m2": {
+        "n": 12,
+        "mean": 104658.88184006339,
+        "min": 49550.74915951978,
+        "p10": 68327.8751568115,
+        "median": 115680.5083761721,
+        "p90": 119368.8724113544,
+        "max": 121455.21974438682
+      },
+      "source_probability": {
+        "n": 12,
+        "mean": 0.24318969429515994,
+        "min": 0.11534744940576,
+        "p10": 0.14159646172865661,
+        "median": 0.20124658043716503,
+        "p90": 0.42272431442441705,
+        "max": 0.5313823885414664
+      },
+      "source_brier": {
+        "n": 12,
+        "mean": 0.07334046064897685,
+        "min": 0.013305034084414363,
+        "p10": 0.020058492128081265,
+        "median": 0.04050053912417873,
+        "p90": 0.1803870488095283,
+        "max": 0.2823672428520339
+      },
+      "wall_ms": {
+        "n": 12,
+        "mean": 1350.8881694985273,
+        "min": 1331.6732109960867,
+        "p10": 1332.230299400544,
+        "median": 1343.618801496632,
+        "p90": 1358.463344399206,
+        "max": 1431.1376929981634
+      },
+      "region90_covered": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "source_miss": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "false_source_alarm": {
+        "count": 0,
+        "n": 12,
+        "wilson95": [
+          0,
+          0.2425007574992425
+        ]
+      },
+      "narrow_wrong_region": {
+        "count": 0,
+        "n": 12,
+        "wilson95": [
+          0,
+          0.2425007574992425
+        ]
+      },
+      "sharp_wrong_region": {
+        "count": 0,
+        "n": 12,
+        "wilson95": [
+          0,
+          0.2425007574992425
+        ]
+      },
+      "warning": {
+        "count": 0,
+        "n": 12,
+        "wilson95": [
+          0,
+          0.2425007574992425
+        ]
+      },
+      "prediction_rmse_ug_m3": {
+        "n": 12,
+        "mean": 1.468446557660972,
+        "min": 0.920617947976751,
+        "p10": 1.0826504605883291,
+        "median": 1.390974111474714,
+        "p90": 1.9508951918943616,
+        "max": 2.12672333012823
+      },
+      "prediction_nlpd": {
+        "n": 12,
+        "mean": 1.895753285855527,
+        "min": 1.7230764219723753,
+        "p10": 1.7615487198938478,
+        "median": 1.858465346049459,
+        "p90": 2.104038147487933,
+        "max": 2.135607756457201
+      },
+      "prediction_interval90_coverage": {
+        "n": 12,
+        "mean": 0.953125,
+        "min": 0.8125,
+        "p10": 0.88125,
+        "median": 0.96875,
+        "p90": 1.0,
+        "max": 1.0
+      },
+      "prediction_interval90_width": {
+        "n": 12,
+        "mean": 6.728865664070696,
+        "min": 6.431018192499019,
+        "p10": 6.523681753256769,
+        "median": 6.704071073877769,
+        "p90": 6.936134526449323,
+        "max": 6.951547156338454
+      }
+    },
+    {
+      "family": "two_sources_campaign",
+      "model": "baseline-0.3.0",
+      "generated": 12,
+      "statuses": {
+        "refused": 12
+      },
+      "accepted": 0,
+      "accepted_region_misses": 0,
+      "map_error_m": null,
+      "mean_error_m": null,
+      "prior_centroid_error_m": null,
+      "region90_area_fraction": null,
+      "region90_area_m2": null,
+      "source_probability": null,
+      "source_brier": null,
+      "wall_ms": null,
+      "region90_covered": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "source_miss": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "false_source_alarm": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "narrow_wrong_region": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "sharp_wrong_region": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "warning": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "prediction_rmse_ug_m3": null,
+      "prediction_nlpd": null,
+      "prediction_interval90_coverage": null,
+      "prediction_interval90_width": null
+    },
+    {
+      "family": "two_sources_campaign",
+      "model": "plume-campaign-0.4.0",
+      "generated": 12,
+      "statuses": {
+        "fitted": 12
+      },
+      "accepted": 7,
+      "accepted_region_misses": 3,
+      "map_error_m": {
+        "n": 12,
+        "mean": 142.96636368274744,
+        "min": 9.129376543861607,
+        "p10": 18.17613444915822,
+        "median": 102.8203834771654,
+        "p90": 296.7411462226064,
+        "max": 401.7739385538844
+      },
+      "mean_error_m": {
+        "n": 12,
+        "mean": 137.93809714669678,
+        "min": 6.6345756660363815,
+        "p10": 19.867338107816305,
+        "median": 66.31134602979868,
+        "p90": 287.0882440678107,
+        "max": 412.87072894454684
+      },
+      "prior_centroid_error_m": {
+        "n": 12,
+        "mean": 157.90933497151573,
+        "min": 75.3138515874993,
+        "p10": 96.21786384504921,
+        "median": 162.72743181024885,
+        "p90": 216.8586169681368,
+        "max": 247.37725780643092
+      },
+      "region90_area_fraction": {
+        "n": 12,
+        "mean": 0.07913806254767354,
+        "min": 0.004576659038901599,
+        "p10": 0.012128146453089244,
+        "median": 0.04805491990846679,
+        "p90": 0.15514874141876436,
+        "max": 0.34096109839816935
+      },
+      "region90_area_m2": {
+        "n": 12,
+        "mean": 12884.436654887659,
+        "min": 745.1240475115751,
+        "p10": 1974.5787259056754,
+        "median": 7823.802498871539,
+        "p90": 25259.70521064242,
+        "max": 55511.74153961238
+      },
+      "source_probability": {
+        "n": 12,
+        "mean": 0.9645671738442774,
+        "min": 0.581261896332872,
+        "p10": 0.9956462249586566,
+        "median": 0.9999999999999998,
+        "p90": 1.0,
+        "max": 1.0
+      },
+      "source_brier": {
+        "n": 12,
+        "mean": 0.01461385739580634,
+        "min": 0.0,
+        "p10": 0.0,
+        "median": 4.930380657631324e-32,
+        "p90": 1.9693182940052358e-05,
+        "max": 0.17534159946274247
+      },
+      "wall_ms": {
+        "n": 12,
+        "mean": 1340.4302061656683,
+        "min": 1327.4399950023508,
+        "p10": 1329.8829848012247,
+        "median": 1334.6646374957345,
+        "p90": 1356.1994479954592,
+        "max": 1373.9708770008292
+      },
+      "region90_covered": {
+        "count": 7,
+        "n": 12,
+        "wilson95": [
+          0.3195073356553728,
+          0.8067425380947535
+        ]
+      },
+      "source_miss": {
+        "count": 0,
+        "n": 12,
+        "wilson95": [
+          0,
+          0.2425007574992425
+        ]
+      },
+      "false_source_alarm": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "narrow_wrong_region": {
+        "count": 5,
+        "n": 12,
+        "wilson95": [
+          0.19325746190524656,
+          0.6804926643446272
+        ]
+      },
+      "sharp_wrong_region": {
+        "count": 5,
+        "n": 12,
+        "wilson95": [
+          0.19325746190524656,
+          0.6804926643446272
+        ]
+      },
+      "warning": {
+        "count": 4,
+        "n": 12,
+        "wilson95": [
+          0.13811783989736134,
+          0.609382412602386
+        ]
+      },
+      "prediction_rmse_ug_m3": {
+        "n": 12,
+        "mean": 2.0789294872963446,
+        "min": 0.9708216419565892,
+        "p10": 1.4733890454117013,
+        "median": 1.8234486816599869,
+        "p90": 3.321924011648154,
+        "max": 3.7097958041493033
+      },
+      "prediction_nlpd": {
+        "n": 12,
+        "mean": 2.230922227566378,
+        "min": 1.7717635155397948,
+        "p10": 1.8979406085231216,
+        "median": 2.0094713462980867,
+        "p90": 3.0868764616778397,
+        "max": 3.3699226548989114
+      },
+      "prediction_interval90_coverage": {
+        "n": 12,
+        "mean": 0.8958333333333334,
+        "min": 0.5625,
+        "p10": 0.75625,
+        "median": 0.9375,
+        "p90": 1.0,
+        "max": 1.0
+      },
+      "prediction_interval90_width": {
+        "n": 12,
+        "mean": 7.448444568522704,
+        "min": 6.6510649424006125,
+        "p10": 6.6774049044878625,
+        "median": 6.97698303538792,
+        "p90": 8.78331271019101,
+        "max": 10.400774121252141
+      }
+    },
+    {
+      "family": "changing_release_campaign",
+      "model": "baseline-0.3.0",
+      "generated": 12,
+      "statuses": {
+        "refused": 12
+      },
+      "accepted": 0,
+      "accepted_region_misses": 0,
+      "map_error_m": null,
+      "mean_error_m": null,
+      "prior_centroid_error_m": null,
+      "region90_area_fraction": null,
+      "region90_area_m2": null,
+      "source_probability": null,
+      "source_brier": null,
+      "wall_ms": null,
+      "region90_covered": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "source_miss": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "false_source_alarm": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "narrow_wrong_region": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "sharp_wrong_region": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "warning": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "prediction_rmse_ug_m3": null,
+      "prediction_nlpd": null,
+      "prediction_interval90_coverage": null,
+      "prediction_interval90_width": null
+    },
+    {
+      "family": "changing_release_campaign",
+      "model": "plume-campaign-0.4.0",
+      "generated": 12,
+      "statuses": {
+        "fitted": 12
+      },
+      "accepted": 8,
+      "accepted_region_misses": 5,
+      "map_error_m": {
+        "n": 12,
+        "mean": 111.89611672619401,
+        "min": 17.127021697338094,
+        "p10": 20.454300498338526,
+        "median": 78.6126117312994,
+        "p90": 266.5547938452644,
+        "max": 293.98902827952196
+      },
+      "mean_error_m": {
+        "n": 12,
+        "mean": 69.3968030712444,
+        "min": 17.380392768041308,
+        "p10": 22.133259814916048,
+        "median": 67.19699190572143,
+        "p90": 101.98368150456055,
+        "max": 190.81797671466842
+      },
+      "prior_centroid_error_m": {
+        "n": 12,
+        "mean": 157.90933497151573,
+        "min": 75.3138515874993,
+        "p10": 96.21786384504921,
+        "median": 162.72743181024885,
+        "p90": 216.8586169681368,
+        "max": 247.37725780643092
+      },
+      "region90_area_fraction": {
+        "n": 12,
+        "mean": 0.11994660564454614,
+        "min": 0.004576659038901606,
+        "p10": 0.01624713958810069,
+        "median": 0.059496567505720827,
+        "p90": 0.33180778032036623,
+        "max": 0.5697940503432494
+      },
+      "region90_area_m2": {
+        "n": 12,
+        "mean": 19528.459411865875,
+        "min": 745.1240475115762,
+        "p10": 2645.190368666094,
+        "median": 9686.612617650482,
+        "p90": 54021.49344458924,
+        "max": 92767.94391519115
+      },
+      "source_probability": {
+        "n": 12,
+        "mean": 0.8969044418808586,
+        "min": 0.2769924621688044,
+        "p10": 0.5373594433855386,
+        "median": 0.9999999911374253,
+        "p90": 1.0,
+        "max": 1.0
+      },
+      "source_brier": {
+        "n": 12,
+        "mean": 0.0655808460285071,
+        "min": 0.0,
+        "p10": 1.232595164407832e-33,
+        "median": 1.5568043894525108e-16,
+        "p90": 0.23780721836878868,
+        "max": 0.5227398997607277
+      },
+      "wall_ms": {
+        "n": 12,
+        "mean": 1366.7194904167748,
+        "min": 1328.3093889986048,
+        "p10": 1336.7741229973035,
+        "median": 1356.2070450025203,
+        "p90": 1427.6871587011556,
+        "max": 1440.1171619974775
+      },
+      "region90_covered": {
+        "count": 5,
+        "n": 12,
+        "wilson95": [
+          0.19325746190524656,
+          0.6804926643446272
+        ]
+      },
+      "source_miss": {
+        "count": 2,
+        "n": 12,
+        "wilson95": [
+          0.04696414761482223,
+          0.44803635738467273
+        ]
+      },
+      "false_source_alarm": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "narrow_wrong_region": {
+        "count": 7,
+        "n": 12,
+        "wilson95": [
+          0.3195073356553728,
+          0.8067425380947535
+        ]
+      },
+      "sharp_wrong_region": {
+        "count": 7,
+        "n": 12,
+        "wilson95": [
+          0.3195073356553728,
+          0.8067425380947535
+        ]
+      },
+      "warning": {
+        "count": 2,
+        "n": 12,
+        "wilson95": [
+          0.04696414761482223,
+          0.44803635738467273
+        ]
+      },
+      "prediction_rmse_ug_m3": {
+        "n": 12,
+        "mean": 2.1932151245591514,
+        "min": 0.8480654784853849,
+        "p10": 1.3237560989872328,
+        "median": 1.7283752498478275,
+        "p90": 3.817173752319576,
+        "max": 5.070082222665537
+      },
+      "prediction_nlpd": {
+        "n": 12,
+        "mean": 2.1261910425121795,
+        "min": 1.7512670907799972,
+        "p10": 1.8304622789580016,
+        "median": 2.001205811438357,
+        "p90": 2.520081725447748,
+        "max": 2.985598690266193
+      },
+      "prediction_interval90_coverage": {
+        "n": 12,
+        "mean": 0.921875,
+        "min": 0.75,
+        "p10": 0.75625,
+        "median": 0.9375,
+        "p90": 1.0,
+        "max": 1.0
+      },
+      "prediction_interval90_width": {
+        "n": 12,
+        "mean": 7.204005505239476,
+        "min": 6.536100155218476,
+        "p10": 6.710930351259107,
+        "median": 6.9430916951200645,
+        "p90": 7.730456820884828,
+        "max": 8.830610495069031
+      }
+    },
+    {
+      "family": "biased_met_campaign",
+      "model": "baseline-0.3.0",
+      "generated": 12,
+      "statuses": {
+        "refused": 12
+      },
+      "accepted": 0,
+      "accepted_region_misses": 0,
+      "map_error_m": null,
+      "mean_error_m": null,
+      "prior_centroid_error_m": null,
+      "region90_area_fraction": null,
+      "region90_area_m2": null,
+      "source_probability": null,
+      "source_brier": null,
+      "wall_ms": null,
+      "region90_covered": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "source_miss": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "false_source_alarm": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "narrow_wrong_region": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "sharp_wrong_region": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "warning": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "prediction_rmse_ug_m3": null,
+      "prediction_nlpd": null,
+      "prediction_interval90_coverage": null,
+      "prediction_interval90_width": null
+    },
+    {
+      "family": "biased_met_campaign",
+      "model": "plume-campaign-0.4.0",
+      "generated": 12,
+      "statuses": {
+        "fitted": 12
+      },
+      "accepted": 8,
+      "accepted_region_misses": 8,
+      "map_error_m": {
+        "n": 12,
+        "mean": 199.45393782909403,
+        "min": 74.21037943930989,
+        "p10": 83.95307608618747,
+        "median": 202.56824452949428,
+        "p90": 237.40750263196475,
+        "max": 520.4819982392173
+      },
+      "mean_error_m": {
+        "n": 12,
+        "mean": 173.9828045153472,
+        "min": 73.59420504580147,
+        "p10": 83.84683468489875,
+        "median": 199.9564793527718,
+        "p90": 221.98265956544978,
+        "max": 266.16117000439135
+      },
+      "prior_centroid_error_m": {
+        "n": 12,
+        "mean": 157.90933497151573,
+        "min": 75.3138515874993,
+        "p10": 96.21786384504921,
+        "median": 162.72743181024885,
+        "p90": 216.8586169681368,
+        "max": 247.37725780643092
+      },
+      "region90_area_fraction": {
+        "n": 12,
+        "mean": 0.12757437070938216,
+        "min": 0.011441647597254004,
+        "p10": 0.01945080091533181,
+        "median": 0.06521739130434784,
+        "p90": 0.251258581235698,
+        "max": 0.691075514874142
+      },
+      "region90_area_m2": {
+        "n": 12,
+        "mean": 20770.332824385172,
+        "min": 1862.8101187789389,
+        "p10": 3166.7772019241966,
+        "median": 10618.017677039952,
+        "p90": 40907.31020838551,
+        "max": 112513.73117424792
+      },
+      "source_probability": {
+        "n": 12,
+        "mean": 0.9048612368205858,
+        "min": 0.16888857185094439,
+        "p10": 0.7864685047889886,
+        "median": 0.9995310075615677,
+        "p90": 1.0,
+        "max": 1.0
+      },
+      "source_brier": {
+        "n": 12,
+        "mean": 0.06236127650629119,
+        "min": 0.0,
+        "p10": 0.0,
+        "median": 3.709780684396425e-07,
+        "p90": 0.04791140859300467,
+        "max": 0.6907462059999628
+      },
+      "wall_ms": {
+        "n": 12,
+        "mean": 1381.504838333664,
+        "min": 1347.4682550004218,
+        "p10": 1351.4517956020427,
+        "median": 1367.901814999641,
+        "p90": 1430.6481619001715,
+        "max": 1449.582373999874
+      },
+      "region90_covered": {
+        "count": 1,
+        "n": 12,
+        "wilson95": [
+          0.014864709450773478,
+          0.35388592179859524
+        ]
+      },
+      "source_miss": {
+        "count": 1,
+        "n": 12,
+        "wilson95": [
+          0.014864709450773478,
+          0.35388592179859524
+        ]
+      },
+      "false_source_alarm": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "narrow_wrong_region": {
+        "count": 10,
+        "n": 12,
+        "wilson95": [
+          0.5519636426153274,
+          0.9530358523851776
+        ]
+      },
+      "sharp_wrong_region": {
+        "count": 10,
+        "n": 12,
+        "wilson95": [
+          0.5519636426153274,
+          0.9530358523851776
+        ]
+      },
+      "warning": {
+        "count": 2,
+        "n": 12,
+        "wilson95": [
+          0.04696414761482223,
+          0.44803635738467273
+        ]
+      },
+      "prediction_rmse_ug_m3": {
+        "n": 12,
+        "mean": 2.6748032550265144,
+        "min": 1.0463980283883565,
+        "p10": 1.2287540938427293,
+        "median": 1.6081478229602872,
+        "p90": 6.909390074807998,
+        "max": 8.405193313433115
+      },
+      "prediction_nlpd": {
+        "n": 12,
+        "mean": 2.114836753062518,
+        "min": 1.7998315683423767,
+        "p10": 1.8212897604976943,
+        "median": 1.9773910306115299,
+        "p90": 2.482459204353572,
+        "max": 3.115037761439037
+      },
+      "prediction_interval90_coverage": {
+        "n": 12,
+        "mean": 0.9375,
+        "min": 0.6875,
+        "p10": 0.76875,
+        "median": 1.0,
+        "p90": 1.0,
+        "max": 1.0
+      },
+      "prediction_interval90_width": {
+        "n": 12,
+        "mean": 7.804317495819387,
+        "min": 6.541491532438549,
+        "p10": 6.633425319844767,
+        "median": 7.00066652690373,
+        "p90": 8.544070442691867,
+        "max": 13.772558899435335
+      }
+    },
+    {
+      "family": "correlated_campaign",
+      "model": "baseline-0.3.0",
+      "generated": 12,
+      "statuses": {
+        "refused": 12
+      },
+      "accepted": 0,
+      "accepted_region_misses": 0,
+      "map_error_m": null,
+      "mean_error_m": null,
+      "prior_centroid_error_m": null,
+      "region90_area_fraction": null,
+      "region90_area_m2": null,
+      "source_probability": null,
+      "source_brier": null,
+      "wall_ms": null,
+      "region90_covered": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "source_miss": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "false_source_alarm": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "narrow_wrong_region": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "sharp_wrong_region": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "warning": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "prediction_rmse_ug_m3": null,
+      "prediction_nlpd": null,
+      "prediction_interval90_coverage": null,
+      "prediction_interval90_width": null
+    },
+    {
+      "family": "correlated_campaign",
+      "model": "plume-campaign-0.4.0",
+      "generated": 12,
+      "statuses": {
+        "fitted": 12
+      },
+      "accepted": 4,
+      "accepted_region_misses": 1,
+      "map_error_m": {
+        "n": 12,
+        "mean": 65.74631295831605,
+        "min": 2.5288785721635785,
+        "p10": 14.670753062905305,
+        "median": 34.30428916458338,
+        "p90": 120.29039710635128,
+        "max": 283.8929216904239
+      },
+      "mean_error_m": {
+        "n": 12,
+        "mean": 53.27143447249774,
+        "min": 6.987922317877339,
+        "p10": 17.534438870297762,
+        "median": 35.615195080131144,
+        "p90": 104.42111834958065,
+        "max": 116.25114184402958
+      },
+      "prior_centroid_error_m": {
+        "n": 12,
+        "mean": 157.90933497151573,
+        "min": 75.3138515874993,
+        "p10": 96.21786384504921,
+        "median": 162.72743181024885,
+        "p90": 216.8586169681368,
+        "max": 247.37725780643092
+      },
+      "region90_area_fraction": {
+        "n": 12,
+        "mean": 0.07780320366132722,
+        "min": 0.0068649885583524015,
+        "p10": 0.025629290617848962,
+        "median": 0.08352402745995424,
+        "p90": 0.1356979405034325,
+        "max": 0.14874141876430205
+      },
+      "region90_area_m2": {
+        "n": 12,
+        "mean": 12667.108807696784,
+        "min": 1117.686071267363,
+        "p10": 4172.694666064822,
+        "median": 13598.513867086254,
+        "p90": 22092.928008718216,
+        "max": 24216.531544126206
+      },
+      "source_probability": {
+        "n": 12,
+        "mean": 0.9639210662167383,
+        "min": 0.6303066114158231,
+        "p10": 0.9437862398956083,
+        "median": 0.9999993324691973,
+        "p90": 0.9999999999999999,
+        "max": 1.0
+      },
+      "source_brier": {
+        "n": 12,
+        "mean": 0.011713792619307183,
+        "min": 0.0,
+        "p10": 1.6023737137301806e-32,
+        "median": 4.978237170011146e-13,
+        "p90": 0.00350268252020733,
+        "max": 0.1366732015628512
+      },
+      "wall_ms": {
+        "n": 12,
+        "mean": 1419.6623758325586,
+        "min": 1353.7709149968578,
+        "p10": 1362.9281210000045,
+        "median": 1396.633414002281,
+        "p90": 1534.2882672004635,
+        "max": 1560.1739779958734
+      },
+      "region90_covered": {
+        "count": 10,
+        "n": 12,
+        "wilson95": [
+          0.5519636426153274,
+          0.9530358523851776
+        ]
+      },
+      "source_miss": {
+        "count": 0,
+        "n": 12,
+        "wilson95": [
+          0,
+          0.2425007574992425
+        ]
+      },
+      "false_source_alarm": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "narrow_wrong_region": {
+        "count": 2,
+        "n": 12,
+        "wilson95": [
+          0.04696414761482223,
+          0.44803635738467273
+        ]
+      },
+      "sharp_wrong_region": {
+        "count": 2,
+        "n": 12,
+        "wilson95": [
+          0.04696414761482223,
+          0.44803635738467273
+        ]
+      },
+      "warning": {
+        "count": 7,
+        "n": 12,
+        "wilson95": [
+          0.3195073356553728,
+          0.8067425380947535
+        ]
+      },
+      "prediction_rmse_ug_m3": {
+        "n": 12,
+        "mean": 2.4932179363144833,
+        "min": 1.4236869137572294,
+        "p10": 1.8950395445811794,
+        "median": 2.4855413109835602,
+        "p90": 3.1470316985107387,
+        "max": 3.521429530355637
+      },
+      "prediction_nlpd": {
+        "n": 12,
+        "mean": 2.379367243549985,
+        "min": 1.8890724351528514,
+        "p10": 2.030836382949082,
+        "median": 2.3821106384168873,
+        "p90": 2.6837901355695464,
+        "max": 2.9032996818387113
+      },
+      "prediction_interval90_coverage": {
+        "n": 12,
+        "mean": 0.8385416666666666,
+        "min": 0.6875,
+        "p10": 0.75625,
+        "median": 0.8125,
+        "p90": 0.9375,
+        "max": 1.0
+      },
+      "prediction_interval90_width": {
+        "n": 12,
+        "mean": 7.515886404472816,
+        "min": 6.743670895185255,
+        "p10": 6.842309858636661,
+        "median": 7.14965493226474,
+        "p90": 8.279787980475971,
+        "max": 9.973302706367283
+      }
+    },
+    {
+      "family": "boundary_campaign",
+      "model": "baseline-0.3.0",
+      "generated": 12,
+      "statuses": {
+        "refused": 12
+      },
+      "accepted": 0,
+      "accepted_region_misses": 0,
+      "map_error_m": null,
+      "mean_error_m": null,
+      "prior_centroid_error_m": null,
+      "region90_area_fraction": null,
+      "region90_area_m2": null,
+      "source_probability": null,
+      "source_brier": null,
+      "wall_ms": null,
+      "region90_covered": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "source_miss": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "false_source_alarm": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "narrow_wrong_region": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "sharp_wrong_region": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "warning": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "prediction_rmse_ug_m3": null,
+      "prediction_nlpd": null,
+      "prediction_interval90_coverage": null,
+      "prediction_interval90_width": null
+    },
+    {
+      "family": "boundary_campaign",
+      "model": "plume-campaign-0.4.0",
+      "generated": 12,
+      "statuses": {
+        "fitted": 12
+      },
+      "accepted": 8,
+      "accepted_region_misses": 0,
+      "map_error_m": {
+        "n": 12,
+        "mean": 40.17982976100614,
+        "min": 5.68159753433176,
+        "p10": 6.808968700129598,
+        "median": 21.68457732368065,
+        "p90": 115.12627294826368,
+        "max": 176.46494279615263
+      },
+      "mean_error_m": {
+        "n": 12,
+        "mean": 62.235175503962836,
+        "min": 9.610158563220091,
+        "p10": 11.53884361375152,
+        "median": 59.14985992111352,
+        "p90": 121.5994652909806,
+        "max": 132.0117842238585
+      },
+      "prior_centroid_error_m": {
+        "n": 12,
+        "mean": 228.86461097765763,
+        "min": 188.52122465434738,
+        "p10": 200.6299317790947,
+        "median": 228.27579403914598,
+        "p90": 263.4225208691697,
+        "max": 273.08803871550396
+      },
+      "region90_area_fraction": {
+        "n": 12,
+        "mean": 0.12109077040427153,
+        "min": 0.004576659038901596,
+        "p10": 0.007322654462242562,
+        "median": 0.08810068649885591,
+        "p90": 0.26475972540045767,
+        "max": 0.5377574370709381
+      },
+      "region90_area_m2": {
+        "n": 12,
+        "mean": 19714.74042374377,
+        "min": 745.1240475115745,
+        "p10": 1192.198476018521,
+        "median": 14343.637914597843,
+        "p90": 43105.42614854465,
+        "max": 87552.07558261012
+      },
+      "source_probability": {
+        "n": 12,
+        "mean": 0.8973091637401299,
+        "min": 0.38423135547572457,
+        "p10": 0.6882193433538453,
+        "median": 0.9925906621569379,
+        "p90": 1.0,
+        "max": 1.0
+      },
+      "source_brier": {
+        "n": 12,
+        "mean": 0.04332361110422974,
+        "min": 0.0,
+        "p10": 0.0,
+        "median": 5.511350155263147e-05,
+        "p90": 0.10028018369376554,
+        "max": 0.3791710235792634
+      },
+      "wall_ms": {
+        "n": 12,
+        "mean": 1370.4355468338083,
+        "min": 1342.0754640028463,
+        "p10": 1343.669252503605,
+        "median": 1359.66900549829,
+        "p90": 1395.8517601990025,
+        "max": 1461.9628820000798
+      },
+      "region90_covered": {
+        "count": 12,
+        "n": 12,
+        "wilson95": [
+          0.7574992425007574,
+          1
+        ]
+      },
+      "source_miss": {
+        "count": 1,
+        "n": 12,
+        "wilson95": [
+          0.014864709450773478,
+          0.35388592179859524
+        ]
+      },
+      "false_source_alarm": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "narrow_wrong_region": {
+        "count": 0,
+        "n": 12,
+        "wilson95": [
+          0,
+          0.2425007574992425
+        ]
+      },
+      "sharp_wrong_region": {
+        "count": 0,
+        "n": 12,
+        "wilson95": [
+          0,
+          0.2425007574992425
+        ]
+      },
+      "warning": {
+        "count": 1,
+        "n": 12,
+        "wilson95": [
+          0.014864709450773478,
+          0.35388592179859524
+        ]
+      },
+      "prediction_rmse_ug_m3": {
+        "n": 12,
+        "mean": 2.721946946141824,
+        "min": 1.0053297972706021,
+        "p10": 1.175858755958634,
+        "median": 1.718902512546328,
+        "p90": 2.342312984800049,
+        "max": 14.21428469597168
+      },
+      "prediction_nlpd": {
+        "n": 12,
+        "mean": 2.147694135873734,
+        "min": 1.726736111591701,
+        "p10": 1.8812533320242857,
+        "median": 1.9764079837568795,
+        "p90": 2.505270207580773,
+        "max": 3.311152377295024
+      },
+      "prediction_interval90_coverage": {
+        "n": 12,
+        "mean": 0.9427083333333334,
+        "min": 0.75,
+        "p10": 0.875,
+        "median": 0.96875,
+        "p90": 1.0,
+        "max": 1.0
+      },
+      "prediction_interval90_width": {
+        "n": 12,
+        "mean": 7.684861118298848,
+        "min": 6.537394172584193,
+        "p10": 6.586207111059412,
+        "median": 6.988745503539517,
+        "p90": 8.231322766557891,
+        "max": 14.825410182931755
+      }
+    },
+    {
+      "family": "independent_transport",
+      "model": "baseline-0.3.0",
+      "generated": 12,
+      "statuses": {
+        "refused": 12
+      },
+      "accepted": 0,
+      "accepted_region_misses": 0,
+      "map_error_m": null,
+      "mean_error_m": null,
+      "prior_centroid_error_m": null,
+      "region90_area_fraction": null,
+      "region90_area_m2": null,
+      "source_probability": null,
+      "source_brier": null,
+      "wall_ms": null,
+      "region90_covered": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "source_miss": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "false_source_alarm": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "narrow_wrong_region": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "sharp_wrong_region": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "warning": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "prediction_rmse_ug_m3": null,
+      "prediction_nlpd": null,
+      "prediction_interval90_coverage": null,
+      "prediction_interval90_width": null
+    },
+    {
+      "family": "independent_transport",
+      "model": "plume-campaign-0.4.0",
+      "generated": 12,
+      "statuses": {
+        "fitted": 12
+      },
+      "accepted": 11,
+      "accepted_region_misses": 1,
+      "map_error_m": {
+        "n": 12,
+        "mean": 86.31236694610989,
+        "min": 14.894945889839414,
+        "p10": 17.366784277520278,
+        "median": 40.93674565375618,
+        "p90": 257.8057915226744,
+        "max": 281.1801163413057
+      },
+      "mean_error_m": {
+        "n": 12,
+        "mean": 60.845067059165444,
+        "min": 16.202685943632115,
+        "p10": 17.915257223096535,
+        "median": 28.092755205724107,
+        "p90": 158.94244765782295,
+        "max": 225.56977347651537
+      },
+      "prior_centroid_error_m": {
+        "n": 12,
+        "mean": 157.90933497151573,
+        "min": 75.3138515874993,
+        "p10": 96.21786384504921,
+        "median": 162.72743181024885,
+        "p90": 216.8586169681368,
+        "max": 247.37725780643092
+      },
+      "region90_area_fraction": {
+        "n": 12,
+        "mean": 0.09992372234935164,
+        "min": 0.004576659038901609,
+        "p10": 0.016475972540045767,
+        "median": 0.05949656750572081,
+        "p90": 0.09221967963386726,
+        "max": 0.6544622425629291
+      },
+      "region90_area_m2": {
+        "n": 12,
+        "mean": 16268.541704002731,
+        "min": 745.1240475115767,
+        "p10": 2682.446571041672,
+        "median": 9686.61261765048,
+        "p90": 15014.249557358244,
+        "max": 106552.7387941553
+      },
+      "source_probability": {
+        "n": 12,
+        "mean": 0.933090306536546,
+        "min": 0.1970934522130514,
+        "p10": 0.9999912657848037,
+        "median": 0.9999999999999999,
+        "p90": 1.0,
+        "max": 1.0
+      },
+      "source_brier": {
+        "n": 12,
+        "mean": 0.053721577047764674,
+        "min": 0.0,
+        "p10": 0.0,
+        "median": 1.232595164407831e-32,
+        "p90": 8.461375819051458e-11,
+        "max": 0.6446589244791555
+      },
+      "wall_ms": {
+        "n": 12,
+        "mean": 1368.6213592494216,
+        "min": 1340.3051439963747,
+        "p10": 1341.8189770018216,
+        "median": 1358.7038490004488,
+        "p90": 1387.4519441968005,
+        "max": 1454.1535589960404
+      },
+      "region90_covered": {
+        "count": 11,
+        "n": 12,
+        "wilson95": [
+          0.6461140782014047,
+          0.9851352905492264
+        ]
+      },
+      "source_miss": {
+        "count": 1,
+        "n": 12,
+        "wilson95": [
+          0.014864709450773478,
+          0.35388592179859524
+        ]
+      },
+      "false_source_alarm": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "narrow_wrong_region": {
+        "count": 1,
+        "n": 12,
+        "wilson95": [
+          0.014864709450773478,
+          0.35388592179859524
+        ]
+      },
+      "sharp_wrong_region": {
+        "count": 1,
+        "n": 12,
+        "wilson95": [
+          0.014864709450773478,
+          0.35388592179859524
+        ]
+      },
+      "warning": {
+        "count": 0,
+        "n": 12,
+        "wilson95": [
+          0,
+          0.2425007574992425
+        ]
+      },
+      "prediction_rmse_ug_m3": {
+        "n": 12,
+        "mean": 1.9320947760855605,
+        "min": 0.8730439762875589,
+        "p10": 1.3619787833888946,
+        "median": 1.8141336807673982,
+        "p90": 2.8769864482209364,
+        "max": 2.9931010263506668
+      },
+      "prediction_nlpd": {
+        "n": 12,
+        "mean": 2.032902947507392,
+        "min": 1.755902684231408,
+        "p10": 1.8825285907534415,
+        "median": 2.0070378829859767,
+        "p90": 2.235383348871623,
+        "max": 2.5422730185565827
+      },
+      "prediction_interval90_coverage": {
+        "n": 12,
+        "mean": 0.9479166666666666,
+        "min": 0.75,
+        "p10": 0.9375,
+        "median": 0.9375,
+        "p90": 1.0,
+        "max": 1.0
+      },
+      "prediction_interval90_width": {
+        "n": 12,
+        "mean": 7.632542014699652,
+        "min": 6.584959147062726,
+        "p10": 6.678793527700423,
+        "median": 6.978343647948018,
+        "p90": 9.786553715520116,
+        "max": 10.1696906308558
+      }
+    },
+    {
+      "family": "unsupported_campaign",
+      "model": "baseline-0.3.0",
+      "generated": 12,
+      "statuses": {
+        "refused": 12
+      },
+      "accepted": 0,
+      "accepted_region_misses": 0,
+      "map_error_m": null,
+      "mean_error_m": null,
+      "prior_centroid_error_m": null,
+      "region90_area_fraction": null,
+      "region90_area_m2": null,
+      "source_probability": null,
+      "source_brier": null,
+      "wall_ms": null,
+      "region90_covered": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "source_miss": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "false_source_alarm": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "narrow_wrong_region": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "sharp_wrong_region": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "warning": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "prediction_rmse_ug_m3": null,
+      "prediction_nlpd": null,
+      "prediction_interval90_coverage": null,
+      "prediction_interval90_width": null
+    },
+    {
+      "family": "unsupported_campaign",
+      "model": "plume-campaign-0.4.0",
+      "generated": 12,
+      "statuses": {
+        "refused": 12
+      },
+      "accepted": 0,
+      "accepted_region_misses": 0,
+      "map_error_m": null,
+      "mean_error_m": null,
+      "prior_centroid_error_m": null,
+      "region90_area_fraction": null,
+      "region90_area_m2": null,
+      "source_probability": null,
+      "source_brier": null,
+      "wall_ms": null,
+      "region90_covered": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "source_miss": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "false_source_alarm": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "narrow_wrong_region": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "sharp_wrong_region": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "warning": {
+        "count": 0,
+        "n": 0,
+        "wilson95": null
+      },
+      "prediction_rmse_ug_m3": null,
+      "prediction_nlpd": null,
+      "prediction_interval90_coverage": null,
+      "prediction_interval90_width": null
+    }
+  ],
+  "planner": [
+    {
+      "family": "biased_met_campaign",
+      "method": "prediction_risk",
+      "worlds": 4,
+      "rmse_advantage_vs_random20": {
+        "n": 4,
+        "mean": 0.27731196187804963,
+        "min": -0.0032982800126839518,
+        "p10": 0.053199661022788024,
+        "median": 0.19330271659810122,
+        "p90": 0.56863165895727,
+        "max": 0.7259406943286799
+      },
+      "mean_advantage_bootstrap95": [
+        0.04792060076314866,
+        0.5907125682728989
+      ],
+      "worse_count": 1,
+      "worse_wilson95": [
+        0.045586062644636216,
+        0.6993639475573634
+      ],
+      "posterior_rmse": {
+        "n": 4,
+        "mean": 1.2521329621512307,
+        "min": 0.8076898716928516,
+        "p10": 0.8183970727110397,
+        "median": 1.1846566366729627,
+        "p90": 1.739849911974036,
+        "max": 1.8315287035661458
+      },
+      "mean_cost": 205.0
+    },
+    {
+      "family": "biased_met_campaign",
+      "method": "information",
+      "worlds": 4,
+      "rmse_advantage_vs_random20": {
+        "n": 4,
+        "mean": 0.17412070047602657,
+        "min": -0.06683415355408995,
+        "p10": -0.04201669593877193,
+        "median": 0.01833695219367948,
+        "p90": 0.5148850955167028,
+        "max": 0.7266430510708373
+      },
+      "mean_advantage_bootstrap95": [
+        -0.044929815359636915,
+        0.5489549645940371
+      ],
+      "worse_count": 1,
+      "worse_wilson95": [
+        0.045586062644636216,
+        0.6993639475573634
+      ],
+      "posterior_rmse": {
+        "n": 4,
+        "mean": 1.3553242235532539,
+        "min": 0.9719348625746853,
+        "p10": 1.0138919853217443,
+        "median": 1.3092678424071704,
+        "p90": 1.7336015667016298,
+        "max": 1.8308263468239885
+      },
+      "mean_cost": 207.5
+    },
+    {
+      "family": "biased_met_campaign",
+      "method": "spread",
+      "worlds": 4,
+      "rmse_advantage_vs_random20": {
+        "n": 4,
+        "mean": -0.034997341027963674,
+        "min": -0.268337758414396,
+        "p10": -0.21122842744631995,
+        "median": -0.02830479791689977,
+        "p90": 0.13587971090154152,
+        "max": 0.18495799013634084
+      },
+      "mean_advantage_bootstrap95": [
+        -0.19591238730571126,
+        0.11922516213872
+      ],
+      "worse_count": 2,
+      "worse_wilson95": [
+        0.15003570882017148,
+        0.8499642911798285
+      ],
+      "posterior_rmse": {
+        "n": 4,
+        "mean": 1.5644422650572438,
+        "min": 0.8599997947077843,
+        "p10": 0.9232072713912141,
+        "median": 1.2859810546059849,
+        "p90": 2.4284462270842813,
+        "max": 2.8258071563092217
+      },
+      "mean_cost": 202.5
+    },
+    {
+      "family": "biased_met_campaign",
+      "method": "wind",
+      "worlds": 4,
+      "rmse_advantage_vs_random20": {
+        "n": 4,
+        "mean": 0.14633332482876268,
+        "min": -0.21121443266974183,
+        "p10": -0.14308289131972823,
+        "median": 0.035009142522232806,
+        "p90": 0.5248088868224776,
+        "max": 0.726529446940327
+      },
+      "mean_advantage_bootstrap95": [
+        -0.14487892953209916,
+        0.5488697614961544
+      ],
+      "worse_count": 1,
+      "worse_wilson95": [
+        0.045586062644636216,
+        0.6993639475573634
+      ],
+      "posterior_rmse": {
+        "n": 4,
+        "mean": 1.3831115992005174,
+        "min": 0.9385904819175787,
+        "p10": 1.033865002596465,
+        "median": 1.3814579819649966,
+        "p90": 1.733681089592987,
+        "max": 1.8309399509544988
+      },
+      "mean_cost": 190.0
+    },
+    {
+      "family": "biased_met_campaign",
+      "method": "baseline_0.3_planner",
+      "worlds": 4,
+      "rmse_advantage_vs_random20": {
+        "n": 4,
+        "mean": -0.035448965861235665,
+        "min": -0.26863883003500666,
+        "p10": -0.18453756016188366,
+        "median": 0.011764266217033192,
+        "p90": 0.07586904277679728,
+        "max": 0.10331443415599761
+      },
+      "mean_advantage_bootstrap95": [
+        -0.19852167346992255,
+        0.08041050966918237
+      ],
+      "worse_count": 1,
+      "worse_wilson95": [
+        0.045586062644636216,
+        0.6993639475573634
+      ],
+      "posterior_rmse": {
+        "n": 4,
+        "mean": 1.5648938898905158,
+        "min": 0.9416433506881275,
+        "p10": 0.9534168251536126,
+        "median": 1.245911990472052,
+        "p90": 2.431556474162191,
+        "max": 2.8261082279298324
+      },
+      "mean_cost": 0.0
+    },
+    {
+      "family": "informative_campaign",
+      "method": "prediction_risk",
+      "worlds": 4,
+      "rmse_advantage_vs_random20": {
+        "n": 4,
+        "mean": 0.07010759724218046,
+        "min": -0.10177879192535189,
+        "p10": -0.07258679471840768,
+        "median": 0.09381682801122199,
+        "p90": 0.19383460458753538,
+        "max": 0.19457552487162977
+      },
+      "mean_advantage_bootstrap95": [
+        -0.05312546324711154,
+        0.19334065773147247
+      ],
+      "worse_count": 2,
+      "worse_wilson95": [
+        0.15003570882017148,
+        0.8499642911798285
+      ],
+      "posterior_rmse": {
+        "n": 4,
+        "mean": 1.1305207138825273,
+        "min": 0.7887941159460973,
+        "p10": 0.8114910583541672,
+        "median": 1.1035361245257735,
+        "p90": 1.4711380408962904,
+        "max": 1.5262164905324649
+      },
+      "mean_cost": 207.5
+    },
+    {
+      "family": "informative_campaign",
+      "method": "information",
+      "worlds": 4,
+      "rmse_advantage_vs_random20": {
+        "n": 4,
+        "mean": 0.01902371387022911,
+        "min": -0.09305856463246864,
+        "p10": -0.06145532363623167,
+        "median": 0.017829138460143057,
+        "p90": 0.10045841170475875,
+        "max": 0.13349514319309896
+      },
+      "mean_advantage_bootstrap95": [
+        -0.0639507472496936,
+        0.10319275040023787
+      ],
+      "worse_count": 1,
+      "worse_wilson95": [
+        0.045586062644636216,
+        0.6993639475573634
+      ],
+      "posterior_rmse": {
+        "n": 4,
+        "mean": 1.1816045972544786,
+        "min": 0.9255309723181947,
+        "p10": 0.9351298411143706,
+        "median": 1.1457143163788903,
+        "p90": 1.4567915780950573,
+        "max": 1.509458783941939
+      },
+      "mean_cost": 150.0
+    },
+    {
+      "family": "informative_campaign",
+      "method": "spread",
+      "worlds": 4,
+      "rmse_advantage_vs_random20": {
+        "n": 4,
+        "mean": 0.014989365779514457,
+        "min": -0.07483406370465917,
+        "p10": -0.07280541659706483,
+        "median": -0.02381778360538922,
+        "p90": 0.13382986766401672,
+        "max": 0.18242709403349544
+      },
+      "mean_advantage_bootstrap95": [
+        -0.07145298519200194,
+        0.1198023438552854
+      ],
+      "worse_count": 2,
+      "worse_wilson95": [
+        0.15003570882017148,
+        0.8499642911798285
+      ],
+      "posterior_rmse": {
+        "n": 4,
+        "mean": 1.1856389453451932,
+        "min": 0.8765990214777982,
+        "p10": 0.928310858999486,
+        "median": 1.1823243717039738,
+        "p90": 1.4456186906038764,
+        "max": 1.5013080164950274
+      },
+      "mean_cost": 202.5
+    },
+    {
+      "family": "informative_campaign",
+      "method": "wind",
+      "worlds": 4,
+      "rmse_advantage_vs_random20": {
+        "n": 4,
+        "mean": -0.05956671511509576,
+        "min": -0.1766603770124815,
+        "p10": -0.16416635388592205,
+        "median": -0.055009869266793965,
+        "p90": 0.0413874469770891,
+        "max": 0.04841325508568639
+      },
+      "mean_advantage_bootstrap95": [
+        -0.1558370051348824,
+        0.036703574904690894
+      ],
+      "worse_count": 2,
+      "worse_wilson95": [
+        0.15003570882017148,
+        0.8499642911798285
+      ],
+      "posterior_rmse": {
+        "n": 4,
+        "mean": 1.2601950262398036,
+        "min": 1.0106128604256073,
+        "p10": 1.0422030642363338,
+        "median": 1.2667083916468542,
+        "p90": 1.4729762959176327,
+        "max": 1.4967504612398983
+      },
+      "mean_cost": 230.0
+    },
+    {
+      "family": "informative_campaign",
+      "method": "baseline_0.3_planner",
+      "worlds": 4,
+      "rmse_advantage_vs_random20": {
+        "n": 4,
+        "mean": 0.007581956923611216,
+        "min": -0.09305856463246864,
+        "p10": -0.062371611713317926,
+        "median": 0.011015567099586177,
+        "p90": 0.07478863741976041,
+        "max": 0.10135525812774115
+      },
+      "mean_advantage_bootstrap95": [
+        -0.06659395953240016,
+        0.07832426320364763
+      ],
+      "worse_count": 1,
+      "worse_wilson95": [
+        0.045586062644636216,
+        0.6993639475573634
+      ],
+      "posterior_rmse": {
+        "n": 4,
+        "mean": 1.1930463542010965,
+        "min": 0.9576708573835525,
+        "p10": 0.9607996153993689,
+        "median": 1.1510007409443035,
+        "p90": 1.4589295836082585,
+        "max": 1.5125130775322266
+      },
+      "mean_cost": 0.0
+    },
+    {
+      "family": "single_window_original",
+      "method": "prediction_risk",
+      "worlds": 4,
+      "rmse_advantage_vs_random20": {
+        "n": 4,
+        "mean": 0.21947985917504423,
+        "min": -0.05487567094598467,
+        "p10": -0.01995952848790144,
+        "median": 0.19998588676454887,
+        "p90": 0.4745144247663862,
+        "max": 0.5328233341170638
+      },
+      "mean_advantage_bootstrap95": [
+        0.0033178998174873686,
+        0.4356418185326011
+      ],
+      "worse_count": 1,
+      "worse_wilson95": [
+        0.045586062644636216,
+        0.6993639475573634
+      ],
+      "posterior_rmse": {
+        "n": 4,
+        "mean": 1.6913891760918447,
+        "min": 1.0364852450722895,
+        "p10": 1.0955816243507943,
+        "median": 1.506323778936909,
+        "p90": 2.4352490455568434,
+        "max": 2.7164239014212708
+      },
+      "mean_cost": 195.0
+    },
+    {
+      "family": "single_window_original",
+      "method": "information",
+      "worlds": 4,
+      "rmse_advantage_vs_random20": {
+        "n": 4,
+        "mean": -0.006478874757330694,
+        "min": -0.07420892413060975,
+        "p10": -0.06741451538148356,
+        "median": -0.006609022739836212,
+        "p90": 0.0545608842528266,
+        "max": 0.061511470580959404
+      },
+      "mean_advantage_bootstrap95": [
+        -0.06288490954873277,
+        0.04992716003407138
+      ],
+      "worse_count": 2,
+      "worse_wilson95": [
+        0.15003570882017148,
+        0.8499642911798285
+      ],
+      "posterior_rmse": {
+        "n": 4,
+        "mean": 1.9173479100242194,
+        "min": 1.0558184982569145,
+        "p10": 1.2261212609545302,
+        "median": 1.9485746202093464,
+        "p90": 2.5835931909458076,
+        "max": 2.7164239014212708
+      },
+      "mean_cost": 190.0
+    },
+    {
+      "family": "single_window_original",
+      "method": "spread",
+      "worlds": 4,
+      "rmse_advantage_vs_random20": {
+        "n": 4,
+        "mean": 0.0033234365797967513,
+        "min": -0.2711178687118265,
+        "p10": -0.1829765233628226,
+        "median": 0.05677687988728136,
+        "p90": 0.14686064187642847,
+        "max": 0.1708578552564508
+      },
+      "mean_advantage_bootstrap95": [
+        -0.1806216155364425,
+        0.13381504538855138
+      ],
+      "worse_count": 1,
+      "worse_wilson95": [
+        0.045586062644636216,
+        0.6993639475573634
+      ],
+      "posterior_rmse": {
+        "n": 4,
+        "mean": 1.9075455986870922,
+        "min": 0.8907424301365952,
+        "p10": 1.1764351053937978,
+        "median": 1.992095604197198,
+        "p90": 2.5710160875723016,
+        "max": 2.755248756217377
+      },
+      "mean_cost": 205.0
+    },
+    {
+      "family": "single_window_original",
+      "method": "wind",
+      "worlds": 4,
+      "rmse_advantage_vs_random20": {
+        "n": 4,
+        "mean": -0.04958998786247085,
+        "min": -0.2614271397892569,
+        "p10": -0.1998798974231691,
+        "median": -0.05080228544615156,
+        "p90": 0.10166975976517204,
+        "max": 0.16467175923167665
+      },
+      "mean_advantage_bootstrap95": [
+        -0.20740408125611073,
+        0.10943640311484976
+      ],
+      "worse_count": 3,
+      "worse_wilson95": [
+        0.3006360524426366,
+        0.9544139373553637
+      ],
+      "posterior_rmse": {
+        "n": 4,
+        "mean": 1.9604590231293595,
+        "min": 1.026944479782977,
+        "p10": 1.1410396517632142,
+        "median": 1.9903432877483003,
+        "p90": 2.7559709828003527,
+        "max": 2.834205037237861
+      },
+      "mean_cost": 225.0
+    },
+    {
+      "family": "single_window_original",
+      "method": "baseline_0.3_planner",
+      "worlds": 4,
+      "rmse_advantage_vs_random20": {
+        "n": 4,
+        "mean": -0.006478874757330694,
+        "min": -0.07420892413060975,
+        "p10": -0.06741451538148356,
+        "median": -0.006609022739836212,
+        "p90": 0.0545608842528266,
+        "max": 0.061511470580959404
+      },
+      "mean_advantage_bootstrap95": [
+        -0.06288490954873277,
+        0.04992716003407138
+      ],
+      "worse_count": 2,
+      "worse_wilson95": [
+        0.15003570882017148,
+        0.8499642911798285
+      ],
+      "posterior_rmse": {
+        "n": 4,
+        "mean": 1.9173479100242194,
+        "min": 1.0558184982569145,
+        "p10": 1.2261212609545302,
+        "median": 1.9485746202093464,
+        "p90": 2.5835931909458076,
+        "max": 2.7164239014212708
+      },
+      "mean_cost": 190.0
+    },
+    {
+      "family": "weak_campaign",
+      "method": "prediction_risk",
+      "worlds": 4,
+      "rmse_advantage_vs_random20": {
+        "n": 4,
+        "mean": 0.06569157662903091,
+        "min": 0.0441477231102656,
+        "p10": 0.04959810183933964,
+        "median": 0.06914538413984828,
+        "p90": 0.07902200541006829,
+        "max": 0.0803278151261615
+      },
+      "mean_advantage_bootstrap95": [
+        0.05210457135082858,
+        0.0781514655993395
+      ],
+      "worse_count": 0,
+      "worse_wilson95": [
+        0,
+        0.48990002040399916
+      ],
+      "posterior_rmse": {
+        "n": 4,
+        "mean": 1.265890459883736,
+        "min": 1.137142224068054,
+        "p10": 1.1404375623411829,
+        "median": 1.2472021741779753,
+        "p90": 1.4062939859908976,
+        "max": 1.432015267110939
+      },
+      "mean_cost": 210.0
+    },
+    {
+      "family": "weak_campaign",
+      "method": "information",
+      "worlds": 4,
+      "rmse_advantage_vs_random20": {
+        "n": 4,
+        "mean": -0.028892798716449952,
+        "min": -0.042368681883849124,
+        "p10": -0.04168014231327792,
+        "median": -0.033095595717479886,
+        "p90": -0.01274321751879803,
+        "max": -0.007011321546990912
+      },
+      "mean_advantage_bootstrap95": [
+        -0.04122111593289712,
+        -0.015276878655729464
+      ],
+      "worse_count": 4,
+      "worse_wilson95": [
+        0.5100999795960008,
+        1
+      ],
+      "posterior_rmse": {
+        "n": 4,
+        "mean": 1.3604748352292169,
+        "min": 1.2213634971602647,
+        "p10": 1.2362014026087336,
+        "median": 1.3432139095600657,
+        "p90": 1.498557008385021,
+        "max": 1.5341080246364711
+      },
+      "mean_cost": 185.0
+    },
+    {
+      "family": "weak_campaign",
+      "method": "spread",
+      "worlds": 4,
+      "rmse_advantage_vs_random20": {
+        "n": 4,
+        "mean": 0.018450237781211742,
+        "min": -0.06284476181430776,
+        "p10": -0.044552738373488804,
+        "median": 0.028158948906496617,
+        "p90": 0.0736862450356844,
+        "max": 0.0803278151261615
+      },
+      "mean_advantage_bootstrap95": [
+        -0.032586259321254696,
+        0.069258531642033
+      ],
+      "worse_count": 2,
+      "worse_wilson95": [
+        0.15003570882017148,
+        0.8499642911798285
+      ],
+      "posterior_rmse": {
+        "n": 4,
+        "mean": 1.313131798731555,
+        "min": 1.1481266849784832,
+        "p10": 1.1769290921827265,
+        "median": 1.3272996874610925,
+        "p90": 1.4380001942967537,
+        "max": 1.449801135025552
+      },
+      "mean_cost": 207.5
+    },
+    {
+      "family": "weak_campaign",
+      "method": "wind",
+      "worlds": 4,
+      "rmse_advantage_vs_random20": {
+        "n": 4,
+        "mean": 0.025163051517555213,
+        "min": -0.010707817940398545,
+        "p10": -4.574285536917792e-05,
+        "median": 0.025367600700164084,
+        "p90": 0.050208206544392515,
+        "max": 0.06062482261029123
+      },
+      "mean_advantage_bootstrap95": [
+        -0.0015551711909750354,
+        0.05167672504347659
+      ],
+      "worse_count": 1,
+      "worse_wilson95": [
+        0.045586062644636216,
+        0.6993639475573634
+      ],
+      "posterior_rmse": {
+        "n": 4,
+        "mean": 1.3064189849952115,
+        "min": 1.156457514835287,
+        "p10": 1.159869163633007,
+        "median": 1.2935654055096992,
+        "p90": 1.4632516699458262,
+        "max": 1.482087614126161
+      },
+      "mean_cost": 230.0
+    },
+    {
+      "family": "weak_campaign",
+      "method": "baseline_0.3_planner",
+      "worlds": 4,
+      "rmse_advantage_vs_random20": {
+        "n": 4,
+        "mean": -0.0014299317662658795,
+        "min": -0.02683056171764009,
+        "p10": -0.02284422401983697,
+        "median": -0.007705918800175238,
+        "p90": 0.025005150114432703,
+        "max": 0.036522672252927046
+      },
+      "mean_advantage_bootstrap95": [
+        -0.020590188340410265,
+        0.024006311841787864
+      ],
+      "worse_count": 3,
+      "worse_wilson95": [
+        0.3006360524426366,
+        0.9544139373553637
+      ],
+      "posterior_rmse": {
+        "n": 4,
+        "mean": 1.333011968279033,
+        "min": 1.1447672749253925,
+        "p10": 1.1779226109944603,
+        "median": 1.3328737228078262,
+        "p90": 1.4882119219405705,
+        "max": 1.5215331525750861
+      },
+      "mean_cost": 0.0
+    }
+  ],
+  "wall_seconds": 346.30426160299976
+}

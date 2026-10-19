@@ -1,0 +1,482 @@
+[
+  {
+    "family": "biased_met_campaign",
+    "seed": 910001,
+    "seconds": 11.84412151700235,
+    "source_probability": 0.9999999999999999,
+    "source_present": true,
+    "source_brier": 1.232595164407831e-32,
+    "map_error_m": 17.640769572053443,
+    "mean_error_m": 81.65319956601694,
+    "prior_centroid_error_m": 225.56674762298638,
+    "region90_covered": true,
+    "region90_area_m2": 10059.371155318591,
+    "region90_area_fraction": 0.06178489702517157,
+    "region90_mass": 0.9022047742020213,
+    "source_miss": false,
+    "false_source_alarm": false,
+    "narrow_wrong_region": false,
+    "sharp_wrong_region": false,
+    "weather": {
+      "status": "unverified",
+      "comparison_count": 0,
+      "unusable_comparisons": [],
+      "primary_source_id": "primary",
+      "independent_upstream_groups": 0,
+      "direction_comparison_correction_deg": 0.0,
+      "persistent_direction_sd_deg": 20.0,
+      "speed_comparison_factor": 1.0,
+      "persistent_log_speed_sd": 0.2,
+      "weather_warning": false,
+      "comparison_checks": {},
+      "maximum_comparison_distance_m": null,
+      "maximum_comparison_lag_s": null,
+      "meaning": "Bias conditioned on user-supplied paired weather measurements only. Independence/calibration claims are not externally verified; shared upstream systematic errors do not average away. No pollution residual certifies weather. A station comparison does not verify spatial representativeness or clock accuracy elsewhere.",
+      "additional_evidence": "An independent co-located wind comparison or separating wind regimes may help. Pollution-site plans do not include weather hardware, deployment time or cost; budget any new weather instrument separately.",
+      "direction_center_deg": 0.0,
+      "total_direction_sd_deg": 20.223748416156685,
+      "angular_step_deg": 2.0,
+      "angular_nodes": 63,
+      "normal_tail_truncation": "Finite approximately\u00b13SD quadrature; not a hard bound on real weather errors.",
+      "pollution_conditioned_offset_mean_deg": -11.292038633456212,
+      "source_weather_location_span_m": 157.96037824220852,
+      "alternative_offsets": [
+        {
+          "direction_offset_deg": -20.0,
+          "conditional_source_weight": 0.0891131717519952
+        },
+        {
+          "direction_offset_deg": -16.0,
+          "conditional_source_weight": 0.08763081369944649
+        },
+        {
+          "direction_offset_deg": -18.0,
+          "conditional_source_weight": 0.08554704424779125
+        },
+        {
+          "direction_offset_deg": -14.0,
+          "conditional_source_weight": 0.0804756975926582
+        },
+        {
+          "direction_offset_deg": -12.0,
+          "conditional_source_weight": 0.08044538599387611
+        },
+        {
+          "direction_offset_deg": -10.0,
+          "conditional_source_weight": 0.07864970396765893
+        },
+        {
+          "direction_offset_deg": -8.0,
+          "conditional_source_weight": 0.07489560675910456
+        },
+        {
+          "direction_offset_deg": -6.0,
+          "conditional_source_weight": 0.06811450804779066
+        }
+      ],
+      "inferred_correction_meaning": "Pollution-conditioned offset is model inference, not an independently measured wind correction. All source/weather components enter regions and plans."
+    },
+    "warning": false,
+    "accepted": true
+  },
+  {
+    "family": "biased_met_campaign",
+    "seed": 910002,
+    "seconds": 11.504330667994509,
+    "source_probability": 0.9999999482078659,
+    "source_present": true,
+    "source_brier": 2.682425158462334e-15,
+    "map_error_m": 29.128950448943783,
+    "mean_error_m": 42.89088605132606,
+    "prior_centroid_error_m": 58.51486141709061,
+    "region90_covered": true,
+    "region90_area_m2": 57375.67251552093,
+    "region90_area_fraction": 0.3524027459954235,
+    "region90_mass": 0.9009072026418523,
+    "source_miss": false,
+    "false_source_alarm": false,
+    "narrow_wrong_region": false,
+    "sharp_wrong_region": false,
+    "weather": {
+      "status": "unverified",
+      "comparison_count": 0,
+      "unusable_comparisons": [],
+      "primary_source_id": "primary",
+      "independent_upstream_groups": 0,
+      "direction_comparison_correction_deg": 0.0,
+      "persistent_direction_sd_deg": 20.0,
+      "speed_comparison_factor": 1.0,
+      "persistent_log_speed_sd": 0.2,
+      "weather_warning": false,
+      "comparison_checks": {},
+      "maximum_comparison_distance_m": null,
+      "maximum_comparison_lag_s": null,
+      "meaning": "Bias conditioned on user-supplied paired weather measurements only. Independence/calibration claims are not externally verified; shared upstream systematic errors do not average away. No pollution residual certifies weather. A station comparison does not verify spatial representativeness or clock accuracy elsewhere.",
+      "additional_evidence": "An independent co-located wind comparison or separating wind regimes may help. Pollution-site plans do not include weather hardware, deployment time or cost; budget any new weather instrument separately.",
+      "direction_center_deg": 0.0,
+      "total_direction_sd_deg": 20.223748416156685,
+      "angular_step_deg": 2.0,
+      "angular_nodes": 63,
+      "normal_tail_truncation": "Finite approximately\u00b13SD quadrature; not a hard bound on real weather errors.",
+      "pollution_conditioned_offset_mean_deg": -19.65938715622828,
+      "source_weather_location_span_m": 254.13871233457928,
+      "alternative_offsets": [
+        {
+          "direction_offset_deg": -18.0,
+          "conditional_source_weight": 0.08030894496782394
+        },
+        {
+          "direction_offset_deg": -16.0,
+          "conditional_source_weight": 0.07689176158846833
+        },
+        {
+          "direction_offset_deg": -20.0,
+          "conditional_source_weight": 0.07607103824617954
+        },
+        {
+          "direction_offset_deg": -22.0,
+          "conditional_source_weight": 0.06957748230989334
+        },
+        {
+          "direction_offset_deg": -14.0,
+          "conditional_source_weight": 0.06626920715271716
+        },
+        {
+          "direction_offset_deg": -24.0,
+          "conditional_source_weight": 0.06474405424732742
+        },
+        {
+          "direction_offset_deg": -26.0,
+          "conditional_source_weight": 0.06095527485839344
+        },
+        {
+          "direction_offset_deg": -28.0,
+          "conditional_source_weight": 0.05719265115835327
+        }
+      ],
+      "inferred_correction_meaning": "Pollution-conditioned offset is model inference, not an independently measured wind correction. All source/weather components enter regions and plans."
+    },
+    "warning": false,
+    "accepted": true
+  },
+  {
+    "family": "biased_met_campaign",
+    "seed": 910005,
+    "seconds": 11.85364606299845,
+    "source_probability": 0.9999999526553502,
+    "source_present": true,
+    "source_brier": 2.24151586053706e-15,
+    "map_error_m": 328.4895546062969,
+    "mean_error_m": 259.42746633441675,
+    "prior_centroid_error_m": 218.52093922094798,
+    "region90_covered": true,
+    "region90_area_m2": 53277.41019298369,
+    "region90_area_fraction": 0.3272311212814645,
+    "region90_mass": 0.9011647208202482,
+    "source_miss": false,
+    "false_source_alarm": false,
+    "narrow_wrong_region": false,
+    "sharp_wrong_region": false,
+    "weather": {
+      "status": "unverified",
+      "comparison_count": 0,
+      "unusable_comparisons": [],
+      "primary_source_id": "primary",
+      "independent_upstream_groups": 0,
+      "direction_comparison_correction_deg": 0.0,
+      "persistent_direction_sd_deg": 20.0,
+      "speed_comparison_factor": 1.0,
+      "persistent_log_speed_sd": 0.2,
+      "weather_warning": false,
+      "comparison_checks": {},
+      "maximum_comparison_distance_m": null,
+      "maximum_comparison_lag_s": null,
+      "meaning": "Bias conditioned on user-supplied paired weather measurements only. Independence/calibration claims are not externally verified; shared upstream systematic errors do not average away. No pollution residual certifies weather. A station comparison does not verify spatial representativeness or clock accuracy elsewhere.",
+      "additional_evidence": "An independent co-located wind comparison or separating wind regimes may help. Pollution-site plans do not include weather hardware, deployment time or cost; budget any new weather instrument separately.",
+      "direction_center_deg": 0.0,
+      "total_direction_sd_deg": 20.223748416156685,
+      "angular_step_deg": 2.0,
+      "angular_nodes": 63,
+      "normal_tail_truncation": "Finite approximately\u00b13SD quadrature; not a hard bound on real weather errors.",
+      "pollution_conditioned_offset_mean_deg": 9.989964360194456,
+      "source_weather_location_span_m": 397.76169061538894,
+      "alternative_offsets": [
+        {
+          "direction_offset_deg": 18.0,
+          "conditional_source_weight": 0.07355159638151558
+        },
+        {
+          "direction_offset_deg": 20.0,
+          "conditional_source_weight": 0.07293957910077495
+        },
+        {
+          "direction_offset_deg": 16.0,
+          "conditional_source_weight": 0.06970309858555243
+        },
+        {
+          "direction_offset_deg": 22.0,
+          "conditional_source_weight": 0.06772305339461834
+        },
+        {
+          "direction_offset_deg": 24.0,
+          "conditional_source_weight": 0.061396534208556064
+        },
+        {
+          "direction_offset_deg": 14.0,
+          "conditional_source_weight": 0.05909336064341354
+        },
+        {
+          "direction_offset_deg": 26.0,
+          "conditional_source_weight": 0.05468331945879571
+        },
+        {
+          "direction_offset_deg": 28.0,
+          "conditional_source_weight": 0.048349785215196006
+        }
+      ],
+      "inferred_correction_meaning": "Pollution-conditioned offset is model inference, not an independently measured wind correction. All source/weather components enter regions and plans."
+    },
+    "warning": false,
+    "accepted": true
+  },
+  {
+    "family": "informative_campaign",
+    "seed": 910001,
+    "seconds": 11.641507410000486,
+    "source_probability": 0.9999999999999999,
+    "source_present": true,
+    "source_brier": 1.232595164407831e-32,
+    "map_error_m": 17.640769572053443,
+    "mean_error_m": 55.09308120467818,
+    "prior_centroid_error_m": 225.56674762298638,
+    "region90_covered": true,
+    "region90_area_m2": 7451.386040976734,
+    "region90_area_fraction": 0.045766590389015975,
+    "region90_mass": 0.9065721304277828,
+    "source_miss": false,
+    "false_source_alarm": false,
+    "narrow_wrong_region": false,
+    "sharp_wrong_region": false,
+    "weather": {
+      "status": "unverified",
+      "comparison_count": 0,
+      "unusable_comparisons": [],
+      "primary_source_id": "primary",
+      "independent_upstream_groups": 0,
+      "direction_comparison_correction_deg": 0.0,
+      "persistent_direction_sd_deg": 20.0,
+      "speed_comparison_factor": 1.0,
+      "persistent_log_speed_sd": 0.2,
+      "weather_warning": false,
+      "comparison_checks": {},
+      "maximum_comparison_distance_m": null,
+      "maximum_comparison_lag_s": null,
+      "meaning": "Bias conditioned on user-supplied paired weather measurements only. Independence/calibration claims are not externally verified; shared upstream systematic errors do not average away. No pollution residual certifies weather. A station comparison does not verify spatial representativeness or clock accuracy elsewhere.",
+      "additional_evidence": "An independent co-located wind comparison or separating wind regimes may help. Pollution-site plans do not include weather hardware, deployment time or cost; budget any new weather instrument separately.",
+      "direction_center_deg": 0.0,
+      "total_direction_sd_deg": 20.223748416156685,
+      "angular_step_deg": 2.0,
+      "angular_nodes": 63,
+      "normal_tail_truncation": "Finite approximately\u00b13SD quadrature; not a hard bound on real weather errors.",
+      "pollution_conditioned_offset_mean_deg": 8.937244094561718,
+      "source_weather_location_span_m": 128.53981073155163,
+      "alternative_offsets": [
+        {
+          "direction_offset_deg": 6.0,
+          "conditional_source_weight": 0.12022737390567664
+        },
+        {
+          "direction_offset_deg": 4.0,
+          "conditional_source_weight": 0.1201522097089723
+        },
+        {
+          "direction_offset_deg": 8.0,
+          "conditional_source_weight": 0.10623321435250845
+        },
+        {
+          "direction_offset_deg": 2.0,
+          "conditional_source_weight": 0.10382215878459136
+        },
+        {
+          "direction_offset_deg": 10.0,
+          "conditional_source_weight": 0.08824388877778004
+        },
+        {
+          "direction_offset_deg": 12.0,
+          "conditional_source_weight": 0.07755141493468325
+        },
+        {
+          "direction_offset_deg": 0.0,
+          "conditional_source_weight": 0.07289556285963918
+        },
+        {
+          "direction_offset_deg": 14.0,
+          "conditional_source_weight": 0.06527972836708468
+        }
+      ],
+      "inferred_correction_meaning": "Pollution-conditioned offset is model inference, not an independently measured wind correction. All source/weather components enter regions and plans."
+    },
+    "warning": false,
+    "accepted": true
+  },
+  {
+    "family": "informative_campaign",
+    "seed": 910002,
+    "seconds": 11.43309811400104,
+    "source_probability": 0.9999999727777464,
+    "source_present": true,
+    "source_brier": 7.410510890178988e-16,
+    "map_error_m": 15.304644426162527,
+    "mean_error_m": 49.39244018050999,
+    "prior_centroid_error_m": 58.51486141709061,
+    "region90_covered": true,
+    "region90_area_m2": 45080.88554790929,
+    "region90_area_fraction": 0.27688787185354696,
+    "region90_mass": 0.9018951794400675,
+    "source_miss": false,
+    "false_source_alarm": false,
+    "narrow_wrong_region": false,
+    "sharp_wrong_region": false,
+    "weather": {
+      "status": "unverified",
+      "comparison_count": 0,
+      "unusable_comparisons": [],
+      "primary_source_id": "primary",
+      "independent_upstream_groups": 0,
+      "direction_comparison_correction_deg": 0.0,
+      "persistent_direction_sd_deg": 20.0,
+      "speed_comparison_factor": 1.0,
+      "persistent_log_speed_sd": 0.2,
+      "weather_warning": false,
+      "comparison_checks": {},
+      "maximum_comparison_distance_m": null,
+      "maximum_comparison_lag_s": null,
+      "meaning": "Bias conditioned on user-supplied paired weather measurements only. Independence/calibration claims are not externally verified; shared upstream systematic errors do not average away. No pollution residual certifies weather. A station comparison does not verify spatial representativeness or clock accuracy elsewhere.",
+      "additional_evidence": "An independent co-located wind comparison or separating wind regimes may help. Pollution-site plans do not include weather hardware, deployment time or cost; budget any new weather instrument separately.",
+      "direction_center_deg": 0.0,
+      "total_direction_sd_deg": 20.223748416156685,
+      "angular_step_deg": 2.0,
+      "angular_nodes": 63,
+      "normal_tail_truncation": "Finite approximately\u00b13SD quadrature; not a hard bound on real weather errors.",
+      "pollution_conditioned_offset_mean_deg": -1.0928649534859534,
+      "source_weather_location_span_m": 209.44836379614208,
+      "alternative_offsets": [
+        {
+          "direction_offset_deg": -6.0,
+          "conditional_source_weight": 0.0807086290394919
+        },
+        {
+          "direction_offset_deg": -4.0,
+          "conditional_source_weight": 0.0795897244972968
+        },
+        {
+          "direction_offset_deg": -8.0,
+          "conditional_source_weight": 0.07805298044618734
+        },
+        {
+          "direction_offset_deg": -2.0,
+          "conditional_source_weight": 0.07561907745689155
+        },
+        {
+          "direction_offset_deg": -10.0,
+          "conditional_source_weight": 0.07052602817982959
+        },
+        {
+          "direction_offset_deg": 0.0,
+          "conditional_source_weight": 0.0704881318482347
+        },
+        {
+          "direction_offset_deg": 2.0,
+          "conditional_source_weight": 0.06684991067989772
+        },
+        {
+          "direction_offset_deg": 4.0,
+          "conditional_source_weight": 0.06454194545746089
+        }
+      ],
+      "inferred_correction_meaning": "Pollution-conditioned offset is model inference, not an independently measured wind correction. All source/weather components enter regions and plans."
+    },
+    "warning": false,
+    "accepted": true
+  },
+  {
+    "family": "informative_campaign",
+    "seed": 910005,
+    "seconds": 11.397536414006026,
+    "source_probability": 0.9999999245507554,
+    "source_present": true,
+    "source_brier": 5.692588515202288e-15,
+    "map_error_m": 31.430823397244477,
+    "mean_error_m": 85.93070449373941,
+    "prior_centroid_error_m": 218.52093922094798,
+    "region90_covered": true,
+    "region90_area_m2": 39119.776715127904,
+    "region90_area_fraction": 0.24027459954233418,
+    "region90_mass": 0.900368101203833,
+    "source_miss": false,
+    "false_source_alarm": false,
+    "narrow_wrong_region": false,
+    "sharp_wrong_region": false,
+    "weather": {
+      "status": "unverified",
+      "comparison_count": 0,
+      "unusable_comparisons": [],
+      "primary_source_id": "primary",
+      "independent_upstream_groups": 0,
+      "direction_comparison_correction_deg": 0.0,
+      "persistent_direction_sd_deg": 20.0,
+      "speed_comparison_factor": 1.0,
+      "persistent_log_speed_sd": 0.2,
+      "weather_warning": false,
+      "comparison_checks": {},
+      "maximum_comparison_distance_m": null,
+      "maximum_comparison_lag_s": null,
+      "meaning": "Bias conditioned on user-supplied paired weather measurements only. Independence/calibration claims are not externally verified; shared upstream systematic errors do not average away. No pollution residual certifies weather. A station comparison does not verify spatial representativeness or clock accuracy elsewhere.",
+      "additional_evidence": "An independent co-located wind comparison or separating wind regimes may help. Pollution-site plans do not include weather hardware, deployment time or cost; budget any new weather instrument separately.",
+      "direction_center_deg": 0.0,
+      "total_direction_sd_deg": 20.223748416156685,
+      "angular_step_deg": 2.0,
+      "angular_nodes": 63,
+      "normal_tail_truncation": "Finite approximately\u00b13SD quadrature; not a hard bound on real weather errors.",
+      "pollution_conditioned_offset_mean_deg": 6.992610878319386,
+      "source_weather_location_span_m": 343.4695827594941,
+      "alternative_offsets": [
+        {
+          "direction_offset_deg": -2.0,
+          "conditional_source_weight": 0.12639015142606003
+        },
+        {
+          "direction_offset_deg": 0.0,
+          "conditional_source_weight": 0.12444007323917776
+        },
+        {
+          "direction_offset_deg": 2.0,
+          "conditional_source_weight": 0.11249972524652632
+        },
+        {
+          "direction_offset_deg": -4.0,
+          "conditional_source_weight": 0.11138810786272775
+        },
+        {
+          "direction_offset_deg": 4.0,
+          "conditional_source_weight": 0.08535033128680361
+        },
+        {
+          "direction_offset_deg": -6.0,
+          "conditional_source_weight": 0.0760580876698866
+        },
+        {
+          "direction_offset_deg": 6.0,
+          "conditional_source_weight": 0.058791921133822964
+        },
+        {
+          "direction_offset_deg": -8.0,
+          "conditional_source_weight": 0.038318017914510824
+        }
+      ],
+      "inferred_correction_meaning": "Pollution-conditioned offset is model inference, not an independently measured wind correction. All source/weather components enter regions and plans."
+    },
+    "warning": false,
+    "accepted": true
+  }
+]

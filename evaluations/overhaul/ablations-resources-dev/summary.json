@@ -1,0 +1,73 @@
+{
+  "evidence": "fresh-process engineering capacity probe, no field validation",
+  "cpu": "AMD EPYC 9V45 96-Core Processor",
+  "production_sources_unchanged": true,
+  "changed_sources": [
+    "backend/upwind/validation/overhaul.py"
+  ],
+  "timeout_seconds": 30,
+  "address_space_ceiling_mib": 2048,
+  "all_children_succeeded": true,
+  "results": [
+    {
+      "size": 100,
+      "inference_limit": 128,
+      "status": "ok",
+      "fitted_rows": 100,
+      "wall_ms": 3048.562485993898,
+      "peak_rss_mib": 233.4921875,
+      "scenario_count": 4621,
+      "finite_scores": true
+    },
+    {
+      "size": 100,
+      "inference_limit": 512,
+      "status": "ok",
+      "fitted_rows": 100,
+      "wall_ms": 2923.9067399976193,
+      "peak_rss_mib": 233.29296875,
+      "scenario_count": 4621,
+      "finite_scores": true
+    },
+    {
+      "size": 1000,
+      "inference_limit": 128,
+      "status": "ok",
+      "fitted_rows": 128,
+      "wall_ms": 6337.194172003365,
+      "peak_rss_mib": 250.82421875,
+      "scenario_count": 4621,
+      "finite_scores": true
+    },
+    {
+      "size": 1000,
+      "inference_limit": 512,
+      "status": "ok",
+      "fitted_rows": 512,
+      "wall_ms": 7825.307858001906,
+      "peak_rss_mib": 565.5234375,
+      "scenario_count": 4621,
+      "finite_scores": true
+    },
+    {
+      "size": 10000,
+      "inference_limit": 128,
+      "status": "ok",
+      "fitted_rows": 128,
+      "wall_ms": 12667.162272999121,
+      "peak_rss_mib": 357.51171875,
+      "scenario_count": 4621,
+      "finite_scores": true
+    },
+    {
+      "size": 10000,
+      "inference_limit": 512,
+      "status": "ok",
+      "fitted_rows": 512,
+      "wall_ms": 14724.68374199525,
+      "peak_rss_mib": 660.6171875,
+      "scenario_count": 4621,
+      "finite_scores": true
+    }
+  ]
+}

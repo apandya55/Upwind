@@ -1,0 +1,124 @@
+{
+  "status": "post-hoc descriptive no-data reference; not a tuning result or predeclared primary metric",
+  "formula": "norm(hidden_source_xy - [(domain_xmin+domain_xmax)/2,(domain_ymin+domain_ymax)/2]) in evaluator metres",
+  "truth_sha256": "83904cc3509ab5e9311c5592df7c7b6146ce034f32aa7fa7aabe302bbef55ace",
+  "by_condition": [
+    {
+      "family": "boundary",
+      "n": 40,
+      "prior_domain_center_xy_m": [
+        -265,
+        0
+      ],
+      "localization_error_m": {
+        "median": 218.36053477517748,
+        "p10": 187.582827456522,
+        "p90": 262.5588631553471
+      }
+    },
+    {
+      "family": "correlated_errors",
+      "n": 40,
+      "prior_domain_center_xy_m": [
+        -265,
+        0
+      ],
+      "localization_error_m": {
+        "median": 89.92355702137152,
+        "p10": 37.02471249663955,
+        "p90": 109.40567565259546
+      }
+    },
+    {
+      "family": "direction_bias",
+      "n": 40,
+      "prior_domain_center_xy_m": [
+        -265,
+        0
+      ],
+      "localization_error_m": {
+        "median": 89.92355702137152,
+        "p10": 37.02471249663955,
+        "p90": 109.40567565259546
+      }
+    },
+    {
+      "family": "episodic",
+      "n": 40,
+      "prior_domain_center_xy_m": [
+        -265,
+        0
+      ],
+      "localization_error_m": {
+        "median": 89.92355702137152,
+        "p10": 37.02471249663955,
+        "p90": 109.40567565259546
+      }
+    },
+    {
+      "family": "missingness",
+      "n": 40,
+      "prior_domain_center_xy_m": [
+        -265,
+        0
+      ],
+      "localization_error_m": {
+        "median": 89.92355702137152,
+        "p10": 37.02471249663955,
+        "p90": 109.40567565259546
+      }
+    },
+    {
+      "family": "strong_signal",
+      "n": 40,
+      "prior_domain_center_xy_m": [
+        -265,
+        0
+      ],
+      "localization_error_m": {
+        "median": 89.92355702137152,
+        "p10": 37.02471249663955,
+        "p90": 109.40567565259546
+      }
+    },
+    {
+      "family": "two_sources",
+      "n": 40,
+      "prior_domain_center_xy_m": [
+        -265,
+        0
+      ],
+      "localization_error_m": {
+        "median": 89.92355702137152,
+        "p10": 37.02471249663955,
+        "p90": 109.40567565259546
+      }
+    },
+    {
+      "family": "unsupported_weather",
+      "n": 40,
+      "prior_domain_center_xy_m": [
+        -265,
+        0
+      ],
+      "localization_error_m": {
+        "median": 89.92355702137152,
+        "p10": 37.02471249663955,
+        "p90": 109.40567565259546
+      }
+    },
+    {
+      "family": "weak_signal",
+      "n": 40,
+      "prior_domain_center_xy_m": [
+        -265,
+        0
+      ],
+      "localization_error_m": {
+        "median": 89.92355702137152,
+        "p10": 37.02471249663955,
+        "p90": 109.40567565259546
+      }
+    }
+  ]
+}

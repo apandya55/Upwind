@@ -1,0 +1,103 @@
+import json
+from pathlib import Path
+import hashlib
+from collections import Counter
+
+root=Path(__file__).resolve().parents[2]
+data=root/'evaluations/overhaul/new-final'
+s=json.loads((data/'summary.json').read_text())
+m=json.loads((data/'metadata.json').read_text())
+science=json.loads((data/'science.json').read_text())
+stability=json.loads((data/'stability.json').read_text())
+followup=json.loads((data/'followup.json').read_text())
+sub=json.loads((root/'evaluations/overhaul/new-development-supplementary-frozen/supplementary.json').read_text())
+by={(r['family'],r['model']):r for r in s['by_condition']}
+families=list(m['families'])
+
+def f(v,places=1):
+ return '—' if v is None else f'{v:.{places}f}'
+def d(row,key,stat='median',places=1):
+ return f((row.get(key) or {}).get(stat),places)
+def event(v):
+ n=v['n']; count=v['count']
+ return '—' if not n else f'{count}/{n} ({100*count/n:.0f}%; 95% CI {100*v["wilson95"][0]:.0f}–{100*v["wilson95"][1]:.0f}%)'
+def triple(row,key):
+ r=row.get(key)
+ return '—' if not r else f'{r["p10"]:.0f} / {r["median"]:.0f} / {r["p90"]:.0f}'
+lines=['# Independent engine challenge results','',
+'The redesign is a research prototype. This independent synthetic challenge does not establish reliable source localization or a consistent advantage for its measurement recommendations. Broad regions, missed sources and missed model failures are reported alongside prediction and software checks.', '',
+'## Frozen experiment and provenance','',
+'Protocol: **UW-OVERHAUL-2026-01**; model: **plume-mixture-0.3.0**. The final experiment contains **400 condition-worlds across 40 paired seed blocks**, with 40 worlds per condition. Reusing a seed across conditions makes their worlds dependent; the reported Wilson intervals concern each condition separately. It does not create 400 independent campaigns. The placement experiment contains 36 condition-worlds across 12 paired seed blocks, 24 methods per world (864 outcomes). Random seeds and repeated measurements are not extra independent campaigns.', '',
+'The final asymmetric layout, wind-direction regime and stretched-exponential dispersion family were held out from development and calibration. Sources are continuous and almost surely between the old anchors. The independent generator uses different lateral shape/growth, release height and sub-window wind averaging from inference. It remains an idealized open-terrain transport challenge; it is not field validation. The condition name `strong_signal` denotes the higher release range (18,000–36,000 µg/s), and does not guarantee that its held-out sensor layout intercepts a strong plume.', '',
+'[Predeclared protocol](ENGINE_EVALUATION_PROTOCOL.md) · [Final metadata and code hashes](../evaluations/overhaul/new-final/metadata.json) · [All source outcomes](../evaluations/overhaul/new-final/science.json) · [All placement outcomes](../evaluations/overhaul/new-final/followup.json) · [All perturbations](../evaluations/overhaul/new-final/stability.json) · [Evaluator-only truth and latent fields](../evaluations/overhaul/new-final/truth.json)', '',
+'Final before/after source hashes match: **'+str(s['source_hashes_unchanged'])+'**. No final outcome informed a model change. Priors and numerical settings were fixed before evaluation. The preserved baseline is loaded as an isolated package from `evaluations/overhaul/baseline-source`; it does not inherit redesigned quality, weather or numerical functions.', '',
+'## Retention and localization','',
+'Errors below are metres, shown as 10th percentile / median / 90th percentile. Both estimators are reported: a MAP point can be unstable in a diffuse distribution, while a posterior mean can lie between modes. Neither is an attribution claim. Background-only cases have no source-localization target.', '',
+'| Condition | New retained / generated | Legacy MAP error p10 / median / p90 | New cell MAP error p10 / median / p90 | New conditional-mean error p10 / median / p90 |',
+'|---|---:|---:|---:|---:|']
+for family in families:
+ old,new=by[family,'legacy-0.2.1'],by[family,'mixture-0.3.0']
+ lines.append(f'| {family} | {new["statuses"].get("retained",0)}/{new["total"]} | {triple(old,"localization_error_m")} | {triple(new,"localization_error_m")} | {triple(new,"source_mean_error_m")} |')
+lines += ['', 'A post-hoc no-data reference is necessary to interpret the conditional mean: the source-domain centroid alone has median error **89.9 m** in the interior-source families and **218.4 m** at the boundary. The redesigned conditional mean is often close to this prior center. Its sub-100 m median therefore does not demonstrate learned localization. This reference did not change any production calculation, metric threshold, final outcome or selected plan; [the calculation is saved separately](../evaluations/overhaul/new-final/posthoc-prior-reference.json).', '',
+'The old model has a discrete grid; its scenario set has no geographic area and is not assigned an invented area or continuous-location coverage. New regions are unions of complete midpoint-quadrature cells accumulating at least 90% of the *conditional single-source* mass. Their meaning is conditional on that explanation and the assumed model, not 90% responsibility or a calibrated geographic probability. Coverage in two-source worlds refers only to the primary source under a false one-source model.', '',
+'| Condition | New nominal 90% region coverage | Median region area (m²) | Median fraction of domain | Median source-model weight |',
+'|---|---:|---:|---:|---:|']
+for family in families:
+ r=by[family,'mixture-0.3.0']
+ area=r.get('region90_area_fraction')
+ frac='—' if not area else f'{100*area["median"]:.1f}%'
+ lines.append(f'| {family} | {event(r["region90_truth_covered"])} | {d(r,"region90_area_m2",places=0)} | {frac} | {d(r,"source_probability",places=3)} |')
+lines += ['', 'Large regions are loss of usefulness, not successful precision. Coverage must be read together with area, source-model weight and source misses. Unsupported-condition refusals stay in the retention denominator. The high-confidence-error definition was fixed before outcomes: source-model weight >0.9, region covering <25% of the domain, and truth outside the region. An absence of that event is not evidence that broad regions or source probabilities are calibrated.', '',
+'## Source detection and adequacy diagnostics','',
+'| Condition | False source alarms (background only) | Source misses (weight <0.5) | Sharp wrong region | Predictive mismatch warnings |',
+'|---|---:|---:|---:|---:|']
+for family in families:
+ r=by[family,'mixture-0.3.0']
+ lines.append(f'| {family} | {event(r["source_false_alarm"])} | {event(r["source_miss"])} | {event(r["sharp_wrong_region"])} | {event(r["mismatch_warning"])} |')
+lines += ['', 'The warning is a leave-one-sensor-out predictive screen, not an adequacy certificate. A missing warning in direction-bias, two-source or episodic worlds is a missed failure of the assumed physical explanation, even when the readings are observationally compatible with the simpler model. A warning on a no-source/single-source world is a possible false alarm. The preserved baseline has no background-only family, so source-presence false-alarm/miss rates are undefined for it.', '',
+'## Held-out sensor prediction','',
+'An entire sensor is withheld and its index cycles across worlds. Adjacent readings from that sensor never enter the fitted input. Table values are means across world-level scores. Predictive intervals include component observation variance and the declared Gaussian moment approximation to integrated strength; they are not just posterior-mean spread.', '',
+'| Condition | RMSE legacy → new (µg/m³) | NLPD legacy → new | 90% interval coverage legacy → new | Mean interval width legacy → new (µg/m³) |',
+'|---|---:|---:|---:|---:|']
+for family in families:
+ a,b=by[family,'legacy-0.2.1'],by[family,'mixture-0.3.0']
+ def pair(key,places=2,percent=False):
+  vals=[(r.get('held_sensor_'+key) or {}).get('mean') for r in(a,b)]
+  return ' → '.join('—' if v is None else f'{100*v:.1f}%' if percent else f'{v:.{places}f}' for v in vals)
+ lines.append(f'| {family} | {pair("rmse_ug_m3")} | {pair("nlpd")} | {pair("interval90_coverage",percent=True)} | {pair("interval90_width")} |')
+lines += ['', 'The source-family Brier scores and reliability bins are saved in `summary.json`; their prevalence is artificial (eight of the nine supported condition families contain a source). They are descriptive simulation scores, not a field probability calibration, and pooled bins do not remove dependence between seed blocks.', '',
+'## Actual placement outcomes','',
+'Every method locks its choices before candidate observations are realized. The methods share the same sites, costs, budget, equipment count and available contemporaneous weather. All selected measurements are appended and refitted using the redesigned engine, isolating acquisition quality; the legacy row means its preserved *planner*, not its entire old inference pipeline. Future observed weather and hidden truth never reach either planner.', '',
+'Positive RMSE advantage means lower posterior target RMSE than the per-world average of 20 random plans. Positive localization advantage means lower cell-MAP error. The source/noise/transport assumptions remain imperfect. Each row has at most 12 paired worlds, so its uncertainty is large; no general superiority claim follows from a small mean difference.', '',
+'| Condition | Method | Paired worlds | Mean target RMSE advantage vs random20 (µg/m³) | Mean localization advantage vs random20 (m) | Worse RMSE than random20 | Mean cost |',
+'|---|---|---:|---:|---:|---:|---:|']
+for r in s['planner']:
+ bad=r['worse_rmse_than_random20']; eventrow={'count':bad['count'],'n':bad['n'],'wilson95':bad['wilson95']}
+ lines.append(f'| {r["family"]} | {r["method"]} | {r["n"]} | {d(r,"rmse_advantage_vs_random20","mean",3)} | {d(r,"localization_advantage_vs_random20_m","mean",1)} | {event(eventrow)} | {f(r["mean_cost"],0)} |')
+lines += ['', 'The redesigned planner integrates background-versus-source and coarse nearest-anchor spatial groups using reduced Gaussian-component mixtures and Sobol integration. It does not optimize the full fine-cell entropy exactly. Finite component budgets and moment approximations can change rankings; the separate numerical-budget study is necessary context. There is no travel route, future-window forecast, field exposure benefit, or expected percentage improvement claim.', '',
+'## Supplementary checks of usefulness', '', "After the primary experiment, a separate analysis applied the product rule that was already frozen in production: source-model weight ≥0.9, region occupying <50% of the domain, and no predictive warning. Only **2/400 generated condition-worlds** (2/360 fitted) met that rule. Both were correlated-error worlds, and **one of the two regions missed the source**. Thus successful numerical fitting is much more common than a useful source interpretation. The primary table's zero sharp-wrong events uses its predeclared stricter <25% area definition; it does not erase this operational failure under the actual product rule.", '', "A supplementary paired bootstrap (5,000 resamples within each condition, seed 90210) gives 95% percentile intervals for the redesigned planner's mean RMSE advantage over random20: strong_signal **−0.097 to +0.492 µg/m³**, weak_signal **−0.071 to +0.064**, and direction_bias **−0.130 to +0.024**. All include zero. With 12 paired worlds per condition these intervals are exploratory; they do not establish superiority or equivalence.", '', '[Saved supplementary analysis and definitions](../evaluations/overhaul/final-supplementary-analysis.json) preserve these calculations. This was post-evaluation reporting, not a replacement for the predeclared metrics or a reason to tune the model. No production or evaluator source changed.', '', '## Perturbations and sampling','',
+'Perturbations are +3° measured wind, +0.5 µg/m³ concentrations, and reversed input order, on the first four worlds per supported condition; plans are checked on the first world only. These are stability checks, not truth validation.', '',
+'| Perturbation | Results | Median / maximum source-mean displacement (m) | Median / maximum absolute source-weight change | Mean plan Jaccard overlap (when checked) |',
+'|---|---:|---:|---:|---:|']
+for kind in('wind+3deg','concentration+0.5','input-order'):
+ rows=[r for r in stability if r.get('perturbation')==kind and r['status']=='retained']
+ import numpy as np
+ a=[r['source_mean_displacement_m'] for r in rows];b=[abs(r['source_probability_change']) for r in rows];c=[r['plan_jaccard_overlap'] for r in rows if 'plan_jaccard_overlap'in r]
+ lines.append(f'| {kind} | {len(rows)} | {np.median(a):.5g} / {max(a):.5g} | {np.median(b):.5g} / {max(b):.5g} | {np.mean(c):.3f} |')
+lines += ['', 'Stability statuses: `'+str(dict(Counter(r['status'] for r in stability)))+'`.', '',
+'[Development ablations and full-data comparison](../evaluations/overhaul/new-development-supplementary-frozen/supplementary.json) contain 18 explicit full/background-only/no-wind-uncertainty fits and 19 sampling fits. This is a small mechanism study, not an independent calibration. Broad wind integration often expands the region and loses precision; a better coverage number alone is not improvement.', '',
+'For the single 192-row rare-episode fixture, limits 40, 64, 128 and full 192 retained respectively 2, 3, 3 and 6 of the six true episode readings (seed 0). The default 128-row approximation differed from the full source weight by 0.00028 (selection seed 0) or 0.00622 (seed 11), with conditional-mean displacements 0.08 m and 0.50 m. That fixture was diffuse; it does not establish small errors on all campaigns. The concentration-based selection is an explicit bounded approximation and does not guarantee retention of every informative episode or unbiased full-data inference.', '',
+'## Execution, history and limits','',
+f'The final source and placement experiment recorded **{s["crashes"]} inference/placement crashes**, **{s["wall_seconds"]:.1f} seconds** wall time and **{s["peak_rss_mib"]:.1f} MiB** process-reported peak RSS on `{m["processor"]}` with one BLAS thread. This is a challenge-run measurement, not the maximum supported 10,000-row workload or a universal laptop guarantee. Initial challenge fits use every usable 24-row final input (fewer after missingness); full loaded/excluded/fitted counts are in each record. Separate capacity tests measure the maximum workload and 128/512-row approximation.', '',
+'The complete development experiment used 12 seed blocks (120 condition-worlds, 240 old/new inference outcomes and 864 follow-ups); calibration used 24 blocks (240 condition-worlds, 480 inference outcomes and 864 follow-ups). Development source-byte checks recorded concurrent formatting of engine/inference; calibration recorded only formatting of unrelated, unimported `validation/overhaul_regression.py`. Both are explicitly development/calibration, preserved with their exact hashes. The first calibration attempt was interrupted for a clean source freeze and retained with an `INTERRUPTED.json` record. The frozen supplementary rerun matched every original numerical result excluding runtime. The untouched final run, which determines this report, has matching before/after hashes.', '',
+'Commands from the repository root:', '', '```bash',
+'OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv/bin/python -m upwind.validation.overhaul --split development --out .local/overhaul-development',
+'OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv/bin/python -m upwind.validation.overhaul --split development --supplementary-only --out .local/overhaul-supplementary',
+'OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv/bin/python -m upwind.validation.overhaul --split calibration --out .local/overhaul-calibration',
+'OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv/bin/python -m upwind.validation.overhaul --split final --out .local/overhaul-final',
+'```', '',
+'Use new output directories; the runner refuses to overwrite evidence. All earlier stress cases are development-used, and their original failures remain preserved. Re-running these final seeds reproduces a final experiment; it does not create a fresh holdout for subsequent tuning.', '',
+'No measured-data source-localization validation was obtained. London single-station PM2.5 records support their documented import/data-quality audit, not source accuracy. The official NOAA/DATEM/Sagebrush acquisition status and exact external blockers are documented separately. This challenge cannot establish urban PM2.5 transport, chemical composition, source multiplicity, facility responsibility, health impact, field calibration, or benefit to an operational campaign.', '',
+'Important review points are the half-normal source marginalization and correlated background conditioning in `inference.py`, the midpoint geographic integration and its excluded area, the moment-matched predictive tails, the coarse/reduced-mixture target in `design.py`, and value-dependent bounded selection in `quality.py`. Read the reported missed failures and loss of region precision before treating any recommendation as useful.', '']
+(root/'docs/ENGINE_CHALLENGE_RESULTS.md').write_text('\n'.join(lines))
+print('Saved',root/'docs/ENGINE_CHALLENGE_RESULTS.md')

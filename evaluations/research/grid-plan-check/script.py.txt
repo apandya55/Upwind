@@ -1,0 +1,25 @@
+"""Correct only a grid-perturbation acquisition-cache artifact; no model change."""
+from pathlib import Path
+import time
+from upwind.engine import analyze,_cached_analysis
+from upwind.inference import CONFIG
+from upwind.validation.research.cases import world,FAMILIES,SPLITS
+from upwind.validation.research.run import write,source_hashes
+OUT=Path('evaluations/research/grid-plan-check');OUT.mkdir(exist_ok=False);before=source_hashes();rows=[];started=time.perf_counter()
+(OUT/'script.py.txt').write_text(Path(__file__).read_text())
+for split in ('development','calibration','final'):
+ for family in FAMILIES:
+  inv,state=world(family,SPLITS[split].start,split);inv.settings.objective='prediction_variance'
+  _cached_analysis.cache_clear();base=analyze(inv)
+  if not base['plans']:
+   rows.append({'split':split,'family':family,'status':'refused','reason':base.get('reason')});continue
+  grid=(CONFIG['cell_target_m'],CONFIG['max_cells_axis'])
+  try:
+   CONFIG['cell_target_m']=10.;CONFIG['max_cells_axis']=48
+   _cached_analysis.cache_clear();refined=analyze(inv)
+  finally:
+   CONFIG['cell_target_m'],CONFIG['max_cells_axis']=grid;_cached_analysis.cache_clear()
+  a,b=base['plans'][0]['site_ids'],refined['plans'][0]['site_ids']
+  rows.append({'split':split,'family':family,'status':'fitted','baseline_plan':a,'refined_plan':b,'plan_jaccard':len(set(a)&set(b))/max(1,len(set(a)|set(b)))})
+ write(OUT/'results.json',rows);print(split,flush=True)
+write(OUT/'metadata.json',{'source_hashes_before':before,'source_hashes_after':source_hashes(),'source_hashes_unchanged':before==source_hashes(),'wall_seconds':time.perf_counter()-started,'purpose':'Supplementary evaluator correctness check. Stability.fit source metrics were valid, but grid10m plan overlapped a cached baseline because CONFIG is not part of the production fixed-model cache key. This child clears analysis cache around the diagnostic CONFIG mutation. No production or model changes. Use these plan overlaps instead of original grid10m overlaps.'})

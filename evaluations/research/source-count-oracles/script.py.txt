@@ -1,0 +1,28 @@
+from pathlib import Path
+import json,hashlib
+import numpy as np
+from upwind.validation.overhaul import make_world,transport,true_mean
+from upwind.identifiability import whiten_profile,local_resolution
+OUT=Path('evaluations/research/source-count-oracles');OUT.mkdir(exist_ok=False)
+rows=[]
+for seed in (410000,410001,410002):
+ inv,state=make_world('two_sources',seed,'development');xy=np.tile(state['monitor_xy'],(4,1));times=np.repeat(np.arange(4),len(state['monitor_xy']));ids=np.tile(np.arange(len(state['monitor_xy'])),4);sigma=np.array([m.uncertainty_ug_m3 for m in inv.measurements]);dist=np.linalg.norm(xy[:,None]-xy[None],axis=-1)
+ R=np.diag(sigma**2)+.49*(ids[:,None]==ids[None])+.49*np.exp(-dist/180-abs(times[:,None]-times[None])/1.2)
+ X=np.column_stack((np.ones(len(xy)),(times-1.5)/3))
+ true=np.array(state['source_xy']);unit=transport(xy,true,1,state['speed'],state['direction'],'development')
+ derivatives=np.column_stack([(transport(xy,true+np.eye(2)[axis],1,state['speed'],state['direction'],'development')-transport(xy,true-np.eye(2)[axis],1,state['speed'],state['direction'],'development'))/2 for axis in (0,1)])
+ for spacing in (50,25,12.5):
+  grid=np.array([(x,y) for x in np.arange(-450,-80+spacing/2,spacing) for y in np.arange(-220,220+spacing/2,spacing)])
+  G=np.stack([transport(xy,p,1,state['speed'],state['direction'],'development') for p in grid],axis=1)
+  for noise in ('observed','noiseless'):
+   y=np.array([m.pm25_ug_m3 for m in inv.measurements]) if noise=='observed' else true_mean(xy,times,state)
+   f=whiten_profile(y,G,R,X);p=f['projected_signatures'];t=p.T@f['projected_observed'];gram=p.T@p
+   i,j=np.triu_indices(len(grid),1);a=gram[i,i];b=gram[j,j];c=gram[i,j];det=a*b-c*c
+   good=det>1e-12*np.maximum(a*b,1e-300)
+   q1=np.divide(t[i]*b-t[j]*c,det,out=np.zeros_like(det),where=good);q2=np.divide(t[j]*a-t[i]*c,det,out=np.zeros_like(det),where=good)
+   both=good&(q1>=0)&(q2>=0)
+   loss=np.minimum(f['loss'][i],f['loss'][j]);loss[both]=np.maximum(0,f['background_loss']-2*q1[both]*t[i[both]]-2*q2[both]*t[j[both]]+q1[both]**2*a[both]+q2[both]**2*b[both]+2*q1[both]*q2[both]*c[both])
+   k=int(np.argmin(loss));locations=grid[[i[k],j[k]]];truth=np.array([state['source_xy'],state['secondary_xy']]);assignment=min(np.linalg.norm(locations-truth,axis=1).mean(),np.linalg.norm(locations-truth[::-1],axis=1).mean())
+   rows.append({'seed':seed,'oracle':'correct source count2, wind, transport, error covariance; locations/strengths still searched over whole domain','data':noise,'spacing_m':spacing,'pair_count':len(i),'minimum_chi2':float(loss[k]),'pair_mean_assignment_error_m':float(assignment),'profile_pairs_within_delta4_605':int(np.sum(loss<=loss.min()+4.605)),'locations':locations.tolist(),'primary_local_fisher_oracle':local_resolution(derivatives,unit,R,X,state['strength'])})
+   print(seed,spacing,noise,round(assignment),round(loss[k],5),flush=True)
+(OUT/'results.json').write_text(json.dumps(rows,indent=2)+'\n');(OUT/'script.py.txt').write_text(Path(__file__).read_text())

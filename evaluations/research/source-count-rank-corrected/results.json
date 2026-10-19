@@ -1,0 +1,92 @@
+[
+  {
+    "seed": 410000,
+    "monitors": 7,
+    "readings": 28,
+    "unknowns": [
+      "source1_x",
+      "source1_y",
+      "source1_Q_per10000",
+      "source2_x",
+      "source2_y",
+      "source2_Q_per10000",
+      "background",
+      "background_trend"
+    ],
+    "jacobian_rank": 8,
+    "columns": 8,
+    "column_normalized_whitened_singular_values": [
+      1.7660554953140408,
+      1.6739597618225992,
+      1.0014621814874904,
+      0.8601875519755354,
+      0.4966688142262841,
+      0.2931670626259394,
+      0.04596413791707561,
+      0.036304794978529925
+    ],
+    "rank_threshold": 1.0980006652515228e-12,
+    "structural_rank_upper_bound": 8,
+    "meaning": "Same-wind responses span at most n monitor patterns plus one temporal background trend. The actual old layout has seven monitors, so eight parameters are not dimensionally forced to be rank deficient. Inspect local singular values and global profiles; this is not a global impossibility theorem."
+  },
+  {
+    "seed": 410001,
+    "monitors": 7,
+    "readings": 28,
+    "unknowns": [
+      "source1_x",
+      "source1_y",
+      "source1_Q_per10000",
+      "source2_x",
+      "source2_y",
+      "source2_Q_per10000",
+      "background",
+      "background_trend"
+    ],
+    "jacobian_rank": 8,
+    "columns": 8,
+    "column_normalized_whitened_singular_values": [
+      1.7722016637617053,
+      1.5315200048243702,
+      1.1288472869324915,
+      0.9986202779150894,
+      0.3921032541158361,
+      0.25017578364274634,
+      0.14248224327280998,
+      0.07466596846893443
+    ],
+    "rank_threshold": 1.1018218911768628e-12,
+    "structural_rank_upper_bound": 8,
+    "meaning": "Same-wind responses span at most n monitor patterns plus one temporal background trend. The actual old layout has seven monitors, so eight parameters are not dimensionally forced to be rank deficient. Inspect local singular values and global profiles; this is not a global impossibility theorem."
+  },
+  {
+    "seed": 410002,
+    "monitors": 7,
+    "readings": 28,
+    "unknowns": [
+      "source1_x",
+      "source1_y",
+      "source1_Q_per10000",
+      "source2_x",
+      "source2_y",
+      "source2_Q_per10000",
+      "background",
+      "background_trend"
+    ],
+    "jacobian_rank": 8,
+    "columns": 8,
+    "column_normalized_whitened_singular_values": [
+      2.120717699867696,
+      1.1778668964417525,
+      0.996747996626727,
+      0.9279790476774755,
+      0.466414864184367,
+      0.2070636805722187,
+      0.010727070257297121,
+      0.0010327856578592662
+    ],
+    "rank_threshold": 1.3185029867090025e-12,
+    "structural_rank_upper_bound": 8,
+    "meaning": "Same-wind responses span at most n monitor patterns plus one temporal background trend. The actual old layout has seven monitors, so eight parameters are not dimensionally forced to be rank deficient. Inspect local singular values and global profiles; this is not a global impossibility theorem."
+  }
+]

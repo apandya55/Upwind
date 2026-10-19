@@ -1,0 +1,20 @@
+# Engine overhaul implementation and review map
+
+The implemented overhaul replaces forced single-source grid fitting with background/source model comparison, continuous-domain quadrature, analytic nuisance integration and sensor-block predictive checks. It replaces moment-only acquisition with conditional predictive-mixture information. It does **not** establish field reliability, and previous failures remain visible. See the final results report and preserved development comparison before using outputs.
+
+Review these sections first:
+
+- `backend/upwind/inference.py`: `CONFIG` priors; `source_cells` domain support/area; `fit` half-normal evidence and normalization; nested `predictive` residual-conditioned cross covariance and moment approximation; `sensor_diagnostics`; `region` conditional region meaning.
+- `backend/upwind/design.py`: group-preserving component reduction, finite integration budget and raw entropy differences. A large component total variation or changed plan at a larger budget is evidence of a numerical limitation.
+- `backend/upwind/engine.py`: timestamp/update contract, canonical dimensions, common feasibility, exhaustive/heuristic search, interpretive evidence rule and `research_only` recommendation status.
+- `backend/upwind/quality.py`: conflict quarantine and bounded rare-departure/temporal sampling. More loaded rows does not mean more fitted rows.
+- `backend/tests/test_inference_math.py`: independent positive-strength integration and predictive-moment oracles. `test_design.py` compares mixture information against independent adaptive quadrature.
+- `backend/upwind/validation/overhaul.py`: truth separation, independent stretched-exponential transport, sensor-block holdout, append/update and paired realized measurement comparisons.
+
+Why no multi-source inverse model yet: observationally similar releases can fit a single-source model, and available real controlled-release files could not be obtained. A larger unvalidated mixture would add identifiability and prior-volume problems. The new background competitor resolves an independently confirmed omission; it does not certify source multiplicity. The held-out diagnostics test predictive conflict but have false negatives. The evidence report quantifies these rather than treating absence of a warning as correctness.
+
+Why keep old tests and outputs: the baseline source snapshot includes the original tests and reproduces their exact outcomes. Three current assertions depended on replaced model semantics: Gaussian-logdet optimum, whole-investigation refusal for a single unsupported grid pair, and uniform weights over irregular anchors. Current replacements verify the new objective exhaustively, explicit unsupported-cell exclusion, and uniform **area** prior when no plume is observable; the original discrete MAP-tie regression still runs against `legacy.py`. These are equation/domain changes, not relabeled scientific failures. Initial current-suite results (3 failures/72 passes, then 1 failure/80 passes) were diagnosed before the final check; the remaining failure queried unsupported receptors in a two-site redundancy check, which now tests its two supported receptors explicitly.
+
+Software defects found during development, before final evaluation: scalar truncated-normal inputs; potential allocation of full K×128×128 predictive covariance merely to calculate fitted means (replaced by rank-one moment algebra); QMC changes under site/anchor reorder (canonical dimensions); planning at the window midpoint while updating at its endpoint (explicit timestamp); source-support changes when withholding sensor values (known sensor coordinates fix support); predictive use of undefined near-field geometry (explicit refusal); nullable UI diagnostics on geometric-only coverage. None was repaired using final truth.
+
+The retained transport, heights, meteorological support, instrument-error assumptions and candidate constraints remain strong restrictions. Primary sources/license/access details are in `ENGINE_RESEARCH.md`. Numerical tests verify selected properties, not universal scientific correctness.

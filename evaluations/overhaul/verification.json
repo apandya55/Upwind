@@ -1,0 +1,58 @@
+{
+  "recorded_utc": "2026-10-18T18:55:10.117950+00:00",
+  "pytest": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "81",
+    "time": "8.601",
+    "timestamp": "2026-10-18T18:37:26.616077+00:00",
+    "hostname": "a227fd023483"
+  },
+  "browser": {
+    "startTime": "2026-10-18T18:52:28.586Z",
+    "duration": 14811.131,
+    "expected": 6,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "build": {
+    "status": "passed",
+    "command": "cd frontend && npm run build",
+    "notes": "Large optional-map bundle warning retained; no suppression"
+  },
+  "ruff": {
+    "status": "passed",
+    "command": "ruff==0.14.0 check backend scripts --select F401,F821"
+  },
+  "api": {
+    "concurrent_requests": 64,
+    "workers": 32,
+    "response_statuses": {
+      "200": 13,
+      "429": 51
+    },
+    "acknowledged_writes": 13,
+    "stored_before_bad_requests": 13,
+    "all_acknowledged_writes_preserved": true,
+    "malformed_statuses": [
+      422,
+      422,
+      422,
+      422
+    ],
+    "oversized_status": 413,
+    "no_partial_bad_writes": true,
+    "request_after_overload": 200,
+    "fuzzed_csv_cases": 500,
+    "unexpected_csv_errors": [],
+    "wall_ms": 106.13,
+    "passed": true
+  },
+  "final_source_matches_current": true,
+  "source_before_after_matches": true,
+  "health_model_version": "plume-mixture-0.3.0",
+  "status": "Software checks pass; scientific reliability remains inadequate for source or placement recommendations."
+}

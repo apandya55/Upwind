@@ -1,0 +1,1625 @@
+{
+  "model": "plume-ensemble-0.2.1",
+  "source_file": "evaluations/overhaul/baseline-source/backend/upwind/engine.py",
+  "script_sha256": "459cacdaf55618906d91f20bdf82be69ee0d59d885cd324f3991d557094c5f6a",
+  "evidence": "baseline development-used diagnostic toys; no held-out validation",
+  "cardinal_downwind_vectors": {
+    "0": [
+      -0.0,
+      -1.0
+    ],
+    "90": [
+      -1.0,
+      -6.123233995736766e-17
+    ],
+    "180": [
+      -1.2246467991473532e-16,
+      1.0
+    ],
+    "270": [
+      1.0,
+      1.8369701987210297e-16
+    ]
+  },
+  "projection_0_001_degree_east_m": [
+    111.31949079327357,
+    6.816352904134787e-15
+  ],
+  "strength_speed_confounding": {
+    "Q5000_u2": 11.821906899674635,
+    "Q10000_u4": 11.821906899674635,
+    "absolute_difference": 0.0
+  },
+  "conditions": {
+    "strong_signal": {
+      "true_plume_contribution_per_site_ug_m3": [
+        27.65777206596858,
+        8.031854737867649,
+        4.35253785358534,
+        1.5942203280031166
+      ],
+      "transport_direction_from_deg": 270.0,
+      "transport_speed_m_s": 2.6449999999999996,
+      "observation_sigma_ug_m3": 1.0,
+      "residual_standardized_rms_min_median_max": [
+        0.6268342492920469,
+        0.9990420752399534,
+        1.4701432403564658
+      ],
+      "individual_runs": [
+        {
+          "seed": 220000,
+          "standardized_residual_rms": 0.8547435007179874,
+          "fitted_rmse_ug_m3": 1.270262807443278,
+          "max_location_weight": 1.0
+        },
+        {
+          "seed": 220001,
+          "standardized_residual_rms": 0.9764238143143501,
+          "fitted_rmse_ug_m3": 1.4040751600256347,
+          "max_location_weight": 1.0000000000000002
+        },
+        {
+          "seed": 220002,
+          "standardized_residual_rms": 0.6553238439603726,
+          "fitted_rmse_ug_m3": 1.3047406310281089,
+          "max_location_weight": 0.9999999999999972
+        },
+        {
+          "seed": 220003,
+          "standardized_residual_rms": 1.047729728627608,
+          "fitted_rmse_ug_m3": 2.1824035635160923,
+          "max_location_weight": 0.9999999999967321
+        },
+        {
+          "seed": 220004,
+          "standardized_residual_rms": 1.0271595542899015,
+          "fitted_rmse_ug_m3": 1.308269049767193,
+          "max_location_weight": 0.9999999999999996
+        },
+        {
+          "seed": 220005,
+          "standardized_residual_rms": 1.1200676687222566,
+          "fitted_rmse_ug_m3": 1.8578133247717699,
+          "max_location_weight": 0.9999999999999998
+        },
+        {
+          "seed": 220006,
+          "standardized_residual_rms": 1.468487087749638,
+          "fitted_rmse_ug_m3": 2.713786554465256,
+          "max_location_weight": 0.9999999999999991
+        },
+        {
+          "seed": 220007,
+          "standardized_residual_rms": 1.0606378633633786,
+          "fitted_rmse_ug_m3": 1.4778648494956146,
+          "max_location_weight": 1.0
+        },
+        {
+          "seed": 220008,
+          "standardized_residual_rms": 1.147958963660927,
+          "fitted_rmse_ug_m3": 1.8104236237540803,
+          "max_location_weight": 0.9999999999999996
+        },
+        {
+          "seed": 220009,
+          "standardized_residual_rms": 1.236021779503597,
+          "fitted_rmse_ug_m3": 1.8507391240245787,
+          "max_location_weight": 1.0000000000000004
+        },
+        {
+          "seed": 220010,
+          "standardized_residual_rms": 0.6889226641708817,
+          "fitted_rmse_ug_m3": 1.7562964936845964,
+          "max_location_weight": 0.9999999999999999
+        },
+        {
+          "seed": 220011,
+          "standardized_residual_rms": 0.9760819971970023,
+          "fitted_rmse_ug_m3": 1.632456959055328,
+          "max_location_weight": 0.9999999999999999
+        },
+        {
+          "seed": 220012,
+          "standardized_residual_rms": 1.1205546758303402,
+          "fitted_rmse_ug_m3": 1.432190565226389,
+          "max_location_weight": 0.9999999999999999
+        },
+        {
+          "seed": 220013,
+          "standardized_residual_rms": 0.6658648788926448,
+          "fitted_rmse_ug_m3": 0.9642662272699436,
+          "max_location_weight": 1.0000000000000002
+        },
+        {
+          "seed": 220014,
+          "standardized_residual_rms": 1.0962290239788874,
+          "fitted_rmse_ug_m3": 2.194023798931691,
+          "max_location_weight": 0.9999999999999997
+        },
+        {
+          "seed": 220015,
+          "standardized_residual_rms": 0.8730843003876823,
+          "fitted_rmse_ug_m3": 1.771274787376416,
+          "max_location_weight": 1.0
+        },
+        {
+          "seed": 220016,
+          "standardized_residual_rms": 0.6268342492920469,
+          "fitted_rmse_ug_m3": 1.2953298697749969,
+          "max_location_weight": 1.0000000000000002
+        },
+        {
+          "seed": 220017,
+          "standardized_residual_rms": 1.0153211741385704,
+          "fitted_rmse_ug_m3": 2.011174819789427,
+          "max_location_weight": 0.999999999999925
+        },
+        {
+          "seed": 220018,
+          "standardized_residual_rms": 1.2582092124399684,
+          "fitted_rmse_ug_m3": 2.5247187277991023,
+          "max_location_weight": 0.9999999999998668
+        },
+        {
+          "seed": 220019,
+          "standardized_residual_rms": 1.0730921673667853,
+          "fitted_rmse_ug_m3": 1.7139381041261725,
+          "max_location_weight": 0.9999999999999959
+        },
+        {
+          "seed": 220020,
+          "standardized_residual_rms": 0.8181620066151902,
+          "fitted_rmse_ug_m3": 1.4318941988308787,
+          "max_location_weight": 0.9999999999999996
+        },
+        {
+          "seed": 220021,
+          "standardized_residual_rms": 0.8617641931118527,
+          "fitted_rmse_ug_m3": 1.4528834458359137,
+          "max_location_weight": 0.9999999999999999
+        },
+        {
+          "seed": 220022,
+          "standardized_residual_rms": 1.2955300950243578,
+          "fitted_rmse_ug_m3": 2.7572916554501727,
+          "max_location_weight": 0.9999999999999993
+        },
+        {
+          "seed": 220023,
+          "standardized_residual_rms": 1.320495386209835,
+          "fitted_rmse_ug_m3": 2.766149228803382,
+          "max_location_weight": 0.9999999972329824
+        },
+        {
+          "seed": 220024,
+          "standardized_residual_rms": 0.9827629763413364,
+          "fitted_rmse_ug_m3": 1.2609473949105912,
+          "max_location_weight": 0.9999999999999997
+        },
+        {
+          "seed": 220025,
+          "standardized_residual_rms": 1.1960765179718271,
+          "fitted_rmse_ug_m3": 1.6278886569709234,
+          "max_location_weight": 0.9999999999999996
+        },
+        {
+          "seed": 220026,
+          "standardized_residual_rms": 0.6385171786278611,
+          "fitted_rmse_ug_m3": 1.1026624866209411,
+          "max_location_weight": 1.0
+        },
+        {
+          "seed": 220027,
+          "standardized_residual_rms": 0.8897996550513557,
+          "fitted_rmse_ug_m3": 1.5520339953300353,
+          "max_location_weight": 1.0
+        },
+        {
+          "seed": 220028,
+          "standardized_residual_rms": 0.7981442666817538,
+          "fitted_rmse_ug_m3": 1.3634447279934685,
+          "max_location_weight": 0.9999999999999999
+        },
+        {
+          "seed": 220029,
+          "standardized_residual_rms": 1.4701432403564658,
+          "fitted_rmse_ug_m3": 2.811134025265708,
+          "max_location_weight": 0.9999999999999383
+        },
+        {
+          "seed": 220030,
+          "standardized_residual_rms": 0.9081138022850853,
+          "fitted_rmse_ug_m3": 1.4562719410523093,
+          "max_location_weight": 0.9999999999999997
+        },
+        {
+          "seed": 220031,
+          "standardized_residual_rms": 0.8673054742917798,
+          "fitted_rmse_ug_m3": 1.13764964449341,
+          "max_location_weight": 1.0000000000000002
+        },
+        {
+          "seed": 220032,
+          "standardized_residual_rms": 1.4381485856310008,
+          "fitted_rmse_ug_m3": 2.1481559339505023,
+          "max_location_weight": 1.0000000000000002
+        },
+        {
+          "seed": 220033,
+          "standardized_residual_rms": 0.9581829902468579,
+          "fitted_rmse_ug_m3": 1.384524014153849,
+          "max_location_weight": 0.9999999999999998
+        },
+        {
+          "seed": 220034,
+          "standardized_residual_rms": 0.7757070537101427,
+          "fitted_rmse_ug_m3": 1.2290325869598289,
+          "max_location_weight": 0.9999999999999999
+        },
+        {
+          "seed": 220035,
+          "standardized_residual_rms": 1.0314698753087306,
+          "fitted_rmse_ug_m3": 1.4099728984112627,
+          "max_location_weight": 0.9999999999999996
+        },
+        {
+          "seed": 220036,
+          "standardized_residual_rms": 1.046574267803977,
+          "fitted_rmse_ug_m3": 1.6465371410485343,
+          "max_location_weight": 0.9999999999999901
+        },
+        {
+          "seed": 220037,
+          "standardized_residual_rms": 0.8697631174163013,
+          "fitted_rmse_ug_m3": 2.088402010957114,
+          "max_location_weight": 0.9999999999552911
+        },
+        {
+          "seed": 220038,
+          "standardized_residual_rms": 1.1273017676289119,
+          "fitted_rmse_ug_m3": 1.6913829650564989,
+          "max_location_weight": 0.9999999999999845
+        },
+        {
+          "seed": 220039,
+          "standardized_residual_rms": 0.6423597079946559,
+          "fitted_rmse_ug_m3": 0.8426318531513382,
+          "max_location_weight": 1.0000000000000002
+        }
+      ]
+    },
+    "weak_signal": {
+      "true_plume_contribution_per_site_ug_m3": [
+        3.096976287203953e-05,
+        0.0006177168562198011,
+        0.010250410327165177,
+        0.0003267634574769927
+      ],
+      "transport_direction_from_deg": 270.0,
+      "transport_speed_m_s": 2.6449999999999996,
+      "observation_sigma_ug_m3": 1.0,
+      "residual_standardized_rms_min_median_max": [
+        0.5100236964059819,
+        1.0160836823144024,
+        1.6418855462824882
+      ],
+      "individual_runs": [
+        {
+          "seed": 220000,
+          "standardized_residual_rms": 0.8565438708542233,
+          "fitted_rmse_ug_m3": 1.2124128516051396,
+          "max_location_weight": 0.11432983914369807
+        },
+        {
+          "seed": 220001,
+          "standardized_residual_rms": 0.9725857169900599,
+          "fitted_rmse_ug_m3": 1.3512538161648142,
+          "max_location_weight": 0.11796771173272326
+        },
+        {
+          "seed": 220002,
+          "standardized_residual_rms": 0.7092269872245137,
+          "fitted_rmse_ug_m3": 1.47957791267573,
+          "max_location_weight": 0.11920433358328689
+        },
+        {
+          "seed": 220003,
+          "standardized_residual_rms": 1.0300353175591992,
+          "fitted_rmse_ug_m3": 2.1486705961601085,
+          "max_location_weight": 0.13176979728727245
+        },
+        {
+          "seed": 220004,
+          "standardized_residual_rms": 1.1256071352679542,
+          "fitted_rmse_ug_m3": 1.7528613136013595,
+          "max_location_weight": 0.11452300756111514
+        },
+        {
+          "seed": 220005,
+          "standardized_residual_rms": 1.3546274406007874,
+          "fitted_rmse_ug_m3": 2.6099297403786754,
+          "max_location_weight": 0.12749732157459112
+        },
+        {
+          "seed": 220006,
+          "standardized_residual_rms": 1.4606887230466878,
+          "fitted_rmse_ug_m3": 2.476910193855075,
+          "max_location_weight": 0.173552616018994
+        },
+        {
+          "seed": 220007,
+          "standardized_residual_rms": 1.1892720092462001,
+          "fitted_rmse_ug_m3": 2.1169888810462685,
+          "max_location_weight": 0.1443150429973583
+        },
+        {
+          "seed": 220008,
+          "standardized_residual_rms": 1.1084365361401003,
+          "fitted_rmse_ug_m3": 1.7018418256493353,
+          "max_location_weight": 0.11740305677206406
+        },
+        {
+          "seed": 220009,
+          "standardized_residual_rms": 1.2918343158115255,
+          "fitted_rmse_ug_m3": 2.1466852853740885,
+          "max_location_weight": 0.11283523549793692
+        },
+        {
+          "seed": 220010,
+          "standardized_residual_rms": 0.6429168900263875,
+          "fitted_rmse_ug_m3": 1.4785557923470847,
+          "max_location_weight": 0.11894284557495485
+        },
+        {
+          "seed": 220011,
+          "standardized_residual_rms": 1.0243785665400509,
+          "fitted_rmse_ug_m3": 1.7544404902306152,
+          "max_location_weight": 0.11957497622023015
+        },
+        {
+          "seed": 220012,
+          "standardized_residual_rms": 1.2801604758583953,
+          "fitted_rmse_ug_m3": 2.159859219509694,
+          "max_location_weight": 0.12714325368101295
+        },
+        {
+          "seed": 220013,
+          "standardized_residual_rms": 0.639863523288736,
+          "fitted_rmse_ug_m3": 0.9021692066505165,
+          "max_location_weight": 0.113577420104481
+        },
+        {
+          "seed": 220014,
+          "standardized_residual_rms": 0.9823668974587547,
+          "fitted_rmse_ug_m3": 1.8318411981291352,
+          "max_location_weight": 0.11731466729133215
+        },
+        {
+          "seed": 220015,
+          "standardized_residual_rms": 0.8976528417857041,
+          "fitted_rmse_ug_m3": 1.775179001807507,
+          "max_location_weight": 0.11582050129089463
+        },
+        {
+          "seed": 220016,
+          "standardized_residual_rms": 0.6251800054507942,
+          "fitted_rmse_ug_m3": 1.3839994913263247,
+          "max_location_weight": 0.1145965004826156
+        },
+        {
+          "seed": 220017,
+          "standardized_residual_rms": 0.9600465649988769,
+          "fitted_rmse_ug_m3": 1.753778231978141,
+          "max_location_weight": 0.11908574906266789
+        },
+        {
+          "seed": 220018,
+          "standardized_residual_rms": 0.9087868715020204,
+          "fitted_rmse_ug_m3": 1.4633461214499426,
+          "max_location_weight": 0.11941965238191
+        },
+        {
+          "seed": 220019,
+          "standardized_residual_rms": 1.0610861480396163,
+          "fitted_rmse_ug_m3": 1.5283319668955302,
+          "max_location_weight": 0.1176175455311594
+        },
+        {
+          "seed": 220020,
+          "standardized_residual_rms": 0.8232849837567281,
+          "fitted_rmse_ug_m3": 1.5256482861559193,
+          "max_location_weight": 0.1205641857919018
+        },
+        {
+          "seed": 220021,
+          "standardized_residual_rms": 0.759364299528199,
+          "fitted_rmse_ug_m3": 1.0552820916651209,
+          "max_location_weight": 0.11585974237525726
+        },
+        {
+          "seed": 220022,
+          "standardized_residual_rms": 1.2683699904894936,
+          "fitted_rmse_ug_m3": 2.6246444627127716,
+          "max_location_weight": 0.12973606386682893
+        },
+        {
+          "seed": 220023,
+          "standardized_residual_rms": 1.1985823900710146,
+          "fitted_rmse_ug_m3": 2.705310584398427,
+          "max_location_weight": 0.1788025274046668
+        },
+        {
+          "seed": 220024,
+          "standardized_residual_rms": 1.0457210434768336,
+          "fitted_rmse_ug_m3": 1.5804390898195186,
+          "max_location_weight": 0.11381004108594284
+        },
+        {
+          "seed": 220025,
+          "standardized_residual_rms": 1.2215143772922756,
+          "fitted_rmse_ug_m3": 1.758933510725626,
+          "max_location_weight": 0.11467519489857993
+        },
+        {
+          "seed": 220026,
+          "standardized_residual_rms": 0.5100236964059819,
+          "fitted_rmse_ug_m3": 0.662247553584335,
+          "max_location_weight": 0.11332710983794779
+        },
+        {
+          "seed": 220027,
+          "standardized_residual_rms": 0.8512559292779314,
+          "fitted_rmse_ug_m3": 1.5563148422876225,
+          "max_location_weight": 0.11810465282974052
+        },
+        {
+          "seed": 220028,
+          "standardized_residual_rms": 1.0077887980887539,
+          "fitted_rmse_ug_m3": 2.129899643354552,
+          "max_location_weight": 0.1372575967339214
+        },
+        {
+          "seed": 220029,
+          "standardized_residual_rms": 1.6418855462824882,
+          "fitted_rmse_ug_m3": 3.465536424573382,
+          "max_location_weight": 0.1431591013110898
+        },
+        {
+          "seed": 220030,
+          "standardized_residual_rms": 0.8906036452608552,
+          "fitted_rmse_ug_m3": 1.3604969525335306,
+          "max_location_weight": 0.12295949216549454
+        },
+        {
+          "seed": 220031,
+          "standardized_residual_rms": 1.0257210538179677,
+          "fitted_rmse_ug_m3": 1.8466528101060729,
+          "max_location_weight": 0.1381506060501067
+        },
+        {
+          "seed": 220032,
+          "standardized_residual_rms": 1.432981483723832,
+          "fitted_rmse_ug_m3": 2.1120829872920783,
+          "max_location_weight": 0.12246175781618131
+        },
+        {
+          "seed": 220033,
+          "standardized_residual_rms": 0.9182971987409481,
+          "fitted_rmse_ug_m3": 1.2548124700940062,
+          "max_location_weight": 0.11393548517565441
+        },
+        {
+          "seed": 220034,
+          "standardized_residual_rms": 0.7050216308661611,
+          "fitted_rmse_ug_m3": 0.902282372974368,
+          "max_location_weight": 0.11447057797747782
+        },
+        {
+          "seed": 220035,
+          "standardized_residual_rms": 1.0546711849362276,
+          "fitted_rmse_ug_m3": 1.6102144222650756,
+          "max_location_weight": 0.1264297039308309
+        },
+        {
+          "seed": 220036,
+          "standardized_residual_rms": 1.066906731983504,
+          "fitted_rmse_ug_m3": 1.7614164206265674,
+          "max_location_weight": 0.12098471793837576
+        },
+        {
+          "seed": 220037,
+          "standardized_residual_rms": 0.9491657956296381,
+          "fitted_rmse_ug_m3": 2.380964054901854,
+          "max_location_weight": 0.12222710351110105
+        },
+        {
+          "seed": 220038,
+          "standardized_residual_rms": 1.175500386729241,
+          "fitted_rmse_ug_m3": 1.992896556849679,
+          "max_location_weight": 0.11447382632333886
+        },
+        {
+          "seed": 220039,
+          "standardized_residual_rms": 0.6616849420055315,
+          "fitted_rmse_ug_m3": 0.9540565941341591,
+          "max_location_weight": 0.11417069141795853
+        }
+      ]
+    },
+    "two_sources": {
+      "true_plume_contribution_per_site_ug_m3": [
+        27.65777206596858,
+        8.031854737867649,
+        4.35253785358534,
+        1.5942203280031166
+      ],
+      "transport_direction_from_deg": 270.0,
+      "transport_speed_m_s": 2.6449999999999996,
+      "observation_sigma_ug_m3": 1.0,
+      "residual_standardized_rms_min_median_max": [
+        0.9961491704822294,
+        1.6319847963007401,
+        2.166860738071177
+      ],
+      "individual_runs": [
+        {
+          "seed": 220000,
+          "standardized_residual_rms": 1.6255885690059142,
+          "fitted_rmse_ug_m3": 3.67849322324226,
+          "max_location_weight": 0.9999891222071787
+        },
+        {
+          "seed": 220001,
+          "standardized_residual_rms": 1.660006597994475,
+          "fitted_rmse_ug_m3": 3.716550102274289,
+          "max_location_weight": 0.999447465994738
+        },
+        {
+          "seed": 220002,
+          "standardized_residual_rms": 1.1603033906304223,
+          "fitted_rmse_ug_m3": 2.678553832781987,
+          "max_location_weight": 0.9993112482489325
+        },
+        {
+          "seed": 220003,
+          "standardized_residual_rms": 1.9102063971758911,
+          "fitted_rmse_ug_m3": 4.5179587281556115,
+          "max_location_weight": 0.9955082059643486
+        },
+        {
+          "seed": 220004,
+          "standardized_residual_rms": 1.6804212961015563,
+          "fitted_rmse_ug_m3": 3.545931267283848,
+          "max_location_weight": 0.9998670252390001
+        },
+        {
+          "seed": 220005,
+          "standardized_residual_rms": 1.7104350892625282,
+          "fitted_rmse_ug_m3": 3.586501502319596,
+          "max_location_weight": 0.9999817784621863
+        },
+        {
+          "seed": 220006,
+          "standardized_residual_rms": 1.9914578949667499,
+          "fitted_rmse_ug_m3": 3.9861435157265985,
+          "max_location_weight": 0.9999999998480219
+        },
+        {
+          "seed": 220007,
+          "standardized_residual_rms": 1.6949428691081916,
+          "fitted_rmse_ug_m3": 3.6214258692843497,
+          "max_location_weight": 0.9999985725075873
+        },
+        {
+          "seed": 220008,
+          "standardized_residual_rms": 1.2309465621638993,
+          "fitted_rmse_ug_m3": 2.1337365267867714,
+          "max_location_weight": 0.9991556682451039
+        },
+        {
+          "seed": 220009,
+          "standardized_residual_rms": 1.7291953639355822,
+          "fitted_rmse_ug_m3": 3.8207201457595183,
+          "max_location_weight": 0.9999999986720425
+        },
+        {
+          "seed": 220010,
+          "standardized_residual_rms": 1.2374036924178522,
+          "fitted_rmse_ug_m3": 3.037873365105417,
+          "max_location_weight": 0.9995731751009509
+        },
+        {
+          "seed": 220011,
+          "standardized_residual_rms": 1.785469841963046,
+          "fitted_rmse_ug_m3": 4.169746638791471,
+          "max_location_weight": 0.9999379556323531
+        },
+        {
+          "seed": 220012,
+          "standardized_residual_rms": 1.5570726357945215,
+          "fitted_rmse_ug_m3": 3.106593254152132,
+          "max_location_weight": 0.9999220853474257
+        },
+        {
+          "seed": 220013,
+          "standardized_residual_rms": 1.3797134503380313,
+          "fitted_rmse_ug_m3": 3.176777108873722,
+          "max_location_weight": 0.9999884512020637
+        },
+        {
+          "seed": 220014,
+          "standardized_residual_rms": 1.4060667088171448,
+          "fitted_rmse_ug_m3": 3.169352027879282,
+          "max_location_weight": 0.9994946292685486
+        },
+        {
+          "seed": 220015,
+          "standardized_residual_rms": 1.598443635362683,
+          "fitted_rmse_ug_m3": 3.761553977496211,
+          "max_location_weight": 0.9999608363974821
+        },
+        {
+          "seed": 220016,
+          "standardized_residual_rms": 1.7465970195322296,
+          "fitted_rmse_ug_m3": 4.144758656000019,
+          "max_location_weight": 0.9998833368397865
+        },
+        {
+          "seed": 220017,
+          "standardized_residual_rms": 1.5252240374498376,
+          "fitted_rmse_ug_m3": 3.3240023292306202,
+          "max_location_weight": 0.9945765827377164
+        },
+        {
+          "seed": 220018,
+          "standardized_residual_rms": 0.9961491704822294,
+          "fitted_rmse_ug_m3": 1.7594007048397715,
+          "max_location_weight": 0.9865530154836636
+        },
+        {
+          "seed": 220019,
+          "standardized_residual_rms": 1.6383810235955658,
+          "fitted_rmse_ug_m3": 3.5744545157487027,
+          "max_location_weight": 0.9996646948048823
+        },
+        {
+          "seed": 220020,
+          "standardized_residual_rms": 1.8253653972498796,
+          "fitted_rmse_ug_m3": 4.365748219490547,
+          "max_location_weight": 0.9998045835579024
+        },
+        {
+          "seed": 220021,
+          "standardized_residual_rms": 1.191898368187508,
+          "fitted_rmse_ug_m3": 2.6018410376126044,
+          "max_location_weight": 0.9998412849860708
+        },
+        {
+          "seed": 220022,
+          "standardized_residual_rms": 2.166860738071177,
+          "fitted_rmse_ug_m3": 4.8998830805702625,
+          "max_location_weight": 0.999999551157158
+        },
+        {
+          "seed": 220023,
+          "standardized_residual_rms": 2.0161601017028103,
+          "fitted_rmse_ug_m3": 4.7240230149834535,
+          "max_location_weight": 0.7844183249909477
+        },
+        {
+          "seed": 220024,
+          "standardized_residual_rms": 1.4242963433213756,
+          "fitted_rmse_ug_m3": 2.892445037396657,
+          "max_location_weight": 0.9998592864994642
+        },
+        {
+          "seed": 220025,
+          "standardized_residual_rms": 1.7417446784013217,
+          "fitted_rmse_ug_m3": 3.4098796346355607,
+          "max_location_weight": 0.999915607250537
+        },
+        {
+          "seed": 220026,
+          "standardized_residual_rms": 1.6078109504838674,
+          "fitted_rmse_ug_m3": 3.817557886250738,
+          "max_location_weight": 0.9999976060603677
+        },
+        {
+          "seed": 220027,
+          "standardized_residual_rms": 1.6630299318816268,
+          "fitted_rmse_ug_m3": 3.7841669241763203,
+          "max_location_weight": 0.9999980815633235
+        },
+        {
+          "seed": 220028,
+          "standardized_residual_rms": 1.3872784298034,
+          "fitted_rmse_ug_m3": 3.2196131472340004,
+          "max_location_weight": 0.9999931152113175
+        },
+        {
+          "seed": 220029,
+          "standardized_residual_rms": 2.095261073097892,
+          "fitted_rmse_ug_m3": 4.571636460641301,
+          "max_location_weight": 0.9914301075978493
+        },
+        {
+          "seed": 220030,
+          "standardized_residual_rms": 1.5855643347942077,
+          "fitted_rmse_ug_m3": 3.6295009408384464,
+          "max_location_weight": 0.9999997752066148
+        },
+        {
+          "seed": 220031,
+          "standardized_residual_rms": 1.5183017932339549,
+          "fitted_rmse_ug_m3": 3.4272910384875046,
+          "max_location_weight": 0.999872461637278
+        },
+        {
+          "seed": 220032,
+          "standardized_residual_rms": 2.0769056100878456,
+          "fitted_rmse_ug_m3": 4.181158018259075,
+          "max_location_weight": 0.999997315245287
+        },
+        {
+          "seed": 220033,
+          "standardized_residual_rms": 1.8647528535141649,
+          "fitted_rmse_ug_m3": 4.174494521888006,
+          "max_location_weight": 0.9999006384370941
+        },
+        {
+          "seed": 220034,
+          "standardized_residual_rms": 1.4613365494728896,
+          "fitted_rmse_ug_m3": 3.3248080276090644,
+          "max_location_weight": 0.9999947998643554
+        },
+        {
+          "seed": 220035,
+          "standardized_residual_rms": 1.710186731138591,
+          "fitted_rmse_ug_m3": 3.646076786779861,
+          "max_location_weight": 0.9999987458606303
+        },
+        {
+          "seed": 220036,
+          "standardized_residual_rms": 1.2560873511097592,
+          "fitted_rmse_ug_m3": 2.3608740448242465,
+          "max_location_weight": 0.998167598827325
+        },
+        {
+          "seed": 220037,
+          "standardized_residual_rms": 1.3429932193194465,
+          "fitted_rmse_ug_m3": 3.053502231868327,
+          "max_location_weight": 0.9802667143302402
+        },
+        {
+          "seed": 220038,
+          "standardized_residual_rms": 1.8870917825611555,
+          "fitted_rmse_ug_m3": 4.113698022856198,
+          "max_location_weight": 0.9972017730488634
+        },
+        {
+          "seed": 220039,
+          "standardized_residual_rms": 1.49524981971617,
+          "fitted_rmse_ug_m3": 3.392845406541449,
+          "max_location_weight": 0.999836740394896
+        }
+      ],
+      "second_source_contribution_per_site_ug_m3": [
+        0.0010722229713724639,
+        7.921102716257189,
+        1.8375530210449755,
+        6.991824222621034
+      ]
+    },
+    "direction_bias": {
+      "true_plume_contribution_per_site_ug_m3": [
+        3.2241071080712315e-23,
+        1.483922853064934e-30,
+        1.0770575394368978e-20,
+        2.953418418231475e-34
+      ],
+      "transport_direction_from_deg": 310.0,
+      "transport_speed_m_s": 2.6449999999999996,
+      "observation_sigma_ug_m3": 1.0,
+      "residual_standardized_rms_min_median_max": [
+        0.621826366606508,
+        0.9663455493896964,
+        1.4418190643658497
+      ],
+      "individual_runs": [
+        {
+          "seed": 220000,
+          "standardized_residual_rms": 0.86219714610089,
+          "fitted_rmse_ug_m3": 1.3189180612456346,
+          "max_location_weight": 0.14795848205568865
+        },
+        {
+          "seed": 220001,
+          "standardized_residual_rms": 0.9602286053920208,
+          "fitted_rmse_ug_m3": 1.2935491125882599,
+          "max_location_weight": 0.13621919787966674
+        },
+        {
+          "seed": 220002,
+          "standardized_residual_rms": 0.621826366606508,
+          "fitted_rmse_ug_m3": 1.1751071444041947,
+          "max_location_weight": 0.15541618671659405
+        },
+        {
+          "seed": 220003,
+          "standardized_residual_rms": 0.9594687618948863,
+          "fitted_rmse_ug_m3": 1.8301897354634333,
+          "max_location_weight": 0.18154725706296723
+        },
+        {
+          "seed": 220004,
+          "standardized_residual_rms": 1.0331730971441873,
+          "fitted_rmse_ug_m3": 1.353311728806203,
+          "max_location_weight": 0.1465278820786024
+        },
+        {
+          "seed": 220005,
+          "standardized_residual_rms": 1.125408884078943,
+          "fitted_rmse_ug_m3": 1.8960391984616358,
+          "max_location_weight": 0.1486810992746869
+        },
+        {
+          "seed": 220006,
+          "standardized_residual_rms": 1.3331694030587276,
+          "fitted_rmse_ug_m3": 1.9780930279840816,
+          "max_location_weight": 0.3263495782048313
+        },
+        {
+          "seed": 220007,
+          "standardized_residual_rms": 1.0593538230756,
+          "fitted_rmse_ug_m3": 1.4839316311895758,
+          "max_location_weight": 0.13434157132024688
+        },
+        {
+          "seed": 220008,
+          "standardized_residual_rms": 1.1362247684724176,
+          "fitted_rmse_ug_m3": 1.7778459814437424,
+          "max_location_weight": 0.16301312510788651
+        },
+        {
+          "seed": 220009,
+          "standardized_residual_rms": 1.2771181086098242,
+          "fitted_rmse_ug_m3": 2.0407068462040927,
+          "max_location_weight": 0.1470195473251121
+        },
+        {
+          "seed": 220010,
+          "standardized_residual_rms": 0.6974888124693236,
+          "fitted_rmse_ug_m3": 1.791851408856292,
+          "max_location_weight": 0.15328982279980244
+        },
+        {
+          "seed": 220011,
+          "standardized_residual_rms": 0.9568995250757398,
+          "fitted_rmse_ug_m3": 1.5119373882086309,
+          "max_location_weight": 0.13114797382845295
+        },
+        {
+          "seed": 220012,
+          "standardized_residual_rms": 1.107185165977821,
+          "fitted_rmse_ug_m3": 1.344143649875566,
+          "max_location_weight": 0.13779516206497344
+        },
+        {
+          "seed": 220013,
+          "standardized_residual_rms": 0.6677850619499236,
+          "fitted_rmse_ug_m3": 0.9882867294375403,
+          "max_location_weight": 0.13813158554727803
+        },
+        {
+          "seed": 220014,
+          "standardized_residual_rms": 1.0982175046594154,
+          "fitted_rmse_ug_m3": 2.211359310173194,
+          "max_location_weight": 0.15221240778905987
+        },
+        {
+          "seed": 220015,
+          "standardized_residual_rms": 0.882230281774076,
+          "fitted_rmse_ug_m3": 1.8137675751521292,
+          "max_location_weight": 0.1551486709009471
+        },
+        {
+          "seed": 220016,
+          "standardized_residual_rms": 0.6274150926229015,
+          "fitted_rmse_ug_m3": 1.319370626236749,
+          "max_location_weight": 0.1383292739174043
+        },
+        {
+          "seed": 220017,
+          "standardized_residual_rms": 1.0177855566299994,
+          "fitted_rmse_ug_m3": 2.0314185867681203,
+          "max_location_weight": 0.14993019526480178
+        },
+        {
+          "seed": 220018,
+          "standardized_residual_rms": 1.2067227746802593,
+          "fitted_rmse_ug_m3": 2.402847764711767,
+          "max_location_weight": 0.2675904116382185
+        },
+        {
+          "seed": 220019,
+          "standardized_residual_rms": 1.0385290059503611,
+          "fitted_rmse_ug_m3": 1.503952672414556,
+          "max_location_weight": 0.15689705320480402
+        },
+        {
+          "seed": 220020,
+          "standardized_residual_rms": 0.8081484156070547,
+          "fitted_rmse_ug_m3": 1.3900583341017898,
+          "max_location_weight": 0.13060961819546604
+        },
+        {
+          "seed": 220021,
+          "standardized_residual_rms": 0.828806310334292,
+          "fitted_rmse_ug_m3": 1.3047063058464476,
+          "max_location_weight": 0.16167818435251785
+        },
+        {
+          "seed": 220022,
+          "standardized_residual_rms": 1.2144011388919158,
+          "fitted_rmse_ug_m3": 2.4277659649818353,
+          "max_location_weight": 0.25904349338252297
+        },
+        {
+          "seed": 220023,
+          "standardized_residual_rms": 1.0393474041710826,
+          "fitted_rmse_ug_m3": 1.9415627535803994,
+          "max_location_weight": 0.6270012649121137
+        },
+        {
+          "seed": 220024,
+          "standardized_residual_rms": 0.972462493387372,
+          "fitted_rmse_ug_m3": 1.1995684652358463,
+          "max_location_weight": 0.13427977569135058
+        },
+        {
+          "seed": 220025,
+          "standardized_residual_rms": 1.190058771405937,
+          "fitted_rmse_ug_m3": 1.6127966096975281,
+          "max_location_weight": 0.1418189526744028
+        },
+        {
+          "seed": 220026,
+          "standardized_residual_rms": 0.6358390590626732,
+          "fitted_rmse_ug_m3": 1.105566014077156,
+          "max_location_weight": 0.13347651225663415
+        },
+        {
+          "seed": 220027,
+          "standardized_residual_rms": 0.8754939075087876,
+          "fitted_rmse_ug_m3": 1.5063581372050614,
+          "max_location_weight": 0.14266157281953387
+        },
+        {
+          "seed": 220028,
+          "standardized_residual_rms": 0.7769035761725351,
+          "fitted_rmse_ug_m3": 1.2530625711150556,
+          "max_location_weight": 0.12874869406622208
+        },
+        {
+          "seed": 220029,
+          "standardized_residual_rms": 1.276405225700864,
+          "fitted_rmse_ug_m3": 2.0151983657413535,
+          "max_location_weight": 0.34720690902350354
+        },
+        {
+          "seed": 220030,
+          "standardized_residual_rms": 0.8854856252736517,
+          "fitted_rmse_ug_m3": 1.3304569901848955,
+          "max_location_weight": 0.13838660422338034
+        },
+        {
+          "seed": 220031,
+          "standardized_residual_rms": 0.8637621913576425,
+          "fitted_rmse_ug_m3": 1.1087032983908756,
+          "max_location_weight": 0.1329225148568202
+        },
+        {
+          "seed": 220032,
+          "standardized_residual_rms": 1.4418190643658497,
+          "fitted_rmse_ug_m3": 2.177415187621392,
+          "max_location_weight": 0.1480865786132322
+        },
+        {
+          "seed": 220033,
+          "standardized_residual_rms": 0.9415591591467651,
+          "fitted_rmse_ug_m3": 1.2970696626334006,
+          "max_location_weight": 0.13142822747557914
+        },
+        {
+          "seed": 220034,
+          "standardized_residual_rms": 0.78041362254519,
+          "fitted_rmse_ug_m3": 1.26654994361874,
+          "max_location_weight": 0.14249236107426197
+        },
+        {
+          "seed": 220035,
+          "standardized_residual_rms": 1.025245316059427,
+          "fitted_rmse_ug_m3": 1.381977684003255,
+          "max_location_weight": 0.12802201531531693
+        },
+        {
+          "seed": 220036,
+          "standardized_residual_rms": 1.0272511823620332,
+          "fitted_rmse_ug_m3": 1.5646244629268033,
+          "max_location_weight": 0.1479065166606801
+        },
+        {
+          "seed": 220037,
+          "standardized_residual_rms": 0.8098262218291465,
+          "fitted_rmse_ug_m3": 1.9297113183855619,
+          "max_location_weight": 0.19388549448592152
+        },
+        {
+          "seed": 220038,
+          "standardized_residual_rms": 1.1039233113703368,
+          "fitted_rmse_ug_m3": 1.5714876993605866,
+          "max_location_weight": 0.15054458540589433
+        },
+        {
+          "seed": 220039,
+          "standardized_residual_rms": 0.6408428024059887,
+          "fitted_rmse_ug_m3": 0.8475449011466989,
+          "max_location_weight": 0.13348893116865768
+        }
+      ]
+    },
+    "speed_bias": {
+      "true_plume_contribution_per_site_ug_m3": [
+        15.90321893793193,
+        4.618316474273897,
+        2.5027092658115704,
+        0.9166766886017919
+      ],
+      "transport_direction_from_deg": 270.0,
+      "transport_speed_m_s": 4.6,
+      "observation_sigma_ug_m3": 1.0,
+      "residual_standardized_rms_min_median_max": [
+        0.5437442703556289,
+        0.9729011469373077,
+        1.5088064394362701
+      ],
+      "individual_runs": [
+        {
+          "seed": 220000,
+          "standardized_residual_rms": 0.8582243803882494,
+          "fitted_rmse_ug_m3": 1.2541207030790669,
+          "max_location_weight": 0.9973232782590747
+        },
+        {
+          "seed": 220001,
+          "standardized_residual_rms": 0.9662353175282792,
+          "fitted_rmse_ug_m3": 1.413261094328809,
+          "max_location_weight": 0.8818455881907693
+        },
+        {
+          "seed": 220002,
+          "standardized_residual_rms": 0.6086527309723163,
+          "fitted_rmse_ug_m3": 1.1483638698307423,
+          "max_location_weight": 0.86682799246486
+        },
+        {
+          "seed": 220003,
+          "standardized_residual_rms": 0.9664008361933557,
+          "fitted_rmse_ug_m3": 2.0261437107602194,
+          "max_location_weight": 0.5198519724580521
+        },
+        {
+          "seed": 220004,
+          "standardized_residual_rms": 1.0136491630363489,
+          "fitted_rmse_ug_m3": 1.2089467223246289,
+          "max_location_weight": 0.9705713608742697
+        },
+        {
+          "seed": 220005,
+          "standardized_residual_rms": 1.1014572819911448,
+          "fitted_rmse_ug_m3": 1.686919364405557,
+          "max_location_weight": 0.9959484094060896
+        },
+        {
+          "seed": 220006,
+          "standardized_residual_rms": 1.5088064394362701,
+          "fitted_rmse_ug_m3": 2.8989442265994527,
+          "max_location_weight": 0.9994971831178137
+        },
+        {
+          "seed": 220007,
+          "standardized_residual_rms": 1.07325181707849,
+          "fitted_rmse_ug_m3": 1.5143957197183207,
+          "max_location_weight": 0.9996459482707388
+        },
+        {
+          "seed": 220008,
+          "standardized_residual_rms": 1.0930408185928062,
+          "fitted_rmse_ug_m3": 1.5176099380069887,
+          "max_location_weight": 0.871174747043858
+        },
+        {
+          "seed": 220009,
+          "standardized_residual_rms": 1.3010353479682537,
+          "fitted_rmse_ug_m3": 2.1168666629959487,
+          "max_location_weight": 0.9999678651899929
+        },
+        {
+          "seed": 220010,
+          "standardized_residual_rms": 0.5437442703556289,
+          "fitted_rmse_ug_m3": 1.1539722540884114,
+          "max_location_weight": 0.9457105699183775
+        },
+        {
+          "seed": 220011,
+          "standardized_residual_rms": 0.9940984783009509,
+          "fitted_rmse_ug_m3": 1.7396555865530587,
+          "max_location_weight": 0.9844440125826256
+        },
+        {
+          "seed": 220012,
+          "standardized_residual_rms": 1.1243181181691198,
+          "fitted_rmse_ug_m3": 1.459856512692963,
+          "max_location_weight": 0.981425908493266
+        },
+        {
+          "seed": 220013,
+          "standardized_residual_rms": 0.6722640791239813,
+          "fitted_rmse_ug_m3": 0.9606918463442152,
+          "max_location_weight": 0.9971998997888234
+        },
+        {
+          "seed": 220014,
+          "standardized_residual_rms": 1.0334241294242998,
+          "fitted_rmse_ug_m3": 1.9099017399356721,
+          "max_location_weight": 0.9233716643679902
+        },
+        {
+          "seed": 220015,
+          "standardized_residual_rms": 0.8635122738977619,
+          "fitted_rmse_ug_m3": 1.7045817399445722,
+          "max_location_weight": 0.9904183320844475
+        },
+        {
+          "seed": 220016,
+          "standardized_residual_rms": 0.6099834872430318,
+          "fitted_rmse_ug_m3": 1.2202214798941156,
+          "max_location_weight": 0.9737140408957885
+        },
+        {
+          "seed": 220017,
+          "standardized_residual_rms": 0.816054495651007,
+          "fitted_rmse_ug_m3": 1.1190076282259458,
+          "max_location_weight": 0.794238490556205
+        },
+        {
+          "seed": 220018,
+          "standardized_residual_rms": 1.1011413999699058,
+          "fitted_rmse_ug_m3": 1.9537564120535242,
+          "max_location_weight": 0.5646838185485763
+        },
+        {
+          "seed": 220019,
+          "standardized_residual_rms": 1.0724133950890904,
+          "fitted_rmse_ug_m3": 1.7395056907154713,
+          "max_location_weight": 0.924484495833574
+        },
+        {
+          "seed": 220020,
+          "standardized_residual_rms": 0.822288186897806,
+          "fitted_rmse_ug_m3": 1.486860129067665,
+          "max_location_weight": 0.9545591483838616
+        },
+        {
+          "seed": 220021,
+          "standardized_residual_rms": 0.8587411562588089,
+          "fitted_rmse_ug_m3": 1.4451949988959951,
+          "max_location_weight": 0.9633825650182842
+        },
+        {
+          "seed": 220022,
+          "standardized_residual_rms": 1.3202534079044774,
+          "fitted_rmse_ug_m3": 2.8640822488693924,
+          "max_location_weight": 0.9960589604384068
+        },
+        {
+          "seed": 220023,
+          "standardized_residual_rms": 1.003817441962118,
+          "fitted_rmse_ug_m3": 2.0760312877185867,
+          "max_location_weight": 0.9769725167011516
+        },
+        {
+          "seed": 220024,
+          "standardized_residual_rms": 0.9794524246860536,
+          "fitted_rmse_ug_m3": 1.245406146708991,
+          "max_location_weight": 0.9675099296228554
+        },
+        {
+          "seed": 220025,
+          "standardized_residual_rms": 1.1833891909529104,
+          "fitted_rmse_ug_m3": 1.523229916087509,
+          "max_location_weight": 0.9812610152126499
+        },
+        {
+          "seed": 220026,
+          "standardized_residual_rms": 0.6587815925487333,
+          "fitted_rmse_ug_m3": 1.1574322216355561,
+          "max_location_weight": 0.9994092662182812
+        },
+        {
+          "seed": 220027,
+          "standardized_residual_rms": 0.9055970305760341,
+          "fitted_rmse_ug_m3": 1.5960306698874471,
+          "max_location_weight": 0.9995256721598685
+        },
+        {
+          "seed": 220028,
+          "standardized_residual_rms": 0.8205581011250499,
+          "fitted_rmse_ug_m3": 1.4609873028126015,
+          "max_location_weight": 0.9982314118423645
+        },
+        {
+          "seed": 220029,
+          "standardized_residual_rms": 1.3448863979027217,
+          "fitted_rmse_ug_m3": 2.389989895698886,
+          "max_location_weight": 0.6797195305580505
+        },
+        {
+          "seed": 220030,
+          "standardized_residual_rms": 0.9388398527599712,
+          "fitted_rmse_ug_m3": 1.5972849296459835,
+          "max_location_weight": 0.9995664987223851
+        },
+        {
+          "seed": 220031,
+          "standardized_residual_rms": 0.8715123516891975,
+          "fitted_rmse_ug_m3": 1.1841137527460013,
+          "max_location_weight": 0.9699373640629831
+        },
+        {
+          "seed": 220032,
+          "standardized_residual_rms": 1.4454127756752158,
+          "fitted_rmse_ug_m3": 2.1676471920184,
+          "max_location_weight": 0.9988565711387766
+        },
+        {
+          "seed": 220033,
+          "standardized_residual_rms": 0.9645598628508053,
+          "fitted_rmse_ug_m3": 1.4348037817717838,
+          "max_location_weight": 0.9763470747548766
+        },
+        {
+          "seed": 220034,
+          "standardized_residual_rms": 0.7814123748090314,
+          "fitted_rmse_ug_m3": 1.2127535216732683,
+          "max_location_weight": 0.9987281766859355
+        },
+        {
+          "seed": 220035,
+          "standardized_residual_rms": 1.0507018547242246,
+          "fitted_rmse_ug_m3": 1.495490450256764,
+          "max_location_weight": 0.9996505835507065
+        },
+        {
+          "seed": 220036,
+          "standardized_residual_rms": 0.9794014576812595,
+          "fitted_rmse_ug_m3": 1.3347615138136535,
+          "max_location_weight": 0.7478853715733041
+        },
+        {
+          "seed": 220037,
+          "standardized_residual_rms": 0.607871144911882,
+          "fitted_rmse_ug_m3": 1.339879029388964,
+          "max_location_weight": 0.5611959115552456
+        },
+        {
+          "seed": 220038,
+          "standardized_residual_rms": 1.0673861965797233,
+          "fitted_rmse_ug_m3": 1.5363941301696613,
+          "max_location_weight": 0.6052193523294791
+        },
+        {
+          "seed": 220039,
+          "standardized_residual_rms": 0.6262214769205363,
+          "fitted_rmse_ug_m3": 0.7412682679994976,
+          "max_location_weight": 0.9634641178596979
+        }
+      ]
+    },
+    "off_grid": {
+      "true_plume_contribution_per_site_ug_m3": [
+        0.0005523119265224736,
+        1.1410289891889023,
+        0.37238694830007163,
+        2.3085215686581564
+      ],
+      "transport_direction_from_deg": 270.0,
+      "transport_speed_m_s": 2.6449999999999996,
+      "observation_sigma_ug_m3": 1.0,
+      "residual_standardized_rms_min_median_max": [
+        0.5759084106161377,
+        1.0561320067623514,
+        1.4501627825501548
+      ],
+      "individual_runs": [
+        {
+          "seed": 220000,
+          "standardized_residual_rms": 0.8063857629259011,
+          "fitted_rmse_ug_m3": 0.8972108917882775,
+          "max_location_weight": 0.130444736374601
+        },
+        {
+          "seed": 220001,
+          "standardized_residual_rms": 1.0610027986273685,
+          "fitted_rmse_ug_m3": 1.8408226806443424,
+          "max_location_weight": 0.18814884893939396
+        },
+        {
+          "seed": 220002,
+          "standardized_residual_rms": 0.7675430914679492,
+          "fitted_rmse_ug_m3": 1.7055615401388058,
+          "max_location_weight": 0.24328627705170544
+        },
+        {
+          "seed": 220003,
+          "standardized_residual_rms": 1.125827479948598,
+          "fitted_rmse_ug_m3": 2.3891831908996255,
+          "max_location_weight": 0.2583797683908532
+        },
+        {
+          "seed": 220004,
+          "standardized_residual_rms": 1.0396911813933223,
+          "fitted_rmse_ug_m3": 1.262190857838803,
+          "max_location_weight": 0.12960519453696126
+        },
+        {
+          "seed": 220005,
+          "standardized_residual_rms": 1.1237162952069493,
+          "fitted_rmse_ug_m3": 1.6673667543716593,
+          "max_location_weight": 0.1580018429963564
+        },
+        {
+          "seed": 220006,
+          "standardized_residual_rms": 1.375925531836994,
+          "fitted_rmse_ug_m3": 2.284370273616759,
+          "max_location_weight": 0.33477460110118085
+        },
+        {
+          "seed": 220007,
+          "standardized_residual_rms": 1.0779627311666333,
+          "fitted_rmse_ug_m3": 1.59297150444512,
+          "max_location_weight": 0.1664287817084145
+        },
+        {
+          "seed": 220008,
+          "standardized_residual_rms": 1.1369802814710954,
+          "fitted_rmse_ug_m3": 1.8257624453968166,
+          "max_location_weight": 0.1809050716358093
+        },
+        {
+          "seed": 220009,
+          "standardized_residual_rms": 1.1768264125207026,
+          "fitted_rmse_ug_m3": 1.5951504495892876,
+          "max_location_weight": 0.14160158253897143
+        },
+        {
+          "seed": 220010,
+          "standardized_residual_rms": 0.5759084106161377,
+          "fitted_rmse_ug_m3": 1.2386170921124617,
+          "max_location_weight": 0.13711436155662676
+        },
+        {
+          "seed": 220011,
+          "standardized_residual_rms": 1.0138174880103918,
+          "fitted_rmse_ug_m3": 1.872263768088177,
+          "max_location_weight": 0.18731342326413516
+        },
+        {
+          "seed": 220012,
+          "standardized_residual_rms": 1.183956481616492,
+          "fitted_rmse_ug_m3": 1.8439789843208385,
+          "max_location_weight": 0.21392990626492664
+        },
+        {
+          "seed": 220013,
+          "standardized_residual_rms": 0.6944775105608804,
+          "fitted_rmse_ug_m3": 1.126019061310909,
+          "max_location_weight": 0.15326288461561335
+        },
+        {
+          "seed": 220014,
+          "standardized_residual_rms": 0.9254647712763738,
+          "fitted_rmse_ug_m3": 1.5056279045919894,
+          "max_location_weight": 0.13899572578570468
+        },
+        {
+          "seed": 220015,
+          "standardized_residual_rms": 0.729713347761014,
+          "fitted_rmse_ug_m3": 1.0345918826815204,
+          "max_location_weight": 0.14023190471539168
+        },
+        {
+          "seed": 220016,
+          "standardized_residual_rms": 0.8144118466760518,
+          "fitted_rmse_ug_m3": 1.7074480137721237,
+          "max_location_weight": 0.19685089723460406
+        },
+        {
+          "seed": 220017,
+          "standardized_residual_rms": 1.0581554470240127,
+          "fitted_rmse_ug_m3": 1.956714597770352,
+          "max_location_weight": 0.13439683799714436
+        },
+        {
+          "seed": 220018,
+          "standardized_residual_rms": 1.1074408925656336,
+          "fitted_rmse_ug_m3": 2.1126463556878186,
+          "max_location_weight": 0.3115921606381821
+        },
+        {
+          "seed": 220019,
+          "standardized_residual_rms": 1.1547254403391252,
+          "fitted_rmse_ug_m3": 2.0783697308786913,
+          "max_location_weight": 0.23578104499060407
+        },
+        {
+          "seed": 220020,
+          "standardized_residual_rms": 0.8688163729971783,
+          "fitted_rmse_ug_m3": 1.6211457800039588,
+          "max_location_weight": 0.1948474440881284
+        },
+        {
+          "seed": 220021,
+          "standardized_residual_rms": 0.8865235620453539,
+          "fitted_rmse_ug_m3": 1.6766417914978593,
+          "max_location_weight": 0.22343672915948629
+        },
+        {
+          "seed": 220022,
+          "standardized_residual_rms": 1.1377627824565035,
+          "fitted_rmse_ug_m3": 2.2041553332900086,
+          "max_location_weight": 0.456401097788343
+        },
+        {
+          "seed": 220023,
+          "standardized_residual_rms": 1.1274792653791623,
+          "fitted_rmse_ug_m3": 2.1971484071226888,
+          "max_location_weight": 0.8654616020282401
+        },
+        {
+          "seed": 220024,
+          "standardized_residual_rms": 1.05410856650069,
+          "fitted_rmse_ug_m3": 1.6895461528127336,
+          "max_location_weight": 0.20228202083333405
+        },
+        {
+          "seed": 220025,
+          "standardized_residual_rms": 1.2332163070857871,
+          "fitted_rmse_ug_m3": 1.751273634647894,
+          "max_location_weight": 0.37538625428574734
+        },
+        {
+          "seed": 220026,
+          "standardized_residual_rms": 0.728423815214078,
+          "fitted_rmse_ug_m3": 1.4243624508738748,
+          "max_location_weight": 0.20251406688628898
+        },
+        {
+          "seed": 220027,
+          "standardized_residual_rms": 0.8725213380869877,
+          "fitted_rmse_ug_m3": 1.5470409295718122,
+          "max_location_weight": 0.42614349775284033
+        },
+        {
+          "seed": 220028,
+          "standardized_residual_rms": 0.8648775241802245,
+          "fitted_rmse_ug_m3": 1.7822191303876456,
+          "max_location_weight": 0.19626434396840658
+        },
+        {
+          "seed": 220029,
+          "standardized_residual_rms": 1.4501627825501548,
+          "fitted_rmse_ug_m3": 2.540643199091217,
+          "max_location_weight": 0.15643313472389886
+        },
+        {
+          "seed": 220030,
+          "standardized_residual_rms": 0.9763226935794076,
+          "fitted_rmse_ug_m3": 1.8476914224508487,
+          "max_location_weight": 0.13660840413733094
+        },
+        {
+          "seed": 220031,
+          "standardized_residual_rms": 0.8956673955626728,
+          "fitted_rmse_ug_m3": 1.416682578569861,
+          "max_location_weight": 0.1407445580236373
+        },
+        {
+          "seed": 220032,
+          "standardized_residual_rms": 1.4333520832535604,
+          "fitted_rmse_ug_m3": 1.9634662731393435,
+          "max_location_weight": 0.1263887396597991
+        },
+        {
+          "seed": 220033,
+          "standardized_residual_rms": 1.077845712996454,
+          "fitted_rmse_ug_m3": 1.8909732621839141,
+          "max_location_weight": 0.3378847647328379
+        },
+        {
+          "seed": 220034,
+          "standardized_residual_rms": 0.7460215204607222,
+          "fitted_rmse_ug_m3": 1.0570533942754388,
+          "max_location_weight": 0.1410168901346029
+        },
+        {
+          "seed": 220035,
+          "standardized_residual_rms": 1.0978502209930412,
+          "fitted_rmse_ug_m3": 1.76560786031262,
+          "max_location_weight": 0.2003924612085683
+        },
+        {
+          "seed": 220036,
+          "standardized_residual_rms": 1.1010620349460254,
+          "fitted_rmse_ug_m3": 1.9143439333180197,
+          "max_location_weight": 0.22796392400187368
+        },
+        {
+          "seed": 220037,
+          "standardized_residual_rms": 0.78013124990944,
+          "fitted_rmse_ug_m3": 1.7645774823402862,
+          "max_location_weight": 0.7421131880741627
+        },
+        {
+          "seed": 220038,
+          "standardized_residual_rms": 1.253832369158495,
+          "fitted_rmse_ug_m3": 2.19919141316147,
+          "max_location_weight": 0.20115177962952832
+        },
+        {
+          "seed": 220039,
+          "standardized_residual_rms": 0.8110911416496389,
+          "fitted_rmse_ug_m3": 1.4834537699483064,
+          "max_location_weight": 0.19581631247298836
+        }
+      ]
+    }
+  },
+  "rare_transient_selection_toy": {
+    "loaded_rows": 240,
+    "subset_rows": 40,
+    "full_rows": 240,
+    "spike_sensor": "M0",
+    "spike_timestamp": "2025-07-01T10:01:00+00:00",
+    "spike_increment_ug_m3": 40,
+    "spike_selected": false,
+    "subset_standardized_residual_rms": 0.7574912796643043,
+    "full_standardized_residual_rms": 2.577677871868732,
+    "subset_rmse_ug_m3": 2.9283149838101044,
+    "full_rmse_ug_m3": 3.7656177939777304,
+    "subset_location_weights": [
+      0.9999999985571216,
+      9.306121488027257e-32,
+      7.022357302687755e-32,
+      1.4428784402828196e-09,
+      8.695863067407794e-32,
+      7.41032838184094e-32,
+      1.1390221495865317e-31,
+      7.813314055183688e-32,
+      1.3865394682791866e-31
+    ],
+    "full_location_weights": [
+      0.9999999999761567,
+      3.127166193069641e-36,
+      2.338411758518541e-36,
+      2.3871828864220538e-11,
+      2.90240469698483e-36,
+      2.4332679426360945e-36,
+      3.8169084849650354e-36,
+      2.612235034233853e-36,
+      4.6726235064815314e-36
+    ],
+    "limitation": "Transient violates steady-release assumption; demonstrates potential loss of a diagnostic episode, not recoverable source-location truth."
+  }
+}

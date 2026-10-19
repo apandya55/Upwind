@@ -1,0 +1,45 @@
+from pathlib import Path
+import json,hashlib,time
+import numpy as np
+from scipy.optimize import lsq_linear
+from upwind.validation.overhaul import make_world,transport,lonlat
+from upwind.numerics import plume,projector
+from upwind.identifiability import whiten_profile,local_resolution
+
+OUT=Path('evaluations/research/stage1');OUT.mkdir(parents=True,exist_ok=False)
+records=[]
+for family in ('background_only','weak_signal','strong_signal','direction_bias','two_sources','correlated_errors'):
+  for seed in (410000,410001,410002):
+    inv,state=make_world(family,seed,'development')
+    xy=np.tile(np.array(state['monitor_xy']),(4,1));n=len(xy)
+    times=np.repeat(np.arange(4)*360.,len(state['monitor_xy']))
+    ids=np.tile(np.arange(len(state['monitor_xy'])),4)
+    sigma=np.array([m.uncertainty_ug_m3 for m in inv.measurements])
+    dist=np.linalg.norm(xy[:,None]-xy[None],axis=-1)
+    R=np.diag(sigma**2)+(ids[:,None]==ids[None]).astype(float)+inv.settings.noise_ug_m3**2*np.exp(-dist/150-abs(times[:,None]-times[None])/600)
+    nuisance=np.column_stack((np.ones(n),(times-times.mean())/3600))
+    y=np.array([m.pm25_ug_m3 for m in inv.measurements])
+    true=transport(xy,state['source_xy'],state['strength'],state['speed'],state['direction'],'development')
+    item={'family':family,'seed':seed,'true_increment_max_ug_m3':float(true.max()),'true_increment_rms_ug_m3':float(np.sqrt(np.mean(true**2))),'median_instrument_sigma':float(np.median(sigma)),'fits':[]}
+    for spacing in (20.,10.,5.):
+      gx=np.arange(-450,-80+spacing/2,spacing);gy=np.arange(-220,220+spacing/2,spacing)
+      grid=np.array([(x,z) for x in gx for z in gy]);valid=np.all(np.linalg.norm(grid[:,None]-xy[None],axis=-1)>=20,axis=1);grid=grid[valid]
+      for name,known_wind,compatible,known_background in [('profile_nominal',False,False,False),('oracle_wind',True,False,False),('oracle_physics_wind',True,True,False),('oracle_physics_wind_background',True,True,True)]:
+        if compatible:
+          g=np.stack([transport(xy,p,1,state['speed'],state['direction'],'development') for p in grid],axis=1)
+        else:
+          angle=state['direction'] if known_wind else state['measured_direction']
+          g=plume(xy[:,None],grid[None],1,state['speed'],angle)
+        obs=y.copy();X=nuisance
+        if known_background:
+          obs-=state['background']+state['background_drift']*np.repeat(np.arange(4),len(state['monitor_xy']))
+          X=np.empty((n,0))
+        profile=whiten_profile(obs,g,R,X)
+        best=np.argmin(profile['loss']);near=profile['loss']<=profile['loss'][best]+4.605170186
+        error=float(np.linalg.norm(grid[best]-state['source_xy']))
+        item['fits'].append({'spacing_m':spacing,'method':name,'error_m':error,'min_chi2':float(profile['loss'][best]),'background_chi2':profile['background_loss'],'compatible_area_fraction_heuristic':float(near.mean()),'strength_ug_s':float(profile['strength'][best]),'near_locations':int(near.sum()),'grid_locations':len(grid)})
+    records.append(item)
+    print(family,seed,round(item['true_increment_max_ug_m3'],3),[(r['method'],round(r['error_m'])) for r in item['fits'][-4:]],flush=True)
+(OUT/'outcomes.json').write_text(json.dumps(records,indent=2)+'\n')
+(OUT/'metadata.json').write_text(json.dumps({'status':'Development only; previous seeds inspected. Oracles access evaluator state; production does not.','script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'profile_module_sha256':hashlib.sha256(Path('backend/upwind/identifiability.py').read_bytes()).hexdigest(),'threshold_meaning':'Delta chi-square4.605 diagnostic reference only; not calibrated region or probability.'},indent=2)+'\n')
+(OUT/'executed-script.py.txt').write_text(Path(__file__).read_text())

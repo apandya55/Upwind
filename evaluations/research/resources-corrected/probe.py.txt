@@ -1,0 +1,52 @@
+"""Fresh-child 60s/2GiB probes. Synthetic shapes, not science validation."""
+import argparse,json,os,resource,subprocess,sys,time
+from pathlib import Path
+ROOT=Path('/workspace/Upwind');OUT=ROOT/'evaluations/research/resources-corrected'
+
+def child(limit,campaign):
+ import numpy as np
+ from datetime import datetime,timedelta,timezone
+ from upwind.models import Point,StudyWindow
+ from upwind.validation.resources import scale_case
+ from upwind.validation.cases import point,scalar_plume
+ from upwind.engine import analyze
+ resource.setrlimit(resource.RLIMIT_AS,(2*1024**3,2*1024**3));started=time.perf_counter()
+ inv=scale_case(10000);monitors=[(800+(i%5)*100,-500+(i//5)*140) for i in range(40)]
+ candidates=[(1500+(j%10)*50,-400+(j//10)*160) for j in range(60)]
+ for s in inv.sites:
+  p=monitors[int(s.id[1:])] if s.kind=='sensor' else candidates[int(s.id[1:])]
+  coords=point(p);s.latitude=coords['latitude'];s.longitude=coords['longitude']
+ for i,row in enumerate(inv.measurements):
+  p=monitors[int(row.sensor_id[1:])];coords=point(p);row.latitude=coords['latitude'];row.longitude=coords['longitude']
+  if campaign:
+   window=(i//40)%6;epoch=i//240;stamp=(datetime(2025,1,1,tzinfo=timezone.utc)+timedelta(hours=2*window,seconds=epoch*.3)).isoformat()
+   row.timestamp=stamp;inv.weather[i].timestamp=stamp;inv.weather[i].wind_from_deg=235+15*window
+  row.pm25_ug_m3=10+scalar_plume(p,(-400,0),5000,2.3,inv.weather[i].wind_from_deg)
+ local=point((1000,0))
+ for row in inv.weather:row.latitude=local['latitude'];row.longitude=local['longitude']
+ inv.source_locations=[Point(**point((x,y))) for x in (-600,-300,0,300,600) for y in (-600,-300,0,300,600)]
+ inv.settings.inference_limit=limit;inv.settings.objective='prediction_variance'
+ if campaign:
+  start=datetime(2025,1,1,tzinfo=timezone.utc)
+  inv.study_windows=[StudyWindow(id=f'period-{w}',start=(start+timedelta(hours=2*w)).isoformat(),end=(start+timedelta(hours=2*w,minutes=1)).isoformat()) for w in range(6)]
+  inv.assumptions.constant_release_across_windows=True
+ result=analyze(inv)
+ hwm=next(float(x.split()[1])/1024 for x in Path('/proc/self/status').read_text().splitlines() if x.startswith('VmHWM:'))
+ return {'status':'finished','analysis_status':result['status'],'reason':result.get('reason'),'campaign':campaign,'inference_limit':limit,'loaded':10000,'weather':10000,'sites':100,'anchors':25,'rows_fitted':result.get('rows_used'),'components':result.get('scenario_count'),'finite_scores':all(np.isfinite(p['score']) for p in result['plans']),'wall_seconds':time.perf_counter()-started,'peak_rss_mib':hwm}
+
+def main():
+ p=argparse.ArgumentParser();p.add_argument('--child',type=int);p.add_argument('--campaign',action='store_true');a=p.parse_args()
+ if a.child:print(json.dumps(child(a.child,a.campaign),allow_nan=False),flush=True);return
+ from upwind.validation.research.run import source_hashes,write
+ OUT.mkdir(exist_ok=False);before=source_hashes();rows=[]
+ write(OUT/'metadata.json',{'source_hashes_before':before,'timeout_seconds':60,'address_space_ceiling_mib':2048,'blas_threads':1,'campaign_groups':240,'expected_campaign128':'explicit refusal:128 cannot retain240 sensor-period groups','source_cells':576,'campaign_raw_components':48385,'single_raw_components':12097,'objective':'prediction_variance','command':sys.argv})
+ (OUT/'probe.py.txt').write_text(Path(__file__).read_text())
+ for campaign,limit in ((False,128),(False,512),(True,128),(True,512)):
+  command=[sys.executable,str(Path(__file__).resolve()),'--child',str(limit)]+(['--campaign'] if campaign else [])
+  try:
+   proc=subprocess.run(command,cwd=ROOT,env={**os.environ,'OPENBLAS_NUM_THREADS':'1','OMP_NUM_THREADS':'1'},capture_output=True,text=True,timeout=60)
+   row=json.loads(proc.stdout) if proc.returncode==0 else {'status':'child_failure','exit_code':proc.returncode,'stdout':proc.stdout[-2000:],'stderr':proc.stderr[-4000:]}
+  except subprocess.TimeoutExpired:row={'status':'timeout','timeout_seconds':60}
+  row.update(campaign=campaign,inference_limit=limit,command=command);rows.append(row);write(OUT/'results.json',rows);print(json.dumps(row),flush=True)
+ write(OUT/'completion.json',{'source_hashes_after':source_hashes(),'source_hashes_unchanged':before==source_hashes()})
+if __name__=='__main__':main()

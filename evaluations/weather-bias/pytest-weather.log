@@ -1,0 +1,51 @@
+........F...                                                             [100%]
+=================================== FAILURES ===================================
+_______ test_far_async_and_stale_reference_records_do_not_constrain_bias _______
+
+    def test_far_async_and_stale_reference_records_do_not_constrain_bias():
+        from datetime import datetime, timedelta
+    
+        for kind in ("far", "async", "stale"):
+            inv = comparison_case()
+            if kind == "stale":
+                old = [
+                    w.model_copy(
+                        update={
+                            "timestamp": (
+                                datetime.fromisoformat(w.timestamp) - timedelta(days=20)
+                            ).isoformat()
+                        }
+                    )
+                    for w in inv.weather
+                ]
+                inv.weather = [w for w in inv.weather if w.role == "primary"] + old
+            else:
+                for w in inv.weather:
+                    if w.role == "reference":
+                        if kind == "far":
+                            w.latitude += 0.1
+                        else:
+                            w.timestamp = (
+                                datetime.fromisoformat(w.timestamp) + timedelta(minutes=40)
+                            ).isoformat()
+            matched = [w for w in inv.weather if w.role == "primary"][
+                : len(inv.weather) // 2
+            ]
+            tr = projector(matched[0].latitude, matched[0].longitude)
+            result = station_distribution(inv, tr, matched)
+>           assert result[-1]["status"] == "unverified" and result[1] >= 20
+E           AssertionError: assert ('comparison_supplied' == 'unverified'
+E             
+E             - unverified
+E             + comparison_supplied)
+
+backend/tests/test_weather_bias.py:204: AssertionError
+=============================== warnings summary ===============================
+backend/tests/test_weather_bias.py::test_weather_evidence_html_and_legacy_api_import_preserve_archive
+  /workspace/Upwind/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED backend/tests/test_weather_bias.py::test_far_async_and_stale_reference_records_do_not_constrain_bias
+1 failed, 11 passed, 1 warning in 6.61s

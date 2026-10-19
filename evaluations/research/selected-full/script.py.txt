@@ -1,0 +1,28 @@
+"""Development sampling sensitivity with a full480-row compatible campaign."""
+from pathlib import Path
+from datetime import datetime,timedelta
+import numpy as np,time
+from upwind.validation.research.cases import world,forward,point
+from upwind.validation.research.run import write,source_hashes,source_metrics
+from upwind.models import Measurement
+from upwind.inference import fit
+OUT=Path('evaluations/research/selected-full');OUT.mkdir(exist_ok=False);before=source_hashes();results=[];started=time.perf_counter()
+(OUT/'script.py.txt').write_text(Path(__file__).read_text())
+for seed in (710000,710001,710002):
+ inv,state=world('informative_campaign',seed,'development');rng=np.random.default_rng(seed+5500000)
+ xy=np.tile(state['monitor_xy'],(80,1));labels=np.repeat(np.arange(4),120)
+ stamps=[(datetime.fromisoformat(inv.study_windows[w].start)+timedelta(seconds=epoch*45)).isoformat() for w in range(4) for epoch in range(20) for sensor in range(6)]
+ times=np.array([datetime.fromisoformat(s).timestamp() for s in stamps]);d=np.linalg.norm(xy[:,None]-xy[None],axis=-1)
+ field=rng.multivariate_normal(np.zeros(480),.49*np.exp(-d/180-abs(times[:,None]-times[None])/600)+np.eye(480)*1e-10)
+ bias=np.tile(rng.normal(0,.7,6),80);sigma=rng.uniform(.8,1.5,480)
+ increments=np.array([forward([p],state['source_xy'],state['strength'],state['speed'],state['true_angles'][w],state['mechanism'])[0] for p,w in zip(xy,labels)])
+ values=np.maximum(0,np.array(state['background'])[labels]+increments+field+bias+rng.normal(0,sigma))
+ inv.measurements=[Measurement(sensor_id=f'M{i%6:02}',timestamp=s,pm25_ug_m3=float(y),uncertainty_ug_m3=float(u),origin='synthetic',**point(xy[i],state['split'])) for i,(s,y,u) in enumerate(zip(stamps,values,sigma))]
+ fitted=[]
+ for limit in (64,128,512):
+  inv.settings.inference_limit=limit;f=fit(inv,diagnostics=False);fitted.append((limit,f))
+ full=fitted[-1][1]
+ for limit,f in fitted:
+  results.append({'seed':seed,'limit':limit,'loaded':480,'fitted':f['rows_used'],'total_variation_location_mass_vs_full':float(.5*np.abs(f['cell_weights']-full['cell_weights']).sum()),'mean_location_shift_vs_full_m':float(np.linalg.norm(f['cell_weights']@f['source_xy']-full['cell_weights']@full['source_xy'])),**source_metrics(f,state)})
+ write(OUT/'results.json',results);print(seed,flush=True)
+write(OUT/'metadata.json',{'source_hashes_before':before,'source_hashes_after':source_hashes(),'source_hashes_unchanged':before==source_hashes(),'wall_seconds':time.perf_counter()-started,'meaning':'Development sensitivity only. Same domain/Q/layout/winds,480 independently noisy readings with explicit correlated field and persistent sensor bias. Full means all480 readings, not all10k imported resources. No acceptance-policy selection.'})

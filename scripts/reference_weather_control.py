@@ -1,0 +1,140 @@
+"""Supplementary same-data baseline control; no true wind enters either fit."""
+
+import argparse, hashlib, json, time
+from pathlib import Path
+import numpy as np
+from upwind.validation.weather_bias import (
+    ROOT,
+    world,
+    baseline,
+    old_input,
+    hashes,
+    write,
+)
+from upwind.validation.research.run import source_metrics, score_prediction
+from upwind.validation.research.cases import reveal, point
+from upwind.models import Measurement
+from upwind.inference import fit
+
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "--out", type=Path, default=ROOT / "evaluations/weather-bias/reference-control"
+)
+args = parser.parse_args()
+OUT = args.out
+OUT.mkdir(exist_ok=False)
+freeze = json.loads(
+    (ROOT / "evaluations/weather-bias/final-source-freeze.json").read_text()
+)["source_hashes"]
+assert hashes() == freeze
+write(
+    OUT / "metadata.json",
+    dict(
+        source_hashes_before=hashes(),
+        script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        protocol_sha256=hashlib.sha256(
+            (ROOT / "docs/WEATHER_BIAS_REFERENCE_CONTROL.md").read_bytes()
+        ).hexdigest(),
+        classification="Supplementary control declared after primary freeze, before inspecting planner outcomes. Not a new primary test or changed model.",
+    ),
+)
+rows = []
+start = time.perf_counter()
+for seed in range(1210000, 1210008):
+    inv, state = world("direction_characterized", seed, "final")
+    # Select only independently qualified observed comparison data, using no truth.
+    f = fit(inv, diagnostics=False)
+    used = f["meteorology"]["comparisons_used"]
+    source = sorted({w["source_id"] for w in used})[0]
+    keys = {(w["source_id"], w["timestamp"]) for w in used}
+    refs = [
+        w
+        for w in inv.weather
+        if w.role == "reference"
+        and w.source_id == source
+        and (w.source_id, w.timestamp) in keys
+    ]
+    study = old_input(inv)
+    m = baseline()[1]
+    study.weather = [
+        m.Weather.model_validate(
+            {k: v for k, v in w.model_dump().items() if k in m.Weather.model_fields}
+        )
+        for w in refs
+    ]
+    study.settings.met_direction_sd_deg = float(
+        np.hypot(
+            max(w.direction_systematic_sd_deg for w in refs),
+            max(w.direction_random_sd_deg for w in refs),
+        )
+    )
+    study.settings.met_speed_fraction = float(
+        np.hypot(max(w.speed_systematic_fraction for w in refs), 0.02)
+    )
+    legacy = baseline()[0].fit(study, diagnostics=True)
+    result = baseline()[2].analyze(study)
+    ids = result["plans"][0]["site_ids"] if result["plans"] else []
+    lock = hashlib.sha256(json.dumps(ids).encode()).hexdigest()
+    # Do not realize candidate/target observation noise until the choice is locked.
+    reveal(state)
+    updated = inv.model_copy(deep=True)
+    cost = 0.0
+    for id in ids:
+        site = next(s for s in inv.sites if s.id == id)
+        j = int(id[1:])
+        cost += site.cost
+        updated.measurements.append(
+            Measurement(
+                sensor_id="followup-" + id,
+                timestamp=state["last_timestamp"],
+                pm25_ug_m3=state["candidate_outcomes"][j],
+                uncertainty_ug_m3=state["future_sigma"][j],
+                origin="synthetic",
+                latitude=site.latitude,
+                longitude=site.longitude,
+            )
+        )
+    assert cost <= 250 and len(ids) <= 2
+    targets = [
+        Measurement(
+            sensor_id=f"target-{i}",
+            timestamp=state["last_timestamp"],
+            pm25_ug_m3=float(v),
+            uncertainty_ug_m3=float(s),
+            origin="synthetic",
+            **point(xy, "final"),
+        )
+        for i, (xy, v, s) in enumerate(
+            zip(
+                state["target_xy"], state["target_outcomes"], state["future_sigma"][12:]
+            )
+        )
+    ]
+    post = fit(updated, diagnostics=False)
+    row = dict(
+        seed=seed,
+        family=state["family"],
+        method="baseline_0.4_observed_reference_planner",
+        site_ids=ids,
+        cost=cost,
+        equipment=len(ids),
+        locked_plan_sha256=lock,
+        selected_reference=source,
+        reference_direction_sd_deg=study.settings.met_direction_sd_deg,
+        legacy_reference_inference=source_metrics(legacy, state),
+        legacy_predictive_warning=legacy["diagnostics"]["predictive_warning"],
+        prediction=score_prediction(post, targets, state["target_outcomes"]),
+        **source_metrics(post, state),
+    )
+    rows.append(row)
+    write(OUT / "results.json", rows)
+    print(seed, ids, flush=True)
+write(
+    OUT / "completion.json",
+    dict(
+        source_hashes_after=hashes(),
+        source_unchanged=hashes() == freeze,
+        worlds=len(rows),
+        seconds=time.perf_counter() - start,
+    ),
+)

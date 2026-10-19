@@ -1,0 +1,235 @@
+{
+  "status": "Supplementary descriptive analysis after final evaluation; no model change or metric replacement",
+  "bootstrap": {
+    "method": "paired within-condition seed resampling, percentile interval",
+    "replicates": 5000,
+    "rng_seed": 90210,
+    "caution": "n=12 planner intervals are imprecise; do not pool dependent families or infer field generalization"
+  },
+  "paired_prediction": [
+    {
+      "family": "background_only",
+      "target": "whole-held-sensor RMSE, old minus new (positive favors new)",
+      "uncertainty": {
+        "n": 40,
+        "mean": 1.1480575931249288,
+        "percentile95": [
+          0.8045946663830903,
+          1.4838109832191164
+        ]
+      }
+    },
+    {
+      "family": "boundary",
+      "target": "whole-held-sensor RMSE, old minus new (positive favors new)",
+      "uncertainty": {
+        "n": 40,
+        "mean": 1.1440393483816824,
+        "percentile95": [
+          0.7959145703950529,
+          1.484144020406534
+        ]
+      }
+    },
+    {
+      "family": "correlated_errors",
+      "target": "whole-held-sensor RMSE, old minus new (positive favors new)",
+      "uncertainty": {
+        "n": 40,
+        "mean": 1.117710614904929,
+        "percentile95": [
+          0.6099310332034681,
+          1.581114448487857
+        ]
+      }
+    },
+    {
+      "family": "direction_bias",
+      "target": "whole-held-sensor RMSE, old minus new (positive favors new)",
+      "uncertainty": {
+        "n": 40,
+        "mean": 1.200997654219368,
+        "percentile95": [
+          0.8298083647090615,
+          1.5745212989107493
+        ]
+      }
+    },
+    {
+      "family": "episodic",
+      "target": "whole-held-sensor RMSE, old minus new (positive favors new)",
+      "uncertainty": {
+        "n": 40,
+        "mean": 1.2841753231257833,
+        "percentile95": [
+          0.9489493405042192,
+          1.6194903084545553
+        ]
+      }
+    },
+    {
+      "family": "missingness",
+      "target": "whole-held-sensor RMSE, old minus new (positive favors new)",
+      "uncertainty": {
+        "n": 40,
+        "mean": 0.5775548596542712,
+        "percentile95": [
+          0.12786341462188391,
+          1.015597141294021
+        ]
+      }
+    },
+    {
+      "family": "strong_signal",
+      "target": "whole-held-sensor RMSE, old minus new (positive favors new)",
+      "uncertainty": {
+        "n": 40,
+        "mean": 1.3476001466059584,
+        "percentile95": [
+          1.0103928669215125,
+          1.6969886364275235
+        ]
+      }
+    },
+    {
+      "family": "two_sources",
+      "target": "whole-held-sensor RMSE, old minus new (positive favors new)",
+      "uncertainty": {
+        "n": 40,
+        "mean": 1.3262270677990842,
+        "percentile95": [
+          0.8541207660154085,
+          1.7972365801075372
+        ]
+      }
+    },
+    {
+      "family": "weak_signal",
+      "target": "whole-held-sensor RMSE, old minus new (positive favors new)",
+      "uncertainty": {
+        "n": 40,
+        "mean": 0.7395602565111138,
+        "percentile95": [
+          0.37079592182597537,
+          1.1057623283355806
+        ]
+      }
+    }
+  ],
+  "paired_planner": [
+    {
+      "family": "direction_bias",
+      "target": "realized target RMSE, random20 mean minus new",
+      "uncertainty": {
+        "n": 12,
+        "mean": -0.04643220840061016,
+        "percentile95": [
+          -0.1298887531246558,
+          0.024360014134359814
+        ]
+      }
+    },
+    {
+      "family": "strong_signal",
+      "target": "realized target RMSE, random20 mean minus new",
+      "uncertainty": {
+        "n": 12,
+        "mean": 0.1401270058547842,
+        "percentile95": [
+          -0.09690558661583278,
+          0.49241790430678106
+        ]
+      }
+    },
+    {
+      "family": "weak_signal",
+      "target": "realized target RMSE, random20 mean minus new",
+      "uncertainty": {
+        "n": 12,
+        "mean": -0.00028219905944375695,
+        "percentile95": [
+          -0.07088611625038256,
+          0.06365683706184032
+        ]
+      }
+    }
+  ],
+  "frozen_product_evidence_rule": [
+    {
+      "family": "background_only",
+      "generated": 40,
+      "fitted": 40,
+      "frozen_product_rule_source_supported": 0,
+      "source_regions_missed_among_supported": 0
+    },
+    {
+      "family": "boundary",
+      "generated": 40,
+      "fitted": 40,
+      "frozen_product_rule_source_supported": 0,
+      "source_regions_missed_among_supported": 0
+    },
+    {
+      "family": "correlated_errors",
+      "generated": 40,
+      "fitted": 40,
+      "frozen_product_rule_source_supported": 2,
+      "source_regions_missed_among_supported": 1
+    },
+    {
+      "family": "direction_bias",
+      "generated": 40,
+      "fitted": 40,
+      "frozen_product_rule_source_supported": 0,
+      "source_regions_missed_among_supported": 0
+    },
+    {
+      "family": "episodic",
+      "generated": 40,
+      "fitted": 40,
+      "frozen_product_rule_source_supported": 0,
+      "source_regions_missed_among_supported": 0
+    },
+    {
+      "family": "missingness",
+      "generated": 40,
+      "fitted": 40,
+      "frozen_product_rule_source_supported": 0,
+      "source_regions_missed_among_supported": 0
+    },
+    {
+      "family": "strong_signal",
+      "generated": 40,
+      "fitted": 40,
+      "frozen_product_rule_source_supported": 0,
+      "source_regions_missed_among_supported": 0
+    },
+    {
+      "family": "two_sources",
+      "generated": 40,
+      "fitted": 40,
+      "frozen_product_rule_source_supported": 0,
+      "source_regions_missed_among_supported": 0
+    },
+    {
+      "family": "unsupported_weather",
+      "generated": 40,
+      "fitted": 0,
+      "frozen_product_rule_source_supported": 0,
+      "source_regions_missed_among_supported": 0
+    },
+    {
+      "family": "weak_signal",
+      "generated": 40,
+      "fitted": 40,
+      "frozen_product_rule_source_supported": 0,
+      "source_regions_missed_among_supported": 0
+    }
+  ],
+  "inputs": {
+    "science.json": "0f5a097b2031638b724f46f52710d50e89029265533786d8709e5ffcab405000",
+    "followup.json": "1bec7997004cb6866f2403b12a4828456ffec2a0be6126e3f032ed0802fa196c",
+    "metadata.json": "5a57a08666c65533d85cf1c25a793ec0c880d9f7e2749839f5f46fbdaa3f8521"
+  },
+  "script_sha256": "9454dc7e15b18c1d33ce7b4a19215373801006a14a8a177ca1a1f255b6981247"
+}

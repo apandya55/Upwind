@@ -1,0 +1,1 @@
+This auxiliary diagnostic incorrectly assumed the old layout had six monitors and asserted rank<8. Inspection showed seven monitors; the assertion failed, as it should. The corrected run reports the actual count/rank and makes no structural-impossibility claim. Prior dense-profile/noise ambiguity findings are independent of this faulty parameter-count argument.

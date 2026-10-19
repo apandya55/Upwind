@@ -1,0 +1,1 @@
+Probe assertion error: its intended >10,000-row payload repeated the24-row example300 times, only7,200 rows. The API correctly did not reject that valid row count. The corrected probe constructs >10,000 rows and retains all status codes. This was a faulty test, not an API rejection defect. Original script/server synthetic records remain preserved.

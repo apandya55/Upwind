@@ -1,0 +1,23 @@
+"""Development structural rank diagnostic, true-state access only."""
+import json,hashlib
+from pathlib import Path
+import numpy as np
+from scipy.linalg import solve_triangular
+from upwind.validation.overhaul import make_world,transport
+OUT=Path('evaluations/research/source-count-rank-corrected');OUT.mkdir(exist_ok=False);rows=[]
+(OUT/'script.py.txt').write_text(Path(__file__).read_text())
+for seed in (410000,410001,410002):
+ inv,s=make_world('two_sources',seed,'development');n=len(s['monitor_xy']);xy=np.tile(s['monitor_xy'],(4,1));epochs=np.repeat(np.arange(4),n);ids=np.tile(np.arange(n),4)
+ sigma=np.array([r.uncertainty_ug_m3 for r in inv.measurements]);distance=np.linalg.norm(xy[:,None]-xy[None],axis=-1)
+ covariance=np.diag(sigma**2)+.49*(ids[:,None]==ids[None])+.49*np.exp(-distance/180-abs(epochs[:,None]-epochs[None])/1.2)
+ columns=[]
+ for p,q in [(s['source_xy'],s['strength']),(s['secondary_xy'],s['secondary_strength'])]:
+  p=np.array(p)
+  for axis in range(2):columns.append((transport(xy,p+np.eye(2)[axis]*.5,q,s['speed'],s['direction'],'development')-transport(xy,p-np.eye(2)[axis]*.5,q,s['speed'],s['direction'],'development')))
+  columns.append(transport(xy,p,10000.,s['speed'],s['direction'],'development'))
+ columns.extend((np.ones(4*n),(epochs-1.5)/3))
+ jacobian=np.column_stack(columns);white=solve_triangular(np.linalg.cholesky(covariance),jacobian,lower=True);norm=np.linalg.norm(white,axis=0);scaled=white/np.maximum(norm,1e-300)
+ singular=np.linalg.svd(scaled,compute_uv=False);threshold=100*np.finfo(float).eps*max(scaled.shape)*singular[0];rank=int(np.sum(singular>threshold))
+ rows.append({'seed':seed,'monitors':n,'readings':4*n,'unknowns':['source1_x','source1_y','source1_Q_per10000','source2_x','source2_y','source2_Q_per10000','background','background_trend'],'jacobian_rank':rank,'columns':8,'column_normalized_whitened_singular_values':singular.tolist(),'rank_threshold':float(threshold),'structural_rank_upper_bound':n+1,'meaning':'Same-wind responses span at most n monitor patterns plus one temporal background trend. The actual old layout has seven monitors, so eight parameters are not dimensionally forced to be rank deficient. Inspect local singular values and global profiles; this is not a global impossibility theorem.'})
+# No rank-deficiency assertion: actual dimension must be established from inputs.
+(OUT/'results.json').write_text(json.dumps(rows,indent=2)+'\n');print(json.dumps([{'seed':r['seed'],'rank':r['jacobian_rank'],'smallest':r['column_normalized_whitened_singular_values'][-1]} for r in rows]))
