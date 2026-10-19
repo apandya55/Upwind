@@ -1,0 +1,155 @@
+{
+  "audit_type": "secondary-candidate compatibility; no accuracy fit",
+  "workbook_sha256": "96a6cb7812d9a618fd50c1266ce7943acfe91c3ae339f60d9d130653f9b61887",
+  "sheets": [
+    "Stability",
+    "Wind speed graph",
+    "simulations",
+    "Arc 50",
+    "Arc 100",
+    "Arc 200",
+    "Arc 400",
+    "Arc 800",
+    "Performance"
+  ],
+  "arc_columns": [
+    {
+      "sheet": "Arc 50",
+      "headers": {
+        "A": "y",
+        "B": "Co",
+        "C": "Cp"
+      },
+      "numeric_constants_by_column": {
+        "A": 21,
+        "B": 21,
+        "C": 21
+      },
+      "formulas_by_column": {
+        "A": 0,
+        "B": 0,
+        "C": 0
+      },
+      "purported_observation_column": "B (unverified lineage)",
+      "modelled_column_excluded": "C (never an observation)",
+      "explicit_observation_unit": null,
+      "above_app_500_ug_m3_review_threshold": null
+    },
+    {
+      "sheet": "Arc 100",
+      "headers": {
+        "A": "y",
+        "B": "Concentration (g/m3)",
+        "C": "c(100,y,z,t)"
+      },
+      "numeric_constants_by_column": {
+        "A": 16,
+        "B": 16,
+        "C": 16
+      },
+      "formulas_by_column": {
+        "A": 0,
+        "B": 0,
+        "C": 0
+      },
+      "purported_observation_column": "B (unverified lineage)",
+      "modelled_column_excluded": "C (never an observation)",
+      "explicit_observation_unit": "g/m3",
+      "above_app_500_ug_m3_review_threshold": 12
+    },
+    {
+      "sheet": "Arc 200",
+      "headers": {
+        "A": "y",
+        "B": "Concentration (g/m3)",
+        "C": "c(200,y,z,t)"
+      },
+      "numeric_constants_by_column": {
+        "A": 12,
+        "B": 12,
+        "C": 12
+      },
+      "formulas_by_column": {
+        "A": 0,
+        "B": 0,
+        "C": 0
+      },
+      "purported_observation_column": "B (unverified lineage)",
+      "modelled_column_excluded": "C (never an observation)",
+      "explicit_observation_unit": "g/m3",
+      "above_app_500_ug_m3_review_threshold": 10
+    },
+    {
+      "sheet": "Arc 400",
+      "headers": {
+        "A": "y",
+        "B": "Concentration (g/m3)",
+        "C": "c(400,y,z,t)"
+      },
+      "numeric_constants_by_column": {
+        "A": 10,
+        "B": 10,
+        "C": 10
+      },
+      "formulas_by_column": {
+        "A": 0,
+        "B": 0,
+        "C": 0
+      },
+      "purported_observation_column": "B (unverified lineage)",
+      "modelled_column_excluded": "C (never an observation)",
+      "explicit_observation_unit": "g/m3",
+      "above_app_500_ug_m3_review_threshold": 7
+    },
+    {
+      "sheet": "Arc 800",
+      "headers": {
+        "A": "y",
+        "B": "Concentration (g/m3)",
+        "C": "c(800,y,z,t)"
+      },
+      "numeric_constants_by_column": {
+        "A": 15,
+        "B": 15,
+        "C": 15
+      },
+      "formulas_by_column": {
+        "A": 0,
+        "B": 0,
+        "C": 0
+      },
+      "purported_observation_column": "B (unverified lineage)",
+      "modelled_column_excluded": "C (never an observation)",
+      "explicit_observation_unit": "g/m3",
+      "above_app_500_ug_m3_review_threshold": 11
+    }
+  ],
+  "release_constant_as_labelled_g_s": 50.9,
+  "release_constant_converted_ug_s": 50900000.0,
+  "wind_at_source_height_workbook_constant_m_s": 4.447101874213244,
+  "release_height_workbook_constant_m": 0.46,
+  "receptor_height_workbook_constant_m": 1.5,
+  "field_value_status": "Workbook assertions/derived constants only; not independently verified measurements",
+  "disposition": "not_ready_for_measured_validation",
+  "blockers": [
+    "No independently inspected primary archive or measurement-chain provenance",
+    "No dataset redistribution license in the pinned two-file repository",
+    "Observation units not explicitly stated on every arc sheet; no inherited conversion",
+    "No verified UTC sampling date/time, source coordinate frame, wind direction or uncertainty supplied by this audit",
+    "Source-height wind constant may be derived; workbook is a modelling assignment, not independent weather evidence",
+    "One experiment is not a campaign-level held-out validation set; its inspected data are development-used",
+    "SO2 tracer and high mass release are outside any demonstrated PM2.5 attribution validity",
+    "Modelled/cached spreadsheet predictions cannot be substituted for measured observations"
+  ],
+  "observations_redistributed": false,
+  "model_fit_performed": false,
+  "source_truth_passed_to_inference": false,
+  "repository": "https://github.com/Reinenornormey/Gaussian-plume-model",
+  "revision": "6fd4a0892481e25171f3c4c6efe3114448bd4674",
+  "files": [
+    "README.md",
+    "Work Assignment Reine.xlsx"
+  ],
+  "readme_sha256": "c52f0f5698f1fad6bc7890f77a82cfa30f8ec1213d28cfdfa9542689132639ce",
+  "script_sha256": "548283c3fc4be2bf16d9a7611b42a494af90f822f1d3c4640f065724ae96df6a"
+}

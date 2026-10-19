@@ -1,4 +1,16 @@
-# Current handoff — measured-data intake repair complete
+# Current handoff — measured-data readiness audit complete; primary access pending
+
+2026-10-18 (America/New_York): user explicitly selected measured-data validation. Inspected four pinned public repositories via permitted GitHub routes and audited a secondary Prairie Grass modelling workbook. Read [MEASURED_READINESS_AUDIT.md](MEASURED_READINESS_AUDIT.md), `evaluations/measured-readiness/access-and-sources.json` and `prairie-candidate.json`. No measured accuracy fit was performed. The workbook contains74purported observation constants plus74modelled constants. Four sheets label53observations in g/m³;40would exceed the current500µg/m³ exclusion/review threshold. The labelled50.9g/s release is≈1697times the30,000µg/s strength-prior scale. Missing primary lineage, full units, wind/time/frame documentation, terms and incompatible scientific scope prevent treating it as a benchmark. Keep experiment21 development-used; never use cached modelled columns as observations. Raw workbook stays ignored locally.
+
+New reproducible auditor: `scripts/audit_prairie_candidate.py --checkout CLONE --out NEW.json`, pinned revision`6fd4a0892481e25171f3c4c6efe3114448bd4674`. It reads Git objects/OOXML without executing upstream code, formulas or external connections, outputs aggregate metadata only and refuses existing audit destinations.11constructed audit tests pass; **full backend162pass** (`evaluations/measured-readiness/pytest-full.log`). RuffF401/F821 and whitespace checks pass. No frontend changes. Frozen0.5 verification still passes; no scientific file, prior, quality rule, threshold, planner or original outcome changed.
+
+**External action required:** live NOAA, Aarhus and HARMO requests remain proxy CONNECT403. The existing saved configuration already listed NOAA/EPA; runtime access remains unestablished. Saved a draft adding`envs.au.dk` and`www.harmo.org` while preserving all eight existing custom domains and platform presets. The configuration tool returned`requires_publish: true`: review/save in environment settings, then publish the environment. The new draft is not applied to the live proxy; do not retry unchanged requests in a loop or claim fresh-task reachability. After publication, inspect actual official links/terms, acquire primary files and assess compatibility before any fit. No token, TLS bypass or alternate IP route is justified. No deployment, outreach or raw observation publication occurred.
+
+The intake artifact manifest belongs to Git commit`7ffa8a4610e802f78869acae525025943203256d`; its documentation paths are historical bytes at that commit, not immutable current documentation. Its README explains reproduction scope. Current export prompt includes this audit and pending prerequisite. Inspect `git log -1` for the latest published continuation commit.
+
+---
+
+# Completed handoff — measured-data intake repair
 
 2026-10-18 (America/New_York): continued from the pasted handoff. Default next target was measured-data validation; NOAA, alternative catalogs/search and EPA archive access remain proxy CONNECT403. Exact attempts are in `evaluations/aqs-intake/external-access.json`. No new observations were acquired; no measured accuracy or authenticity claim follows.
 

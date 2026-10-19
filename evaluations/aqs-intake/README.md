@@ -1,0 +1,3 @@
+# Historical intake repair artifacts
+
+`manifest.json` records source, documentation and test bytes as published in Git commit`7ffa8a4610e802f78869acae525025943203256d`. Documentation can evolve in later commits. To verify an entry, hash its bytes from`git show 7ffa8a4610e802f78869acae525025943203256d:PATH`; do not assume current documentation has the same bytes. The151-test log is the actual full suite at that repair. Later audit checks/results are in`evaluations/measured-readiness`. These artifacts establish constructed-schema/fault behavior, not acquired official observations or measured model accuracy.
