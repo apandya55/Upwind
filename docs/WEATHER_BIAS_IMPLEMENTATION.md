@@ -53,7 +53,7 @@ OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv/bin/python -m upwind.validation.w
 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv/bin/python -m upwind.validation.weather_aux resources --out .local/weather-resources
 ```
 
-For reproducibility on this unborn checkout, source SHA256 manifests replace a nonexistent Git commit identifier. Split runs support `--offset`/`--limit` for disjoint sequential seed shards; aggregate all declared seeds and retain every refusal/crash. Do not pool reused condition seeds as independent campaigns.
+Source SHA256 manifests identify the exact evaluated scientific files; the initial published release is Git commit`fa70492`. Later intake/reporting changes do not reinterpret those frozen results. Split runs support `--offset`/`--limit` for disjoint sequential seed shards; aggregate all declared seeds and retain every refusal/crash. Do not pool reused condition seeds as independent campaigns.
 
 Official NOAA DATEM/Sagebrush routes were retried and both failed proxy CONNECT403 (`evaluations/weather-bias/external-retry.json`). No compatible measured tracer data were acquired. No field validation, measured geographic accuracy or universal weather-error detection is claimed. Existing actually inspected primary-method sources remain documented in `ENGINE_RESEARCH.md`; this repair's algebra has an independent numerical reference check, not a fabricated literature validation.
 

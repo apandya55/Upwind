@@ -132,7 +132,7 @@ def test_aqs_adapter_contract_on_constructed_schema_only(tmp_path):
     with zipfile.ZipFile(archive, "w") as z:
         z.writestr(
             "sample.csv",
-            "State Code,County Code,Site Num,POC,Date GMT,Time GMT,Latitude,Longitude,Sample Measurement,Units of Measure\n37,183,0014,1,2024-06-01,12:00,35.7,-78.6,10,Micrograms/cubic meter (LC)\n",
+            "State Code,County Code,Site Num,POC,Date GMT,Time GMT,Latitude,Longitude,Sample Measurement,Units of Measure,Parameter Code,Sample Duration,Datum\n37,183,0014,1,2024-06-01,12:00,35.7,-78.6,10,Micrograms/cubic meter (LC),88101,1 HOUR,WGS84\n",
         )
     output = tmp_path / "output.csv"
     meta = module.convert(

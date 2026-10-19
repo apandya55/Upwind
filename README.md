@@ -4,6 +4,8 @@ A local investigation workspace for community **PM2.5 exploration and monitoring
 
 Current release: **plume-weather-0.5.0**. Read the [weather repair results](docs/WEATHER_BIAS_RESULTS.md), [engineering/scientific limits](docs/WEATHER_BIAS_IMPLEMENTATION.md), and [LLM continuation prompt](docs/UPWIND_LLM_EXPORT_PROMPT.md). Synthetic improvements do not establish operational attribution reliability.
 
+The [measured-data intake guide](docs/MEASURED_DATA_VALIDATION.md) documents the repaired EPA archive converter, safe export behavior and current access/validation limits. Current backend suite:151tests pass; real-data intake compatibility is still tested on constructed fixtures.
+
 ## Run locally
 
 Requires Python 3.12+, Node 22.12+ (tested 24.19), and npm. Linux/macOS commands:

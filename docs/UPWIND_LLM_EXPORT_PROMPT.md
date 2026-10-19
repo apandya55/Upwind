@@ -8,6 +8,8 @@ You are continuing **UPWIND**, https://github.com/apandya55/Upwind. Start by che
 
 ## User's goal and completed release
 
+**Continuation update:** measured-data intake was the next default target. Current official data/catalog access still returns proxy CONNECT403 (`evaluations/aqs-intake/external-access.json`), so no field results were obtained. A concrete data-loss bug was repaired in `scripts/acquire_aqs.py`: `aqs-intake-1.0.0` stages/validates the whole archive selection, refuses existing destinations, exclusively publishes the CSV/provenance pair, preserves raw/source/quality metadata and hashes, and tests late failures/concurrent exports. Full current backend suite:151pass, including36new contract/fault checks;37focused checks pass. Read `docs/MEASURED_DATA_VALIDATION.md` for declared metadata requirements and crash/completion limitations. All fixtures are constructed. No scientific file, prior, planner, source-support rule or retained holdout result changed; the original frozen0.5 verification still passes. No frontend change was made in this continuation. Future work still needs accessible official observations and documentation; do not call this intake repair measured validation.
+
 The user wants a working, rigorously tested pollution investigation and measurement planning application, eventually useful to governments, companies and activist organizations. The latest repair addresses coherent weather bias that previously produced accepted wrong source regions. The user authorized publishing this completed project to GitHub and requested this continuation prompt. Publishing a future deployment, releasing investigation data, contacting organizations or claiming certification requires its own applicable authorization. No outreach or deployment has happened.
 
 Current scientific model is **plume-weather-0.5.0**, protocol **UW-WEATHER-2026-03**. The application package remains0.1.0. It is a **research prototype with synthetic tests, not field-validated source attribution**. Source localization, concentration prediction, recordkeeping, monitoring placement and secure organizational deployment are separate capabilities. Do not promise responsibility findings, regulatory accuracy, calibrated geography or general planner superiority.
@@ -41,7 +43,7 @@ All paths below are relative to repository root:
 
 Python3.12.14, Node24.19, npm, Linux, Chromium `/usr/bin/chromium` were used. Normal setup: `bash scripts/setup.sh`; dev: `bash scripts/dev.sh`. See README for alternative production-build/loopback startup. Dependency locks are committed. Research reporting dependencies are in `requirements-research.lock`. No GPU or paid API is required. `.venv`, `node_modules`, `.local` and real SQLite investigations are ignored. Never publish their contents or credentials.
 
-Verified release checks:115 pytest tests, eight Chromium workflows, frontend build/typecheck. Existing Starlette/httpx deprecation is not a test failure. Commands from repo root:
+Original frozen release checks:115 pytest tests, eight Chromium workflows, frontend build/typecheck. Current intake continuation:151backend tests pass; frontend unchanged. Existing Starlette/httpx deprecation is not a test failure. Commands from repo root:
 
 ```sh
 .venv/bin/python -m pytest -q

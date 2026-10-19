@@ -15,7 +15,7 @@ Starting sources: https://www.arl.noaa.gov/research/atmospheric-transport-and-di
 
 ## EPA AQS hourly PM2.5
 
-Adapter: `scripts/acquire_aqs.py`. It expects the documented hourly AirData column names, converts GMT date/time without inventing observations, constructs instrument identifiers from state/county/site/POC, retains qualifiers and source URL in the derived CSV, and keeps the downloaded archive plus SHA256 provenance. Only local-condition µg/m³ is accepted; other unit conventions fail explicitly. Its schema conversion is checked on a constructed tiny contract sample, **not an actual EPA archive**. Real archive compatibility/licensing review and meaningful external evaluation remain unverified.
+Adapter: `scripts/acquire_aqs.py`, now `aqs-intake-1.0.0`. It validates UTC dates/times, finite concentrations, coordinates, units, parameter88101, hourly duration and explicitly declared WGS84. It retains instrument IDs, qualifiers, source metadata and hashes. It stages the entire conversion and refuses existing destinations; a late failure cannot overwrite a previous export. Use a new output path for each run. The [intake contract and failure checks](MEASURED_DATA_VALIDATION.md) are tested on constructed fixtures, **not an actual EPA archive**. Real archive compatibility/licensing review and meaningful external evaluation remain unverified.
 
 ```sh
 # Explicit download can be large; source archive retained in .local.

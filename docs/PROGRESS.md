@@ -1,4 +1,16 @@
-# Current handoff — weather repair complete
+# Current handoff — measured-data intake repair complete
+
+2026-10-18 (America/New_York): continued from the pasted handoff. Default next target was measured-data validation; NOAA, alternative catalogs/search and EPA archive access remain proxy CONNECT403. Exact attempts are in `evaluations/aqs-intake/external-access.json`. No new observations were acquired; no measured accuracy or authenticity claim follows.
+
+Found and fixed destructive behavior in `scripts/acquire_aqs.py`: the old adapter deleted a destination before validation, appended partial results directly and could erase a good export on CLI failure. `aqs-intake-1.0.0` stages complete conversions, refuses existing archive/CSV/provenance paths, uses exclusive publication, handles competing writers without mixed pairs, rolls back its own sidecar on publication failure and records both archive/output hashes. It strictly checks parameter88101/hourly duration/WGS84/local-condition units, date/time, finite values, supported coordinates, identifiers and exact CSV record widths. Qualifiers, method details, negative/extreme values and UTC/source metadata survive. A crash between two-file publication steps can leave an orphan sidecar; both files plus a matching hash are required. No power-loss durability claim.
+
+**151 backend tests pass**, including36 new contract/fault checks and the updated existing constructed AQS importer round trip (37 focused checks). Full log: `evaluations/aqs-intake/pytest.log`. RuffF401/F821 and diff whitespace checks pass. No frontend changes/build/browser rerun needed. `scripts/verify_weather_release.py` passes: the43 frozen scientific files, source snapshots, original896source/360followup results and report/figure hashes are unchanged. This is an intake repair, not a new scientific model; **plume-weather-0.5.0** and all its known failures remain current.
+
+Read [MEASURED_DATA_VALIDATION.md](MEASURED_DATA_VALIDATION.md) for the exact tested contract, safe commands, completion checks and next external prerequisite. Actual official archive compatibility/terms still require inspection; constructed fixtures are not field observations. The continuation prompt includes this updated state. Git publication remains authorized by the user's prior request and continuation; inspect the current commit/remote rather than relying on historical commit/PID notes below. No deployment, outreach or raw observation publication occurred.
+
+---
+
+# Completed handoff — weather repair
 
 2026-10-18 (America/New_York): completed **plume-weather-0.5.0**, protocol **UW-WEATHER-2026-03**. The user authorized publishing this project to GitHub and requested an LLM export prompt. Read [the standalone continuation prompt](UPWIND_LLM_EXPORT_PROMPT.md), [results](WEATHER_BIAS_RESULTS.md), [acceptance distributions](WEATHER_BIAS_ACCEPTANCE.md) and [implementation](WEATHER_BIAS_IMPLEMENTATION.md). Sections below are chronological historical notes, including obsolete process IDs and earlier statements that work was unpublished.
 

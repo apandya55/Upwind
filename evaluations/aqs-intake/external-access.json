@@ -1,0 +1,33 @@
+{
+  "recorded_utc": "2026-10-19T03:04:09.041150+00:00",
+  "requests": [
+    {
+      "url": "https://www.arl.noaa.gov/research/atmospheric-transport-and-dispersion/atd-programs-datem/",
+      "method": "GET",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "url": "https://ready.arl.noaa.gov/documents/Tutorial_2021/html/conc_local.html",
+      "method": "GET",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "url": "https://zenodo.org/api/records/?q=Project%20Prairie%20Grass&size=3",
+      "method": "GET",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "url": "https://api.github.com/search/repositories?q=prairie+grass+dispersion&per_page=4",
+      "method": "GET",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "url": "https://aqs.epa.gov/aqsweb/airdata/hourly_88101_2024.zip",
+      "method": "HEAD",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    }
+  ],
+  "files_acquired": 0,
+  "measured_validation_performed": false,
+  "scope": "The four GET attempts occurred earlier in this continuation; the EPA HEAD check occurred when this record was written. No response body/data archive was acquired. No TLS verification disabled."
+}
