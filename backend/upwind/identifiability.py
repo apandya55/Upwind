@@ -101,6 +101,46 @@ def local_resolution(signature_derivatives, signature, covariance, nuisance, str
     }
 
 
+def whiten_grouped_profile(observed, signatures, covariance, nuisance, signature_index, *, block_columns=2048):
+    """GLS profile with repeated signatures, bounded column workspaces.
+
+    L^-1 (B G) = (L^-1 B) G. Preserve the full observation covariance;
+    never materialize all expanded/whitened source columns simultaneously.
+    """
+    y,g,r,x=map(lambda a:np.asarray(a,dtype=float),(observed,signatures,covariance,nuisance))
+    index=np.asarray(signature_index)
+    if (y.ndim!=1 or g.ndim!=2 or x.ndim!=2 or x.shape[0]!=len(y)
+        or r.shape!=(len(y),len(y)) or index.shape!=(len(y),)
+        or not np.issubdtype(index.dtype,np.integer) or np.any(index<0) or np.any(index>=len(g))
+        or not isinstance(block_columns,int) or not 1<=block_columns<=2048 or not all(np.isfinite(a).all() for a in (y,g,r,x))):
+        raise ValueError('Finite compatible grouped profile inputs required')
+    if not np.allclose(r,r.T,atol=1e-12,rtol=1e-10):raise ValueError('Observation covariance must be symmetric')
+    chol=np.linalg.cholesky(r)
+    yw=solve_triangular(chol,y,lower=True,check_finite=False)
+    xw=solve_triangular(chol,x,lower=True,check_finite=False)
+    u,singular,_=np.linalg.svd(xw,full_matrices=False)
+    cutoff=np.finfo(float).eps*max(xw.shape,default=1)*(singular[0] if len(singular) else 0.)
+    basis=u[:,singular>cutoff]
+    yp=yw-basis@(basis.T@yw)
+    white_basis=solve_triangular(chol,np.eye(len(g))[index],lower=True,check_finite=False)
+    strength=np.empty(g.shape[1]);loss=np.empty(g.shape[1])
+    for begin in range(0,g.shape[1],block_columns):
+        sl=slice(begin,begin+block_columns)
+        white=white_basis@g[:,sl]
+        projected=white-basis@(basis.T@white)
+        norm=np.sum(projected**2,axis=0)
+        # A signature in the nuisance space carries no resolvable source signal.
+        # Do not fit unbounded Q to projection roundoff in that null direction.
+        resolution=np.finfo(float).eps*max(xw.shape)*np.linalg.norm(white,axis=0)
+        null=norm<=resolution**2
+        projected[:,null]=0.;norm[null]=0.
+        dot=projected.T@yp
+        q=np.divide(np.maximum(dot,0),norm,out=np.zeros_like(dot),where=norm>1e-200)
+        residual=yp[:,None]-projected*q
+        strength[sl]=q;loss[sl]=np.sum(residual**2,axis=0)
+    return dict(strength=strength,loss=loss,background_loss=float(yp@yp),nuisance_rank=int(basis.shape[1]),residual_dimensions=len(y)-basis.shape[1])
+
+
 def diagnose_fit(fitted, noise):
     """Global finite-grid profile alongside, rather than replacing, posterior mass."""
     c = fitted["profile_context"]
@@ -138,8 +178,9 @@ def diagnose_fit(fitted, noise):
     )
     signatures = c["signatures"]
     if "signature_index" in c:
-        signatures = signatures[c["signature_index"]]
-    prof = whiten_profile(c["observed"], signatures, covariance, nuisance)
+        prof = whiten_grouped_profile(c["observed"], signatures, covariance, nuisance, c["signature_index"])
+    else:
+        prof = whiten_profile(c["observed"], signatures, covariance, nuisance)
     cell = c["source_cell_indices"]
     best = np.argmin(prof["loss"])
     minimum = np.full(len(fitted["source_xy"]), np.inf)

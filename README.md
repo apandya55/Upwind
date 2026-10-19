@@ -2,13 +2,15 @@
 
 A local investigation workspace for community **PM2.5 exploration and monitoring design**, with an experimental background/source comparison engine. No accounts, paid APIs, live hardware or GPU required. All bundled data are visibly synthetic. This is a working first local release, not field-validated source attribution.
 
-Current release: **plume-weather-0.5.0**. Read the [weather repair results](docs/WEATHER_BIAS_RESULTS.md), [engineering/scientific limits](docs/WEATHER_BIAS_IMPLEMENTATION.md), and [LLM continuation prompt](docs/UPWIND_LLM_EXPORT_PROMPT.md). Synthetic improvements do not establish operational attribution reliability.
+Current release: **plume-robust-0.6.0**. Read the [engine results](docs/ENGINE_V06_RESULTS.md), [implementation and limits](docs/ENGINE_V06_IMPLEMENTATION.md), and [LLM continuation prompt](docs/UPWIND_LLM_EXPORT_PROMPT.md). Synthetic improvements do not establish operational attribution reliability.
 
-The [measured-data intake guide](docs/MEASURED_DATA_VALIDATION.md) documents the repaired EPA archive converter. The [readiness audit](docs/MEASURED_READINESS_AUDIT.md) explains why an inspected secondary Prairie Grass workbook cannot yet serve as a benchmark. Current backend suite:181tests and8browser workflows pass; measured field accuracy remains unvalidated.
+The [measured-data intake guide](docs/MEASURED_DATA_VALIDATION.md) documents the repaired EPA archive converter. The [readiness audit](docs/MEASURED_READINESS_AUDIT.md) explains why an inspected secondary Prairie Grass workbook cannot yet serve as a benchmark. Current backend suite:209tests and8browser workflows pass; measured field accuracy remains unvalidated.
 
 ## Latest stress results
 
-[Full severe stress report](docs/SEVERE_STRESS_RESULTS.md):1,440fresh synthetic attempts, no inference/prediction crashes, and a repaired JSON request-boundary defect. The model **failed the50moverall median precision target** (117moverall;35mamong accepted nominal cases). Hidden weather bias and other mismatches still produced17accepted wrong regions. This remains a research tool; passing software checks does not validate field attribution. [API repair details](docs/API_REQUEST_HARDENING.md).
+[Current engine report](docs/ENGINE_V06_RESULTS.md):960 paired synthetic inference attempts across480condition-worlds; each engine432fits/48explicit weather refusals, zero crashes. Accepted wrong regions fell from3/15accepted to1/12accepted. The new nominal median posterior-mean error is141.1m; **both50m point-accuracy targets fail**. Broad region coverage and low acceptance do not establish operational accuracy. A separate [64-fit observability control](docs/ENGINE_V06_OBSERVABILITY_RESULTS.md) improves shared-bias coverage but still has an accepted wrong region. [Memory hardening](docs/ENGINE_V06_HARDENING.md) preserves the original failures and documents the two final safeguards.
+
+Verify current evidence with `.venv/bin/python scripts/verify_v06.py`. All retained evaluation seeds are inspected and suitable for reproduction only. The [previous severe stress report](docs/SEVERE_STRESS_RESULTS.md) remains historical0.5 evidence.
 
 ## Run locally
 
@@ -59,7 +61,7 @@ NOAA/Sagebrush, EPA documentation, and the EPA hourly PM2.5 archive were blocked
 
 ## Research engine and current evidence
 
-Current scientific model: **plume-weather-0.5.0**, protocol **UW-WEATHER-2026-03**. Read [weather-bias results](docs/WEATHER_BIAS_RESULTS.md), [root causes, equations and reproduction](docs/WEATHER_BIAS_IMPLEMENTATION.md), and [science limits](docs/SCIENCE.md). Historical campaign0.4 results remain in [RESEARCH_RESULTS.md](docs/RESEARCH_RESULTS.md). Local engineering tests do not establish reliable source attribution for governments, companies or activist organizations.
+Current scientific model: **plume-robust-0.6.0**, protocol **UW-ENGINE-2026-06**. Joint common-reference-error alternatives, area-preserving adaptive integration and posterior-mean/domain-edge diagnostics are described in [ENGINE_V06_IMPLEMENTATION.md](docs/ENGINE_V06_IMPLEMENTATION.md). The following weather0.5 links describe its retained foundation. Read [weather-bias results](docs/WEATHER_BIAS_RESULTS.md), [root causes, equations and reproduction](docs/WEATHER_BIAS_IMPLEMENTATION.md), and [science limits](docs/SCIENCE.md). Historical campaign0.4 results remain in [RESEARCH_RESULTS.md](docs/RESEARCH_RESULTS.md). Local engineering tests do not establish reliable source attribution for governments, companies or activist organizations.
 
 Open **Scenarios → Open synthetic campaign example** to explore four independently steady wind periods. The new model supports explicit 2–6 periods with a shared fixed source/constant release assumption, independent period backgrounds and persistent instrument bias. Enter documented wind uncertainty and release/receptor heights. Read nuisance-profile ambiguity and whole-sensor/period predictive checks together. Changed release, incorrect weather and transport mismatch can still produce confidently wrong results without a warning.
 

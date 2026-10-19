@@ -506,6 +506,8 @@ def fit(
         count = len(z)
         if count * len(base_configs) > WEATHER_CONFIG["max_design_entries"]:
             raise ValueError("Predictive transport design exceeds numerical workload; request fewer target points at once.")
+        if count * count > WEATHER_CONFIG["max_design_entries"]:
+            raise ValueError("Predictive target covariance exceeds numerical workload; request fewer target points at once.")
         closest_target = np.maximum(
             np.maximum(
                 cells[None, :, :2] - z[:, None], z[:, None] - cells[None, :, 2:]

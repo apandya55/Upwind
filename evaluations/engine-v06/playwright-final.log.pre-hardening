@@ -1,0 +1,32 @@
+
+> upwind-workspace@0.1.0 test:e2e
+> playwright test
+
+[WebServer] INFO:     Started server process [67858]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+[WebServer] (node:67861) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:67874) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 8 tests using 1 worker
+
+(node:67898) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/campaign.spec.ts:3:1 › campaign example preserves periods, explains shared release and exports its result (21.6s)
+  ✓  2 tests/evidence.spec.ts:3:1 › coverage planning renders when reconstruction fields are explicitly unavailable (1.2s)
+  ✓  3 tests/evidence.spec.ts:40:1 › conditional evidence is distinct from field confidence and incomplete diagnostics stay usable (1.4s)
+  ✓  4 tests/weather.spec.ts:3:1 › paired weather CSV retains independent readings, raw metadata and legacy archives (2.1s)
+  ✓  5 tests/workflow.spec.ts:4:1 › complete example: plan, constraints, save, reopen, export and responsive layout (11.2s)
+  ✓  6 tests/workflow.spec.ts:76:1 › new investigation, valid and malformed imports, follow-up, observations and restore (4.0s)
+  ✓  7 tests/workflow.spec.ts:161:1 › offline operation, labelled synthetic CSV reimport, keyboard observation and report (3.3s)
+  ✓  8 tests/workflow.spec.ts:229:1 › candidate permissions, unsupported weather and map interaction (7.3s)
+
+  8 passed (56.1s)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

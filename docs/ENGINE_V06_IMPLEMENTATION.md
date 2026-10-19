@@ -145,3 +145,7 @@ multiple sources, street canyons and chemical attribution are not solved. Primar
 measured tracer validation remains unperformed; external access and provenance/
 units blockers from the prior audit remain. Organizational attribution readiness
 cannot be inferred from synthetic or software-test counts.
+
+## Final bounded-memory hardening
+
+After all frozen scientific and supplementary runs, a512-reading resource child exposed expansion of every observation/signature column in `diagnose_fit`. The grouped GLS profile now whitens the repeated-signature basis once and processes at most2048columns at a time, retaining the full observation covariance and nuisance SVD. Numerically null nuisance-space signatures have zero profiled release strength. Independent dense/constrained-GLS tests cover up to512rows. A separate quadratic guard checks target×target allocation against the existing28million-entry limit before predictive covariance construction. See [hardening evidence](ENGINE_V06_HARDENING.md); posterior/prior/planner/support rules are unchanged.

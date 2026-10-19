@@ -1,0 +1,38 @@
+.........................F.....................                          [100%]
+=================================== FAILURES ===================================
+_ test_joint_reference_source_evidence_matches_independent_strength_quadrature _
+
+    def test_joint_reference_source_evidence_matches_independent_strength_quadrature():
+        inv=small_study()
+        # Discrete anchors allow a direct scalar source×angle×speed reference, without
+        # relying on the production spatial integrator or its analytic strength step.
+        for w in inv.weather:w.upstream_id='A'
+        inv.weather += [w.model_copy(update=dict(role='reference',source_id='B',upstream_id='B',direction_systematic_sd_deg=2.,speed_systematic_fraction=.03,comparison_provenance='Constructed test',wind_from_deg=265.)) for w in inv.weather]
+        inv.settings.met_direction_sd_deg=3.
+        f=fit(inv,diagnostics=False,weather_step_deg=30.)
+        rows=f['rows'];x=projected_points(f['projection'],rows);t=np.array([-120.,0.,120.]);ids=[r.sensor_id for r in rows]
+        cov=covariance_oracle(x,t,ids,x,t,ids,inv.settings.noise_ug_m3)+np.diag([r.uncertainty_ug_m3**2 for r in rows])
+        y=np.array([r.pm25_ug_m3 for r in rows]);bg=CONFIG['background_mean_ug_m3']
+        masses=[(1-CONFIG['source_prior'])*multivariate_normal.pdf(y,mean=np.full(len(y),bg),cov=cov)]
+        for source in f['source_xy']:
+            for i,angle in enumerate(f['weather_grid']['offsets']):
+                for j,speed in enumerate(f['weather_grid']['speed_scales']):
+                    evidence,_,_=integrated_strength(y,bg,cov,unit_plume_oracle(x,source,2*speed,270+angle))
+                    masses.append(evidence*CONFIG['source_prior']/len(f['source_xy'])*f['weather_grid']['joint_prior'][i,j])
+        masses=np.array(masses);masses/=masses.sum()
+>       np.testing.assert_allclose(f['weights'],masses,rtol=5e-9,atol=1e-13)
+E       AssertionError: 
+E       Not equal to tolerance rtol=5e-09, atol=1e-13
+E       
+E       (shapes (155,), (251,) mismatch)
+E        ACTUAL: array([2.596656e-01, 1.199978e-05, 4.799910e-05, 1.199978e-05,
+E              4.746003e-05, 1.898401e-04, 4.746003e-05, 1.461872e-04,
+E              5.847488e-04, 1.461872e-04, 3.506848e-04, 1.402739e-03,...
+E        DESIRED: array([2.596656e-01, 1.199978e-05, 0.000000e+00, 4.799910e-05,
+E              0.000000e+00, 1.199978e-05, 4.746003e-05, 0.000000e+00,
+E              1.898401e-04, 0.000000e+00, 4.746003e-05, 1.461872e-04,...
+
+backend/tests/test_robust_engine.py:98: AssertionError
+=========================== short test summary info ============================
+FAILED backend/tests/test_robust_engine.py::test_joint_reference_source_evidence_matches_independent_strength_quadrature
+1 failed, 46 passed in 21.43s

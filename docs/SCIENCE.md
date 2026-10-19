@@ -1,3 +1,13 @@
+# Current scientific status: engine0.6
+
+Current model **plume-robust-0.6.0**, protocol **UW-ENGINE-2026-06**. See [implementation](ENGINE_V06_IMPLEMENTATION.md), [primary results](ENGINE_V06_RESULTS.md), [supplementary control](ENGINE_V06_OBSERVABILITY_RESULTS.md) and [engineering hardening](ENGINE_V06_HARDENING.md). All accuracy evidence is synthetic; no field calibration or organizational attribution reliability is established. Nominal overall point-error targets fail (median mean141.1m, mode179.9m). The retained0.5 methods below remain the physical/statistical foundation; their older evidence is historical.
+
+Qualified weather comparisons now enter a joint nominal/common-error mixture:75%comparison-conditioned and25%extra20degree/0.2log-speed uncertainty. These are uncalibrated assumptions, with strong sensitivity. Unknown weather retains its existing uncertainty without a duplicated component. A single adaptive subdivision preserves every cell's area prior; posterior mean, density-mode, RMS and outer10%domain-strip mass are distinct outputs. High edge mass withholds source support. Exact repeated-signature GLS and speed-component mixture reductions preserve all positive-mass alternatives.
+
+After scientific runs, two engineering safeguards bound the nuisance-profile diagnostic workspace and reject target covariance exceeding28million entries. They do not change source posterior/prior/acceptance rules; frozen/current ordinary outputs are exactly equal on two constructed cases. Their separate hashes, scope proof and before/after failures are retained.
+
+---
+
 # Science, algorithms and evidence status
 
 Scientific identifier: **plume-weather-0.5.0**; application package0.1.0. This is a research prototype with synthetic evaluation, not field-calibrated attribution. Weather repair equations and implementation: [WEATHER_BIAS_IMPLEMENTATION.md](WEATHER_BIAS_IMPLEMENTATION.md). Fresh evaluation design: [WEATHER_BIAS_PROTOCOL.md](WEATHER_BIAS_PROTOCOL.md). Unchanged transport/background/strength equations: [RESEARCH_IMPLEMENTATION.md](RESEARCH_IMPLEMENTATION.md). The complete0.4 science description is preserved in [the weather baseline](../evaluations/weather-bias/baseline-source/docs/SCIENCE.md). Historical0.3 equations are preserved [in the baseline snapshot](../evaluations/research/baseline-source/docs/SCIENCE.md); their results are not current performance claims.

@@ -1,3 +1,4 @@
+from hardening_v06 import validate_source
 """Derived reporting only. Refuses incomplete or source-drifted final evidence."""
 import hashlib
 import json
@@ -5,7 +6,7 @@ from pathlib import Path
 from collections import Counter
 import numpy as np
 from upwind.validation.research.run import wilson
-from evaluate_v06 import BASE, ROOT, FAMILIES, SEEDS, hashes, write
+from evaluate_v06 import BASE, ROOT, FAMILIES, SEEDS, write
 
 MODELS=['plume-weather-0.5.0','plume-robust-0.6.0']
 
@@ -43,7 +44,7 @@ def paired(rows,key,square=False):
     return dict(pairs=pairs,seed_blocks=len(values),candidate_minus_baseline=float(values.mean()),bootstrap95=np.quantile(draws,[.025,.975]).tolist(),meaning='Paired seed-block mean loss difference; negative favours candidate. Conditions within a block are correlated; this is not operational prevalence.')
 
 def main():
-    frozen=read(BASE/'freeze.json');assert hashes()==frozen['sha256'],'Current source differs from candidate freeze'
+    frozen=read(BASE/'freeze.json');validate_source()
     rows=[];plans=[];calibration=[];original=[]
     for stage,target in [('final',rows),('calibration',calibration),('original18',original),('planning',plans)]:
         for i in range(4):
@@ -131,6 +132,20 @@ def main():
         'The source archive/freeze, calibration, all original regressions and every final shard must match before this report is generated. Initial non-frozen development/prototype timing, source drift and the zero-prior test-adapter mismatch are retained. Unused standard-library imports in frozen evaluation helpers were retained for byte identity; production/tests and non-frozen reporting helpers pass their recorded static checks. The final candidate does not branch on scenario names, IDs or evaluator truth. All final seeds are now inspected and cannot be reused for future model selection.','',
         'The separate engineering artifacts repeat701,017 numerical checks,900 placement checks and5,000 seeded CSV cases plus four API overload rounds. These use the existing fixed batteries; they are not that many new independent observations. Acknowledged writes, malformed-input refusals and recovery are checked explicitly. Exact current test/build/browser logs and bounded isolated resource probes are retained alongside the report. Runtime in final rows includes four-worker contention and, for scheduled cases, prediction scoring; it is not an isolated latency benchmark.','',
         'Measured tracer validation remains unperformed. Official primary data access was previously denied by the proxy, and the inspected secondary Prairie Grass workbook lacks verified provenance/units/meteorology compatibility. No synthetic outcome removes those blockers. Unknown source count, wind fields/clock errors, sensor error and a source outside the declared rectangle can still defeat this restricted steady-source model. See the failure rows and actual acceptance/coverage denominators before making an operational decision.','']
+    resources=read(BASE/'resources/results.json')
+    checks=read(BASE/'release-checks.json')
+    output+=['## Final application and resource checks', '', 'After scientific evaluation, two engineering safeguards bound diagnostic workspaces and target covariance allocation. Original failures and source remain archived; see [hardening](ENGINE_V06_HARDENING.md). Current checks use the separately hashed hardened code, with unchanged configuration and verified AST scope. The separately labelled [observability control](ENGINE_V06_OBSERVABILITY_RESULTS.md) does not replace the primary results.', '',
+        f"Post-hardening exact-source release command exit codes: {checks['exit_codes']}. Backend209tests, eight Chromium workflows and the frontend build/typecheck logs are retained. Resource children run sequentially after all scientific/planning workers finish, each with a60s/2GiB ceiling.10,000loaded readings are not10,000inverted readings.", '',
+        '| Study | Requested fitted limit | Comparison supplied | Child status | Analysis status | Fitted rows | Seconds | Peak RSS MiB |',
+        '|---|---:|---|---|---|---:|---:|---:|']
+    resource_reasons=[]
+    for d in resources:
+        seconds=f"{d['seconds']:.2f}" if 'seconds' in d else '—'
+        memory=f"{d['peak_rss_mib']:.1f}" if 'peak_rss_mib' in d else '—'
+        output.append(f"| {'campaign' if d['campaign'] else 'single window'} | {d['limit']} | {d['characterized']} | {d['status']} | {d.get('analysis_status','—')} | {d.get('rows_fitted','—')} | {seconds} | {memory} |")
+        if d.get('reason'):resource_reasons.append(f"- {'campaign' if d['campaign'] else 'single window'}, limit{d['limit']}, comparisons{d['characterized']}: {d['reason']}")
+    output+=['']+resource_reasons
+    output+=['', 'A finished child can explicitly refuse inference. Richer weather alternatives can increase work or refuse a formerly fitted study; this is a capability regression, not a successful localization. These observed timings are not a shared-service SLA. Historical0.5 measurements remain in SEVERE_STRESS_RESULTS.md; different algorithms/circumstances prevent treating their ratio as a universal speedup.', '']
     report=ROOT/'docs/ENGINE_V06_RESULTS.md';report.write_text('\n'.join(output))
     write(BASE/'report-manifest.json',{'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'artifacts':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [report,BASE/'summary.json']}})
     print(json.dumps({'source_attempts':len(rows),'planning_fits':len(plans),'targets':{k:v for k,v in summary.items() if k.endswith('_pass') or k.endswith('_errors')}},indent=2))

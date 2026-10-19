@@ -1,0 +1,18 @@
+{
+  "purpose": "One current read-only official acquisition check; no repeated unchanged retry",
+  "requests": [
+    {
+      "url": "https://www.arl.noaa.gov/research/atmospheric-transport-and-dispersion/atd-programs-datem/",
+      "error": "URLError: <urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "url": "https://www.harmo.org/jsirwin/PrairieGrassDiscussion.html",
+      "error": "URLError: <urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "url": "https://envs.au.dk/en/research-areas/air-pollution-emissions-and-effects/the-monitoring-program/air-pollution-models/background-info/omlprairie",
+      "error": "URLError: <urlopen error Tunnel connection failed: 403 Forbidden>"
+    }
+  ],
+  "field_validation_performed": false
+}

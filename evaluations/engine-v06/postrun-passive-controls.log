@@ -1,0 +1,66 @@
+{
+  "controls": {
+    "last_period_mean": {
+      "n": 80,
+      "median": 1.8635948444117814,
+      "p90": 2.617401567681585,
+      "mean": 2.02216302238648,
+      "max": 6.540212964437525,
+      "rms": 2.206624345634787
+    },
+    "fixed_prior_mean": {
+      "n": 80,
+      "median": 2.0587312710836594,
+      "p90": 3.872390433013348,
+      "mean": 2.324798630777991,
+      "max": 6.308154726668825,
+      "rms": 2.5821118081103775
+    }
+  },
+  "paired": {
+    "plume-weather-0.5.0": {
+      "last_period_mean": {
+        "pairs": 72,
+        "unavailable_of_80": 8,
+        "losses": 35,
+        "mean_rmse_difference": 0.008209283754660762,
+        "bootstrap95": [
+          -0.07548595508548986,
+          0.10221914276208408
+        ]
+      },
+      "fixed_prior_mean": {
+        "pairs": 72,
+        "unavailable_of_80": 8,
+        "losses": 26,
+        "mean_rmse_difference": -0.2789297524746172,
+        "bootstrap95": [
+          -0.8317345155893648,
+          0.07485117919589754
+        ]
+      }
+    },
+    "plume-robust-0.6.0": {
+      "last_period_mean": {
+        "pairs": 72,
+        "unavailable_of_80": 8,
+        "losses": 35,
+        "mean_rmse_difference": 0.007629215987373237,
+        "bootstrap95": [
+          -0.0755145454673937,
+          0.10109380972799592
+        ]
+      },
+      "fixed_prior_mean": {
+        "pairs": 72,
+        "unavailable_of_80": 8,
+        "losses": 26,
+        "mean_rmse_difference": -0.27950982024190474,
+        "bootstrap95": [
+          -0.8339502758381568,
+          0.0747025085531979
+        ]
+      }
+    }
+  }
+}

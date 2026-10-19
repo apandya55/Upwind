@@ -1,13 +1,13 @@
+from hardening_v06 import validate_source
 """Execute final application checks and bind their logs to frozen source."""
 import copy
-import json
 import os
 import subprocess
 import sys
 from evaluate_v06 import BASE, ROOT, CONFIG, hashes, write
 
 before=hashes();configuration=copy.deepcopy(CONFIG)
-assert before==json.loads((BASE/'freeze.json').read_text())['sha256']
+assert before==validate_source()
 commands={
  'pytest':([sys.executable,'-m','pytest','-q'],ROOT,'pytest-final.log'),
  'frontend_build':(['npm','run','build'],ROOT/'frontend','frontend-build-final.log'),

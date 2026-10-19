@@ -1,7 +1,8 @@
+from hardening_v06 import validate_source
 """Verify exact source, raw paired attempts, contracts and derived artifacts."""
 import hashlib
 import json
-from evaluate_v06 import BASE, ROOT, FAMILIES, SEEDS, CONFIG, hashes, write
+from evaluate_v06 import BASE, ROOT, FAMILIES, SEEDS, CONFIG, write
 from report_v06 import MODELS, summarize
 
 def read(path):return json.loads(path.read_text())
@@ -10,7 +11,7 @@ def rows(path):return [json.loads(s) for s in path.read_text().splitlines()]
 
 def main():
     frozen=read(BASE/'freeze.json')
-    assert hashes()==frozen['sha256'],'Candidate source changed'
+    current=validate_source()
     assert CONFIG==frozen['config'],'Candidate configuration changed'
     for name,expected in frozen['sha256'].items():assert digest(BASE/'frozen-source'/name)==expected,name
     for name,expected in read(BASE/'baseline-manifest.json')['sha256'].items():assert digest(BASE/'baseline-source'/name)==expected,name
@@ -67,19 +68,37 @@ def main():
     assert control_meta['protocol_sha256']==digest(ROOT/'docs/ENGINE_V06_PASSIVE_CONTROLS.md')
     controls=read(BASE/'passive-controls/completion.json');assert controls['control_scores']==160 and controls['scheduled_worlds']==80
     original04=read(BASE/'original04-reproduction/summary.json');assert original04['exact_reproduction'] and original04['accepted']==18 and original04['accepted_wrong']==18
-    checks=read(BASE/'release-checks.json');assert checks['source_before']==checks['source_after']==frozen['sha256']
+    supplementary=[]
+    for i in range(4):
+        folder=BASE/f'observability-{i}';done=read(folder/'completion.json')
+        assert done['source_unchanged'] and done['sha256_after']==frozen['sha256']
+        meta=read(folder/'metadata.json')
+        assert meta['script_sha256']==digest(folder/'script.py.txt')==digest(ROOT/'scripts/observability_control_v06.py')
+        assert meta['protocol_sha256']==digest(ROOT/'docs/ENGINE_V06_OBSERVABILITY_CONTROL.md')
+        supplementary.extend(rows(folder/'results.jsonl'))
+    assert len(supplementary)==64
+    observed=read(BASE/'observability-summary.json')
+    for family in ['near_nominal','near_shared_bias']:
+        for model in MODELS:
+            assert observed[family][model]==summarize([r for r in supplementary if r['family']==family and r['model']==model])
+    for name,expected in read(BASE/'hardening-validation-manifest.json')['sha256'].items():
+        assert digest(ROOT/name)==expected,name
+    assert read(BASE/'hardening-equivalence.json')['passed']
+    assert read(BASE/'prediction-capacity-before.json')['outcome']=='memory_error'
+    assert read(BASE/'prediction-capacity-after.json')['outcome']=='explicit_refusal'
+    checks=read(BASE/'release-checks.json');assert checks['source_before']==checks['source_after']==current
     assert checks['config_unchanged'] and all(v==0 for v in checks['exit_codes'].values())
-    assert '201 passed' in (BASE/'pytest-final.log').read_text()
+    assert '209 passed' in (BASE/'pytest-final.log').read_text()
     assert '8 passed' in (BASE/'playwright-final.log').read_text()
     assert 'built in' in (BASE/'frontend-build-final.log').read_text()
     resources=read(BASE/'resources/completion.json')
     for name,expected in resources['source_hashes_after'].items():
-        assert frozen['sha256'].get(name,old['source_hashes'].get(name))==expected,name
+        assert current.get(name,old['source_hashes'].get(name))==expected,name
         assert digest(ROOT/name)==expected,name
     resource_rows=read(BASE/'resources/results.json');assert len(resource_rows)==5
     # Resource ceilings are measured outcomes, including refusals/failures/timeouts.
     # They are never silently converted to passing fits.
-    result={'integrity_passed':True,'frozen_paths':len(frozen['sha256']),'paired_condition_worlds':inputs,'final_source_attempts':len(final),'calibration_attempts':len(calibration),'original_regression_attempts':len(original),'downstream_planning_attempts':len(planning),'inference_crashes':sum(r['status']=='crash' for r in final),'numeric_failures':sum(r.get('numeric_ok') is False for r in final),'unexpected_refusals':sum(r['status']=='refused' and r['family'] not in ['distant_station','variable_weather'] for r in final),'backend_tests':201,'browser_workflows':8,'numerical_checks':numeric['checks'],'placement_checks':placement['checks'],'csv_cases':fuzz['cases'],'resources':resource_rows,'nominal_map_50m_pass':summary['nominal_50m_map_target_pass'],'nominal_mean_50m_pass':summary['nominal_50m_mean_target_pass'],'common_bias_fewer_accepted_errors':summary['common_bias_fewer_accepted_errors'],'historical_severe_source_intact':True,'field_validation_performed':False}
+    result={'integrity_passed':True,'frozen_paths':len(frozen['sha256']),'paired_condition_worlds':inputs,'final_source_attempts':len(final),'calibration_attempts':len(calibration),'original_regression_attempts':len(original),'downstream_planning_attempts':len(planning),'inference_crashes':sum(r['status']=='crash' for r in final),'numeric_failures':sum(r.get('numeric_ok') is False for r in final),'unexpected_refusals':sum(r['status']=='refused' and r['family'] not in ['distant_station','variable_weather'] for r in final),'backend_tests':209,'browser_workflows':8,'numerical_checks':numeric['checks'],'placement_checks':placement['checks'],'csv_cases':fuzz['cases'],'resources':resource_rows,'nominal_map_50m_pass':summary['nominal_50m_map_target_pass'],'nominal_mean_50m_pass':summary['nominal_50m_mean_target_pass'],'common_bias_fewer_accepted_errors':summary['common_bias_fewer_accepted_errors'],'historical_severe_source_intact':True,'field_validation_performed':False}
     write(BASE/'verification.json',result)
     files={str(p.relative_to(ROOT)):digest(p) for p in sorted(BASE.rglob('*')) if p.is_file() and p.name!='artifact-manifest.json' and '__pycache__' not in p.parts}
     write(BASE/'artifact-manifest.json',{'meaning':'Synthetic experiment files and source snapshots only; raw input truth is evaluator-private, not inference input','sha256':files})
