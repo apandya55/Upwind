@@ -1,0 +1,178 @@
+.national-loading-screen {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--atlas-paper, #f8faf7);
+  color: var(--atlas-ink, #18181b);
+  overflow: hidden;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.national-loading-screen.is-fullscreen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100dvh;
+  z-index: 99999;
+  background: var(--atlas-paper, #f8faf7);
+}
+
+.national-loading-screen.is-panel {
+  width: 100%;
+  min-height: 200px;
+  background: transparent;
+}
+
+/* Refined staple brand tile: centered, elevated, perfectly sized */
+.national-loading-tile {
+  width: 76px;
+  height: 76px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #237b6c 0%, #186153 100%);
+  box-shadow:
+    0 12px 28px -4px rgba(24, 97, 83, 0.22),
+    0 4px 10px -2px rgba(10, 43, 37, 0.12);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Subtle top inner sheen highlight */
+.national-loading-tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  padding: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.national-loading-svg {
+  width: 48px;
+  height: 48px;
+  display: block;
+}
+
+/* Guide tracks: permanent, translucent brand silhouette */
+.national-loading-screen .track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.35);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Flowing wind gusts through the mark */
+.national-loading-screen .wind-stream {
+  fill: none;
+  stroke: #ffffff;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.national-loading-screen .stream-top {
+  stroke-dasharray: 22 75;
+  stroke-dashoffset: 22;
+  animation: flowTopGust 2.2s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+}
+
+.national-loading-screen .stream-mid {
+  stroke-dasharray: 24 75;
+  stroke-dashoffset: 24;
+  animation: flowMidGust 2.2s cubic-bezier(0.25, 0.1, 0.25, 1) infinite 0.24s;
+}
+
+.national-loading-screen .stream-bot {
+  stroke-dasharray: 20 75;
+  stroke-dashoffset: 20;
+  animation: flowBotGust 2.2s cubic-bezier(0.25, 0.1, 0.25, 1) infinite 0.48s;
+}
+
+@keyframes flowTopGust {
+  0% {
+    stroke-dashoffset: 22;
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: -55;
+    opacity: 0;
+  }
+}
+
+@keyframes flowMidGust {
+  0% {
+    stroke-dashoffset: 24;
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: -52;
+    opacity: 0;
+  }
+}
+
+@keyframes flowBotGust {
+  0% {
+    stroke-dashoffset: 20;
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: -50;
+    opacity: 0;
+  }
+}
+
+.national-loading-screen .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .national-loading-screen .stream-top,
+  .national-loading-screen .stream-mid,
+  .national-loading-screen .stream-bot {
+    animation: none !important;
+    stroke-dasharray: none !important;
+    stroke-dashoffset: 0 !important;
+    opacity: 0.8 !important;
+  }
+}
