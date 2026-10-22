@@ -1,10 +1,14 @@
 # UPWIND
 
-A local investigation workspace for community **PM2.5 exploration and monitoring design**, with an experimental background/source comparison engine. No accounts, paid APIs, live hardware or GPU required. All bundled data are visibly synthetic. This is a working first local release, not field-validated source attribution.
+A public National Explorer for community **PM2.5 evidence**, with the older investigation workspace retained at `/workspace` for research use. No accounts, paid APIs, live hardware or GPU required. The investigation examples remain visibly synthetic; the explorer uses official EPA, Census, and PRISM data to provide historical 2024 PM2.5 evidence with explicit validation limits. Neither workflow establishes field-validated source attribution.
 
-Current release: **plume-robust-0.6.0**. Read the [engine results](docs/ENGINE_V06_RESULTS.md), [implementation and limits](docs/ENGINE_V06_IMPLEMENTATION.md), and [LLM continuation prompt](docs/UPWIND_LLM_EXPORT_PROMPT.md). Synthetic improvements do not establish operational attribution reliability.
+## National Explorer
 
-The [measured-data intake guide](docs/MEASURED_DATA_VALIDATION.md) documents the repaired EPA archive converter. The [readiness audit](docs/MEASURED_READINESS_AUDIT.md) explains why an inspected secondary Prairie Grass workbook cannot yet serve as a benchmark. Current backend suite:209tests and8browser workflows pass; measured field accuracy remains unvalidated.
+Run the resumable national data pipeline, evaluate the selected baseline, then open `/` in the local app (`/explore` remains a compatible alias). Exact source vintages, data counts, model evaluation, coverage, limitations, exports, and verification commands are in the [National Explorer v3 release record](docs/NATIONAL_EXPLORER_V3_RELEASE.md). The atlas maps historical measured monitor values, supported place estimates, and EPA inventoried facility emissions as separate evidence layers.
+
+Current scientific candidate: **plume-robust-0.7.1** under [UW-ENGINE-2026-07A](docs/ENGINE_V07_PROTOCOL.md). The locked synthetic evaluation and post-final numerical confirmation are recorded in [the engine handoff](docs/PROGRESS.md) and `evaluations/engine-v07/`. The published 0.6 release and its negative results remain frozen in the [engine results](docs/ENGINE_V06_RESULTS.md). Synthetic evidence does not establish operational attribution reliability.
+
+The [measured-data intake guide](docs/MEASURED_DATA_VALIDATION.md) documents the repaired EPA archive converter. The [readiness audit](docs/MEASURED_READINESS_AUDIT.md) explains why an inspected secondary Prairie Grass workbook cannot yet serve as a benchmark. The current backend suite has 253 passing tests; the National Explorer has nine passing browser workflows. Measured field accuracy remains unvalidated.
 
 ## Latest stress results
 
@@ -21,7 +25,9 @@ bash scripts/setup.sh
 bash scripts/dev.sh
 ```
 
-Open `http://127.0.0.1:5173` in your own laptop browser. API: port 8000. No credentials needed. The first screen opens the complete synthetic example. Click **Generate measurement plans**, change budget or permissions, compare baselines, save, and export evidence. See [the operator guide](docs/pilot/OPERATOR_GUIDE.md).
+Open `http://127.0.0.1:5173` in your own laptop browser. API: port 8000. No credentials needed. The first screen opens the National Explorer; search a place, switch evidence layers, inspect nearby documented context, compare places, and create a community report. The older synthetic investigation workspace remains directly available at `/workspace`.
+
+For local sensor CSV preparation, import steps, tested setup instructions, and a measured parser resource probe, open `/local` in the app or read the [local workflow guide](docs/LOCAL_WORKFLOW.md). A downloadable template and a separately labeled synthetic example are linked from that page.
 
 Single-process mode after setup/build:
 
@@ -61,7 +67,7 @@ NOAA/Sagebrush, EPA documentation, and the EPA hourly PM2.5 archive were blocked
 
 ## Research engine and current evidence
 
-Current scientific model: **plume-robust-0.6.0**, protocol **UW-ENGINE-2026-06**. Joint common-reference-error alternatives, area-preserving adaptive integration and posterior-mean/domain-edge diagnostics are described in [ENGINE_V06_IMPLEMENTATION.md](docs/ENGINE_V06_IMPLEMENTATION.md). The following weather0.5 links describe its retained foundation. Read [weather-bias results](docs/WEATHER_BIAS_RESULTS.md), [root causes, equations and reproduction](docs/WEATHER_BIAS_IMPLEMENTATION.md), and [science limits](docs/SCIENCE.md). Historical campaign0.4 results remain in [RESEARCH_RESULTS.md](docs/RESEARCH_RESULTS.md). Local engineering tests do not establish reliable source attribution for governments, companies or activist organizations.
+Current scientific candidate: **plume-robust-0.7.1**, protocol **UW-ENGINE-2026-07A**. The candidate adds explicit humidity-response nuisance covariance, bounded shared-weather two-source adequacy profiling, a bounded release-variation check and residual externality flags; details are in [ENGINE_V07_IMPLEMENTATION.md](docs/ENGINE_V07_IMPLEMENTATION.md). The frozen 0.6 implementation and results remain the evidence baseline. Read [weather-bias results](docs/WEATHER_BIAS_RESULTS.md), [root causes, equations and reproduction](docs/WEATHER_BIAS_IMPLEMENTATION.md), and [science limits](docs/SCIENCE.md). Historical campaign0.4 results remain in [RESEARCH_RESULTS.md](docs/RESEARCH_RESULTS.md). Local engineering tests do not establish reliable source attribution for governments, companies or activist organizations.
 
 Open **Scenarios → Open synthetic campaign example** to explore four independently steady wind periods. The new model supports explicit 2–6 periods with a shared fixed source/constant release assumption, independent period backgrounds and persistent instrument bias. Enter documented wind uncertainty and release/receptor heights. Read nuisance-profile ambiguity and whole-sensor/period predictive checks together. Changed release, incorrect weather and transport mismatch can still produce confidently wrong results without a warning.
 

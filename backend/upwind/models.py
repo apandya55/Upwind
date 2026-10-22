@@ -280,12 +280,23 @@ class ImportRequest(Schema):
 
 def migrate_analysis(inv):
     """Lossless read/import compatibility; persisted originals change on save only."""
-    from .inference import MODEL_VERSION
+    from .inference import MODEL_VERSION, PROTOCOL_VERSION
 
-    if inv.result is not None and inv.result.get("model_version") != MODEL_VERSION:
+    if inv.result is not None and (
+        inv.result.get("model_version") != MODEL_VERSION
+        or inv.result.get("protocol_version") != PROTOCOL_VERSION
+    ):
         inv.archived_results = [inv.result] + inv.archived_results
+        previous_model = inv.result.get("model_version", "unknown")
+        previous_protocol = inv.result.get("protocol_version", "unknown")
         inv.result = None
-        note = "Previous analysis archived: joint common-mode weather alternatives and adaptive area integration change scientific results. Rerun the current model; comparison metadata alone cannot verify calibration. Original observations and raw imports are retained."
+        note = (
+            "Previous analysis archived: the stored model/protocol "
+            f"({previous_model}/{previous_protocol}) differs from the current "
+            f"{MODEL_VERSION}/{PROTOCOL_VERSION}. Rerun the current model; "
+            "comparison metadata alone cannot verify calibration. Original "
+            "observations and raw imports are retained."
+        )
         if note not in inv.compatibility_notes:
             inv.compatibility_notes.append(note)
     return inv

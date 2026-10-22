@@ -22,7 +22,7 @@ def test_campaign_analysis_save_restore_report_and_assumption_gate(
     response = client.post("/api/analyze", json=data)
     assert response.status_code == 200
     result = response.json()
-    assert result["model_version"] == "plume-robust-0.6.0"
+    assert result["model_version"] == "plume-robust-0.9.0"
     assert result["study_window_count"] == 4 and result["spatial_quadrature_order"] == 2
     assert result["diagnostics"]["windows_checked"] == 3
     assert any(p["method"].startswith("Prediction variance") for p in result["plans"])

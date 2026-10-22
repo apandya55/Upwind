@@ -11,6 +11,7 @@ dependencies = ["fastapi==0.141.1", "pydantic==2.13.4", "numpy==2.3.5", "scipy==
 
 [project.optional-dependencies]
 dev = ["pytest==8.4.2", "httpx==0.28.1"]
+national-evaluation = ["rasterio>=1.4,<2"]
 
 [project.scripts]
 upwind = "upwind.cli:main"

@@ -1,0 +1,121 @@
+/* Shared design language for the public atlas and research workspace. */
+:root {
+  --atlas-paper: #f6f5ef;
+  --atlas-surface: #fbfaf5;
+  --atlas-surface-raised: #fffefa;
+  --atlas-ink: #1d3029;
+  --atlas-muted: #5e7067;
+  --atlas-line: #cbd5ca;
+  --atlas-line-strong: #aebfb2;
+  --atlas-green: #174f46;
+  --atlas-green-hover: #23695d;
+  --atlas-teal: #398b7d;
+  --atlas-focus: #287c70;
+  --atlas-radius: 7px;
+  --atlas-shadow: 0 5px 18px rgb(23 54 45 / 8%);
+  color-scheme: light;
+}
+
+body { background: var(--atlas-paper); color: var(--atlas-ink); }
+::selection { background: #b8d9ca; color: #153a32; }
+
+button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+button, a, input, select, textarea, summary { outline-color: var(--atlas-focus); }
+button:focus-visible, a:focus-visible, input:focus-visible,
+select:focus-visible, textarea:focus-visible, summary:focus-visible {
+  outline: 3px solid var(--atlas-focus);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) {
+  .app-shell .button, .app-shell .nav-item, .national-shell button,
+  .national-shell a, .local-page a {
+    transition-property: color, background-color, border-color, box-shadow, transform;
+    transition-duration: 160ms;
+    transition-timing-function: cubic-bezier(.2,.75,.25,1);
+  }
+}
+
+.app-shell { background: var(--atlas-paper); color: var(--atlas-ink); }
+.app-shell .sidebar { background: #eef0e9; border-color: var(--atlas-line); }
+.app-shell .main-content, .app-shell > main { background: var(--atlas-paper); }
+.app-shell .button, .app .button {
+  min-height: 38px;
+  border-radius: 5px;
+  background: var(--atlas-green);
+  border-color: var(--atlas-green);
+  color: #fffefa;
+}
+.app-shell .button:hover, .app .button:hover { background: var(--atlas-green-hover); color: #fffefa; }
+.app-shell .button.secondary, .app .button.secondary {
+  background: var(--atlas-surface-raised);
+  border-color: var(--atlas-line-strong);
+  color: var(--atlas-green);
+}
+.app-shell input, .app-shell select, .app-shell textarea,
+.app input, .app select, .app textarea {
+  background: var(--atlas-surface-raised);
+  color: var(--atlas-ink);
+  border-color: var(--atlas-line-strong);
+  border-radius: 5px;
+}
+.app-shell input::placeholder, .app-shell textarea::placeholder,
+.app input::placeholder, .app textarea::placeholder { color: #78877d; }
+.app-shell .topbar { background: rgb(246 245 239 / 95%); border-color: var(--atlas-line); }
+.app-shell .map-card, .app-shell .map-section, .app-shell .result-card,
+.app-shell .detail-card, .app-shell .panel-card, .app-shell .workspace-panel {
+  border-color: var(--atlas-line);
+  border-radius: var(--atlas-radius);
+  box-shadow: var(--atlas-shadow);
+}
+.app-shell .map-top { background: #eef0e9; border-color: var(--atlas-line); }
+.app-shell .nav-item { min-height: 40px; border-radius: 5px; }
+.app-shell .workspace-label, .app-shell .nav-label { font-size: 9px; letter-spacing: .12em; }
+.app-shell .nav-item, .app-shell .breadcrumb { font-size: 12px; }
+
+.national-shell { background: var(--atlas-paper); color: var(--atlas-ink); }
+.national-shell .national-map-panel, .national-shell .national-detail-panel,
+.national-shell .comparison-panel, .national-shell .coverage-card,
+.national-shell .methodology-card {
+  border-color: var(--atlas-line);
+  border-radius: var(--atlas-radius);
+  box-shadow: 0 3px 14px rgb(23 54 45 / 7%);
+}
+.national-shell .national-map-wrap { border-radius: 5px; }
+.national-shell .national-search input, .national-shell .national-select,
+.national-shell .national-layers, .national-shell .source-overlay-toggle {
+  border-radius: 5px;
+}
+.national-shell .national-detail-panel { scrollbar-color: #b8c9c0 transparent; }
+.national-shell button:disabled { cursor: not-allowed; }
+
+.local-page { background: var(--atlas-paper); color: var(--atlas-ink); }
+.local-page .local-nav { border-color: var(--atlas-line); }
+.local-page .local-input-card { box-shadow: var(--atlas-shadow); }
+.local-page a:focus-visible { border-radius: 3px; }
+
+.national-loading-screen { background: var(--atlas-paper); color: var(--atlas-ink); }
+.bouncing-loader { border-color: var(--atlas-line); background: var(--atlas-surface); }
+
+@media (max-width: 700px) {
+  .app-shell .topbar { min-height: 52px; }
+  .app-shell .sidebar { overscroll-behavior: contain; }
+  .national-shell .national-detail-panel { overscroll-behavior: contain; }
+  .local-page .local-nav-link, .local-page .local-primary, .local-page .local-secondary {
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 860px) {
+  /* Keep the research workspace rail usable on small screens: the icon rail
+     remains a clear navigation affordance while labels stay out of the map. */
+  .app-shell .nav-item { font-size: 0; color: transparent; }
+  .app-shell .nav-item > svg { color: #3f7668; }
+  .app-shell .nav-item > .nav-count,
+  .app-shell .nav-item > .experimental-dot { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

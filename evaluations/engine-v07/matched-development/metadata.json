@@ -1,0 +1,24 @@
+{
+  "purpose": "paired development comparison; not final evidence",
+  "model_v06": "plume-robust-0.6.0",
+  "model_v07": "plume-robust-0.7.1",
+  "protocol_v07": "UW-ENGINE-2026-07A",
+  "seeds": [
+    8120000,
+    8120001
+  ],
+  "families": [
+    "nominal",
+    "humidity_response",
+    "sensor_drift",
+    "changing_release",
+    "two_sources",
+    "spatial_background",
+    "heavy_tail",
+    "weather_error"
+  ],
+  "v06_source_sha256": "b1d78bffae5a0378cfa3a01be307cc9330e9f35c35ff1c2ef23ca20e86239d51",
+  "v07_source_sha256": "2efa5305d730ae6aebebffa10e43f93aaafe033b050b1aa41076db424cdf6fd9",
+  "generator": "scripts/evaluate_v07.py::_world",
+  "truth_use": "truth is used only to score this report after both fits; it is not passed to either engine"
+}

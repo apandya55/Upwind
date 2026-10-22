@@ -1,0 +1,1990 @@
+[
+  {
+    "engine": "plume-robust-0.8.0",
+    "seed": 8440002,
+    "family": "nominal",
+    "input_sha256": "d894ba4fa5dd19e686bc3f8521eabe40bbe11623844e5a8e7e5b539b1ec9a96c",
+    "status": "ok",
+    "evidence_status": "ambiguous",
+    "source_probability": 0.48802886543101387,
+    "numerical_converged": false,
+    "warnings": [
+      "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+      "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+      "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+      "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+      "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+      "Maximum declared quadrature level reached before every numerical tolerance passed.",
+      "NUMERICAL CONVERGENCE NOT ESTABLISHED: the finite conditional posterior is retained for inspection, but source support is withheld because nested source/weather integration did not satisfy every declared tolerance.",
+      "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+      "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+      "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+      "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+    ],
+    "quadrature_diagnostics": {
+      "policy": {
+        "weather_steps_deg": [
+          2.0,
+          1.0,
+          0.5
+        ],
+        "max_levels": 3,
+        "refine_target_mass": 0.9,
+        "max_refined_parents_per_level": 96,
+        "log_evidence_delta": 0.01,
+        "source_probability_delta": 0.01,
+        "cell_mass_tv": 0.05,
+        "posterior_mean_delta_m": 10.0,
+        "covariance_relative_delta": 0.05,
+        "region_mass_delta": 0.02,
+        "region_area_fraction_delta": 0.05,
+        "weather_mass_tv": 0.05
+      },
+      "levels": [
+        {
+          "level": 0,
+          "weather_step_deg": 2.0,
+          "source_cells": 576,
+          "integration_points": 576,
+          "weather_direction_nodes": 87,
+          "weather_speed_nodes": 3,
+          "source_weather_components": 150336,
+          "log_evidence": -48.2447567699202,
+          "source_probability": 0.48803503607639026
+        },
+        {
+          "level": 1,
+          "weather_step_deg": 1.0,
+          "source_cells": 864,
+          "integration_points": 864,
+          "weather_direction_nodes": 171,
+          "weather_speed_nodes": 3,
+          "source_weather_components": 443232,
+          "log_evidence": -48.24476699505303,
+          "source_probability": 0.4880298011398706,
+          "deltas": {
+            "log_evidence": 1.0225132825780747e-05,
+            "source_probability": 5.234936519660227e-06,
+            "cell_mass_tv": 5.4596403011509436e-06,
+            "posterior_mean_m": 0.0025155794688710383,
+            "covariance_relative": 0.00023094406400988367,
+            "region_mass": 3.6494957167398923e-06,
+            "region_area_fraction": 0.0,
+            "weather_mass_tv": 0.09994698586874744
+          },
+          "tolerance_pass": {
+            "log_evidence": true,
+            "source_probability": true,
+            "cell_mass_tv": true,
+            "posterior_mean_m": true,
+            "covariance_relative": true,
+            "region_mass": true,
+            "region_area_fraction": true,
+            "weather_mass_tv": false
+          }
+        },
+        {
+          "level": 2,
+          "weather_step_deg": 0.5,
+          "source_cells": 1152,
+          "integration_points": 1152,
+          "weather_direction_nodes": 341,
+          "weather_speed_nodes": 3,
+          "source_weather_components": 1178496,
+          "log_evidence": -48.24476882271409,
+          "source_probability": 0.48802886543101387,
+          "deltas": {
+            "log_evidence": 1.8276610660450388e-06,
+            "source_probability": 9.35708856730777e-07,
+            "cell_mass_tv": 1.0445864700826335e-06,
+            "posterior_mean_m": 0.0004282125713794247,
+            "covariance_relative": 1.5017636383668978e-05,
+            "region_mass": 6.910381433744561e-07,
+            "region_area_fraction": 0.0,
+            "weather_mass_tv": 0.05003556049180575
+          },
+          "tolerance_pass": {
+            "log_evidence": true,
+            "source_probability": true,
+            "cell_mass_tv": true,
+            "posterior_mean_m": true,
+            "covariance_relative": true,
+            "region_mass": true,
+            "region_area_fraction": true,
+            "weather_mass_tv": false
+          }
+        }
+      ],
+      "level_count": 3,
+      "converged": false,
+      "limitation": "Maximum declared quadrature level reached before every numerical tolerance passed.",
+      "meaning": "Nested deterministic area-weighted source and coherent-weather integrals. Numerical convergence is separate from physical model adequacy and is not a field-accuracy guarantee."
+    },
+    "externality_flags": [],
+    "source_count_diagnostic": {
+      "material_competing_pair": false,
+      "diagnostic_unavailable": false
+    },
+    "weather_posterior_location_span_m": 39.55553266435793,
+    "weather_common_mode_posterior_probability": 0.0,
+    "runtime_ms": 10187.79,
+    "refusal_reason": null,
+    "mean_error_m": 86.56390506279647,
+    "mode_error_m": 493.85416870849537,
+    "truth_region_coverage": [
+      true
+    ],
+    "truth_region_coverage_any": true,
+    "truth_region_coverage_all": true,
+    "truth_region_correct_for_source_count": true,
+    "truth_sources_covered": 1,
+    "truth_source_count": 1,
+    "region_area_fraction": 0.8923611111111112,
+    "region_area_m2": 593420.1381387414,
+    "region_component_count": 1,
+    "region_component_separation_m": null,
+    "posterior_region_mode_count": 1,
+    "held_out_checks": [
+      {
+        "rows": 7,
+        "rmse_ug_m3": 0.9571534755992417,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.1748886720223353,
+        "tail_probability": 0.9921913128355295
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 1.2923558694456143,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.2005271530059702,
+        "tail_probability": 0.9946315275744265
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 2.273732795895573,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.3536688063917777,
+        "tail_probability": 0.6486090775988287
+      }
+    ],
+    "held_out_checks_unavailable": 0
+  },
+  {
+    "engine": "plume-robust-0.7.1",
+    "seed": 8440002,
+    "family": "nominal",
+    "input_sha256": "d894ba4fa5dd19e686bc3f8521eabe40bbe11623844e5a8e7e5b539b1ec9a96c",
+    "status": "ok",
+    "evidence_status": "ambiguous",
+    "source_probability": 0.4880348005921019,
+    "numerical_converged": null,
+    "warnings": [
+      "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+      "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+      "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+      "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+      "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+      "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+      "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+      "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+      "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+    ],
+    "quadrature_diagnostics": {
+      "refined": true,
+      "parents_split": 96,
+      "coarse_cells": 576,
+      "final_cells": 864,
+      "limitation": null,
+      "meaning": "One posterior-directed subdivision; all unselected cells retain their area prior. Finite quadrature is not an accuracy guarantee."
+    },
+    "externality_flags": [],
+    "source_count_diagnostic": {
+      "material_competing_pair": false,
+      "diagnostic_unavailable": false
+    },
+    "weather_posterior_location_span_m": 39.425438258607706,
+    "weather_common_mode_posterior_probability": 0.0,
+    "runtime_ms": 1673.49,
+    "refusal_reason": null,
+    "mean_error_m": 86.56567149134068,
+    "mode_error_m": 487.7083437578116,
+    "truth_region_coverage": [
+      true
+    ],
+    "truth_region_coverage_any": true,
+    "truth_region_coverage_all": true,
+    "truth_region_correct_for_source_count": true,
+    "truth_sources_covered": 1,
+    "truth_source_count": 1,
+    "region_area_fraction": 0.8923611111111112,
+    "region_area_m2": 593420.1381387414,
+    "region_component_count": null,
+    "region_component_separation_m": null,
+    "posterior_region_mode_count": null,
+    "held_out_checks": [
+      {
+        "rows": 7,
+        "rmse_ug_m3": 0.9571559937348302,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.174882890031492,
+        "tail_probability": 0.9921913128355295
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 1.2923572002560562,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.200524597497309,
+        "tail_probability": 0.9946315275744265
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 2.2737372085497847,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.35366863726502,
+        "tail_probability": 0.6486090775988287
+      }
+    ],
+    "held_out_checks_unavailable": 0
+  },
+  {
+    "engine": "plume-robust-0.8.0",
+    "seed": 8440002,
+    "family": "humidity_response",
+    "input_sha256": "489c87c494313b512f33d14e34feb01b4b147ae7431a7e469a756fd4d662313e",
+    "status": "ok",
+    "evidence_status": "ambiguous",
+    "source_probability": 0.5223414220804721,
+    "numerical_converged": false,
+    "warnings": [
+      "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+      "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+      "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+      "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+      "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+      "Maximum declared quadrature level reached before every numerical tolerance passed.",
+      "NUMERICAL CONVERGENCE NOT ESTABLISHED: the finite conditional posterior is retained for inspection, but source support is withheld because nested source/weather integration did not satisfy every declared tolerance.",
+      "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+      "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+      "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+      "High humidity is recorded; no instrument-specific humidity correction or calibration is inferred. Verify instrument response independently.",
+      "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+    ],
+    "quadrature_diagnostics": {
+      "policy": {
+        "weather_steps_deg": [
+          2.0,
+          1.0,
+          0.5
+        ],
+        "max_levels": 3,
+        "refine_target_mass": 0.9,
+        "max_refined_parents_per_level": 96,
+        "log_evidence_delta": 0.01,
+        "source_probability_delta": 0.01,
+        "cell_mass_tv": 0.05,
+        "posterior_mean_delta_m": 10.0,
+        "covariance_relative_delta": 0.05,
+        "region_mass_delta": 0.02,
+        "region_area_fraction_delta": 0.05,
+        "weather_mass_tv": 0.05
+      },
+      "levels": [
+        {
+          "level": 0,
+          "weather_step_deg": 2.0,
+          "source_cells": 576,
+          "integration_points": 576,
+          "weather_direction_nodes": 87,
+          "weather_speed_nodes": 3,
+          "source_weather_components": 150336,
+          "log_evidence": -49.78488731983513,
+          "source_probability": 0.5223456753430786
+        },
+        {
+          "level": 1,
+          "weather_step_deg": 1.0,
+          "source_cells": 864,
+          "integration_points": 864,
+          "weather_direction_nodes": 171,
+          "weather_speed_nodes": 3,
+          "source_weather_components": 443232,
+          "log_evidence": -49.78489811905667,
+          "source_probability": 0.5223405170203534,
+          "deltas": {
+            "log_evidence": 1.0799221541901716e-05,
+            "source_probability": 5.158322725185016e-06,
+            "cell_mass_tv": 4.580513630675332e-05,
+            "posterior_mean_m": 0.011620906412805965,
+            "covariance_relative": 0.0002530150136089695,
+            "region_mass": 2.001994622413683e-06,
+            "region_area_fraction": 0.0,
+            "weather_mass_tv": 0.09994476653629963
+          },
+          "tolerance_pass": {
+            "log_evidence": true,
+            "source_probability": true,
+            "cell_mass_tv": true,
+            "posterior_mean_m": true,
+            "covariance_relative": true,
+            "region_mass": true,
+            "region_area_fraction": true,
+            "weather_mass_tv": false
+          }
+        },
+        {
+          "level": 2,
+          "weather_step_deg": 0.5,
+          "source_cells": 1152,
+          "integration_points": 1152,
+          "weather_direction_nodes": 341,
+          "weather_speed_nodes": 3,
+          "source_weather_components": 1178496,
+          "log_evidence": -49.784896224273865,
+          "source_probability": 0.5223414220804721,
+          "deltas": {
+            "log_evidence": 1.8947828053228477e-06,
+            "source_probability": 9.050601186277873e-07,
+            "cell_mass_tv": 2.7658860341922553e-06,
+            "posterior_mean_m": 0.00044635462159515386,
+            "covariance_relative": 1.5114472220079914e-05,
+            "region_mass": 3.7780809125642634e-07,
+            "region_area_fraction": 0.0,
+            "weather_mass_tv": 0.050030996756955146
+          },
+          "tolerance_pass": {
+            "log_evidence": true,
+            "source_probability": true,
+            "cell_mass_tv": true,
+            "posterior_mean_m": true,
+            "covariance_relative": true,
+            "region_mass": true,
+            "region_area_fraction": true,
+            "weather_mass_tv": false
+          }
+        }
+      ],
+      "level_count": 3,
+      "converged": false,
+      "limitation": "Maximum declared quadrature level reached before every numerical tolerance passed.",
+      "meaning": "Nested deterministic area-weighted source and coherent-weather integrals. Numerical convergence is separate from physical model adequacy and is not a field-accuracy guarantee."
+    },
+    "externality_flags": [],
+    "source_count_diagnostic": {
+      "material_competing_pair": false,
+      "diagnostic_unavailable": false
+    },
+    "weather_posterior_location_span_m": 80.88252472160717,
+    "weather_common_mode_posterior_probability": 0.0,
+    "runtime_ms": 10087.41,
+    "refusal_reason": null,
+    "mean_error_m": 92.71621205899025,
+    "mode_error_m": 271.0131866980145,
+    "truth_region_coverage": [
+      true
+    ],
+    "truth_region_coverage_any": true,
+    "truth_region_coverage_all": true,
+    "truth_region_correct_for_source_count": true,
+    "truth_sources_covered": 1,
+    "truth_source_count": 1,
+    "region_area_fraction": 0.890625,
+    "region_area_m2": 592265.6242513119,
+    "region_component_count": 1,
+    "region_component_separation_m": null,
+    "posterior_region_mode_count": 1,
+    "held_out_checks": [
+      {
+        "rows": 7,
+        "rmse_ug_m3": 4.648304941387398,
+        "coverage90": 0.8571428571428571,
+        "mean_nlpd": 3.1066052306918404,
+        "tail_probability": 0.6642264519277696
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 0.9953611730488349,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.1974580123550425,
+        "tail_probability": 0.995119570522206
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 3.1335240911627253,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.556126778470301,
+        "tail_probability": 0.5241581259150805
+      }
+    ],
+    "held_out_checks_unavailable": 0
+  },
+  {
+    "engine": "plume-robust-0.7.1",
+    "seed": 8440002,
+    "family": "humidity_response",
+    "input_sha256": "489c87c494313b512f33d14e34feb01b4b147ae7431a7e469a756fd4d662313e",
+    "status": "ok",
+    "evidence_status": "ambiguous",
+    "source_probability": 0.5223317879705809,
+    "numerical_converged": null,
+    "warnings": [
+      "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+      "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+      "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+      "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+      "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+      "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+      "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+      "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+      "High humidity is recorded; no instrument-specific humidity correction or calibration is inferred. Verify instrument response independently.",
+      "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+    ],
+    "quadrature_diagnostics": {
+      "refined": true,
+      "parents_split": 96,
+      "coarse_cells": 576,
+      "final_cells": 864,
+      "limitation": null,
+      "meaning": "One posterior-directed subdivision; all unselected cells retain their area prior. Finite quadrature is not an accuracy guarantee."
+    },
+    "externality_flags": [],
+    "source_count_diagnostic": {
+      "material_competing_pair": false,
+      "diagnostic_unavailable": false
+    },
+    "weather_posterior_location_span_m": 80.87694556987407,
+    "weather_common_mode_posterior_probability": 0.0,
+    "runtime_ms": 1646.75,
+    "refusal_reason": null,
+    "mean_error_m": 92.71545789304008,
+    "mode_error_m": 276.48205851365617,
+    "truth_region_coverage": [
+      true
+    ],
+    "truth_region_coverage_any": true,
+    "truth_region_coverage_all": true,
+    "truth_region_correct_for_source_count": true,
+    "truth_sources_covered": 1,
+    "truth_source_count": 1,
+    "region_area_fraction": 0.890625,
+    "region_area_m2": 592265.6242513119,
+    "region_component_count": null,
+    "region_component_separation_m": null,
+    "posterior_region_mode_count": null,
+    "held_out_checks": [
+      {
+        "rows": 7,
+        "rmse_ug_m3": 4.648353078656373,
+        "coverage90": 0.8571428571428571,
+        "mean_nlpd": 3.1066201667103037,
+        "tail_probability": 0.6642264519277696
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 0.995366175786975,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.1974549378355763,
+        "tail_probability": 0.995119570522206
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 3.1335433926325744,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.5561306926535794,
+        "tail_probability": 0.5275744265495363
+      }
+    ],
+    "held_out_checks_unavailable": 0
+  },
+  {
+    "engine": "plume-robust-0.8.0",
+    "seed": 8440002,
+    "family": "sensor_drift",
+    "input_sha256": "05f8fff600043168fa38464d6769e9b674ddb939966d6d9a872f7951f5a5258f",
+    "status": "ok",
+    "evidence_status": "model_mismatch",
+    "source_probability": 0.9239495014758549,
+    "numerical_converged": false,
+    "warnings": [
+      "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+      "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+      "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+      "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+      "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+      "Maximum declared quadrature level reached before every numerical tolerance passed.",
+      "NUMERICAL CONVERGENCE NOT ESTABLISHED: the finite conditional posterior is retained for inspection, but source support is withheld because nested source/weather integration did not satisfy every declared tolerance.",
+      "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+      "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+      "EXTERNALITY SIGNAL: sensor drift or time varying release. Residual structure can reflect instrument response, meteorology, chemistry or changing emissions; it is not a source identification.",
+      "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+      "MODEL MISMATCH: a withheld-sensor or withheld-period contrast block failed the declared joint predictive screen. Review meteorology, instrument behavior, background and multiple-source explanations; the screen has false negatives and is not field calibrated.",
+      "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+    ],
+    "quadrature_diagnostics": {
+      "policy": {
+        "weather_steps_deg": [
+          2.0,
+          1.0,
+          0.5
+        ],
+        "max_levels": 3,
+        "refine_target_mass": 0.9,
+        "max_refined_parents_per_level": 96,
+        "log_evidence_delta": 0.01,
+        "source_probability_delta": 0.01,
+        "cell_mass_tv": 0.05,
+        "posterior_mean_delta_m": 10.0,
+        "covariance_relative_delta": 0.05,
+        "region_mass_delta": 0.02,
+        "region_area_fraction_delta": 0.05,
+        "weather_mass_tv": 0.05
+      },
+      "levels": [
+        {
+          "level": 0,
+          "weather_step_deg": 2.0,
+          "source_cells": 576,
+          "integration_points": 576,
+          "weather_direction_nodes": 87,
+          "weather_speed_nodes": 3,
+          "source_weather_components": 150336,
+          "log_evidence": -60.97785460774026,
+          "source_probability": 0.9239747052206192
+        },
+        {
+          "level": 1,
+          "weather_step_deg": 1.0,
+          "source_cells": 864,
+          "integration_points": 864,
+          "weather_direction_nodes": 171,
+          "weather_speed_nodes": 3,
+          "source_weather_components": 443232,
+          "log_evidence": -60.97812900000614,
+          "source_probability": 0.9239538416054442,
+          "deltas": {
+            "log_evidence": 0.00027439226587944177,
+            "source_probability": 2.0863615174948613e-05,
+            "cell_mass_tv": 0.000715089248715558,
+            "posterior_mean_m": 0.023435325102471326,
+            "covariance_relative": 0.0010951319201645382,
+            "region_mass": 5.660104036775415e-05,
+            "region_area_fraction": 0.0,
+            "weather_mass_tv": 0.10007350155422853
+          },
+          "tolerance_pass": {
+            "log_evidence": true,
+            "source_probability": true,
+            "cell_mass_tv": true,
+            "posterior_mean_m": true,
+            "covariance_relative": true,
+            "region_mass": true,
+            "region_area_fraction": true,
+            "weather_mass_tv": false
+          }
+        },
+        {
+          "level": 2,
+          "weather_step_deg": 0.5,
+          "source_cells": 1152,
+          "integration_points": 1152,
+          "weather_direction_nodes": 341,
+          "weather_speed_nodes": 3,
+          "source_weather_components": 1178496,
+          "log_evidence": -60.97818607068315,
+          "source_probability": 0.9239495014758549,
+          "deltas": {
+            "log_evidence": 5.707067700910784e-05,
+            "source_probability": 4.340129589386343e-06,
+            "cell_mass_tv": 0.00011023283639207909,
+            "posterior_mean_m": 0.01244341954657057,
+            "covariance_relative": 0.00018873406013946695,
+            "region_mass": 1.1218726713835281e-05,
+            "region_area_fraction": 1.1102230246251565e-16,
+            "weather_mass_tv": 0.05002013221677738
+          },
+          "tolerance_pass": {
+            "log_evidence": true,
+            "source_probability": true,
+            "cell_mass_tv": true,
+            "posterior_mean_m": true,
+            "covariance_relative": true,
+            "region_mass": true,
+            "region_area_fraction": true,
+            "weather_mass_tv": false
+          }
+        }
+      ],
+      "level_count": 3,
+      "converged": false,
+      "limitation": "Maximum declared quadrature level reached before every numerical tolerance passed.",
+      "meaning": "Nested deterministic area-weighted source and coherent-weather integrals. Numerical convergence is separate from physical model adequacy and is not a field-accuracy guarantee."
+    },
+    "externality_flags": [
+      "sensor_drift_or_time_varying_release"
+    ],
+    "source_count_diagnostic": {
+      "material_competing_pair": false,
+      "diagnostic_unavailable": false
+    },
+    "weather_posterior_location_span_m": 551.0977362569882,
+    "weather_common_mode_posterior_probability": 0.0,
+    "runtime_ms": 10063.94,
+    "refusal_reason": null,
+    "mean_error_m": 209.19928843242653,
+    "mode_error_m": 406.40930724446173,
+    "truth_region_coverage": [
+      true
+    ],
+    "truth_region_coverage_any": true,
+    "truth_region_coverage_all": true,
+    "truth_region_correct_for_source_count": true,
+    "truth_sources_covered": 1,
+    "truth_source_count": 1,
+    "region_area_fraction": 0.6024305555555555,
+    "region_area_m2": 400616.31893802184,
+    "region_component_count": 1,
+    "region_component_separation_m": null,
+    "posterior_region_mode_count": 1,
+    "held_out_checks": [
+      {
+        "rows": 7,
+        "rmse_ug_m3": 9.788112805984094,
+        "coverage90": 0.2857142857142857,
+        "mean_nlpd": 5.395406719705953,
+        "tail_probability": 0.0019521717911176184
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 2.846506384160538,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.551423188679171,
+        "tail_probability": 0.7916056612981942
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 4.6935768221922025,
+        "coverage90": 0.8571428571428571,
+        "mean_nlpd": 3.0118598556256537,
+        "tail_probability": 0.27281600780868714
+      }
+    ],
+    "held_out_checks_unavailable": 0
+  },
+  {
+    "engine": "plume-robust-0.7.1",
+    "seed": 8440002,
+    "family": "sensor_drift",
+    "input_sha256": "05f8fff600043168fa38464d6769e9b674ddb939966d6d9a872f7951f5a5258f",
+    "status": "ok",
+    "evidence_status": "model_mismatch",
+    "source_probability": 0.923927374274226,
+    "numerical_converged": null,
+    "warnings": [
+      "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+      "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+      "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+      "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+      "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+      "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+      "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+      "EXTERNALITY SIGNAL: sensor drift or time varying release. Residual structure can reflect instrument response, meteorology, chemistry or changing emissions; it is not a source identification.",
+      "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+      "MODEL MISMATCH: a withheld-sensor or withheld-period contrast block failed the declared joint predictive screen. Review meteorology, instrument behavior, background and multiple-source explanations; the screen has false negatives and is not field calibrated.",
+      "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+    ],
+    "quadrature_diagnostics": {
+      "refined": true,
+      "parents_split": 96,
+      "coarse_cells": 576,
+      "final_cells": 864,
+      "limitation": null,
+      "meaning": "One posterior-directed subdivision; all unselected cells retain their area prior. Finite quadrature is not an accuracy guarantee."
+    },
+    "externality_flags": [
+      "sensor_drift_or_time_varying_release"
+    ],
+    "source_count_diagnostic": {
+      "material_competing_pair": false,
+      "diagnostic_unavailable": false
+    },
+    "weather_posterior_location_span_m": 549.7939867866132,
+    "weather_common_mode_posterior_probability": 0.0,
+    "runtime_ms": 1649.03,
+    "refusal_reason": null,
+    "mean_error_m": 209.20687907210356,
+    "mode_error_m": 401.7799618602224,
+    "truth_region_coverage": [
+      true
+    ],
+    "truth_region_coverage_any": true,
+    "truth_region_coverage_all": true,
+    "truth_region_correct_for_source_count": true,
+    "truth_sources_covered": 1,
+    "truth_source_count": 1,
+    "region_area_fraction": 0.6024305555555556,
+    "region_area_m2": 400616.3189380219,
+    "region_component_count": null,
+    "region_component_separation_m": null,
+    "posterior_region_mode_count": null,
+    "held_out_checks": [
+      {
+        "rows": 7,
+        "rmse_ug_m3": 9.788153757199924,
+        "coverage90": 0.2857142857142857,
+        "mean_nlpd": 5.395576537944125,
+        "tail_probability": 0.0029282576866764276
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 2.8465262612960998,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.5514370623707294,
+        "tail_probability": 0.7955100048804294
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 4.6938110446375525,
+        "coverage90": 0.8571428571428571,
+        "mean_nlpd": 3.0119441458205247,
+        "tail_probability": 0.27183992191312834
+      }
+    ],
+    "held_out_checks_unavailable": 0
+  },
+  {
+    "engine": "plume-robust-0.8.0",
+    "seed": 8440002,
+    "family": "changing_release",
+    "input_sha256": "d958495694359dd2a0b3b84f18f173137633349c9fff754f61140997a6990382",
+    "status": "ok",
+    "evidence_status": "ambiguous",
+    "source_probability": 0.4883439879069126,
+    "numerical_converged": false,
+    "warnings": [
+      "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+      "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+      "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+      "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+      "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+      "Maximum declared quadrature level reached before every numerical tolerance passed.",
+      "NUMERICAL CONVERGENCE NOT ESTABLISHED: the finite conditional posterior is retained for inspection, but source support is withheld because nested source/weather integration did not satisfy every declared tolerance.",
+      "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+      "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+      "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+      "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+    ],
+    "quadrature_diagnostics": {
+      "policy": {
+        "weather_steps_deg": [
+          2.0,
+          1.0,
+          0.5
+        ],
+        "max_levels": 3,
+        "refine_target_mass": 0.9,
+        "max_refined_parents_per_level": 96,
+        "log_evidence_delta": 0.01,
+        "source_probability_delta": 0.01,
+        "cell_mass_tv": 0.05,
+        "posterior_mean_delta_m": 10.0,
+        "covariance_relative_delta": 0.05,
+        "region_mass_delta": 0.02,
+        "region_area_fraction_delta": 0.05,
+        "weather_mass_tv": 0.05
+      },
+      "levels": [
+        {
+          "level": 0,
+          "weather_step_deg": 2.0,
+          "source_cells": 576,
+          "integration_points": 576,
+          "weather_direction_nodes": 87,
+          "weather_speed_nodes": 3,
+          "source_weather_components": 150336,
+          "log_evidence": -48.22359041222581,
+          "source_probability": 0.4883499968352789
+        },
+        {
+          "level": 1,
+          "weather_step_deg": 1.0,
+          "source_cells": 864,
+          "integration_points": 864,
+          "weather_direction_nodes": 171,
+          "weather_speed_nodes": 3,
+          "source_weather_components": 443232,
+          "log_evidence": -48.223600374512614,
+          "source_probability": 0.4883448996058143,
+          "deltas": {
+            "log_evidence": 9.962286803499865e-06,
+            "source_probability": 5.097229464623432e-06,
+            "cell_mass_tv": 5.416072912810504e-06,
+            "posterior_mean_m": 0.0025264714448109725,
+            "covariance_relative": 0.0002302625917930716,
+            "region_mass": 3.6121889429585607e-06,
+            "region_area_fraction": 0.0,
+            "weather_mass_tv": 0.09994768674154307
+          },
+          "tolerance_pass": {
+            "log_evidence": true,
+            "source_probability": true,
+            "cell_mass_tv": true,
+            "posterior_mean_m": true,
+            "covariance_relative": true,
+            "region_mass": true,
+            "region_area_fraction": true,
+            "weather_mass_tv": false
+          }
+        },
+        {
+          "level": 2,
+          "weather_step_deg": 0.5,
+          "source_cells": 1152,
+          "integration_points": 1152,
+          "weather_direction_nodes": 341,
+          "weather_speed_nodes": 3,
+          "source_weather_components": 1178496,
+          "log_evidence": -48.22360215637327,
+          "source_probability": 0.4883439879069126,
+          "deltas": {
+            "log_evidence": 1.7818606536934567e-06,
+            "source_probability": 9.116989017066146e-07,
+            "cell_mass_tv": 1.034621355832906e-06,
+            "posterior_mean_m": 0.00043040850548471606,
+            "covariance_relative": 1.4944242492106044e-05,
+            "region_mass": 6.83826220093664e-07,
+            "region_area_fraction": 0.0,
+            "weather_mass_tv": 0.0500355063979625
+          },
+          "tolerance_pass": {
+            "log_evidence": true,
+            "source_probability": true,
+            "cell_mass_tv": true,
+            "posterior_mean_m": true,
+            "covariance_relative": true,
+            "region_mass": true,
+            "region_area_fraction": true,
+            "weather_mass_tv": false
+          }
+        }
+      ],
+      "level_count": 3,
+      "converged": false,
+      "limitation": "Maximum declared quadrature level reached before every numerical tolerance passed.",
+      "meaning": "Nested deterministic area-weighted source and coherent-weather integrals. Numerical convergence is separate from physical model adequacy and is not a field-accuracy guarantee."
+    },
+    "externality_flags": [],
+    "source_count_diagnostic": {
+      "material_competing_pair": false,
+      "diagnostic_unavailable": false
+    },
+    "weather_posterior_location_span_m": 39.07616835246,
+    "weather_common_mode_posterior_probability": 0.0,
+    "runtime_ms": 9906.73,
+    "refusal_reason": null,
+    "mean_error_m": 86.61099378612916,
+    "mode_error_m": 493.85416870849537,
+    "truth_region_coverage": [
+      true
+    ],
+    "truth_region_coverage_any": true,
+    "truth_region_coverage_all": true,
+    "truth_region_correct_for_source_count": true,
+    "truth_sources_covered": 1,
+    "truth_source_count": 1,
+    "region_area_fraction": 0.8923611111111112,
+    "region_area_m2": 593420.1381387414,
+    "region_component_count": 1,
+    "region_component_separation_m": null,
+    "posterior_region_mode_count": 1,
+    "held_out_checks": [
+      {
+        "rows": 7,
+        "rmse_ug_m3": 0.9427398644925866,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.174029437350949,
+        "tail_probability": 0.9921913128355295
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 1.2693604374461365,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.1979595715599305,
+        "tail_probability": 0.995119570522206
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 2.29274250627222,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.3571670485111653,
+        "tail_probability": 0.6486090775988287
+      }
+    ],
+    "held_out_checks_unavailable": 0
+  },
+  {
+    "engine": "plume-robust-0.7.1",
+    "seed": 8440002,
+    "family": "changing_release",
+    "input_sha256": "d958495694359dd2a0b3b84f18f173137633349c9fff754f61140997a6990382",
+    "status": "ok",
+    "evidence_status": "ambiguous",
+    "source_probability": 0.4883497638085397,
+    "numerical_converged": null,
+    "warnings": [
+      "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+      "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+      "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+      "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+      "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+      "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+      "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+      "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+      "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+    ],
+    "quadrature_diagnostics": {
+      "refined": true,
+      "parents_split": 96,
+      "coarse_cells": 576,
+      "final_cells": 864,
+      "limitation": null,
+      "meaning": "One posterior-directed subdivision; all unselected cells retain their area prior. Finite quadrature is not an accuracy guarantee."
+    },
+    "externality_flags": [],
+    "source_count_diagnostic": {
+      "material_competing_pair": false,
+      "diagnostic_unavailable": false
+    },
+    "weather_posterior_location_span_m": 38.96341857625798,
+    "weather_common_mode_posterior_probability": 0.0,
+    "runtime_ms": 1658.02,
+    "refusal_reason": null,
+    "mean_error_m": 86.61272786367314,
+    "mode_error_m": 487.7083437578116,
+    "truth_region_coverage": [
+      true
+    ],
+    "truth_region_coverage_any": true,
+    "truth_region_coverage_all": true,
+    "truth_region_correct_for_source_count": true,
+    "truth_sources_covered": 1,
+    "truth_source_count": 1,
+    "region_area_fraction": 0.8923611111111112,
+    "region_area_m2": 593420.1381387414,
+    "region_component_count": null,
+    "region_component_separation_m": null,
+    "posterior_region_mode_count": null,
+    "held_out_checks": [
+      {
+        "rows": 7,
+        "rmse_ug_m3": 0.9427473313950477,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.174023814316889,
+        "tail_probability": 0.9926793557833089
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 1.2693614313990145,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.197956945874458,
+        "tail_probability": 0.9946315275744265
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 2.292747258381906,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.3571669558879242,
+        "tail_probability": 0.6471449487554904
+      }
+    ],
+    "held_out_checks_unavailable": 0
+  },
+  {
+    "engine": "plume-robust-0.8.0",
+    "seed": 8440002,
+    "family": "two_sources",
+    "input_sha256": "4d6b63983edb68ea84483441cb9ff4cd6e527a1225f79b2464d68a3c1762a0d2",
+    "status": "ok",
+    "evidence_status": "ambiguous",
+    "source_probability": 0.4872535082870279,
+    "numerical_converged": false,
+    "warnings": [
+      "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+      "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+      "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+      "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+      "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+      "Maximum declared quadrature level reached before every numerical tolerance passed.",
+      "NUMERICAL CONVERGENCE NOT ESTABLISHED: the finite conditional posterior is retained for inspection, but source support is withheld because nested source/weather integration did not satisfy every declared tolerance.",
+      "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+      "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+      "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+      "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+    ],
+    "quadrature_diagnostics": {
+      "policy": {
+        "weather_steps_deg": [
+          2.0,
+          1.0,
+          0.5
+        ],
+        "max_levels": 3,
+        "refine_target_mass": 0.9,
+        "max_refined_parents_per_level": 96,
+        "log_evidence_delta": 0.01,
+        "source_probability_delta": 0.01,
+        "cell_mass_tv": 0.05,
+        "posterior_mean_delta_m": 10.0,
+        "covariance_relative_delta": 0.05,
+        "region_mass_delta": 0.02,
+        "region_area_fraction_delta": 0.05,
+        "weather_mass_tv": 0.05
+      },
+      "levels": [
+        {
+          "level": 0,
+          "weather_step_deg": 2.0,
+          "source_cells": 576,
+          "integration_points": 576,
+          "weather_direction_nodes": 87,
+          "weather_speed_nodes": 3,
+          "source_weather_components": 150336,
+          "log_evidence": -48.204350625784535,
+          "source_probability": 0.48726005291263735
+        },
+        {
+          "level": 1,
+          "weather_step_deg": 1.0,
+          "source_cells": 864,
+          "integration_points": 864,
+          "weather_direction_nodes": 171,
+          "weather_speed_nodes": 3,
+          "source_weather_components": 443232,
+          "log_evidence": -48.20436144779534,
+          "source_probability": 0.48725450400536335,
+          "deltas": {
+            "log_evidence": 1.0822010807487459e-05,
+            "source_probability": 5.548907274000037e-06,
+            "cell_mass_tv": 5.605181854105882e-06,
+            "posterior_mean_m": 0.002523871815109441,
+            "covariance_relative": 0.00023180977422382766,
+            "region_mass": 3.7473865857062805e-06,
+            "region_area_fraction": 0.0,
+            "weather_mass_tv": 0.09994618024560466
+          },
+          "tolerance_pass": {
+            "log_evidence": true,
+            "source_probability": true,
+            "cell_mass_tv": true,
+            "posterior_mean_m": true,
+            "covariance_relative": true,
+            "region_mass": true,
+            "region_area_fraction": true,
+            "weather_mass_tv": false
+          }
+        },
+        {
+          "level": 2,
+          "weather_step_deg": 0.5,
+          "source_cells": 1152,
+          "integration_points": 1152,
+          "weather_direction_nodes": 341,
+          "weather_speed_nodes": 3,
+          "source_weather_components": 1178496,
+          "log_evidence": -48.204363389728286,
+          "source_probability": 0.4872535082870279,
+          "deltas": {
+            "log_evidence": 1.9419329433389976e-06,
+            "source_probability": 9.95718335450313e-07,
+            "cell_mass_tv": 1.0724660492845246e-06,
+            "posterior_mean_m": 0.00042926105444108425,
+            "covariance_relative": 1.5130039094235679e-05,
+            "region_mass": 7.079421366906757e-07,
+            "region_area_fraction": 0.0,
+            "weather_mass_tv": 0.05003569128746246
+          },
+          "tolerance_pass": {
+            "log_evidence": true,
+            "source_probability": true,
+            "cell_mass_tv": true,
+            "posterior_mean_m": true,
+            "covariance_relative": true,
+            "region_mass": true,
+            "region_area_fraction": true,
+            "weather_mass_tv": false
+          }
+        }
+      ],
+      "level_count": 3,
+      "converged": false,
+      "limitation": "Maximum declared quadrature level reached before every numerical tolerance passed.",
+      "meaning": "Nested deterministic area-weighted source and coherent-weather integrals. Numerical convergence is separate from physical model adequacy and is not a field-accuracy guarantee."
+    },
+    "externality_flags": [],
+    "source_count_diagnostic": {
+      "material_competing_pair": false,
+      "diagnostic_unavailable": false
+    },
+    "weather_posterior_location_span_m": 37.28021034541069,
+    "weather_common_mode_posterior_probability": 0.0,
+    "runtime_ms": 9970.62,
+    "refusal_reason": null,
+    "mean_error_m": 86.85578632736987,
+    "mode_error_m": 493.85416870849537,
+    "truth_region_coverage": [
+      true,
+      false
+    ],
+    "truth_region_coverage_any": true,
+    "truth_region_coverage_all": false,
+    "truth_region_correct_for_source_count": false,
+    "truth_sources_covered": 1,
+    "truth_source_count": 2,
+    "region_area_fraction": 0.8923611111111112,
+    "region_area_m2": 593420.1381387414,
+    "region_component_count": 1,
+    "region_component_separation_m": null,
+    "posterior_region_mode_count": 1,
+    "held_out_checks": [
+      {
+        "rows": 7,
+        "rmse_ug_m3": 0.9570741248262091,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.1742931887836043,
+        "tail_probability": 0.9926793557833089
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 1.2245166713201472,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.192784908186698,
+        "tail_probability": 0.9946315275744265
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 2.215198518542948,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.34331984262318,
+        "tail_probability": 0.6554416788677404
+      }
+    ],
+    "held_out_checks_unavailable": 0
+  },
+  {
+    "engine": "plume-robust-0.7.1",
+    "seed": 8440002,
+    "family": "two_sources",
+    "input_sha256": "4d6b63983edb68ea84483441cb9ff4cd6e527a1225f79b2464d68a3c1762a0d2",
+    "status": "ok",
+    "evidence_status": "ambiguous",
+    "source_probability": 0.48725983782427645,
+    "numerical_converged": null,
+    "warnings": [
+      "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+      "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+      "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+      "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+      "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+      "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+      "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+      "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+      "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+    ],
+    "quadrature_diagnostics": {
+      "refined": true,
+      "parents_split": 96,
+      "coarse_cells": 576,
+      "final_cells": 864,
+      "limitation": null,
+      "meaning": "One posterior-directed subdivision; all unselected cells retain their area prior. Finite quadrature is not an accuracy guarantee."
+    },
+    "externality_flags": [],
+    "source_count_diagnostic": {
+      "material_competing_pair": false,
+      "diagnostic_unavailable": false
+    },
+    "weather_posterior_location_span_m": 37.16391667862471,
+    "weather_common_mode_posterior_probability": 0.0,
+    "runtime_ms": 1647.43,
+    "refusal_reason": null,
+    "mean_error_m": 86.85741291430712,
+    "mode_error_m": 487.7083437578116,
+    "truth_region_coverage": [
+      true,
+      false
+    ],
+    "truth_region_coverage_any": true,
+    "truth_region_coverage_all": false,
+    "truth_region_correct_for_source_count": false,
+    "truth_sources_covered": 1,
+    "truth_source_count": 2,
+    "region_area_fraction": 0.8923611111111112,
+    "region_area_m2": 593420.1381387414,
+    "region_component_count": null,
+    "region_component_separation_m": null,
+    "posterior_region_mode_count": null,
+    "held_out_checks": [
+      {
+        "rows": 7,
+        "rmse_ug_m3": 0.9570716726005248,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.174287269823572,
+        "tail_probability": 0.9926793557833089
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 1.2245184596828478,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.1927824237324445,
+        "tail_probability": 0.9946315275744265
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 2.2152018736065453,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.343319414000327,
+        "tail_probability": 0.6559297218155198
+      }
+    ],
+    "held_out_checks_unavailable": 0
+  },
+  {
+    "engine": "plume-robust-0.8.0",
+    "seed": 8440002,
+    "family": "spatial_background",
+    "input_sha256": "b4ad6ef6870a3642bdd139446c18db749f5bcdd6561471b6bbac0dcc567fa237",
+    "status": "ok",
+    "evidence_status": "ambiguous",
+    "source_probability": 0.9136006470112108,
+    "numerical_converged": true,
+    "warnings": [
+      "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+      "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+      "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+      "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+      "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+      "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+      "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+      "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+      "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+    ],
+    "quadrature_diagnostics": {
+      "policy": {
+        "weather_steps_deg": [
+          2.0,
+          1.0,
+          0.5
+        ],
+        "max_levels": 3,
+        "refine_target_mass": 0.9,
+        "max_refined_parents_per_level": 96,
+        "log_evidence_delta": 0.01,
+        "source_probability_delta": 0.01,
+        "cell_mass_tv": 0.05,
+        "posterior_mean_delta_m": 10.0,
+        "covariance_relative_delta": 0.05,
+        "region_mass_delta": 0.02,
+        "region_area_fraction_delta": 0.05,
+        "weather_mass_tv": 0.05
+      },
+      "levels": [
+        {
+          "level": 0,
+          "weather_step_deg": 2.0,
+          "source_cells": 576,
+          "integration_points": 576,
+          "weather_direction_nodes": 87,
+          "weather_speed_nodes": 3,
+          "source_weather_components": 150336,
+          "log_evidence": -57.10268536420694,
+          "source_probability": 0.9136888810423283
+        },
+        {
+          "level": 1,
+          "weather_step_deg": 1.0,
+          "source_cells": 864,
+          "integration_points": 864,
+          "weather_direction_nodes": 171,
+          "weather_speed_nodes": 3,
+          "source_weather_components": 443232,
+          "log_evidence": -57.10330298496961,
+          "source_probability": 0.9136355570379,
+          "deltas": {
+            "log_evidence": 0.0006176207626680252,
+            "source_probability": 5.33240044282568e-05,
+            "cell_mass_tv": 0.0021798176729946627,
+            "posterior_mean_m": 0.05108248551265538,
+            "covariance_relative": 0.001441949759419001,
+            "region_mass": 8.973174866222511e-05,
+            "region_area_fraction": 1.1102230246251565e-16,
+            "weather_mass_tv": 0.1023735749191591
+          },
+          "tolerance_pass": {
+            "log_evidence": true,
+            "source_probability": true,
+            "cell_mass_tv": true,
+            "posterior_mean_m": true,
+            "covariance_relative": true,
+            "region_mass": true,
+            "region_area_fraction": true,
+            "weather_mass_tv": false
+          }
+        },
+        {
+          "level": 2,
+          "weather_step_deg": 0.5,
+          "source_cells": 1152,
+          "integration_points": 1152,
+          "weather_direction_nodes": 341,
+          "weather_speed_nodes": 3,
+          "source_weather_components": 1178496,
+          "log_evidence": -57.103707120882135,
+          "source_probability": 0.9136006470112108,
+          "deltas": {
+            "log_evidence": 0.00040413591252530523,
+            "source_probability": 3.491002668920551e-05,
+            "cell_mass_tv": 0.0004045246182065019,
+            "posterior_mean_m": 0.07639823354280328,
+            "covariance_relative": 0.00040261750124399355,
+            "region_mass": 4.819475397199735e-05,
+            "region_area_fraction": 1.1102230246251565e-16,
+            "weather_mass_tv": 0.04997236982609942
+          },
+          "tolerance_pass": {
+            "log_evidence": true,
+            "source_probability": true,
+            "cell_mass_tv": true,
+            "posterior_mean_m": true,
+            "covariance_relative": true,
+            "region_mass": true,
+            "region_area_fraction": true,
+            "weather_mass_tv": true
+          }
+        }
+      ],
+      "level_count": 3,
+      "converged": true,
+      "limitation": null,
+      "meaning": "Nested deterministic area-weighted source and coherent-weather integrals. Numerical convergence is separate from physical model adequacy and is not a field-accuracy guarantee."
+    },
+    "externality_flags": [],
+    "source_count_diagnostic": {
+      "material_competing_pair": false,
+      "diagnostic_unavailable": false
+    },
+    "weather_posterior_location_span_m": 369.8885672883272,
+    "weather_common_mode_posterior_probability": 0.0,
+    "runtime_ms": 9889.46,
+    "refusal_reason": null,
+    "mean_error_m": 155.50630920091984,
+    "mode_error_m": 398.40422334561555,
+    "truth_region_coverage": [
+      true
+    ],
+    "truth_region_coverage_any": true,
+    "truth_region_coverage_all": true,
+    "truth_region_correct_for_source_count": true,
+    "truth_sources_covered": 1,
+    "truth_source_count": 1,
+    "region_area_fraction": 0.5347222222222222,
+    "region_area_m2": 355590.27732827305,
+    "region_component_count": 1,
+    "region_component_separation_m": null,
+    "posterior_region_mode_count": 1,
+    "held_out_checks": [
+      {
+        "rows": 7,
+        "rmse_ug_m3": 7.654493465403628,
+        "coverage90": 0.0,
+        "mean_nlpd": 4.673214700894619,
+        "tail_probability": 0.18545632015617375
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 9.55686691264169,
+        "coverage90": 0.0,
+        "mean_nlpd": 6.135653128125342,
+        "tail_probability": 0.01268911664226452
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 7.169097920561418,
+        "coverage90": 0.5714285714285714,
+        "mean_nlpd": 4.037903610669347,
+        "tail_probability": 0.2005856515373353
+      }
+    ],
+    "held_out_checks_unavailable": 0
+  },
+  {
+    "engine": "plume-robust-0.7.1",
+    "seed": 8440002,
+    "family": "spatial_background",
+    "input_sha256": "b4ad6ef6870a3642bdd139446c18db749f5bcdd6561471b6bbac0dcc567fa237",
+    "status": "ok",
+    "evidence_status": "ambiguous",
+    "source_probability": 0.9136044562496477,
+    "numerical_converged": null,
+    "warnings": [
+      "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+      "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+      "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+      "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+      "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+      "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+      "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+      "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+      "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+    ],
+    "quadrature_diagnostics": {
+      "refined": true,
+      "parents_split": 96,
+      "coarse_cells": 576,
+      "final_cells": 864,
+      "limitation": null,
+      "meaning": "One posterior-directed subdivision; all unselected cells retain their area prior. Finite quadrature is not an accuracy guarantee."
+    },
+    "externality_flags": [],
+    "source_count_diagnostic": {
+      "material_competing_pair": false,
+      "diagnostic_unavailable": false
+    },
+    "weather_posterior_location_span_m": 366.28478205946993,
+    "weather_common_mode_posterior_probability": 0.0,
+    "runtime_ms": 1649.63,
+    "refusal_reason": null,
+    "mean_error_m": 155.57772878444516,
+    "mode_error_m": 395.31387261793975,
+    "truth_region_coverage": [
+      true
+    ],
+    "truth_region_coverage_any": true,
+    "truth_region_coverage_all": true,
+    "truth_region_correct_for_source_count": true,
+    "truth_sources_covered": 1,
+    "truth_source_count": 1,
+    "region_area_fraction": 0.5347222222222221,
+    "region_area_m2": 355590.27732827293,
+    "region_component_count": null,
+    "region_component_separation_m": null,
+    "posterior_region_mode_count": null,
+    "held_out_checks": [
+      {
+        "rows": 7,
+        "rmse_ug_m3": 7.654570798181728,
+        "coverage90": 0.0,
+        "mean_nlpd": 4.673312020507789,
+        "tail_probability": 0.18545632015617375
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 9.556892309009998,
+        "coverage90": 0.0,
+        "mean_nlpd": 6.13571692488856,
+        "tail_probability": 0.01268911664226452
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 7.168842701443619,
+        "coverage90": 0.5714285714285714,
+        "mean_nlpd": 4.037859116756593,
+        "tail_probability": 0.2000976085895559
+      }
+    ],
+    "held_out_checks_unavailable": 0
+  },
+  {
+    "engine": "plume-robust-0.8.0",
+    "seed": 8440002,
+    "family": "heavy_tail",
+    "input_sha256": "60e0558773d5a17a3ec78ed8a98889dbcad2ece4b8f646066de7461d43595d64",
+    "status": "ok",
+    "evidence_status": "model_mismatch",
+    "source_probability": 0.4844344809360769,
+    "numerical_converged": false,
+    "warnings": [
+      "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+      "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+      "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+      "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+      "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+      "Maximum declared quadrature level reached before every numerical tolerance passed.",
+      "NUMERICAL CONVERGENCE NOT ESTABLISHED: the finite conditional posterior is retained for inspection, but source support is withheld because nested source/weather integration did not satisfy every declared tolerance.",
+      "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+      "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+      "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+      "MODEL MISMATCH: a withheld-sensor or withheld-period contrast block failed the declared joint predictive screen. Review meteorology, instrument behavior, background and multiple-source explanations; the screen has false negatives and is not field calibrated.",
+      "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+    ],
+    "quadrature_diagnostics": {
+      "policy": {
+        "weather_steps_deg": [
+          2.0,
+          1.0,
+          0.5
+        ],
+        "max_levels": 3,
+        "refine_target_mass": 0.9,
+        "max_refined_parents_per_level": 96,
+        "log_evidence_delta": 0.01,
+        "source_probability_delta": 0.01,
+        "cell_mass_tv": 0.05,
+        "posterior_mean_delta_m": 10.0,
+        "covariance_relative_delta": 0.05,
+        "region_mass_delta": 0.02,
+        "region_area_fraction_delta": 0.05,
+        "weather_mass_tv": 0.05
+      },
+      "levels": [
+        {
+          "level": 0,
+          "weather_step_deg": 2.0,
+          "source_cells": 576,
+          "integration_points": 576,
+          "weather_direction_nodes": 87,
+          "weather_speed_nodes": 3,
+          "source_weather_components": 150336,
+          "log_evidence": -86.14171776432207,
+          "source_probability": 0.484444560928074
+        },
+        {
+          "level": 1,
+          "weather_step_deg": 1.0,
+          "source_cells": 864,
+          "integration_points": 864,
+          "weather_direction_nodes": 171,
+          "weather_speed_nodes": 3,
+          "source_weather_components": 443232,
+          "log_evidence": -86.14173467909482,
+          "source_probability": 0.48443584035122766,
+          "deltas": {
+            "log_evidence": 1.691477275755915e-05,
+            "source_probability": 8.720576846310557e-06,
+            "cell_mass_tv": 8.397782902902278e-06,
+            "posterior_mean_m": 0.0021869893798023535,
+            "covariance_relative": 0.0002520546083440399,
+            "region_mass": 3.5381680236756807e-06,
+            "region_area_fraction": 0.0,
+            "weather_mass_tv": 0.09994666009773141
+          },
+          "tolerance_pass": {
+            "log_evidence": true,
+            "source_probability": true,
+            "cell_mass_tv": true,
+            "posterior_mean_m": true,
+            "covariance_relative": true,
+            "region_mass": true,
+            "region_area_fraction": true,
+            "weather_mass_tv": false
+          }
+        },
+        {
+          "level": 2,
+          "weather_step_deg": 0.5,
+          "source_cells": 1152,
+          "integration_points": 1152,
+          "weather_direction_nodes": 341,
+          "weather_speed_nodes": 3,
+          "source_weather_components": 1178496,
+          "log_evidence": -86.14173731584397,
+          "source_probability": 0.4844344809360769,
+          "deltas": {
+            "log_evidence": 2.636749144357964e-06,
+            "source_probability": 1.3594151507811958e-06,
+            "cell_mass_tv": 1.4551679674302534e-06,
+            "posterior_mean_m": 0.00029539149901994434,
+            "covariance_relative": 1.6781073357174194e-05,
+            "region_mass": 7.440702380900888e-07,
+            "region_area_fraction": 2.220446049250313e-16,
+            "weather_mass_tv": 0.050037055490548786
+          },
+          "tolerance_pass": {
+            "log_evidence": true,
+            "source_probability": true,
+            "cell_mass_tv": true,
+            "posterior_mean_m": true,
+            "covariance_relative": true,
+            "region_mass": true,
+            "region_area_fraction": true,
+            "weather_mass_tv": false
+          }
+        }
+      ],
+      "level_count": 3,
+      "converged": false,
+      "limitation": "Maximum declared quadrature level reached before every numerical tolerance passed.",
+      "meaning": "Nested deterministic area-weighted source and coherent-weather integrals. Numerical convergence is separate from physical model adequacy and is not a field-accuracy guarantee."
+    },
+    "externality_flags": [],
+    "source_count_diagnostic": {
+      "material_competing_pair": false,
+      "diagnostic_unavailable": false
+    },
+    "weather_posterior_location_span_m": 54.2065530464558,
+    "weather_common_mode_posterior_probability": 0.0,
+    "runtime_ms": 10007.75,
+    "refusal_reason": null,
+    "mean_error_m": 88.03625217170132,
+    "mode_error_m": 559.6094830702076,
+    "truth_region_coverage": [
+      true
+    ],
+    "truth_region_coverage_any": true,
+    "truth_region_coverage_all": true,
+    "truth_region_correct_for_source_count": true,
+    "truth_sources_covered": 1,
+    "truth_source_count": 1,
+    "region_area_fraction": 0.8906249999999998,
+    "region_area_m2": 592265.6242513119,
+    "region_component_count": 1,
+    "region_component_separation_m": null,
+    "posterior_region_mode_count": 1,
+    "held_out_checks": [
+      {
+        "rows": 7,
+        "rmse_ug_m3": 3.1591432252843368,
+        "coverage90": 0.8571428571428571,
+        "mean_nlpd": 2.5654501722009573,
+        "tail_probability": 0.8618838457784285
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 7.507514327062538,
+        "coverage90": 0.8571428571428571,
+        "mean_nlpd": 4.20235511699884,
+        "tail_probability": 0.0004880429477794046
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 5.874918792045208,
+        "coverage90": 0.8571428571428571,
+        "mean_nlpd": 3.5755139099982975,
+        "tail_probability": 0.0009760858955588092
+      }
+    ],
+    "held_out_checks_unavailable": 0
+  },
+  {
+    "engine": "plume-robust-0.7.1",
+    "seed": 8440002,
+    "family": "heavy_tail",
+    "input_sha256": "60e0558773d5a17a3ec78ed8a98889dbcad2ece4b8f646066de7461d43595d64",
+    "status": "ok",
+    "evidence_status": "model_mismatch",
+    "source_probability": 0.4844424137340837,
+    "numerical_converged": null,
+    "warnings": [
+      "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+      "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+      "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+      "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+      "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+      "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+      "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+      "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+      "MODEL MISMATCH: a withheld-sensor or withheld-period contrast block failed the declared joint predictive screen. Review meteorology, instrument behavior, background and multiple-source explanations; the screen has false negatives and is not field calibrated.",
+      "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+    ],
+    "quadrature_diagnostics": {
+      "refined": true,
+      "parents_split": 96,
+      "coarse_cells": 576,
+      "final_cells": 864,
+      "limitation": null,
+      "meaning": "One posterior-directed subdivision; all unselected cells retain their area prior. Finite quadrature is not an accuracy guarantee."
+    },
+    "externality_flags": [],
+    "source_count_diagnostic": {
+      "material_competing_pair": false,
+      "diagnostic_unavailable": false
+    },
+    "weather_posterior_location_span_m": 54.19876208413147,
+    "weather_common_mode_posterior_probability": 0.0,
+    "runtime_ms": 1647.89,
+    "refusal_reason": null,
+    "mean_error_m": 88.0373694913883,
+    "mode_error_m": 553.5350896679316,
+    "truth_region_coverage": [
+      true
+    ],
+    "truth_region_coverage_any": true,
+    "truth_region_coverage_all": true,
+    "truth_region_correct_for_source_count": true,
+    "truth_sources_covered": 1,
+    "truth_source_count": 1,
+    "region_area_fraction": 0.890625,
+    "region_area_m2": 592265.6242513119,
+    "region_component_count": null,
+    "region_component_separation_m": null,
+    "posterior_region_mode_count": null,
+    "held_out_checks": [
+      {
+        "rows": 7,
+        "rmse_ug_m3": 3.159100118982527,
+        "coverage90": 0.8571428571428571,
+        "mean_nlpd": 2.5654415793336014,
+        "tail_probability": 0.862371888726208
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 7.50751615398428,
+        "coverage90": 0.8571428571428571,
+        "mean_nlpd": 4.2024327875376315,
+        "tail_probability": 0.0004880429477794046
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 5.874916765491313,
+        "coverage90": 0.8571428571428571,
+        "mean_nlpd": 3.575516577786035,
+        "tail_probability": 0.0009760858955588092
+      }
+    ],
+    "held_out_checks_unavailable": 0
+  },
+  {
+    "engine": "plume-robust-0.8.0",
+    "seed": 8440002,
+    "family": "weather_error",
+    "input_sha256": "931b28c95123b0e358badbafb2594baa0bae6ece3b598c1ece3eea79fe798b7a",
+    "status": "ok",
+    "evidence_status": "ambiguous",
+    "source_probability": 0.4879753778526112,
+    "numerical_converged": false,
+    "warnings": [
+      "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+      "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+      "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+      "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+      "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+      "Maximum declared quadrature level reached before every numerical tolerance passed.",
+      "NUMERICAL CONVERGENCE NOT ESTABLISHED: the finite conditional posterior is retained for inspection, but source support is withheld because nested source/weather integration did not satisfy every declared tolerance.",
+      "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+      "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+      "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+      "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+    ],
+    "quadrature_diagnostics": {
+      "policy": {
+        "weather_steps_deg": [
+          2.0,
+          1.0,
+          0.5
+        ],
+        "max_levels": 3,
+        "refine_target_mass": 0.9,
+        "max_refined_parents_per_level": 96,
+        "log_evidence_delta": 0.01,
+        "source_probability_delta": 0.01,
+        "cell_mass_tv": 0.05,
+        "posterior_mean_delta_m": 10.0,
+        "covariance_relative_delta": 0.05,
+        "region_mass_delta": 0.02,
+        "region_area_fraction_delta": 0.05,
+        "weather_mass_tv": 0.05
+      },
+      "levels": [
+        {
+          "level": 0,
+          "weather_step_deg": 2.0,
+          "source_cells": 576,
+          "integration_points": 576,
+          "weather_direction_nodes": 87,
+          "weather_speed_nodes": 3,
+          "source_weather_components": 150336,
+          "log_evidence": -48.24486125123085,
+          "source_probability": 0.48798154251146286
+        },
+        {
+          "level": 1,
+          "weather_step_deg": 1.0,
+          "source_cells": 864,
+          "integration_points": 864,
+          "weather_direction_nodes": 171,
+          "weather_speed_nodes": 3,
+          "source_weather_components": 443232,
+          "log_evidence": -48.24487146488587,
+          "source_probability": 0.48797631290486765,
+          "deltas": {
+            "log_evidence": 1.0213655016855228e-05,
+            "source_probability": 5.229606595213987e-06,
+            "cell_mass_tv": 5.654691032729096e-06,
+            "posterior_mean_m": 0.002801491270243553,
+            "covariance_relative": 0.00022945716603687167,
+            "region_mass": 3.651445439789569e-06,
+            "region_area_fraction": 2.220446049250313e-16,
+            "weather_mass_tv": 0.09994924543516595
+          },
+          "tolerance_pass": {
+            "log_evidence": true,
+            "source_probability": true,
+            "cell_mass_tv": true,
+            "posterior_mean_m": true,
+            "covariance_relative": true,
+            "region_mass": true,
+            "region_area_fraction": true,
+            "weather_mass_tv": false
+          }
+        },
+        {
+          "level": 2,
+          "weather_step_deg": 0.5,
+          "source_cells": 1152,
+          "integration_points": 1152,
+          "weather_direction_nodes": 341,
+          "weather_speed_nodes": 3,
+          "source_weather_components": 1178496,
+          "log_evidence": -48.24487329107365,
+          "source_probability": 0.4879753778526112,
+          "deltas": {
+            "log_evidence": 1.8261877841041496e-06,
+            "source_probability": 9.350522564566255e-07,
+            "cell_mass_tv": 1.0833655139883555e-06,
+            "posterior_mean_m": 0.0004822580588461066,
+            "covariance_relative": 1.4784742777777739e-05,
+            "region_mass": 6.861161516713565e-07,
+            "region_area_fraction": 1.1102230246251565e-16,
+            "weather_mass_tv": 0.050036402575905116
+          },
+          "tolerance_pass": {
+            "log_evidence": true,
+            "source_probability": true,
+            "cell_mass_tv": true,
+            "posterior_mean_m": true,
+            "covariance_relative": true,
+            "region_mass": true,
+            "region_area_fraction": true,
+            "weather_mass_tv": false
+          }
+        }
+      ],
+      "level_count": 3,
+      "converged": false,
+      "limitation": "Maximum declared quadrature level reached before every numerical tolerance passed.",
+      "meaning": "Nested deterministic area-weighted source and coherent-weather integrals. Numerical convergence is separate from physical model adequacy and is not a field-accuracy guarantee."
+    },
+    "externality_flags": [],
+    "source_count_diagnostic": {
+      "material_competing_pair": false,
+      "diagnostic_unavailable": false
+    },
+    "weather_posterior_location_span_m": 39.54523969832907,
+    "weather_common_mode_posterior_probability": 0.0,
+    "runtime_ms": 9970.64,
+    "refusal_reason": null,
+    "mean_error_m": 90.04776400611586,
+    "mode_error_m": 620.4091915281319,
+    "truth_region_coverage": [
+      true
+    ],
+    "truth_region_coverage_any": true,
+    "truth_region_coverage_all": true,
+    "truth_region_correct_for_source_count": true,
+    "truth_sources_covered": 1,
+    "truth_source_count": 1,
+    "region_area_fraction": 0.8923611111111113,
+    "region_area_m2": 593420.1381387415,
+    "region_component_count": 1,
+    "region_component_separation_m": null,
+    "posterior_region_mode_count": 1,
+    "held_out_checks": [
+      {
+        "rows": 7,
+        "rmse_ug_m3": 0.9574482209956742,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.173835641400058,
+        "tail_probability": 0.9931673987310884
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 1.302884689904732,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.2010946703765164,
+        "tail_probability": 0.9946315275744265
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 2.277640010464998,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.353847800203505,
+        "tail_probability": 0.6466569058077111
+      }
+    ],
+    "held_out_checks_unavailable": 0
+  },
+  {
+    "engine": "plume-robust-0.7.1",
+    "seed": 8440002,
+    "family": "weather_error",
+    "input_sha256": "931b28c95123b0e358badbafb2594baa0bae6ece3b598c1ece3eea79fe798b7a",
+    "status": "ok",
+    "evidence_status": "ambiguous",
+    "source_probability": 0.48798133583037123,
+    "numerical_converged": null,
+    "warnings": [
+      "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+      "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+      "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+      "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+      "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+      "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+      "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+      "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+      "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+    ],
+    "quadrature_diagnostics": {
+      "refined": true,
+      "parents_split": 96,
+      "coarse_cells": 576,
+      "final_cells": 864,
+      "limitation": null,
+      "meaning": "One posterior-directed subdivision; all unselected cells retain their area prior. Finite quadrature is not an accuracy guarantee."
+    },
+    "externality_flags": [],
+    "source_count_diagnostic": {
+      "material_competing_pair": false,
+      "diagnostic_unavailable": false
+    },
+    "weather_posterior_location_span_m": 39.41598744676087,
+    "weather_common_mode_posterior_probability": 0.0,
+    "runtime_ms": 1631.17,
+    "refusal_reason": null,
+    "mean_error_m": 90.04768266754657,
+    "mode_error_m": 614.3213153991517,
+    "truth_region_coverage": [
+      true
+    ],
+    "truth_region_coverage_any": true,
+    "truth_region_coverage_all": true,
+    "truth_region_correct_for_source_count": true,
+    "truth_sources_covered": 1,
+    "truth_source_count": 1,
+    "region_area_fraction": 0.8923611111111112,
+    "region_area_m2": 593420.1381387414,
+    "region_component_count": null,
+    "region_component_separation_m": null,
+    "posterior_region_mode_count": null,
+    "held_out_checks": [
+      {
+        "rows": 7,
+        "rmse_ug_m3": 0.9574508452863243,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.1738303781367674,
+        "tail_probability": 0.9931673987310884
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 1.302881065153255,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.2010918663423538,
+        "tail_probability": 0.9946315275744265
+      },
+      {
+        "rows": 7,
+        "rmse_ug_m3": 2.2776425628840933,
+        "coverage90": 1.0,
+        "mean_nlpd": 2.3538475164308568,
+        "tail_probability": 0.6490971205466081
+      }
+    ],
+    "held_out_checks_unavailable": 0
+  }
+]

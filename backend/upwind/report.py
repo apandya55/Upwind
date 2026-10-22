@@ -77,6 +77,13 @@ def scientific_summary(result, esc):
             "<strong>Empirical reliability:</strong> synthetic evaluation only; weights, regions, and labels are not field calibrated. "
             "Reproducible computation does not establish any of these scientific properties.</p>"
         )
+        if result.get("quadrature_diagnostics"):
+            q = result["quadrature_diagnostics"]
+            pieces.append(
+                f"<p><strong>Numerical integration:</strong> converged {esc(result.get('numerical_converged', False))} "
+                f"after {esc(q.get('level_count', 0))} nested source/weather levels. "
+                "Failure to converge withholds source support; it is a numerical limitation, not a physical model-mismatch diagnosis.</p>"
+            )
     region = result.get("source_region90")
     location = result.get("location_estimate")
     if location:
@@ -205,6 +212,22 @@ def scientific_summary(result, esc):
             "of supported area has similarly fitting explanations with adjustable release strength/background. "
             f"{esc(observation['meaning'])}</p>"
         )
+        externalities = observation.get("externalities") or {}
+        if externalities.get("flags"):
+            pieces.append(
+                "<p><strong>Externality signals:</strong> "
+                + esc(", ".join(externalities["flags"]))
+                + ". These are model-discrepancy indicators, not diagnoses; "
+                "source support is withheld pending independent evidence.</p>"
+            )
+        source_count = observation.get("source_count") or {}
+        if source_count.get("material_competing_pair"):
+            pieces.append(
+                f"<p><strong>Competing source-count profile:</strong> "
+                f"{source_count.get('improvement_delta_chi2', 0):.2f} profile-loss improvement "
+                f"at {source_count.get('separation_m', 0):.1f} m separation. "
+                f"{esc(source_count.get('meaning', ''))}</p>"
+            )
     if result.get("study_window_count", 0) > 1:
         pieces.append(
             f"<p>Campaign: {result['study_window_count']} separately steady periods; "

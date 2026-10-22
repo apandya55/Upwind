@@ -1,0 +1,98 @@
+[
+  {
+    "seed": 8440002,
+    "family": "nominal",
+    "same_input_sha256": true,
+    "candidate_status": "ambiguous",
+    "baseline_status": "ambiguous",
+    "mean_error_difference_m": -0.0017664285442151595,
+    "mode_error_difference_m": 6.145824950683789,
+    "region_area_fraction_difference": 0.0,
+    "candidate_region_covered": true,
+    "baseline_region_covered": true
+  },
+  {
+    "seed": 8440002,
+    "family": "humidity_response",
+    "same_input_sha256": true,
+    "candidate_status": "ambiguous",
+    "baseline_status": "ambiguous",
+    "mean_error_difference_m": 0.0007541659501697495,
+    "mode_error_difference_m": -5.4688718156416485,
+    "region_area_fraction_difference": 0.0,
+    "candidate_region_covered": true,
+    "baseline_region_covered": true
+  },
+  {
+    "seed": 8440002,
+    "family": "sensor_drift",
+    "same_input_sha256": true,
+    "candidate_status": "model_mismatch",
+    "baseline_status": "model_mismatch",
+    "mean_error_difference_m": -0.0075906396770335505,
+    "mode_error_difference_m": 4.629345384239343,
+    "region_area_fraction_difference": -1.1102230246251565e-16,
+    "candidate_region_covered": true,
+    "baseline_region_covered": true
+  },
+  {
+    "seed": 8440002,
+    "family": "changing_release",
+    "same_input_sha256": true,
+    "candidate_status": "ambiguous",
+    "baseline_status": "ambiguous",
+    "mean_error_difference_m": -0.0017340775439862455,
+    "mode_error_difference_m": 6.145824950683789,
+    "region_area_fraction_difference": 0.0,
+    "candidate_region_covered": true,
+    "baseline_region_covered": true
+  },
+  {
+    "seed": 8440002,
+    "family": "two_sources",
+    "same_input_sha256": true,
+    "candidate_status": "ambiguous",
+    "baseline_status": "ambiguous",
+    "mean_error_difference_m": -0.0016265869372489306,
+    "mode_error_difference_m": 6.145824950683789,
+    "region_area_fraction_difference": 0.0,
+    "candidate_region_covered": true,
+    "baseline_region_covered": true
+  },
+  {
+    "seed": 8440002,
+    "family": "spatial_background",
+    "same_input_sha256": true,
+    "candidate_status": "ambiguous",
+    "baseline_status": "ambiguous",
+    "mean_error_difference_m": -0.07141958352531219,
+    "mode_error_difference_m": 3.0903507276757978,
+    "region_area_fraction_difference": 1.1102230246251565e-16,
+    "candidate_region_covered": true,
+    "baseline_region_covered": true
+  },
+  {
+    "seed": 8440002,
+    "family": "heavy_tail",
+    "same_input_sha256": true,
+    "candidate_status": "model_mismatch",
+    "baseline_status": "model_mismatch",
+    "mean_error_difference_m": -0.0011173196869833646,
+    "mode_error_difference_m": 6.074393402275973,
+    "region_area_fraction_difference": -2.220446049250313e-16,
+    "candidate_region_covered": true,
+    "baseline_region_covered": true
+  },
+  {
+    "seed": 8440002,
+    "family": "weather_error",
+    "same_input_sha256": true,
+    "candidate_status": "ambiguous",
+    "baseline_status": "ambiguous",
+    "mean_error_difference_m": 8.133856928793648e-05,
+    "mode_error_difference_m": 6.08787612898027,
+    "region_area_fraction_difference": 1.1102230246251565e-16,
+    "candidate_region_covered": true,
+    "baseline_region_covered": true
+  }
+]

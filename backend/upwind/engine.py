@@ -14,7 +14,7 @@ import numpy as np
 from .models import Investigation
 from .numerics import projector as projector, flow_vector, plume as plume
 from .quality import measurement_quality
-from .inference import fit, region, MODEL_VERSION, CONFIG
+from .inference import fit, region, MODEL_VERSION, PROTOCOL_VERSION, CONFIG
 from .design import design_score
 from .prediction_design import prediction_score
 from .identifiability import diagnose_fit
@@ -129,7 +129,7 @@ def _cached_analysis(payload, configuration=""):
     warnings = [
         "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
         "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
-        "A background-only explanation competes with one steady release. Multiple sources, urban transport and humidity response are not identified by this model.",
+        "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
     ]
     if inv.synthetic:
         warnings.insert(
@@ -139,11 +139,12 @@ def _cached_analysis(payload, configuration=""):
     e, reason = None, None
     try:
         e = fit(inv, diagnostics=True)
-    except (ValueError, OverflowError) as exc:
+    except (ValueError, OverflowError, FloatingPointError, np.linalg.LinAlgError) as exc:
         reason = str(exc)
     _, quality = measurement_quality(inv)
     base = {
         "model_version": MODEL_VERSION,
+        "protocol_version": PROTOCOL_VERSION,
         "input_hash": key,
         "quality": quality,
         "rows_loaded": len(inv.measurements),
@@ -350,8 +351,57 @@ def _cached_analysis(payload, configuration=""):
         }
     source_region = region(e) if e else None
     source_probability = e["source_probability"] if e else None
+    numerical_converged = bool(e and e.get("numerical_converged", False))
     predictive_warning = e["diagnostics"]["predictive_warning"] if e else False
     weather_warning = e["meteorology"]["weather_warning"] if e else False
+    observability = None
+    if e:
+        try:
+            observability = diagnose_fit(e, inv.settings.noise_ug_m3)
+        except (ValueError, OverflowError, FloatingPointError, np.linalg.LinAlgError) as exc:
+            # A fit can be numerically valid while a bounded secondary
+            # diagnostic is unavailable for malformed or ill-conditioned input.
+            # Preserve the posterior and raw data, but never silently turn an
+            # unavailable adequacy check into source support.
+            observability = {
+                "method": "Source-adequacy diagnostics unavailable",
+                "diagnostic_error": str(exc),
+                "profile_compatible_domain_fraction": 1.0,
+                "far_compatible_cells": None,
+                "profile_background_improvement": None,
+                "profile_best_strength_ug_s": None,
+                "conditional_location_information_nats": None,
+                "windows_observed": e.get("window_count", 0),
+                "nuisance_rank": None,
+                "source_count": {
+                    "material_competing_pair": False,
+                    "diagnostic_unavailable": True,
+                    "meaning": "Source-count adequacy was not evaluated; the result cannot support a resolved source label.",
+                },
+                "externalities": {
+                    "flags": ["adequacy_diagnostic_unavailable"],
+                    "blocking": True,
+                    "meaning": "A numerical or structural adequacy diagnostic failed; this is a refusal to resolve, not a diagnosis of a real externality.",
+                },
+                "meaning": "The posterior remains conditional, but source adequacy could not be checked.",
+            }
+            warnings.append(
+                "SOURCE-ADEQUACY DIAGNOSTIC UNAVAILABLE: the conditional posterior is retained, but the engine withholds source support until the diagnostic can be evaluated."
+            )
+        # Prior sensitivity is computed from the production posterior
+        # components and travels with observability so callers can inspect the
+        # exact alternative weights that led to a support refusal.
+        observability["strength_prior_sensitivity"] = e.get(
+            "strength_prior_sensitivity",
+            {
+                "blocking": True,
+                "material_factors": [],
+                "meaning": "Strength-prior sensitivity was unavailable; source support is withheld.",
+            },
+        )
+    externality = observability.get("externalities", {}) if observability else {}
+    source_count = observability.get("source_count", {}) if observability else {}
+    strength_sensitivity = observability.get("strength_prior_sensitivity", {}) if observability else {}
     resolved = bool(
         e
         and source_probability >= 0.9
@@ -360,6 +410,11 @@ def _cached_analysis(payload, configuration=""):
         and not predictive_warning
         and not weather_warning
         and not e["location_estimate"]["domain_limited"]
+        and not externality.get("blocking", False)
+        and not source_count.get("material_competing_pair", False)
+        and not source_count.get("diagnostic_unavailable", False)
+        and not strength_sensitivity.get("blocking", True)
+        and numerical_converged
     )
     evidence_status = (
         "model_mismatch"
@@ -375,6 +430,10 @@ def _cached_analysis(payload, configuration=""):
             )
         if e["quadrature_diagnostics"].get("limitation"):
             warnings.append(e["quadrature_diagnostics"]["limitation"])
+        if not numerical_converged:
+            warnings.append(
+                "NUMERICAL CONVERGENCE NOT ESTABLISHED: the finite conditional posterior is retained for inspection, but source support is withheld because nested source/weather integration did not satisfy every declared tolerance."
+            )
         if weather_warning:
             warnings.append(
                 "WEATHER COMPARISON MISMATCH: paired weather evidence is inconsistent with a shared station correction or requires a direction change outside its supported local circular approximation. Source localization is not supported."
@@ -383,10 +442,34 @@ def _cached_analysis(payload, configuration=""):
             warnings.append(
                 "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware."
             )
-        observability = diagnose_fit(e, inv.settings.noise_ug_m3)
         if observability["profile_compatible_domain_fraction"] > 0.7:
             warnings.append(
                 "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region."
+            )
+        if source_count.get("material_competing_pair", False):
+            warnings.append(
+                "MULTI-SOURCE ALTERNATIVE: a bounded two-source GLS profile materially improves the fit. The one-source location is withheld until independent evidence separates source count and release timing."
+            )
+        if source_count.get("diagnostic_unavailable", False):
+            warnings.append(
+                "SOURCE-COUNT ADEQUACY UNAVAILABLE: at least one bounded competing-source fit was numerically non-finite. The posterior is retained, but source support is withheld until the adequacy diagnostic can be evaluated."
+            )
+        if strength_sensitivity.get("blocking", True):
+            factors = strength_sensitivity.get("material_factors", [])
+            suffix = (
+                " Material factors: " + ", ".join(str(f) for f in factors) + "."
+                if factors
+                else ""
+            )
+            warnings.append(
+                "EMISSION-PRIOR SENSITIVITY: the conditional location changes materially under the declared release-scale prior alternatives; source support is withheld until emission strength is independently constrained."
+                + suffix
+            )
+        for flag in externality.get("flags", []):
+            warnings.append(
+                "EXTERNALITY SIGNAL: "
+                + flag.replace("_", " ")
+                + ". Residual structure can reflect instrument response, meteorology, chemistry or changing emissions; it is not a source identification."
             )
         if inv.study_windows:
             warnings.append(
@@ -458,11 +541,14 @@ def _cached_analysis(payload, configuration=""):
         "source_region90": source_region,
         "diagnostics": None if e is None else e["diagnostics"],
         "planning_diagnostics": design,
-        "observability": None if e is None else observability,
+        "observability": observability,
+        "strength_prior_sensitivity": strength_sensitivity,
         "study_window_count": 0 if e is None else e["window_count"],
         "meteorology_evidence": None if e is None else e["meteorology"],
         "location_estimate": None if e is None else e["location_estimate"],
         "quadrature_diagnostics": None if e is None else e["quadrature_diagnostics"],
+        "numerical_converged": numerical_converged,
+        "numerical_refusal_reason": None if e is None else e.get("numerical_refusal_reason"),
         "spatial_quadrature_order": None
         if e is None
         else e["spatial_quadrature_order"],

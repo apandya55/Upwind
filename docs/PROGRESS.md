@@ -1,4 +1,149 @@
-# Current handoff — engine0.6 complete
+# Current handoff — engine 0.9 feasibility repair complete
+
+## Source-strength/location investigation (2026-10-20)
+
+Investigated all six release-prior-sensitive v0.9 ladder cases before making
+any additional support change. The diagnosis and per-case evidence are in
+[ENGINE_V09_STRENGTH_LOCATION_DIAGNOSIS.md](ENGINE_V09_STRENGTH_LOCATION_DIAGNOSIS.md);
+raw inputs/maps/reference outputs are under
+`evaluations/engine-v09/strength-location-final2/`. The cases show broad
+profile-likelihood ridges, with release/background and weather/sensor mismatch
+selecting among plausible locations. An independent off-grid control recovers
+truth within3.4m when Q/background are known, while the default marginalized
+posterior is34m off because its HalfNormal Q scale is30,000µg/s versus a
+500,000µg/s release. Factors[0.1,1,10] multiply that prior scale to3,000,
+30,000,300,000µg/s. No production arithmetic defect was demonstrated; no
+production inference, prior, support gate or acceptance rule changed.
+
+The diagnostic script corrected two evaluator mistakes: stale source truth
+after the ladder replaced the source, and shifted anchors in the ideal control.
+Earlier exploratory outputs remain preserved and are not evidence. Findings
+are synthetic and do not establish field accuracy.
+
+The Sol brief's remaining reporting gap is now closed without rerunning the
+frozen campaigns: `scripts/sol_feasibility_assessment_v09.py` creates the
+append-only `evaluations/engine-v09/sol-assessment/assessment.json` with the
+v0.8 224/256 metric definition, explicit prior/domain-center comparisons,
+source-free/mismatch denominators, scientific call path and Outcome C. The
+primary feasibility report now includes those results and the v0.9 off-grid
+reference controls. No further production arithmetic defect was demonstrated;
+therefore this reporting completion changes no posterior or support policy.
+The v0.9 sensitivity regression passes (3 tests), both reporting scripts
+compile, and `git diff --check` is clean.
+
+The Sol feasibility brief is implemented as **plume-robust-0.9.0** under
+protocol **UW-ENGINE-2026-09**. Single-window and campaign source cells now use
+four-node tensor quadrature. Every fit reports a fixed-observation release-scale
+sensitivity over `[0.1, 1.0, 10.0]`; a mean shift over 100 m or cell total
+variation over 0.25 withholds `source_supported` and is propagated through
+`observability`. Focused v0.9 tests cover quadrature, finite/material
+sensitivity, the public gate, and cache clearing.
+
+The compact labeled ladder is in `evaluations/engine-v09/ladder/` and is
+reproduced by `scripts/feasibility_ladder_v09.py`. It ran 10 synthetic cases
+with no fit failures, 0 public source-supported results and 6 prior-sensitivity
+blocks. An independent scalar plume calculation matched the production
+primitive exactly for its checked point. Strong controls remained ambiguous or
+prior-sensitive; the source-free case remained unlocalized; the out-of-domain
+case had a 1,396.5 m diagnostic mean error. These are synthetic mechanism
+checks, not field validation. The feasibility report selects product outcome
+**C** for current practical inputs; any monitoring-design direction requires a
+separate equal-budget follow-up study with fresh cases.
+
+Run focused checks with
+`PYTHONPATH=backend OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv/bin/python
+-m pytest -q backend/tests/test_strength_prior_sensitivity_v09.py` and run the
+full backend suite before release. The current full suite passes **231 tests**
+(one existing Starlette/httpx deprecation warning). Do not rerun the frozen
+v0.8 campaign or claim measured accuracy, calibration, attribution or
+operational readiness.
+
+# Current handoff — engine0.8 implementation and full synthetic evaluation
+
+Candidate **plume-robust-0.8.0**, protocol **UW-ENGINE-2026-08**, adds nested deterministic source-cell/weather quadrature convergence checks and connected-component summaries for the conditional 90% source region. The frozen v0.7.1 workspace baseline and candidate were paired on identical inputs. Development/calibration/final contain128/128/256 worlds per engine (512 paired worlds total); every pair hash matches, with zero crashes or refusals. Candidate convergence passed512/512.
+
+Untouched final256: candidate status was1 source-supported,177 ambiguous,78 model-mismatch; baseline had2/256 source-supported. Candidate median mean/mode errors were91.0m/484.4m, with p90 mean error184.4m and maximum257.2m. The sole supported case had165.2m posterior-mean error (0/1 within50m). Conditional90% regions covered the correct source count in224/256 cases while median area was89.1% of the supported domain; all32 nominal regions covered truth but remained broad. None of32 two-source regions covered both sources. Heavy-tail was model-mismatch32/32; sensor drift24/32. Median held-out concentration RMSE was2.31µg/m³ across768 correlated checks. Candidate median runtime3.49s versus1.66s for v0.7.1. Numerical stabilization did not improve localization; the50m target fails. The families contain only source-present worlds, so background false-alarm rate is unmeasured.
+
+All detailed outcomes and limits are in [v0.8 implementation](ENGINE_V08_IMPLEMENTATION.md), [protocol](ENGINE_V08_PROTOCOL.md), and append-only artifacts under `evaluations/engine-v08/`. Reproduce with the three distinct split commands in `ENGINE_V08_PROTOCOL.md`, using new output directories. Candidate source/configuration hashes are in `source-freeze.json` and split metadata. The full backend suite passes: 228 tests. A regression test now clears the analysis cache around its monkeypatched fit so an earlier identical fixture result cannot bypass the fail-closed path. No measured-data validation, field calibration, source responsibility, regulatory attribution, or operational readiness is established. Later GIS/frontend work should preserve conditional polygons, posterior mean vs density mode, source weight, evidence status, numerical convergence/refusal, weather provenance, and adequacy warnings as distinct outputs.
+
+# Historical handoff — engine0.7 final synthetic evaluation and numerical repair
+
+## Engine 0.7 final evidence and post-final repair
+
+The locked **UW-ENGINE-2026-07A** evaluation is complete on the frozen
+`plume-robust-0.7.1` source. Development and calibration each contain 128
+synthetic fits; the untouched final split contains 256. The pre-repair final
+run had 255 successful serializations and one visible crash (`8310020`,
+`sensor_drift`) because the bounded two-source NNLS diagnostic returned
+`[nan, inf]`. The posterior itself was not the source of the failure.
+
+The diagnostic now rejects non-finite candidate pair fits, records the count as
+`invalid_pair_fits`, marks `diagnostic_unavailable`, and blocks
+`source_supported` with a structured warning. The post-final engineering
+confirmation over the same 256 locked worlds has **256/256 successful finite
+results and zero crashes**. This is a numerical robustness correction after
+the scientific final run; the original pre-repair result directory remains
+preserved and the post-repair confirmation is not a new independent accuracy
+sample.
+
+Final post-repair observable outcomes: 167 ambiguous, 86 model-mismatch and 3
+`source_supported` rows. All 32 nominal, 32 humidity-response, 32 changing-
+release, 32 two-source and 32 weather-error worlds remained ambiguous. Sensor
+drift produced 29 model-mismatch rows and 29 drift/time-varying-release flags;
+spatial-background produced 25 model-mismatch rows, 4 ambiguous rows and 3
+conditional source-supported rows; all 32 heavy-tail worlds were
+model-mismatch. Two sensor-drift rows had non-finite competing-source fits and
+were explicitly withheld from source support after the repair. No material
+two-source pair was accepted. The three spatial-background source-supported
+regions contained the simulated source but had posterior-mean errors of about
+172–197 m; this is a retained precision limitation, not field evidence.
+
+These results remain synthetic and conditional. They do not establish field
+accuracy, calibration, source responsibility, regulatory attribution or
+organizational reliability. See `evaluations/engine-v07/` and the protocol and
+implementation documents for exact seeds, hashes and denominators.
+
+The standalone review deliverables are [the code-review findings](engine-code-review.md)
+and [the candidate-results report](engine-candidate-results.md). A compact paired
+development comparison on two fresh seeds × eight families is retained under
+`evaluations/engine-v07/matched-development`: both archived 0.6 and current 0.7
+fit 16/16 worlds, 90% regions cover 16/16, and median posterior-mean errors are
+97.5 m and 90.8 m respectively. No result was resolved; this small comparison
+was not used for tuning and does not establish a general improvement.
+
+## Engine 0.7 candidate and implementation record
+
+The current workspace now contains an unvalidated candidate **plume-robust-0.7.1**
+under **UW-ENGINE-2026-07A**. It adds explicit humidity-response covariance,
+bounded two-source profiling under a shared persistent weather offset, a
+two-half release-variation adequacy profile, and residual checks for drift,
+changing release, spatial background and heavy tails. Material alternatives
+withhold the `source_supported` label, and an unavailable adequacy diagnostic
+is an explicit refusal rather than an implicit pass. This is a new scientific
+candidate; its locked synthetic evaluation and post-final numerical
+confirmation are recorded above. No field accuracy claim exists. Read [the
+protocol](ENGINE_V07_PROTOCOL.md) and [implementation](ENGINE_V07_IMPLEMENTATION.md).
+The published 0.6 source, results and negative findings remain intact in their
+versioned artifacts.
+
+Everything after the post-release patch heading below describes the completed
+0.6 release and is retained as historical handoff context.
+
+## Post-release integrity patch in the current workspace
+
+After the published `356beac` checkpoint, a narrow engineering patch was applied
+without changing the scientific configuration or any frozen evaluation input.
+Measurement duplicates now disagree when any retained metadata differs (flags,
+humidity, temperature, origin or uncertainty), while ignoring the importer's
+row-position-only `duplicate` marker. Duplicate weather rows must
+agree on all matching, uncertainty, lineage and provenance fields. This prevents
+import order from selecting which metadata reaches the fit. Numerical
+factorization failures are also returned as structured analysis refusals by the
+orchestrator. The original release evidence remains immutable; the four-file
+post-release hash record is [here](../evaluations/engine-v06/post-release-integrity.json).
+That verifier describes the 0.6 checkpoint and is expected to reject the changed
+current 0.7 source; use `evaluations/engine-v07/source-freeze.json` for the current
+candidate identity.
 
 The user's final two changes are complete: bounded grouped/chunked nuisance-profile GLS and a quadratic predictive-target allocation guard. They were applied after scientific/supplementary runs, with exact two-file source hashes, AST scope proof and unchanged scientific configuration. Independent constrained-GLS checks and exact frozen/current posterior/prediction comparisons pass. Read [hardening details](ENGINE_V06_HARDENING.md).
 
@@ -220,3 +365,12 @@ Final engineering confirmation:115pytest tests pass in55.93s (`pytest-release.lo
 Additional fair-data control8worlds is complete: `reference-control/results.json` and original executed `script.py.txt` match its metadata hash. Separate protocol WEATHER_BIAS_REFERENCE_CONTROL.md declared after primary freeze before reading planner outcomes. It lets0.4 use actually observed qualified reference weather, with provided uncertainty, then locks a pollution plan and evaluates it under the same0.5 downstream estimator. Do not describe new-vs-old on original primary data as a pure inversion benefit. `scripts/reference_weather_control.py --out NEWPATH` adds only an output-directory CLI after the executed script was preserved. Primary360followups complete by early final; remaining source-inference worlds must finish. `report_weather_bias.py` includes actual resource usage/optional fewer instruments and supplementary comparator results. Cap is at most2, not necessarily exactly2.
 
 Both pre-presentation calibration source files were reconstructed by reversing only the recorded output additions; every byte matches their actually recorded calibration SHA256. All calibration sources preserved in `calibration-source`, manifest. Final source/configuration snapshot84files in `frozen-source`, manifest; includes code/tests/frontend/scripts at freeze. Later reporting/supplement scripts have separate hashes and do not change frozen production/evaluator code. No final-dependent production change is allowed.
+# Current handoff — National Explorer v3 release complete
+
+The `/explore` National Explorer is a separate product surface; inverse source-localization findings and artifacts remain preserved and are not used by it. The current local release and authoritative data/model/API/evaluation record are in [NATIONAL_EXPLORER_V3_RELEASE.md](NATIONAL_EXPLORER_V3_RELEASE.md). Release `upwind-national-explorer-0.3.0` deploys model `upwind-nearest-monitor-annual-pm25-0.3.0` under protocol `UW-NATIONAL-SPATIAL-2026-04`, built from official EPA AQS, Census, EPA NEI, and PRISM data. The builder now selects one ambient event-treatment summary per POC; event-excluded alternatives are not used as ambient observations. The correction changed 80 2024 and 57 provisional 2025 site-year means and all corrected evaluation artifacts are retained.
+
+The same selection rule leaves nearest-monitor deployed. Gaussian+PRISM tmean achieved 1.320/1.859 µg/m³ MAE/RMSE on 872 matched 2024 sites and 1.384/1.872 on 882 provisional-2025 sites, winning5/5 and3/5 folds. It fails the unchanged requirement of at least4/5 wins in both years. The deployment's empirical ±4.123 µg/m³ spatial OOF band covered89.9% in matched 2024 and93.2% in provisional2025; it is not a local guarantee. These previously inspected monitor vintages are development evidence, not untouched validation. Coverage:32,333 searchable places,31,523 estimates,810 withheld, population sum213,515,188. The full backend suite (250), production build and all nine National Explorer browser workflows pass. No field accuracy, public deployment or source attribution claim is established.
+
+The v1/v2 National Explorer notes below are historical snapshots; see [v2 methods and limits](NATIONAL_EXPLORER_V2.md) and [v1 baseline](NATIONAL_EXPLORER.md) only for historical details.
+
+# Current handoff — engine 0.9 feasibility repair complete

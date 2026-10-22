@@ -1,0 +1,78 @@
+{
+  "assessment": "Sol feasibility and substantive repair v0.9",
+  "decision": {
+    "field_validation": "not performed; synthetic evidence does not establish attribution, calibration, or organizational usefulness",
+    "outcome": "C",
+    "reason": "The feasible weak/noisy ladder has no supported result, broad conditional regions, and a source-present median mean error that does not beat the domain-center baseline. Strong controls show that missing independent strength/background/weather information changes the result, while one extra colocated sensor does not remove the ridge.",
+    "required_information": [
+      "independent release-strength or background measurement",
+      "independent local weather over the same period or multiple wind directions",
+      "spatially diverse monitors that separate competing plume geometries"
+    ]
+  },
+  "ladder": {
+    "attempts": 10,
+    "domain_center_baseline_median_error_m": 178.9242546132872,
+    "evidence_status_counts": {
+      "ambiguous": 9,
+      "model_mismatch": 1,
+      "source_supported": 0
+    },
+    "fit_failures": 0,
+    "fitted": 10,
+    "independent_scalar_abs_delta": 0.0,
+    "interpretation": "The domain-center values are an evaluator-only prior-only baseline. They are never supplied to production inference. Region area is conditional area, and ladder rows do not expose cell membership; source-region coverage is therefore reported from the v0.8 final artifact below.",
+    "mean_error_within_m": {
+      "100": {
+        "baseline": 0,
+        "candidate": 2,
+        "denominator": 9
+      },
+      "200": {
+        "baseline": 8,
+        "candidate": 4,
+        "denominator": 9
+      },
+      "50": {
+        "baseline": 0,
+        "candidate": 0,
+        "denominator": 9
+      }
+    },
+    "numerical_convergence_failures": 0,
+    "prior_sensitivity_blocks": 6,
+    "region_area_fraction_median": 0.611111111111111,
+    "source_free_attempts": 1,
+    "source_present_attempts": 9,
+    "source_present_mean_error_median_m": 209.8407960293071,
+    "source_present_region_area_denominator": 9,
+    "source_supported_denominator": 10
+  },
+  "scientific_call_path": {
+    "coordinate_and_forward_physics": "backend/upwind/numerics.py: projector/plume",
+    "input_quality_and_sampling": "backend/upwind/quality.py: measurement_quality/select_rows",
+    "planning": "backend/upwind/design.py + backend/upwind/prediction_design.py",
+    "posterior_and_gls": "backend/upwind/inference.py: _fit_once/fit/positive-normal integration",
+    "profile_likelihood_diagnostic": "backend/upwind/identifiability.py: whiten_profile/diagnose_fit",
+    "public_support_decision": "backend/upwind/engine.py: _cached_analysis",
+    "source_cell_quadrature": "backend/upwind/inference.py: four tensor Gauss nodes and nested convergence",
+    "weather_matching_and_shared_error": "backend/upwind/campaign.py + backend/upwind/weather_evidence.py"
+  },
+  "source_script_sha256": "f2a738cd815e3cf0f514bfcbb89e307d055402b8c916d63b701abab3c91a11c2",
+  "v08_final": {
+    "attempts": 256,
+    "evidence_status_counts": {
+      "ambiguous": 177,
+      "model_mismatch": 78,
+      "source_supported": 1
+    },
+    "meaning": "The v0.8 family set contains source-present worlds only; its 224/256 value is correct source-count region inclusion, not a source-count or acceptance probability.",
+    "median_mean_error_m": 90.95275164906502,
+    "median_mode_error_m": 484.3885442613397,
+    "median_region_area_fraction": 0.8906250000000001,
+    "region_coverage_correct_source_count": 224,
+    "region_coverage_denominator": 256,
+    "runtime_ms_median": 3487.15,
+    "source_free_attempts": 0
+  }
+}

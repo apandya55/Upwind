@@ -1,0 +1,104 @@
+{
+  "attempted_worlds": 8,
+  "candidate_config": {
+    "adaptive_max_parents": 96,
+    "adaptive_min_width_m": 10.0,
+    "adaptive_target_mass": 0.9,
+    "background_mean_ug_m3": 10.0,
+    "background_sd_ug_m3": 20.0,
+    "background_trend_sd_ug_m3_hour": 10.0,
+    "cell_target_m": 20.0,
+    "domain_edge_fraction": 0.1,
+    "domain_edge_mass_limit": 0.5,
+    "externality_pair_delta_chi2": 9.210340371976184,
+    "humidity_response_sd_ug_m3": 2.0,
+    "humidity_scale_percent": 20.0,
+    "humidity_threshold_percent": 70.0,
+    "instrument_bias_sd_ug_m3": 1.0,
+    "max_cells_axis": 24,
+    "max_components": 2000000,
+    "quadrature_policy": {
+      "cell_mass_tv": 0.05,
+      "covariance_relative_delta": 0.05,
+      "log_evidence_delta": 0.01,
+      "max_levels": 3,
+      "max_refined_parents_per_level": 96,
+      "posterior_mean_delta_m": 10.0,
+      "refine_target_mass": 0.9,
+      "region_area_fraction_delta": 0.05,
+      "region_mass_delta": 0.02,
+      "source_probability_delta": 0.01,
+      "weather_mass_tv": 0.05,
+      "weather_steps_deg": [
+        2.0,
+        1.0,
+        0.5
+      ]
+    },
+    "sensor_check_tail": 0.01,
+    "source_prior": 0.5,
+    "spatial_scale_m": 150.0,
+    "speed_prior": [
+      0.25,
+      0.5,
+      0.25
+    ],
+    "speed_scales": [
+      0.7,
+      1.0,
+      1.3
+    ],
+    "strength_halfnormal_scale_ug_s": 30000.0,
+    "temporal_scale_s": 600.0,
+    "weather_bias": {
+      "common_mode_direction_sd_deg": 20.0,
+      "common_mode_log_speed_sd": 0.2,
+      "common_mode_probability": 0.25,
+      "comparison_tail": 0.01,
+      "direction_step_deg": 2.0,
+      "max_comparisons": 128,
+      "max_design_entries": 28000000,
+      "normal_extent_sd": 3.0,
+      "reference_max_age_s": 1209600,
+      "reference_max_distance_m": 250.0,
+      "reference_max_time_s": 120.0,
+      "station_direction_bias_sd_deg": 20.0,
+      "station_log_speed_sd": 0.2
+    },
+    "wind_offset_sd_deg": 20.0,
+    "wind_offsets_deg": [
+      -45,
+      -30,
+      -15,
+      0,
+      15,
+      30,
+      45
+    ]
+  },
+  "candidate_source_sha256": "335b91f0e07854b9e235b2ba3998575c21c302ace37391d9b0fad91fdada213f",
+  "evaluator_sha256": "65ce75e220c45491e0f1bf637bd764eef4cb32dedb6ac2b22ba9a1e73cc1c885",
+  "evidence_scope": "Synthetic only; no measured validation, field calibration, source responsibility, or regulatory attribution.",
+  "families": [
+    "nominal",
+    "humidity_response",
+    "sensor_drift",
+    "changing_release",
+    "two_sources",
+    "spatial_background",
+    "heavy_tail",
+    "weather_error"
+  ],
+  "model_version": "plume-robust-0.8.0",
+  "numpy_version": "2.3.5",
+  "paired_baseline_model": "plume-robust-0.7.1",
+  "paired_baseline_protocol": "UW-ENGINE-2026-07A",
+  "paired_baseline_source_manifest": "evaluations/engine-v08/v07-baseline/source-manifest.json",
+  "protocol": "UW-ENGINE-2026-08",
+  "protocol_sha256": "927256a6fb4b5c43ba9dab973c60ebb31f76201a3fb9b577c7bbb41ae95495f6",
+  "python_version": "3.12.3 (v3.12.3:f6650f9ad7, Apr  9 2024, 08:18:47) [Clang 13.0.0 (clang-1300.0.29.30)]",
+  "seeds": [
+    8440001
+  ],
+  "split": "pilot_retry"
+}

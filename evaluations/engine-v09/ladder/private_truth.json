@@ -1,0 +1,111 @@
+{
+  "additional_sensor": {
+    "background_ug_m3": 10,
+    "case": "identifiable",
+    "seed": 9100003,
+    "source": {
+      "latitude": 0.002260923688674219,
+      "longitude": -0.005839049349787331
+    },
+    "source_index": 0,
+    "strength_ug_s": 250000
+  },
+  "background_shift": {
+    "background_ug_m3": 10,
+    "case": "identifiable",
+    "seed": 9100002,
+    "source": {
+      "latitude": 0.002260923688674219,
+      "longitude": -0.005839049349787331
+    },
+    "source_index": 0,
+    "strength_ug_s": 250000
+  },
+  "out_of_domain_diagnostic": {
+    "background_ug_m3": 10,
+    "case": "identifiable",
+    "seed": 9100006,
+    "source": {
+      "x_m": -2000.0,
+      "y_m": 250.0
+    },
+    "source_index": 0,
+    "source_present": true,
+    "strength_ug_s": 5000
+  },
+  "sensor_offset": {
+    "background_ug_m3": 10,
+    "case": "identifiable",
+    "seed": 9100002,
+    "source": {
+      "latitude": 0.002260923688674219,
+      "longitude": -0.005839049349787331
+    },
+    "source_index": 0,
+    "strength_ug_s": 250000
+  },
+  "source_free": {
+    "background_ug_m3": 10,
+    "case": "identifiable",
+    "seed": 9100004,
+    "source": null,
+    "source_index": 0,
+    "source_present": false,
+    "strength_ug_s": 5000
+  },
+  "strong_known_weather": {
+    "background_ug_m3": 10,
+    "case": "identifiable",
+    "seed": 9100002,
+    "source": {
+      "latitude": 0.002260923688674219,
+      "longitude": -0.005839049349787331
+    },
+    "source_index": 0,
+    "strength_ug_s": 250000
+  },
+  "two_sources": {
+    "background_ug_m3": 10,
+    "case": "multiple_sources",
+    "seed": 9100005,
+    "source": {
+      "latitude": 0.002260923688674219,
+      "longitude": -0.005839049349787331
+    },
+    "source_index": 0,
+    "strength_ug_s": 5000
+  },
+  "unknown_strength": {
+    "background_ug_m3": 10,
+    "case": "identifiable",
+    "seed": 9100002,
+    "source": {
+      "latitude": 0.002260923688674219,
+      "longitude": -0.005839049349787331
+    },
+    "source_index": 0,
+    "strength_ug_s": 250000
+  },
+  "weak_current_fixture": {
+    "background_ug_m3": 10,
+    "case": "identifiable",
+    "seed": 9100001,
+    "source": {
+      "latitude": 0.002260923688674219,
+      "longitude": -0.005839049349787331
+    },
+    "source_index": 0,
+    "strength_ug_s": 5000
+  },
+  "weather_bias": {
+    "background_ug_m3": 10,
+    "case": "identifiable",
+    "seed": 9100002,
+    "source": {
+      "latitude": 0.002260923688674219,
+      "longitude": -0.005839049349787331
+    },
+    "source_index": 0,
+    "strength_ug_s": 250000
+  }
+}

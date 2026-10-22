@@ -1,0 +1,750 @@
+[
+  {
+    "seed": 8120000,
+    "family": "nominal",
+    "v06": {
+      "status": "ok",
+      "evidence_status": "ambiguous",
+      "accepted": false,
+      "mean_error_m": 93.61323089897554,
+      "mode_error_m": 0.0,
+      "region90_covered": true,
+      "region90_area_fraction": 0.890625,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Multiple sources, urban transport and humidity response are not identified by this model.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    },
+    "v07": {
+      "status": "ok",
+      "evidence_status": "ambiguous",
+      "accepted": false,
+      "mean_error_m": 87.63382879221372,
+      "mode_error_m": 487.7083437578116,
+      "region90_covered": true,
+      "region90_area_fraction": 0.890625,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    }
+  },
+  {
+    "seed": 8120000,
+    "family": "humidity_response",
+    "v06": {
+      "status": "ok",
+      "evidence_status": "ambiguous",
+      "accepted": false,
+      "mean_error_m": 102.16491734666606,
+      "mode_error_m": 0.0,
+      "region90_covered": true,
+      "region90_area_fraction": 0.8854166666666666,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Multiple sources, urban transport and humidity response are not identified by this model.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "High humidity is recorded; no instrument-specific humidity correction or calibration is inferred. Verify instrument response independently.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    },
+    "v07": {
+      "status": "ok",
+      "evidence_status": "ambiguous",
+      "accepted": false,
+      "mean_error_m": 91.00898373955442,
+      "mode_error_m": 228.5152913662558,
+      "region90_covered": true,
+      "region90_area_fraction": 0.8923611111111112,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "High humidity is recorded; no instrument-specific humidity correction or calibration is inferred. Verify instrument response independently.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    }
+  },
+  {
+    "seed": 8120000,
+    "family": "sensor_drift",
+    "v06": {
+      "status": "ok",
+      "evidence_status": "ambiguous",
+      "accepted": false,
+      "mean_error_m": 200.9268273859466,
+      "mode_error_m": 427.20018726587494,
+      "region90_covered": true,
+      "region90_area_fraction": 0.6701388888888888,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Multiple sources, urban transport and humidity response are not identified by this model.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    },
+    "v07": {
+      "status": "ok",
+      "evidence_status": "ambiguous",
+      "accepted": false,
+      "mean_error_m": 186.87174625963203,
+      "mode_error_m": 401.7799618602224,
+      "region90_covered": true,
+      "region90_area_fraction": 0.6701388888888888,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "EXTERNALITY SIGNAL: sensor drift or time varying release. Residual structure can reflect instrument response, meteorology, chemistry or changing emissions; it is not a source identification.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": [
+        "sensor_drift_or_time_varying_release"
+      ]
+    }
+  },
+  {
+    "seed": 8120000,
+    "family": "changing_release",
+    "v06": {
+      "status": "ok",
+      "evidence_status": "ambiguous",
+      "accepted": false,
+      "mean_error_m": 93.64127933609086,
+      "mode_error_m": 0.0,
+      "region90_covered": true,
+      "region90_area_fraction": 0.890625,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Multiple sources, urban transport and humidity response are not identified by this model.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    },
+    "v07": {
+      "status": "ok",
+      "evidence_status": "ambiguous",
+      "accepted": false,
+      "mean_error_m": 87.63688840807447,
+      "mode_error_m": 487.7083437578116,
+      "region90_covered": true,
+      "region90_area_fraction": 0.8906250000000001,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    }
+  },
+  {
+    "seed": 8120000,
+    "family": "two_sources",
+    "v06": {
+      "status": "ok",
+      "evidence_status": "ambiguous",
+      "accepted": false,
+      "mean_error_m": 93.94633969921219,
+      "mode_error_m": 0.0,
+      "region90_covered": true,
+      "region90_area_fraction": 0.890625,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Multiple sources, urban transport and humidity response are not identified by this model.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    },
+    "v07": {
+      "status": "ok",
+      "evidence_status": "ambiguous",
+      "accepted": false,
+      "mean_error_m": 88.0115666577358,
+      "mode_error_m": 487.7083437578116,
+      "region90_covered": true,
+      "region90_area_fraction": 0.8906250000000001,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    }
+  },
+  {
+    "seed": 8120000,
+    "family": "spatial_background",
+    "v06": {
+      "status": "ok",
+      "evidence_status": "ambiguous",
+      "accepted": false,
+      "mean_error_m": 137.95982604484115,
+      "mode_error_m": 0.0,
+      "region90_covered": true,
+      "region90_area_fraction": 0.5833333333333333,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Multiple sources, urban transport and humidity response are not identified by this model.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    },
+    "v07": {
+      "status": "ok",
+      "evidence_status": "ambiguous",
+      "accepted": false,
+      "mean_error_m": 137.8805084915608,
+      "mode_error_m": 395.31387261793975,
+      "region90_covered": true,
+      "region90_area_fraction": 0.5833333333333333,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    }
+  },
+  {
+    "seed": 8120000,
+    "family": "heavy_tail",
+    "v06": {
+      "status": "ok",
+      "evidence_status": "model_mismatch",
+      "accepted": false,
+      "mean_error_m": 75.93850928006731,
+      "mode_error_m": 0.0,
+      "region90_covered": true,
+      "region90_area_fraction": 0.8576388888888891,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Multiple sources, urban transport and humidity response are not identified by this model.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "MODEL MISMATCH: a withheld-sensor or withheld-period contrast block failed the declared joint predictive screen. Review meteorology, instrument behavior, background and multiple-source explanations; the screen has false negatives and is not field calibrated.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    },
+    "v07": {
+      "status": "ok",
+      "evidence_status": "model_mismatch",
+      "accepted": false,
+      "mean_error_m": 81.49483505263584,
+      "mode_error_m": 428.8824528962689,
+      "region90_covered": true,
+      "region90_area_fraction": 0.8576388888888891,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "MODEL MISMATCH: a withheld-sensor or withheld-period contrast block failed the declared joint predictive screen. Review meteorology, instrument behavior, background and multiple-source explanations; the screen has false negatives and is not field calibrated.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    }
+  },
+  {
+    "seed": 8120000,
+    "family": "weather_error",
+    "v06": {
+      "status": "ok",
+      "evidence_status": "ambiguous",
+      "accepted": false,
+      "mean_error_m": 97.98283615461389,
+      "mode_error_m": 0.0,
+      "region90_covered": true,
+      "region90_area_fraction": 0.8906250000000001,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Multiple sources, urban transport and humidity response are not identified by this model.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    },
+    "v07": {
+      "status": "ok",
+      "evidence_status": "ambiguous",
+      "accepted": false,
+      "mean_error_m": 91.82764577247185,
+      "mode_error_m": 614.3213153991517,
+      "region90_covered": true,
+      "region90_area_fraction": 0.8906250000000001,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    }
+  },
+  {
+    "seed": 8120001,
+    "family": "nominal",
+    "v06": {
+      "status": "ok",
+      "evidence_status": "ambiguous",
+      "accepted": false,
+      "mean_error_m": 96.54979820967878,
+      "mode_error_m": 0.0,
+      "region90_covered": true,
+      "region90_area_fraction": 0.8906250000000001,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Multiple sources, urban transport and humidity response are not identified by this model.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    },
+    "v07": {
+      "status": "ok",
+      "evidence_status": "ambiguous",
+      "accepted": false,
+      "mean_error_m": 90.60715199689777,
+      "mode_error_m": 614.3213153991517,
+      "region90_covered": true,
+      "region90_area_fraction": 0.890625,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    }
+  },
+  {
+    "seed": 8120001,
+    "family": "humidity_response",
+    "v06": {
+      "status": "ok",
+      "evidence_status": "ambiguous",
+      "accepted": false,
+      "mean_error_m": 101.24710456319694,
+      "mode_error_m": 0.0,
+      "region90_covered": true,
+      "region90_area_fraction": 0.8819444444444445,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Multiple sources, urban transport and humidity response are not identified by this model.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "High humidity is recorded; no instrument-specific humidity correction or calibration is inferred. Verify instrument response independently.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    },
+    "v07": {
+      "status": "ok",
+      "evidence_status": "ambiguous",
+      "accepted": false,
+      "mean_error_m": 90.45058712531093,
+      "mode_error_m": 261.52109576138633,
+      "region90_covered": true,
+      "region90_area_fraction": 0.8923611111111112,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "High humidity is recorded; no instrument-specific humidity correction or calibration is inferred. Verify instrument response independently.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    }
+  },
+  {
+    "seed": 8120001,
+    "family": "sensor_drift",
+    "v06": {
+      "status": "ok",
+      "evidence_status": "ambiguous",
+      "accepted": false,
+      "mean_error_m": 205.92346272966807,
+      "mode_error_m": 427.20018726587494,
+      "region90_covered": true,
+      "region90_area_fraction": 0.607638888888889,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Multiple sources, urban transport and humidity response are not identified by this model.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    },
+    "v07": {
+      "status": "ok",
+      "evidence_status": "ambiguous",
+      "accepted": false,
+      "mean_error_m": 193.11631876173837,
+      "mode_error_m": 398.06832045493485,
+      "region90_covered": true,
+      "region90_area_fraction": 0.6076388888888888,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    }
+  },
+  {
+    "seed": 8120001,
+    "family": "changing_release",
+    "v06": {
+      "status": "ok",
+      "evidence_status": "ambiguous",
+      "accepted": false,
+      "mean_error_m": 96.5093242249046,
+      "mode_error_m": 0.0,
+      "region90_covered": true,
+      "region90_area_fraction": 0.890625,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Multiple sources, urban transport and humidity response are not identified by this model.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    },
+    "v07": {
+      "status": "ok",
+      "evidence_status": "ambiguous",
+      "accepted": false,
+      "mean_error_m": 90.53259538028117,
+      "mode_error_m": 614.3213153991517,
+      "region90_covered": true,
+      "region90_area_fraction": 0.8906250000000001,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    }
+  },
+  {
+    "seed": 8120001,
+    "family": "two_sources",
+    "v06": {
+      "status": "ok",
+      "evidence_status": "ambiguous",
+      "accepted": false,
+      "mean_error_m": 96.92639510556661,
+      "mode_error_m": 0.0,
+      "region90_covered": true,
+      "region90_area_fraction": 0.890625,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Multiple sources, urban transport and humidity response are not identified by this model.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    },
+    "v07": {
+      "status": "ok",
+      "evidence_status": "ambiguous",
+      "accepted": false,
+      "mean_error_m": 91.03363015785754,
+      "mode_error_m": 614.3213153991517,
+      "region90_covered": true,
+      "region90_area_fraction": 0.8906250000000001,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    }
+  },
+  {
+    "seed": 8120001,
+    "family": "spatial_background",
+    "v06": {
+      "status": "ok",
+      "evidence_status": "model_mismatch",
+      "accepted": false,
+      "mean_error_m": 143.67307051211773,
+      "mode_error_m": 0.0,
+      "region90_covered": true,
+      "region90_area_fraction": 0.4635416666666666,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Multiple sources, urban transport and humidity response are not identified by this model.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "MODEL MISMATCH: a withheld-sensor or withheld-period contrast block failed the declared joint predictive screen. Review meteorology, instrument behavior, background and multiple-source explanations; the screen has false negatives and is not field calibrated.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    },
+    "v07": {
+      "status": "ok",
+      "evidence_status": "model_mismatch",
+      "accepted": false,
+      "mean_error_m": 148.83403586305468,
+      "mode_error_m": 395.31387261793975,
+      "region90_covered": true,
+      "region90_area_fraction": 0.46527777777777773,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "MODEL MISMATCH: a withheld-sensor or withheld-period contrast block failed the declared joint predictive screen. Review meteorology, instrument behavior, background and multiple-source explanations; the screen has false negatives and is not field calibrated.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    }
+  },
+  {
+    "seed": 8120001,
+    "family": "heavy_tail",
+    "v06": {
+      "status": "ok",
+      "evidence_status": "model_mismatch",
+      "accepted": false,
+      "mean_error_m": 94.31277993508283,
+      "mode_error_m": 0.0,
+      "region90_covered": true,
+      "region90_area_fraction": 0.8923611111111113,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Multiple sources, urban transport and humidity response are not identified by this model.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "MODEL MISMATCH: a withheld-sensor or withheld-period contrast block failed the declared joint predictive screen. Review meteorology, instrument behavior, background and multiple-source explanations; the screen has false negatives and is not field calibrated.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    },
+    "v07": {
+      "status": "ok",
+      "evidence_status": "model_mismatch",
+      "accepted": false,
+      "mean_error_m": 87.81219072773736,
+      "mode_error_m": 293.045938600907,
+      "region90_covered": true,
+      "region90_area_fraction": 0.8923611111111113,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "MODEL MISMATCH: a withheld-sensor or withheld-period contrast block failed the declared joint predictive screen. Review meteorology, instrument behavior, background and multiple-source explanations; the screen has false negatives and is not field calibrated.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    }
+  },
+  {
+    "seed": 8120001,
+    "family": "weather_error",
+    "v06": {
+      "status": "ok",
+      "evidence_status": "ambiguous",
+      "accepted": false,
+      "mean_error_m": 100.25907991151539,
+      "mode_error_m": 0.0,
+      "region90_covered": true,
+      "region90_area_fraction": 0.890625,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Multiple sources, urban transport and humidity response are not identified by this model.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    },
+    "v07": {
+      "status": "ok",
+      "evidence_status": "ambiguous",
+      "accepted": false,
+      "mean_error_m": 93.97481223386156,
+      "mode_error_m": 614.3213153991517,
+      "region90_covered": true,
+      "region90_area_fraction": 0.8906250000000003,
+      "warnings": [
+        "SYNTHETIC investigation: simulated inputs, not field validation; row origins are preserved.",
+        "Experimental conditional scenario weights; no field-validated attribution or geographic coverage calibration.",
+        "Future scheduling is unsupported. Plans compare hypothetical simultaneous observations in the observed steady window, using its historical wind; no future observed weather is used.",
+        "A background-only explanation competes with one steady release. Humidity response and sparse two-source alternatives are explicitly screened, while chemistry, urban transport and responsibility remain unidentified.",
+        "Excluded candidates whose distance is unsupported for some source-domain cells: C9",
+        "Weather accuracy is UNKNOWN. Persistent station bias is marginalized in addition to declared short-period uncertainty. A low pollution residual does not verify wind. Additional independent weather evidence may be needed; pollution plans do not budget weather hardware.",
+        "INFORMATION LIMIT: nuisance-profile calculations find compatible explanations over more than 70% of the supported domain. Additional repeats in the same wind may not locate a source; compare feasible layouts or independently steady wind windows. This diagnostic is not a calibrated confidence region.",
+        "Source domain excludes 0.0 m\u00b2 of cells outside the 20 m\u20133 km kernel support at existing monitors; any truth there is outside this conditional result.",
+        "Source-domain cells exceed the 20m target resolution because of the 24-per-axis cap. Quadrature can miss narrow plumes; assess resolution sensitivity.",
+        "Source location is not resolved under the declared evidence rule. Spatial spread remains available as a geometric baseline; neither plan has demonstrated field benefit."
+      ],
+      "externality_flags": []
+    }
+  }
+]

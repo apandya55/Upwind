@@ -1,0 +1,892 @@
+{
+  "baseline": {
+    "attempts": 256,
+    "evidence_status_counts": {
+      "ambiguous": 177,
+      "model_mismatch": 77,
+      "source_supported": 2
+    },
+    "family_summary": {
+      "changing_release": {
+        "accepted_mean_error_denominator": 0,
+        "accepted_mean_error_median": null,
+        "accepted_mode_error_distribution": {
+          "maximum": null,
+          "median": null,
+          "n": 0,
+          "p90": null,
+          "p95": null
+        },
+        "accepted_within_50m": 0,
+        "accepted_within_50m_denominator": 0,
+        "accepted_wrong_regions": 0,
+        "attempts": 32,
+        "evidence_status_counts": {
+          "ambiguous": 32,
+          "model_mismatch": 0,
+          "source_supported": 0
+        },
+        "externality_flag_count": 0,
+        "mean_error_distribution_all": {
+          "maximum": 93.98732488125523,
+          "median": 89.18947786201485,
+          "n": 32,
+          "p90": 90.39778697599877,
+          "p95": 90.87782426002065
+        },
+        "mean_error_median_all": 89.18947786201485,
+        "median_held_out_rmse_ug_m3": 1.668992679093368,
+        "median_region_area_fraction": 0.8906250000000001,
+        "median_source_probability": 0.48610546873767707,
+        "mode_error_distribution_all": {
+          "maximum": 667.781660137029,
+          "median": 614.3213153991517,
+          "n": 32,
+          "p90": 614.3213153991517,
+          "p95": 638.3784705311964
+        },
+        "mode_error_median_all": 614.3213153991517,
+        "numerically_converged": 0,
+        "numerically_unresolved": 0,
+        "region_coverage_correct_source_count": 32,
+        "region_coverage_denominator": 32,
+        "status_counts": {
+          "crash": 0,
+          "infeasible": 0,
+          "insufficient_data": 0,
+          "ok": 32,
+          "uninformative": 0
+        }
+      },
+      "heavy_tail": {
+        "accepted_mean_error_denominator": 0,
+        "accepted_mean_error_median": null,
+        "accepted_mode_error_distribution": {
+          "maximum": null,
+          "median": null,
+          "n": 0,
+          "p90": null,
+          "p95": null
+        },
+        "accepted_within_50m": 0,
+        "accepted_within_50m_denominator": 0,
+        "accepted_wrong_regions": 0,
+        "attempts": 32,
+        "evidence_status_counts": {
+          "ambiguous": 0,
+          "model_mismatch": 32,
+          "source_supported": 0
+        },
+        "externality_flag_count": 2,
+        "mean_error_distribution_all": {
+          "maximum": 135.4880012687066,
+          "median": 91.30125357527206,
+          "n": 32,
+          "p90": 115.81346614091723,
+          "p95": 126.89863255633179
+        },
+        "mean_error_median_all": 91.30125357527206,
+        "median_held_out_rmse_ug_m3": 5.380458279518055,
+        "median_region_area_fraction": 0.888888888888889,
+        "median_source_probability": 0.49702329976776916,
+        "mode_error_distribution_all": {
+          "maximum": 667.781660137029,
+          "median": 510.88872599249373,
+          "n": 32,
+          "p90": 667.781660137029,
+          "p95": 667.781660137029
+        },
+        "mode_error_median_all": 510.88872599249373,
+        "numerically_converged": 0,
+        "numerically_unresolved": 0,
+        "region_coverage_correct_source_count": 32,
+        "region_coverage_denominator": 32,
+        "status_counts": {
+          "crash": 0,
+          "infeasible": 0,
+          "insufficient_data": 0,
+          "ok": 32,
+          "uninformative": 0
+        }
+      },
+      "humidity_response": {
+        "accepted_mean_error_denominator": 0,
+        "accepted_mean_error_median": null,
+        "accepted_mode_error_distribution": {
+          "maximum": null,
+          "median": null,
+          "n": 0,
+          "p90": null,
+          "p95": null
+        },
+        "accepted_within_50m": 0,
+        "accepted_within_50m_denominator": 0,
+        "accepted_wrong_regions": 0,
+        "attempts": 32,
+        "evidence_status_counts": {
+          "ambiguous": 32,
+          "model_mismatch": 0,
+          "source_supported": 0
+        },
+        "externality_flag_count": 0,
+        "mean_error_distribution_all": {
+          "maximum": 98.62005877608793,
+          "median": 90.95243506437791,
+          "n": 32,
+          "p90": 94.36092726821259,
+          "p95": 94.80654959258145
+        },
+        "mean_error_median_all": 90.95243506437791,
+        "median_held_out_rmse_ug_m3": 2.5451457147197107,
+        "median_region_area_fraction": 0.8923611111111112,
+        "median_source_probability": 0.5194203740028794,
+        "mode_error_distribution_all": {
+          "maximum": 393.53671767135256,
+          "median": 262.53163865226924,
+          "n": 32,
+          "p90": 328.06274373779826,
+          "p95": 339.42835633421424
+        },
+        "mode_error_median_all": 262.53163865226924,
+        "numerically_converged": 0,
+        "numerically_unresolved": 0,
+        "region_coverage_correct_source_count": 32,
+        "region_coverage_denominator": 32,
+        "status_counts": {
+          "crash": 0,
+          "infeasible": 0,
+          "insufficient_data": 0,
+          "ok": 32,
+          "uninformative": 0
+        }
+      },
+      "nominal": {
+        "accepted_mean_error_denominator": 0,
+        "accepted_mean_error_median": null,
+        "accepted_mode_error_distribution": {
+          "maximum": null,
+          "median": null,
+          "n": 0,
+          "p90": null,
+          "p95": null
+        },
+        "accepted_within_50m": 0,
+        "accepted_within_50m_denominator": 0,
+        "accepted_wrong_regions": 0,
+        "attempts": 32,
+        "evidence_status_counts": {
+          "ambiguous": 32,
+          "model_mismatch": 0,
+          "source_supported": 0
+        },
+        "externality_flag_count": 0,
+        "mean_error_distribution_all": {
+          "maximum": 94.12966609510536,
+          "median": 89.22418169798706,
+          "n": 32,
+          "p90": 90.46847173244085,
+          "p95": 90.96949735539631
+        },
+        "mean_error_median_all": 89.22418169798706,
+        "median_held_out_rmse_ug_m3": 1.64549135967983,
+        "median_region_area_fraction": 0.8906250000000001,
+        "median_source_probability": 0.4858155612884454,
+        "mode_error_distribution_all": {
+          "maximum": 667.781660137029,
+          "median": 614.3213153991517,
+          "n": 32,
+          "p90": 614.3213153991517,
+          "p95": 638.3784705311964
+        },
+        "mode_error_median_all": 614.3213153991517,
+        "numerically_converged": 0,
+        "numerically_unresolved": 0,
+        "region_coverage_correct_source_count": 32,
+        "region_coverage_denominator": 32,
+        "status_counts": {
+          "crash": 0,
+          "infeasible": 0,
+          "insufficient_data": 0,
+          "ok": 32,
+          "uninformative": 0
+        }
+      },
+      "sensor_drift": {
+        "accepted_mean_error_denominator": 0,
+        "accepted_mean_error_median": null,
+        "accepted_mode_error_distribution": {
+          "maximum": null,
+          "median": null,
+          "n": 0,
+          "p90": null,
+          "p95": null
+        },
+        "accepted_within_50m": 0,
+        "accepted_within_50m_denominator": 0,
+        "accepted_wrong_regions": 0,
+        "attempts": 32,
+        "evidence_status_counts": {
+          "ambiguous": 8,
+          "model_mismatch": 24,
+          "source_supported": 0
+        },
+        "externality_flag_count": 26,
+        "mean_error_distribution_all": {
+          "maximum": 257.16890046545126,
+          "median": 199.5627895457567,
+          "n": 32,
+          "p90": 234.1841062380436,
+          "p95": 236.76177514707396
+        },
+        "mean_error_median_all": 199.5627895457567,
+        "median_held_out_rmse_ug_m3": 4.189711635802667,
+        "median_region_area_fraction": 0.6119791666666666,
+        "median_source_probability": 0.9150755501678101,
+        "mode_error_distribution_all": {
+          "maximum": 406.42257305907566,
+          "median": 401.7799618602224,
+          "n": 32,
+          "p90": 401.7799618602224,
+          "p95": 406.42257305907566
+        },
+        "mode_error_median_all": 401.7799618602224,
+        "numerically_converged": 0,
+        "numerically_unresolved": 0,
+        "region_coverage_correct_source_count": 32,
+        "region_coverage_denominator": 32,
+        "status_counts": {
+          "crash": 0,
+          "infeasible": 0,
+          "insufficient_data": 0,
+          "ok": 32,
+          "uninformative": 0
+        }
+      },
+      "spatial_background": {
+        "accepted_mean_error_denominator": 2,
+        "accepted_mean_error_median": 162.68792011941235,
+        "accepted_mode_error_distribution": {
+          "maximum": 395.31387261793975,
+          "median": 395.31387261793975,
+          "n": 2,
+          "p90": 395.31387261793975,
+          "p95": 395.31387261793975
+        },
+        "accepted_within_50m": 0,
+        "accepted_within_50m_denominator": 2,
+        "accepted_wrong_regions": 0,
+        "attempts": 32,
+        "evidence_status_counts": {
+          "ambiguous": 9,
+          "model_mismatch": 21,
+          "source_supported": 2
+        },
+        "externality_flag_count": 0,
+        "mean_error_distribution_all": {
+          "maximum": 201.86926036178212,
+          "median": 150.37797714227074,
+          "n": 32,
+          "p90": 181.60429178792543,
+          "p95": 184.33747063974275
+        },
+        "mean_error_median_all": 150.37797714227074,
+        "median_held_out_rmse_ug_m3": 8.457492085646766,
+        "median_region_area_fraction": 0.5078124999999999,
+        "median_source_probability": 0.9174199160862924,
+        "mode_error_distribution_all": {
+          "maximum": 395.31387261793975,
+          "median": 395.31387261793975,
+          "n": 32,
+          "p90": 395.31387261793975,
+          "p95": 395.31387261793975
+        },
+        "mode_error_median_all": 395.31387261793975,
+        "numerically_converged": 0,
+        "numerically_unresolved": 0,
+        "region_coverage_correct_source_count": 32,
+        "region_coverage_denominator": 32,
+        "status_counts": {
+          "crash": 0,
+          "infeasible": 0,
+          "insufficient_data": 0,
+          "ok": 32,
+          "uninformative": 0
+        }
+      },
+      "two_sources": {
+        "accepted_mean_error_denominator": 0,
+        "accepted_mean_error_median": null,
+        "accepted_mode_error_distribution": {
+          "maximum": null,
+          "median": null,
+          "n": 0,
+          "p90": null,
+          "p95": null
+        },
+        "accepted_within_50m": 0,
+        "accepted_within_50m_denominator": 0,
+        "accepted_wrong_regions": 0,
+        "attempts": 32,
+        "evidence_status_counts": {
+          "ambiguous": 32,
+          "model_mismatch": 0,
+          "source_supported": 0
+        },
+        "externality_flag_count": 0,
+        "mean_error_distribution_all": {
+          "maximum": 94.73878449212653,
+          "median": 89.58535308428084,
+          "n": 32,
+          "p90": 90.88971742630217,
+          "p95": 91.3886935473445
+        },
+        "mean_error_median_all": 89.58535308428084,
+        "median_held_out_rmse_ug_m3": 1.6224181948754661,
+        "median_region_area_fraction": 0.890625,
+        "median_source_probability": 0.4853193580894566,
+        "mode_error_distribution_all": {
+          "maximum": 614.3213153991517,
+          "median": 614.3213153991517,
+          "n": 32,
+          "p90": 614.3213153991517,
+          "p95": 614.3213153991517
+        },
+        "mode_error_median_all": 614.3213153991517,
+        "numerically_converged": 0,
+        "numerically_unresolved": 0,
+        "region_coverage_correct_source_count": 0,
+        "region_coverage_denominator": 32,
+        "status_counts": {
+          "crash": 0,
+          "infeasible": 0,
+          "insufficient_data": 0,
+          "ok": 32,
+          "uninformative": 0
+        }
+      },
+      "weather_error": {
+        "accepted_mean_error_denominator": 0,
+        "accepted_mean_error_median": null,
+        "accepted_mode_error_distribution": {
+          "maximum": null,
+          "median": null,
+          "n": 0,
+          "p90": null,
+          "p95": null
+        },
+        "accepted_within_50m": 0,
+        "accepted_within_50m_denominator": 0,
+        "accepted_wrong_regions": 0,
+        "attempts": 32,
+        "evidence_status_counts": {
+          "ambiguous": 32,
+          "model_mismatch": 0,
+          "source_supported": 0
+        },
+        "externality_flag_count": 0,
+        "mean_error_distribution_all": {
+          "maximum": 98.0263662268824,
+          "median": 92.50390270953602,
+          "n": 32,
+          "p90": 93.95477161547657,
+          "p95": 94.42285165415421
+        },
+        "mean_error_median_all": 92.50390270953602,
+        "median_held_out_rmse_ug_m3": 1.6441876845834185,
+        "median_region_area_fraction": 0.8906250000000001,
+        "median_source_probability": 0.48713773510161207,
+        "mode_error_distribution_all": {
+          "maximum": 667.781660137029,
+          "median": 614.3213153991517,
+          "n": 32,
+          "p90": 662.4356256632414,
+          "p95": 667.781660137029
+        },
+        "mode_error_median_all": 614.3213153991517,
+        "numerically_converged": 0,
+        "numerically_unresolved": 0,
+        "region_coverage_correct_source_count": 32,
+        "region_coverage_denominator": 32,
+        "status_counts": {
+          "crash": 0,
+          "infeasible": 0,
+          "insufficient_data": 0,
+          "ok": 32,
+          "uninformative": 0
+        }
+      }
+    },
+    "mean_error_distribution_all": {
+      "maximum": 257.16890046545126,
+      "median": 90.95243506437791,
+      "n": 256,
+      "p90": 184.36971951324182,
+      "p95": 203.16537549772917
+    },
+    "mode_error_distribution_all": {
+      "maximum": 667.781660137029,
+      "median": 484.3885442613397,
+      "n": 256,
+      "p90": 614.3213153991517,
+      "p95": 667.781660137029
+    },
+    "numerically_converged": 0,
+    "region_coverage_correct_source_count": 224,
+    "region_coverage_denominator": 256,
+    "runtime_ms_median": 1659.95,
+    "status_counts": {
+      "crash": 0,
+      "infeasible": 0,
+      "insufficient_data": 0,
+      "ok": 256,
+      "uninformative": 0
+    }
+  },
+  "candidate": {
+    "attempts": 256,
+    "evidence_status_counts": {
+      "ambiguous": 177,
+      "model_mismatch": 78,
+      "source_supported": 1
+    },
+    "family_summary": {
+      "changing_release": {
+        "accepted_mean_error_denominator": 0,
+        "accepted_mean_error_median": null,
+        "accepted_mode_error_distribution": {
+          "maximum": null,
+          "median": null,
+          "n": 0,
+          "p90": null,
+          "p95": null
+        },
+        "accepted_within_50m": 0,
+        "accepted_within_50m_denominator": 0,
+        "accepted_wrong_regions": 0,
+        "attempts": 32,
+        "evidence_status_counts": {
+          "ambiguous": 32,
+          "model_mismatch": 0,
+          "source_supported": 0
+        },
+        "externality_flag_count": 0,
+        "mean_error_distribution_all": {
+          "maximum": 93.98913232470342,
+          "median": 89.18916109933502,
+          "n": 32,
+          "p90": 90.39801176615939,
+          "p95": 90.87826798776145
+        },
+        "mean_error_median_all": 89.18916109933502,
+        "median_held_out_rmse_ug_m3": 1.668973019325834,
+        "median_region_area_fraction": 0.8906250000000001,
+        "median_source_probability": 0.4860996310441378,
+        "mode_error_distribution_all": {
+          "maximum": 667.781660137029,
+          "median": 614.3213153991517,
+          "n": 32,
+          "p90": 614.3213153991517,
+          "p95": 638.3784705311964
+        },
+        "mode_error_median_all": 614.3213153991517,
+        "numerically_converged": 32,
+        "numerically_unresolved": 0,
+        "region_coverage_correct_source_count": 32,
+        "region_coverage_denominator": 32,
+        "status_counts": {
+          "crash": 0,
+          "infeasible": 0,
+          "insufficient_data": 0,
+          "ok": 32,
+          "uninformative": 0
+        }
+      },
+      "heavy_tail": {
+        "accepted_mean_error_denominator": 0,
+        "accepted_mean_error_median": null,
+        "accepted_mode_error_distribution": {
+          "maximum": null,
+          "median": null,
+          "n": 0,
+          "p90": null,
+          "p95": null
+        },
+        "accepted_within_50m": 0,
+        "accepted_within_50m_denominator": 0,
+        "accepted_wrong_regions": 0,
+        "attempts": 32,
+        "evidence_status_counts": {
+          "ambiguous": 0,
+          "model_mismatch": 32,
+          "source_supported": 0
+        },
+        "externality_flag_count": 2,
+        "mean_error_distribution_all": {
+          "maximum": 135.4966198405626,
+          "median": 91.30184712720228,
+          "n": 32,
+          "p90": 115.82410435459958,
+          "p95": 126.91657348155967
+        },
+        "mean_error_median_all": 91.30184712720228,
+        "median_held_out_rmse_ug_m3": 5.380456029574001,
+        "median_region_area_fraction": 0.888888888888889,
+        "median_source_probability": 0.49702208171358686,
+        "mode_error_distribution_all": {
+          "maximum": 667.781660137029,
+          "median": 510.88872599249373,
+          "n": 32,
+          "p90": 667.781660137029,
+          "p95": 667.781660137029
+        },
+        "mode_error_median_all": 510.88872599249373,
+        "numerically_converged": 32,
+        "numerically_unresolved": 0,
+        "region_coverage_correct_source_count": 32,
+        "region_coverage_denominator": 32,
+        "status_counts": {
+          "crash": 0,
+          "infeasible": 0,
+          "insufficient_data": 0,
+          "ok": 32,
+          "uninformative": 0
+        }
+      },
+      "humidity_response": {
+        "accepted_mean_error_denominator": 0,
+        "accepted_mean_error_median": null,
+        "accepted_mode_error_distribution": {
+          "maximum": null,
+          "median": null,
+          "n": 0,
+          "p90": null,
+          "p95": null
+        },
+        "accepted_within_50m": 0,
+        "accepted_within_50m_denominator": 0,
+        "accepted_wrong_regions": 0,
+        "attempts": 32,
+        "evidence_status_counts": {
+          "ambiguous": 32,
+          "model_mismatch": 0,
+          "source_supported": 0
+        },
+        "externality_flag_count": 0,
+        "mean_error_distribution_all": {
+          "maximum": 98.62354443679011,
+          "median": 90.95275164906502,
+          "n": 32,
+          "p90": 94.36250827603743,
+          "p95": 94.80826097631544
+        },
+        "mean_error_median_all": 90.95275164906502,
+        "median_held_out_rmse_ug_m3": 2.545136078345856,
+        "median_region_area_fraction": 0.8923611111111112,
+        "median_source_probability": 0.519428009312084,
+        "mode_error_distribution_all": {
+          "maximum": 393.53671767135256,
+          "median": 262.53163865226924,
+          "n": 32,
+          "p90": 328.06274373779826,
+          "p95": 339.42835633421424
+        },
+        "mode_error_median_all": 262.53163865226924,
+        "numerically_converged": 32,
+        "numerically_unresolved": 0,
+        "region_coverage_correct_source_count": 32,
+        "region_coverage_denominator": 32,
+        "status_counts": {
+          "crash": 0,
+          "infeasible": 0,
+          "insufficient_data": 0,
+          "ok": 32,
+          "uninformative": 0
+        }
+      },
+      "nominal": {
+        "accepted_mean_error_denominator": 0,
+        "accepted_mean_error_median": null,
+        "accepted_mode_error_distribution": {
+          "maximum": null,
+          "median": null,
+          "n": 0,
+          "p90": null,
+          "p95": null
+        },
+        "accepted_within_50m": 0,
+        "accepted_within_50m_denominator": 0,
+        "accepted_wrong_regions": 0,
+        "attempts": 32,
+        "evidence_status_counts": {
+          "ambiguous": 32,
+          "model_mismatch": 0,
+          "source_supported": 0
+        },
+        "externality_flag_count": 0,
+        "mean_error_distribution_all": {
+          "maximum": 94.13153491660829,
+          "median": 89.22387853437246,
+          "n": 32,
+          "p90": 90.46872644918201,
+          "p95": 90.96998056649778
+        },
+        "mean_error_median_all": 89.22387853437246,
+        "median_held_out_rmse_ug_m3": 1.6454888751700536,
+        "median_region_area_fraction": 0.8906250000000001,
+        "median_source_probability": 0.48580959734661755,
+        "mode_error_distribution_all": {
+          "maximum": 667.781660137029,
+          "median": 614.3213153991517,
+          "n": 32,
+          "p90": 614.3213153991517,
+          "p95": 638.3784705311964
+        },
+        "mode_error_median_all": 614.3213153991517,
+        "numerically_converged": 32,
+        "numerically_unresolved": 0,
+        "region_coverage_correct_source_count": 32,
+        "region_coverage_denominator": 32,
+        "status_counts": {
+          "crash": 0,
+          "infeasible": 0,
+          "insufficient_data": 0,
+          "ok": 32,
+          "uninformative": 0
+        }
+      },
+      "sensor_drift": {
+        "accepted_mean_error_denominator": 0,
+        "accepted_mean_error_median": null,
+        "accepted_mode_error_distribution": {
+          "maximum": null,
+          "median": null,
+          "n": 0,
+          "p90": null,
+          "p95": null
+        },
+        "accepted_within_50m": 0,
+        "accepted_within_50m_denominator": 0,
+        "accepted_wrong_regions": 0,
+        "attempts": 32,
+        "evidence_status_counts": {
+          "ambiguous": 8,
+          "model_mismatch": 24,
+          "source_supported": 0
+        },
+        "externality_flag_count": 26,
+        "mean_error_distribution_all": {
+          "maximum": 257.1701995741486,
+          "median": 199.56779800962448,
+          "n": 32,
+          "p90": 234.18666632401872,
+          "p95": 236.76354418597046
+        },
+        "mean_error_median_all": 199.56779800962448,
+        "median_held_out_rmse_ug_m3": 4.1895113364587155,
+        "median_region_area_fraction": 0.6119791666666666,
+        "median_source_probability": 0.9151044466758336,
+        "mode_error_distribution_all": {
+          "maximum": 406.42257305907566,
+          "median": 401.7799618602224,
+          "n": 32,
+          "p90": 401.7799618602224,
+          "p95": 406.42257305907566
+        },
+        "mode_error_median_all": 401.7799618602224,
+        "numerically_converged": 32,
+        "numerically_unresolved": 0,
+        "region_coverage_correct_source_count": 32,
+        "region_coverage_denominator": 32,
+        "status_counts": {
+          "crash": 0,
+          "infeasible": 0,
+          "insufficient_data": 0,
+          "ok": 32,
+          "uninformative": 0
+        }
+      },
+      "spatial_background": {
+        "accepted_mean_error_denominator": 1,
+        "accepted_mean_error_median": 165.15193117102606,
+        "accepted_mode_error_distribution": {
+          "maximum": 395.31387261793975,
+          "median": 395.31387261793975,
+          "n": 1,
+          "p90": 395.31387261793975,
+          "p95": 395.31387261793975
+        },
+        "accepted_within_50m": 0,
+        "accepted_within_50m_denominator": 1,
+        "accepted_wrong_regions": 0,
+        "attempts": 32,
+        "evidence_status_counts": {
+          "ambiguous": 9,
+          "model_mismatch": 22,
+          "source_supported": 1
+        },
+        "externality_flag_count": 0,
+        "mean_error_distribution_all": {
+          "maximum": 201.89051361725456,
+          "median": 150.33912654426393,
+          "n": 32,
+          "p90": 181.59040030283893,
+          "p95": 184.34572337736105
+        },
+        "mean_error_median_all": 150.33912654426393,
+        "median_held_out_rmse_ug_m3": 8.457443164881427,
+        "median_region_area_fraction": 0.5078124999999999,
+        "median_source_probability": 0.9174484054362568,
+        "mode_error_distribution_all": {
+          "maximum": 395.31387261793975,
+          "median": 395.31387261793975,
+          "n": 32,
+          "p90": 395.31387261793975,
+          "p95": 395.31387261793975
+        },
+        "mode_error_median_all": 395.31387261793975,
+        "numerically_converged": 32,
+        "numerically_unresolved": 0,
+        "region_coverage_correct_source_count": 32,
+        "region_coverage_denominator": 32,
+        "status_counts": {
+          "crash": 0,
+          "infeasible": 0,
+          "insufficient_data": 0,
+          "ok": 32,
+          "uninformative": 0
+        }
+      },
+      "two_sources": {
+        "accepted_mean_error_denominator": 0,
+        "accepted_mean_error_median": null,
+        "accepted_mode_error_distribution": {
+          "maximum": null,
+          "median": null,
+          "n": 0,
+          "p90": null,
+          "p95": null
+        },
+        "accepted_within_50m": 0,
+        "accepted_within_50m_denominator": 0,
+        "accepted_wrong_regions": 0,
+        "attempts": 32,
+        "evidence_status_counts": {
+          "ambiguous": 32,
+          "model_mismatch": 0,
+          "source_supported": 0
+        },
+        "externality_flag_count": 0,
+        "mean_error_distribution_all": {
+          "maximum": 94.74092176533364,
+          "median": 89.58520694641501,
+          "n": 32,
+          "p90": 90.89015823490217,
+          "p95": 91.38936278536636
+        },
+        "mean_error_median_all": 89.58520694641501,
+        "median_held_out_rmse_ug_m3": 1.6224200365198567,
+        "median_region_area_fraction": 0.890625,
+        "median_source_probability": 0.485313178714714,
+        "mode_error_distribution_all": {
+          "maximum": 614.3213153991517,
+          "median": 614.3213153991517,
+          "n": 32,
+          "p90": 614.3213153991517,
+          "p95": 614.3213153991517
+        },
+        "mode_error_median_all": 614.3213153991517,
+        "numerically_converged": 32,
+        "numerically_unresolved": 0,
+        "region_coverage_correct_source_count": 0,
+        "region_coverage_denominator": 32,
+        "status_counts": {
+          "crash": 0,
+          "infeasible": 0,
+          "insufficient_data": 0,
+          "ok": 32,
+          "uninformative": 0
+        }
+      },
+      "weather_error": {
+        "accepted_mean_error_denominator": 0,
+        "accepted_mean_error_median": null,
+        "accepted_mode_error_distribution": {
+          "maximum": null,
+          "median": null,
+          "n": 0,
+          "p90": null,
+          "p95": null
+        },
+        "accepted_within_50m": 0,
+        "accepted_within_50m_denominator": 0,
+        "accepted_wrong_regions": 0,
+        "attempts": 32,
+        "evidence_status_counts": {
+          "ambiguous": 32,
+          "model_mismatch": 0,
+          "source_supported": 0
+        },
+        "externality_flag_count": 0,
+        "mean_error_distribution_all": {
+          "maximum": 98.0300326154443,
+          "median": 92.50509620395016,
+          "n": 32,
+          "p90": 93.95662798387214,
+          "p95": 94.42491856185319
+        },
+        "mean_error_median_all": 92.50509620395016,
+        "median_held_out_rmse_ug_m3": 1.6441846048130175,
+        "median_region_area_fraction": 0.8906250000000001,
+        "median_source_probability": 0.48713234904859215,
+        "mode_error_distribution_all": {
+          "maximum": 667.781660137029,
+          "median": 614.3213153991517,
+          "n": 32,
+          "p90": 662.4356256632414,
+          "p95": 667.781660137029
+        },
+        "mode_error_median_all": 614.3213153991517,
+        "numerically_converged": 32,
+        "numerically_unresolved": 0,
+        "region_coverage_correct_source_count": 32,
+        "region_coverage_denominator": 32,
+        "status_counts": {
+          "crash": 0,
+          "infeasible": 0,
+          "insufficient_data": 0,
+          "ok": 32,
+          "uninformative": 0
+        }
+      }
+    },
+    "mean_error_distribution_all": {
+      "maximum": 257.1701995741486,
+      "median": 90.95275164906502,
+      "n": 256,
+      "p90": 184.37795287058924,
+      "p95": 203.17139314564133
+    },
+    "mode_error_distribution_all": {
+      "maximum": 667.781660137029,
+      "median": 484.3885442613397,
+      "n": 256,
+      "p90": 614.3213153991517,
+      "p95": 667.781660137029
+    },
+    "numerically_converged": 256,
+    "region_coverage_correct_source_count": 224,
+    "region_coverage_denominator": 256,
+    "runtime_ms_median": 3487.15,
+    "status_counts": {
+      "crash": 0,
+      "infeasible": 0,
+      "insufficient_data": 0,
+      "ok": 256,
+      "uninformative": 0
+    }
+  },
+  "paired_attempts": 256,
+  "paired_mean_error_difference_median": 0.00020307524434315383,
+  "paired_mode_error_difference_median": 0.0,
+  "paired_same_inputs": 256
+}

@@ -204,6 +204,24 @@ function EvidenceDetails({ result }: { result: Result }) {
               periods before collecting more readings.
             </p>
           )}
+          {!!result.observability.externalities?.flags.length && (
+            <p className="inline-warning" role="alert">
+              Externality signals:{" "}
+              {result.observability.externalities.flags.join(", ")}.{" "}
+              These are model-discrepancy indicators, not diagnoses; source
+              support is withheld until independent evidence is available.
+            </p>
+          )}
+          {result.observability.source_count?.material_competing_pair && (
+            <p className="inline-warning" role="alert">
+              A bounded two-source profile materially improves the fit by{" "}
+              {result.observability.source_count.improvement_delta_chi2?.toFixed(2)}{" "}
+              profile-loss units over a{" "}
+              {result.observability.source_count.separation_m?.toFixed(0)} m{" "}
+              separation. This is an adequacy warning, not a source-count or
+              responsibility finding.
+            </p>
+          )}
         </>
       )}
       {!!result.study_window_count && result.study_window_count > 1 && (
@@ -745,6 +763,11 @@ export default function App() {
             <Activity size={18} />
             Investigation<span className="nav-count">01</span>
           </button>
+          <a className="nav-item" href="/explore">
+            <MapPin size={18} />
+            National Explorer
+            <ArrowUpRight size={14} />
+          </a>
           <button
             className="nav-item"
             onClick={() => {

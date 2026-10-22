@@ -80,14 +80,9 @@ def station_distribution(inv, projection, matched, *, bias_sd=None):
         refs, key=lambda x: (x.timestamp, x.source_id, x.latitude, x.longitude)
     ):
         key = (w.source_id, w.timestamp, w.latitude, w.longitude)
-        value = (
-            w.wind_from_deg,
-            w.wind_speed_m_s,
-            w.upstream_id,
-            w.direction_systematic_sd_deg,
-            w.speed_systematic_fraction,
-            w.direction_random_sd_deg,
-        )
+        value = w.model_dump()
+        for field in ("timestamp", "latitude", "longitude"):
+            value.pop(field, None)
         if key in seen:
             if seen[key] != value:
                 raise ValueError("Conflicting duplicate reference-weather records")

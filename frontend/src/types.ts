@@ -46,6 +46,26 @@ export interface Plan {
   max_score?: number;
   seeds?: number;
 }
+export interface StrengthPriorSensitivity {
+  factors: number[];
+  baseline_factor: number;
+  alternatives: {
+    factor: number;
+    source_probability: number;
+    posterior_mean: Point;
+    density_mode: Point;
+    spatial_rms_m: number;
+    cell_tv_distance: number;
+    posterior_mean_shift_m: number;
+  }[];
+  thresholds: {
+    posterior_mean_shift_m: number;
+    cell_tv_distance: number;
+  };
+  material_factors: number[];
+  blocking: boolean;
+  meaning: string;
+}
 export interface Result {
   location_estimate?: {
     posterior_mean: Point;
@@ -100,6 +120,7 @@ export interface Result {
   sources: (Point & { id: string; weight: number })[];
   interpretation?: string;
   model_version: string;
+  protocol_version?: string;
   input_hash: string;
   runtime_ms?: number;
   entropy_nats?: number;
@@ -110,6 +131,7 @@ export interface Result {
   exact_search?: boolean;
   ties?: number | null;
   source_probability?: number | null;
+  strength_prior_sensitivity?: StrengthPriorSensitivity;
   evidence_status?: "source_supported" | "ambiguous" | "model_mismatch";
   source_region90?: {
     level: number;
@@ -128,6 +150,20 @@ export interface Result {
     far_compatible_cells: number;
     conditional_location_information_nats: number;
     meaning: string;
+    externalities?: {
+      flags: string[];
+      blocking: boolean;
+      standardized_residual_rms?: number;
+      evidence?: Record<string, number | string>;
+      meaning: string;
+    };
+    source_count?: {
+      material_competing_pair: boolean;
+      improvement_delta_chi2?: number;
+      separation_m?: number;
+      meaning: string;
+    };
+    strength_prior_sensitivity?: StrengthPriorSensitivity;
   } | null;
   study_window_count?: number;
   spatial_quadrature_order?: number | null;

@@ -25,3 +25,23 @@ Both single-window probes now finish, including the previously failing512-readin
 Original failures/resources and original201-test release logs remain under `resources-pre-hardening`, `pre-hardening-report` and `.pre-hardening` files. A mistakenly overlapping resource preflight was interrupted and retained with an explicit exclusion record; only the isolated repeat above is the final resource comparison.
 
 Reproduce engineering integrity with `.venv/bin/python scripts/hardening_v06.py` and full evidence with `.venv/bin/python scripts/verify_v06.py`. Read [primary accuracy results](ENGINE_V06_RESULTS.md) and [supplementary observability](ENGINE_V06_OBSERVABILITY_RESULTS.md): primary50m point-error targets still fail, and accepted wrong regions remain. No field validation or organizational attribution reliability is established.
+
+## Post-release integrity patch
+
+The current workspace contains a separate engineering patch after the published
+release. It does not alter the model version, scientific configuration, priors,
+weather alternatives, source grid, planner, acceptance rules or frozen inputs.
+`measurement_quality` now quarantines same-sensor/time rows when any retained
+measurement metadata differs, while ignoring the importer's row-position-only
+`duplicate` marker. `matched_weather` and the comparison path reject
+duplicate meteorology records that differ in any field that can affect matching,
+uncertainty, lineage or provenance. The analysis orchestrator also turns
+floating-point and linear-algebra failures into explicit `insufficient_data`
+results instead of allowing a server error to hide the failure.
+
+The four changed paths and before/after hashes are recorded in
+[`post-release-integrity.json`](../evaluations/engine-v06/post-release-integrity.json).
+Verify them with `PYTHONPATH=backend .venv/bin/python scripts/verify_integrity_patch.py`.
+The original two-file hardening manifest and its frozen source remain unchanged
+and intentionally fail against this newer workspace until a new release is
+explicitly prepared.

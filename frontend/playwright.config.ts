@@ -8,7 +8,7 @@ export default defineConfig({
     baseURL: "http://127.0.0.1:5174",
     viewport: { width: 1440, height: 1000 },
     launchOptions: {
-      executablePath: process.env.CHROMIUM_PATH || "/usr/bin/chromium",
+      ...(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {}),
       args: ["--no-sandbox"],
     },
     screenshot: "only-on-failure",
@@ -19,7 +19,7 @@ export default defineConfig({
       url: "http://127.0.0.1:8001/api/health",
       reuseExistingServer: false,
       cwd: "..",
-      env: { UPWIND_DATA_DIR: ".local/browser-test-data" },
+      env: { UPWIND_DATA_DIR: ".local/browser-test-data", PYTHONPATH: "backend" },
     },
     {
       command: "npm run dev -- --port 5174 --strictPort",

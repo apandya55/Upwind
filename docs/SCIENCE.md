@@ -1,6 +1,21 @@
-# Current scientific status: engine0.6
+# Current scientific status: engine0.7 evaluated synthetic candidate
 
-Current model **plume-robust-0.6.0**, protocol **UW-ENGINE-2026-06**. See [implementation](ENGINE_V06_IMPLEMENTATION.md), [primary results](ENGINE_V06_RESULTS.md), [supplementary control](ENGINE_V06_OBSERVABILITY_RESULTS.md) and [engineering hardening](ENGINE_V06_HARDENING.md). All accuracy evidence is synthetic; no field calibration or organizational attribution reliability is established. Nominal overall point-error targets fail (median mean141.1m, mode179.9m). The retained0.5 methods below remain the physical/statistical foundation; their older evidence is historical.
+Current candidate model **plume-robust-0.7.1**, protocol **UW-ENGINE-2026-07A**. See [protocol](ENGINE_V07_PROTOCOL.md), [implementation](ENGINE_V07_IMPLEMENTATION.md), and the frozen [0.6 results](ENGINE_V06_RESULTS.md). The locked development, calibration and final synthetic splits are complete; a post-final numerical repair is recorded in `docs/PROGRESS.md` and `evaluations/engine-v07/`. All available accuracy evidence is synthetic; no field calibration or organizational attribution reliability is established. The 0.6 nominal point-error targets failed (median mean141.1m, mode179.9m). The retained0.5 methods below remain the physical/statistical foundation; their older evidence is historical.
+
+The 0.7 candidate preserves the 0.6 posterior while adding an explicit
+humidity-response nuisance covariance, a bounded two-source adequacy profile,
+and residual externality flags. The pair profile enforces one shared persistent
+weather-offset alternative, and a bounded two-half release profile checks for
+time-varying emissions without pretending to estimate a release history. Any
+flag blocks `source_supported`; it is a request for independent evidence, not
+an automatic correction or attribution.
+
+The final post-repair confirmation had 256/256 finite synthetic outputs and no
+crashes. It retained 167 ambiguous, 86 model-mismatch and 3 conditional
+`source_supported` rows. The three accepted spatial-background cases had
+posterior-mean errors of roughly 172–197 m while their broad conditional
+regions contained the simulated source. This demonstrates a remaining
+precision limitation; it does not validate operational source finding.
 
 Qualified weather comparisons now enter a joint nominal/common-error mixture:75%comparison-conditioned and25%extra20degree/0.2log-speed uncertainty. These are uncalibrated assumptions, with strong sensitivity. Unknown weather retains its existing uncertainty without a duplicated component. A single adaptive subdivision preserves every cell's area prior; posterior mean, density-mode, RMS and outer10%domain-strip mass are distinct outputs. High edge mass withholds source support. Exact repeated-signature GLS and speed-component mixture reductions preserve all positive-mass alternatives.
 

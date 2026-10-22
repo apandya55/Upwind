@@ -30,11 +30,19 @@ def matched_weather(inv, rows, tr=None):
     unique = {}
     for w in primary:
         key = (w.timestamp, w.latitude, w.longitude)
-        if key in unique and any(
-            getattr(w, f) != getattr(unique[key], f)
-            for f in ("wind_speed_m_s", "wind_from_deg", "source_id", "upstream_id")
-        ):
-            raise ValueError("Conflicting duplicate meteorology records")
+        if key in unique:
+            # A duplicate coordinate/time record must agree on every field that
+            # can affect matching, uncertainty, lineage, or provenance. Keeping
+            # one arbitrary row would silently discard metadata and make the
+            # result depend on input order.
+            existing = unique[key].model_dump()
+            candidate = w.model_dump()
+            for field in ("timestamp", "latitude", "longitude"):
+                existing.pop(field, None)
+                candidate.pop(field, None)
+            if candidate != existing:
+                raise ValueError("Conflicting duplicate meteorology records")
+            continue
         unique[key] = w
     met = sorted(
         unique.values(),

@@ -1,0 +1,22 @@
+{
+  "candidate_source_sha256": "c13be9271d24a1ec8958eaad31ffb1235931aab5bfd48e8a0aaa141979e645e4",
+  "cases": [
+    "weak_current_fixture",
+    "strong_known_weather",
+    "unknown_strength",
+    "sensor_offset",
+    "background_shift",
+    "weather_bias",
+    "additional_sensor",
+    "source_free",
+    "two_sources",
+    "out_of_domain_diagnostic"
+  ],
+  "configuration_sha256": "8be487914d697e6b171bcd5af98939539efbca2240bfcebec999c31c04f2fd00",
+  "known_weather_oracle": "Only the strong_known_weather and additional_sensor fit calls disable weather uncertainty; this is a diagnostic control, not an operational input.",
+  "model_version": "plume-robust-0.9.0",
+  "protocol_version": "UW-ENGINE-2026-09",
+  "scope": "Labeled synthetic feasibility ladder; no measured validation, attribution, calibration or field accuracy claim.",
+  "seed": 9100001,
+  "source_script_sha256": "5ec425888dfbbc4dc2be7d75f73a9f8c428f612b38cee40e124b0efea86bc435"
+}

@@ -1,0 +1,44 @@
+{
+  "identifier": "UW-ENGINE-2026-07A-POST-FINAL-INTEGRITY-1",
+  "model_version": "plume-robust-0.7.1",
+  "protocol": "UW-ENGINE-2026-07A",
+  "scientific_source_sha256_current": "756f5701eb2eab3d0efe1fd9909715480ce37fd02d7dfcb5ea8baf05b59f6d5f",
+  "scientific_source_sha256_pre_repair": "87bffc19d1dc0d644444545009bc033c1e2eb147610238c0d8f20d2573078aa6",
+  "pre_repair_final": {
+    "path": ".local/engine-v07-final",
+    "rows": 256,
+    "successful": 255,
+    "crashes": 1,
+    "crash": "seed 8310020, family sensor_drift, ValueError: Out of range float values are not JSON compliant: nan",
+    "source_sha256": "87bffc19d1dc0d644444545009bc033c1e2eb147610238c0d8f20d2573078aa6"
+  },
+  "post_repair_confirmation": {
+    "path": ".local/engine-v07-postfix-final",
+    "rows": 256,
+    "successful": 256,
+    "crashes": 0,
+    "source_sha256": "756f5701eb2eab3d0efe1fd9909715480ce37fd02d7dfcb5ea8baf05b59f6d5f",
+    "outcome_counts": {
+      "ambiguous": 167,
+      "model_mismatch": 86,
+      "source_supported": 3
+    },
+    "note": "Same locked final worlds rerun after non-finite NNLS adequacy guard; engineering confirmation, not independent accuracy evidence.",
+    "diagnostic_unavailable_rows": [
+      {
+        "seed": 8310014,
+        "family": "sensor_drift"
+      },
+      {
+        "seed": 8310020,
+        "family": "sensor_drift"
+      }
+    ]
+  },
+  "correction": {
+    "file": "backend/upwind/identifiability.py",
+    "behavior": "Non-finite bounded pair NNLS fits are discarded, counted as invalid_pair_fits, and set diagnostic_unavailable; engine blocks source_supported and emits a structured warning.",
+    "regression": "backend/tests/test_engine_v07.py::test_two_source_profile_refuses_nonfinite_nnls"
+  },
+  "scope": "Synthetic only. No field accuracy, calibration, responsibility, regulatory attribution or organizational reliability claim."
+}

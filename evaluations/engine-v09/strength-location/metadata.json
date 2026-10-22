@@ -1,0 +1,20 @@
+{
+  "model_version": "plume-robust-0.9.0",
+  "prior_factors": [
+    0.1,
+    1.0,
+    10.0
+  ],
+  "protocol_version": "UW-ENGINE-2026-09",
+  "scope": "Synthetic mechanism study only; truth and oracle nuisance values are evaluator-only.",
+  "seed": 9100101,
+  "six_cases": [
+    "strong_known_weather",
+    "unknown_strength",
+    "sensor_offset",
+    "background_shift",
+    "weather_bias",
+    "additional_sensor"
+  ],
+  "source_script_sha256": "f859150beb9a8e797d96f3c93c513312d391f47472a6bfb72402beea2040324c"
+}

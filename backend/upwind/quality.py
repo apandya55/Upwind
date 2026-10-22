@@ -20,7 +20,19 @@ def measurement_quality(inv):
     usable, conflicts, duplicates = [], [], 0
     for key, rows in sorted(groups.items()):
         signatures = {
-            (r.pm25_ug_m3, r.latitude, r.longitude, r.uncertainty_ug_m3, r.origin)
+            (
+                r.pm25_ug_m3,
+                r.latitude,
+                r.longitude,
+                r.uncertainty_ug_m3,
+                r.origin,
+                r.humidity_percent,
+                r.temperature_c,
+                # ``duplicate`` is an importer-generated row-position marker,
+                # not a measurement property. It must not turn otherwise
+                # identical repeated readings into a conflict.
+                tuple(sorted(set(r.flags) - {"duplicate"})),
+            )
             for r in rows
         }
         if len(signatures) > 1:
