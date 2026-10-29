@@ -1,6 +1,6 @@
 # UPWIND v1.0 candidate release readiness
 
-Audit updated: 2026-10-29. This report records the current working-tree candidate and the checks that were run locally. **UPWIND is not verified production-ready.** No repository was published, no commit was pushed, and no public or production deployment was performed.
+Audit updated: 2026-10-29. This report records the source release candidate and the checks that were run locally. Commit `ce93183` is published on `main`; **UPWIND is not verified production-ready.** No public or production deployment was performed.
 
 ## Tonight's verdict
 
@@ -47,7 +47,7 @@ The repeatable HTTP acceptance command is `python3 scripts/smoke_public_deployme
 
 1. **Data distribution review.** EPA and Census provenance/terms are recorded in the generated manifest. The OSM bundle is identified as ODbL 1.0 with attribution, but no legal determination has been made that the generated bundle and served road-derived metrics meet all redistribution obligations. Keep generated data out of the source repository until the owner resolves the exact distribution model.
 2. **No hosted staging verification.** `docker` is unavailable here, and the VM, DNS names, and Vercel project are not configured. The Vercel static build and separate API contract are prepared, but container images, HTTPS, exact host CORS, `/api/ready`, and real API browser traffic have not been verified on a host. Do not describe the candidate as deployed or staging-tested.
-3. **Release tree is not a reviewed release commit.** This checkout contains extensive existing modified and untracked project work. The intended release contents are staged for deliberate review; the release commit and publication still need to be created.
+3. **Source RC is published; service release is not.** The reviewed source tree is committed as `ce93183` on `main`. The generated deployment bundle, hosted service, and production data distribution still require the external gates above.
 4. **Production operations are unproven.** No production URL, monitoring/alerting, backup restore, load test, rollback rehearsal, host capacity test, or provider contract has been verified. The public OSM tile service has no project production agreement.
 
 ## Nonblocking warnings and boundaries
