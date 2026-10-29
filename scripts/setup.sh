@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
-python3 -c 'import sys; assert sys.version_info >= (3,12), "Python 3.12+ required"'
+python3 -c 'import sys; assert sys.version_info[:2] == (3,12), "Python 3.12 required"'
 node -e 'const [a,b]=process.versions.node.split(".").map(Number); if(a<22||(a===22&&b<12)) throw Error("Node 22.12+ or 24 required")'
 mkdir -p .local
 if command -v uv >/dev/null 2>&1; then

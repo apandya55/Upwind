@@ -1,17 +1,18 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
-import { Map as MapLibreMap } from "maplibre-gl";
+import { Map as MapLibreMap, Marker as MapLibreMarker } from "maplibre-gl";
 import type { ErrorEvent, GeoJSONSource as MapGeoJSONSource, MapLayerMouseEvent } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import {
   Activity, AlertCircle, ArrowRight, Bookmark, ChevronDown, CircleHelp, Download,
   ExternalLink, FileText, Layers3, MapPin, Search, Share2, Wind, X, Plus, Minus, LocateFixed, SquareDashedMousePointer,
-  PanelRightClose, PanelRightOpen,
+  PanelRightClose, PanelRightOpen, Menu, Upload, Info, Compass, Terminal,
 } from "lucide-react";
 import {
   CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis,
 } from "recharts";
 import LoadingScreen from "../LoadingScreen";
+import Navbar from "../Navbar";
 import type { Facility, Monitor, NationalManifest, NationalPlace, NationalSnapshot } from "./types";
 
 type Layer = "estimates" | "monitors" | "sources";
@@ -52,6 +53,7 @@ type ContextItem = {
   interpretation: string;
 };
 type ContextResponse = {
+  query?: { radius_km: number };
   items: ContextItem[];
   nearest_monitors: ContextItem[];
   closest_facilities: ContextItem[];
@@ -60,8 +62,11 @@ type ContextResponse = {
   monitoring_gap: { status: string; monitor_summary_count: number; radius_km: number; meaning: string };
   provenance: { monitor_year: number; inventory_year: number };
   limitations: string[];
+  place_evidence?: { evidence_class: string; place: { id: string; name: string; state: string }; year: number; estimate: any; coordinate_meaning: string; uncertainty: string | null } | null;
+  road_context?: { available: boolean; coverage: string; reason?: string; city?: string; radius_km?: number; nearest_major_road?: { name: string; road_class: string; distance_km: number } | null; nearby_major_roads?: { osm_way_id: string; name: string; road_class: string; distance_km: number; segment_count: number; way_ids: string[] }[]; major_road_corridor_count_within_radius?: number; major_road_length_km_within_radius?: number; major_road_length_km_per_km2?: number; provenance?: { dataset: string; source_url: string; license: string; attribution: string; extract_timestamp?: string; extract_bounds_wgs84: Record<string, number> }; interpretation?: string };
 };
-const API = "/api/national";
+const API_ORIGIN = import.meta.env.VITE_API_BASE_URL?.trim().replace(/\/$/, "") || "";
+const API = `${API_ORIGIN}/api/national`;
 const fmt = (n: number | null | undefined, places = 0) =>
   n == null || !Number.isFinite(n) ? "—" : n.toLocaleString("en-US", { maximumFractionDigits: places, minimumFractionDigits: places });
 const isSameId = (a: any, b: any): boolean =>
@@ -136,6 +141,23 @@ function SourceContext({ data, loading, error, radius, onRadiusChange }: { data:
   </section>;
 }
 
+function InvestigationPanel({ place, year, data, onExport }: { place: NationalPlace; year: number; data: ContextResponse | null; onExport: () => void }) {
+  const estimate = place.model_estimates?.[String(year)];
+  const roads = data?.road_context;
+  return <section className="detail-section location-investigation" aria-label={`Local pollution investigation for ${place.name}`}>
+    <div className="section-title-line"><div><h3>Local pollution investigation</h3><span>{place.name}, {place.state} · evidence around the Census point</span></div><button className="soft-button" onClick={onExport}><Download size={14}/> Export JSON</button></div>
+    <div className="investigation-evidence-row"><b>Modeled estimate · {year}</b><strong>{estimate ? `${fmt(estimate.value_ug_m3, 2)} µg/m³` : "No supported estimate"}</strong><small>{estimate ? `Spatial OOF 90% band ${fmt(estimate.interval90_low_ug_m3, 2)}–${fmt(estimate.interval90_high_ug_m3, 2)} µg/m³` : place.withheld_reason || "No estimate is published for this year."}</small></div>
+    <div className="context-group"><h4>Measured monitoring</h4>{data?.nearest_monitors.length ? data.nearest_monitors.slice(0, 3).map((item, i) => <ContextRecord key={`investigation-monitor-${item.id}-${i}`} item={item} monitor/>) : <p className="muted-note">No eligible EPA AQS annual summary within {contextRadiusLabel(data)} km for {year}.</p>}</div>
+    <div className="context-group"><h4>EPA NEI inventory records</h4>{data?.closest_facilities.length ? data.closest_facilities.slice(0, 4).map((item, i) => <ContextRecord key={`investigation-facility-${item.id}-${i}`} item={item}/>) : <p className="muted-note">No matching EPA NEI PM2.5 inventory rows were found within the selected search radius.</p>}<p className="muted-note">Facility values describe annual inventory emissions, not ambient concentrations.</p></div>
+    <div className="context-group"><h4>Major road network</h4>{roads?.available ? <><p>{roads.nearest_major_road ? `${roads.nearest_major_road.name} (${roads.nearest_major_road.road_class}) is ${fmt(roads.nearest_major_road.distance_km, 2)} km from the point.` : `No mapped major road was found within ${roads.radius_km} km.`}</p><p>{fmt(roads.major_road_length_km_within_radius, 2)} km of mapped major-road length across {roads.major_road_corridor_count_within_radius} named corridors within {roads.radius_km} km ({fmt(roads.major_road_length_km_per_km2, 2)} km/km²). This is road-network context only.</p><ul>{(roads.nearby_major_roads || []).slice(0, 4).map((road) => <li key={road.osm_way_id}>{road.name} · {road.road_class} · {fmt(road.distance_km, 2)} km</li>)}</ul><a className="external-link" href={roads.provenance?.source_url} target="_blank" rel="noreferrer">OpenStreetMap · {roads.provenance?.license} <ExternalLink size={13}/></a><small className="muted-note">{roads.provenance?.attribution} · extract {roads.provenance?.extract_timestamp || "timestamp not supplied"}. {roads.coverage}</small></> : <p className="muted-note">{roads?.reason || "Road coverage is not available for this location."}</p>}</div>
+    <div className="investigation-limits"><strong>Limits</strong><p>These records show nearby measurements, an annual place-point estimate, inventory rows, and mapped road geography. They do not identify which source contributed to measured or estimated PM2.5. EPA ECHO/FRS records are not integrated in this release. No local meteorological observation is linked to this investigation.</p></div>
+  </section>;
+}
+
+function contextRadiusLabel(data: ContextResponse | null) { return data?.query?.radius_km || 50; }
+const motionDuration = (milliseconds: number) =>
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : milliseconds;
+
 const getSafeBounds = (m: MapLibreMap): [number, number, number, number] => {
   const b = m.getBounds();
   let w = b.getWest();
@@ -204,7 +226,6 @@ function EvidenceMap({
       m.addSource("places", { type: "geojson", data: { type: "FeatureCollection", features: [] } });
       m.addSource("monitors", { type: "geojson", data: { type: "FeatureCollection", features: [] } });
       m.addSource("facilities", { type: "geojson", data: { type: "FeatureCollection", features: [] } });
-      m.addSource("selected-marker", { type: "geojson", data: { type: "FeatureCollection", features: [] } });
       m.addSource("hover-marker", { type: "geojson", data: { type: "FeatureCollection", features: [] } });
 
       m.addLayer({
@@ -216,28 +237,39 @@ function EvidenceMap({
           "circle-color": "#1f6e63",
           "circle-radius": [
             "interpolate", ["linear"], ["get", "member_count"],
-            2, 11,
-            10, 13,
-            50, 16,
-            200, 19,
-            1000, 23
+            2, 4.5,
+            10, 5.5,
+            50, 8,
+            200, 11,
+            1000, 14
           ],
-          "circle-opacity": 0.9,
+          "circle-opacity": 0.86,
           "circle-stroke-color": "#ffffff",
-          "circle-stroke-width": 2,
+          "circle-stroke-width": 1.25,
+          "circle-radius-transition": { duration: motionDuration(350), delay: 0 },
+          "circle-color-transition": { duration: motionDuration(350), delay: 0 },
+          "circle-opacity-transition": { duration: motionDuration(250), delay: 0 },
         },
       });
       m.addLayer({
         id: "place-cluster-count",
         type: "symbol",
         source: "places",
-        filter: ["==", ["get", "is_cluster"], true],
         layout: {
           "text-field": ["to-string", ["get", "member_count"]],
-          "text-size": 10.5,
+          "text-size": 9,
           "text-allow-overlap": true,
         },
-        paint: { "text-color": "#ffffff" },
+        // At national scale most cells contain only a few places. Their
+        // count is useful after zooming, but repeating tiny labels over every
+        // dot makes the overview unreadable.
+        filter: ["all", ["==", ["get", "is_cluster"], true], [">=", ["get", "member_count"], 5]],
+        paint: {
+          "text-color": "#ffffff",
+          // Count labels become useful once a regional view has enough room;
+          // keeping them quiet on the national overview preserves the dots.
+          "text-opacity": ["interpolate", ["linear"], ["zoom"], 2, 0, 4.8, 0, 6, 1],
+        },
       });
       m.addLayer({
         id: "place-estimates",
@@ -247,11 +279,11 @@ function EvidenceMap({
         paint: {
           "circle-radius": [
             "interpolate", ["linear"], ["zoom"],
-            2, 3,
-            3.5, 4.2,
-            5.5, 5.8,
-            7.5, 7.5,
-            9.5, 9.5
+            2, 1.35,
+            3.5, 1.8,
+            5.5, 3,
+            7.5, 4.5,
+            9.5, 7
           ],
           "circle-color": [
             "case",
@@ -267,15 +299,20 @@ function EvidenceMap({
               "#d6533f"
             ]
           ],
-          "circle-opacity": 0.88,
+          // Keep the national overview readable where many places share a
+          // small area. Points regain full weight as users zoom in.
+          "circle-opacity": ["interpolate", ["linear"], ["zoom"], 2, 0.66, 3.5, 0.76, 5.5, 0.9, 8, 0.96],
           "circle-stroke-width": [
             "interpolate", ["linear"], ["zoom"],
-            2, 0.9,
-            5, 1.4,
-            8, 1.8
+            2, 0.35,
+            5, 0.65,
+            8, 1.25
           ],
           "circle-stroke-color": "#ffffff",
           "circle-stroke-opacity": 0.95,
+          "circle-radius-transition": { duration: motionDuration(350), delay: 0 },
+          "circle-color-transition": { duration: motionDuration(350), delay: 0 },
+          "circle-opacity-transition": { duration: motionDuration(250), delay: 0 },
         },
       });
       m.addLayer({
@@ -287,15 +324,18 @@ function EvidenceMap({
           "circle-color": "#1e608f",
           "circle-radius": [
             "interpolate", ["linear"], ["get", "member_count"],
-            2, 11,
-            10, 13,
-            50, 16,
-            200, 19,
-            1000, 23
+            2, 7,
+            10, 9,
+            50, 12,
+            200, 15,
+            1000, 18
           ],
           "circle-opacity": 0.92,
           "circle-stroke-color": "#ffffff",
           "circle-stroke-width": 2,
+          "circle-radius-transition": { duration: motionDuration(350), delay: 0 },
+          "circle-color-transition": { duration: motionDuration(350), delay: 0 },
+          "circle-opacity-transition": { duration: motionDuration(250), delay: 0 },
         },
       });
       m.addLayer({
@@ -327,6 +367,9 @@ function EvidenceMap({
           "circle-stroke-width": 1.6,
           "circle-stroke-color": "#ffffff",
           "circle-opacity": 0.92,
+          "circle-radius-transition": { duration: motionDuration(350), delay: 0 },
+          "circle-color-transition": { duration: motionDuration(350), delay: 0 },
+          "circle-opacity-transition": { duration: motionDuration(250), delay: 0 },
         },
       });
       m.addLayer({
@@ -338,15 +381,18 @@ function EvidenceMap({
           "circle-color": "#b85333",
           "circle-radius": [
             "interpolate", ["linear"], ["get", "member_count"],
-            2, 11,
-            10, 13,
-            50, 16,
-            200, 19,
-            1000, 23
+            2, 7,
+            10, 9,
+            50, 12,
+            200, 15,
+            1000, 18
           ],
           "circle-opacity": 0.92,
           "circle-stroke-color": "#ffffff",
           "circle-stroke-width": 2,
+          "circle-radius-transition": { duration: motionDuration(350), delay: 0 },
+          "circle-color-transition": { duration: motionDuration(350), delay: 0 },
+          "circle-opacity-transition": { duration: motionDuration(250), delay: 0 },
         },
       });
       m.addLayer({
@@ -369,15 +415,18 @@ function EvidenceMap({
         paint: {
           "circle-radius": [
             "interpolate", ["linear"], ["zoom"],
-            2, 3,
-            4, 4.5,
-            7, 6,
-            9, 8
+            2, 1.8,
+            4, 2.5,
+            7, 4,
+            9, 6
           ],
           "circle-color": "#d96543",
           "circle-stroke-color": "#ffffff",
           "circle-stroke-width": 1.5,
           "circle-opacity": 0.92,
+          "circle-radius-transition": { duration: motionDuration(350), delay: 0 },
+          "circle-color-transition": { duration: motionDuration(350), delay: 0 },
+          "circle-opacity-transition": { duration: motionDuration(250), delay: 0 },
         },
       });
       m.addLayer({
@@ -391,30 +440,6 @@ function EvidenceMap({
           "circle-stroke-width": 1.5,
           "circle-stroke-color": "#123f4a",
           "circle-stroke-opacity": 0.75,
-        },
-      });
-      m.addLayer({
-        id: "selected-marker-halo",
-        type: "circle",
-        source: "selected-marker",
-        paint: {
-          "circle-radius": ["interpolate", ["linear"], ["zoom"], 3, 13, 8, 20],
-          "circle-color": "#123f4a",
-          "circle-opacity": 0.22,
-          "circle-stroke-width": 2,
-          "circle-stroke-color": "#123f4a",
-          "circle-stroke-opacity": 0.85,
-        },
-      });
-      m.addLayer({
-        id: "selected-marker-dot",
-        type: "circle",
-        source: "selected-marker",
-        paint: {
-          "circle-radius": ["interpolate", ["linear"], ["zoom"], 3, 5.5, 8, 8],
-          "circle-color": "#ffffff",
-          "circle-stroke-width": 3,
-          "circle-stroke-color": "#123f4a",
         },
       });
       const interactiveLayers = [
@@ -433,7 +458,7 @@ function EvidenceMap({
           const coordinates = (f.geometry as GeoJSON.Point).coordinates as [number, number];
           const kind: Layer = layerId.startsWith("place-") ? "estimates" : layerId.startsWith("monitor-") ? "monitors" : "sources";
           callbacks.current.onCluster(kind, String(f.properties.cluster_id), Number(f.properties.member_count), coordinates);
-          m.easeTo({ center: coordinates, zoom: Math.min(15, m.getZoom() + 2), duration: 380 });
+          m.easeTo({ center: coordinates, zoom: Math.min(15, m.getZoom() + 2), duration: motionDuration(380) });
           return;
         }
         const coords = (f.geometry as GeoJSON.Point).coordinates as [number, number];
@@ -510,7 +535,7 @@ function EvidenceMap({
       if (target.current) { target.current.dataset.longitude = center.lng.toFixed(4); target.current.dataset.latitude = center.lat.toFixed(4); target.current.dataset.zoom = m.getZoom().toFixed(2); }
       callbacks.current.onCamera({ longitude: center.lng, latitude: center.lat, zoom: m.getZoom(), bearing: m.getBearing(), pitch: m.getPitch() });
     });
-    return () => { if (restoreCamera) window.removeEventListener("popstate", restoreCamera); m.remove(); map.current = null; };
+    return () => { if (restoreCamera) window.removeEventListener("popstate", restoreCamera); pulseMarkerRef.current?.remove(); pulseMarkerRef.current = null; m.remove(); map.current = null; };
   }, []);
   useEffect(() => {
     if (!ready || !map.current) return;
@@ -558,24 +583,72 @@ function EvidenceMap({
     for (const id of ["facility-clusters", "facility-cluster-count", "facility-points"]) m.setLayoutProperty(id, "visibility", showFacilities ? "visible" : "none");
     (m.getSource("hover-marker") as MapGeoJSONSource | undefined)?.setData({ type: "FeatureCollection", features: [] } as GeoJSON.FeatureCollection);
   }, [layer, showSources, ready]);
+  const pulseMarkerRef = useRef<MapLibreMarker | null>(null);
+  const previousSelectedPointRef = useRef<[number, number] | null>(null);
+  const selectionAnimationRef = useRef<number | null>(null);
   useEffect(() => {
     if (!ready || !map.current) return;
-    const source = map.current.getSource("selected-marker") as MapGeoJSONSource | undefined;
     const target = selectedPoint || (selected ? [((selected as any).render_longitude ?? selected.longitude), ((selected as any).render_latitude ?? selected.latitude)] as [number, number] : null);
     if (target) {
-      source?.setData({ type: "FeatureCollection", features: [pointFeature(target, {})] } as GeoJSON.FeatureCollection);
-      const cameraInUrl = readCamera(new URLSearchParams(location.search));
-      if (!cameraInUrl) map.current.flyTo({ center: target, zoom: Math.max(map.current.getZoom(), 7.5), speed: 1.15, curve: 1.35, essential: true });
+      const previous = previousSelectedPointRef.current;
+      const changed = !previous || previous[0] !== target[0] || previous[1] !== target[1];
+      previousSelectedPointRef.current = target;
+      if (!pulseMarkerRef.current && map.current) {
+        const el = document.createElement("div");
+        el.className = "map-selected-pulse-marker";
+        el.innerHTML = '<span class="pulse-beacon-ring"></span><span class="pulse-beacon-ring ring-delayed"></span><span class="pulse-beacon-core"></span>';
+        pulseMarkerRef.current = new MapLibreMarker({ element: el }).setLngLat(target).addTo(map.current);
+      } else if (pulseMarkerRef.current) {
+        window.cancelAnimationFrame(selectionAnimationRef.current ?? 0);
+        if (previous && changed) {
+          const started = performance.now();
+          const from = previous;
+          const tick = (now: number) => {
+            const progress = Math.min(1, (now - started) / 520);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            pulseMarkerRef.current?.setLngLat([
+              from[0] + (target[0] - from[0]) * eased,
+              from[1] + (target[1] - from[1]) * eased,
+            ]);
+            if (progress < 1) selectionAnimationRef.current = window.requestAnimationFrame(tick);
+          };
+          selectionAnimationRef.current = window.requestAnimationFrame(tick);
+        } else {
+          pulseMarkerRef.current.setLngLat(target);
+        }
+      }
+      const markerElement = pulseMarkerRef.current?.getElement();
+      if (markerElement) {
+        markerElement.classList.remove("is-selection-change");
+        void markerElement.offsetWidth;
+        markerElement.classList.add("is-selection-change");
+      }
+      if (changed) {
+        const narrow = window.matchMedia("(max-width: 1000px)").matches;
+        map.current.flyTo({
+          center: target,
+          zoom: Math.max(map.current.getZoom(), 7.5),
+          duration: motionDuration(720),
+          essential: true,
+          // On narrow screens the detail sheet covers the lower part of the
+          // map. Pull the selected point into the visible map window while
+          // the camera eases, so selection still feels spatially grounded.
+          offset: narrow ? [0, -Math.min(window.innerHeight * 0.36, 260)] : [0, 0],
+        });
+      }
     } else {
-      source?.setData({ type: "FeatureCollection", features: [] } as GeoJSON.FeatureCollection);
+      window.cancelAnimationFrame(selectionAnimationRef.current ?? 0);
+      previousSelectedPointRef.current = null;
+      pulseMarkerRef.current?.remove();
+      pulseMarkerRef.current = null;
     }
   }, [selectedPoint, selected?.longitude, selected?.latitude, (selected as any)?.render_longitude, (selected as any)?.render_latitude, ready]);
-  const resetView = () => map.current?.easeTo({ center: [-98.5, 39.8], zoom: 3.1, bearing: 0, pitch: 0, duration: 500 });
+  const resetView = () => map.current?.easeTo({ center: [-98.5, 39.8], zoom: 3.1, bearing: 0, pitch: 0, duration: motionDuration(500) });
   const areaPointer = (event: ReactPointerEvent<HTMLDivElement>) => {
     const rect = target.current?.getBoundingClientRect(); if (!rect) return;
     if (event.type === "pointerdown") { event.currentTarget.setPointerCapture(event.pointerId); areaStart.current = { x: event.clientX - rect.left, y: event.clientY - rect.top }; setAreaRect({ left: areaStart.current.x, top: areaStart.current.y, width: 0, height: 0 }); }
     else if (event.type === "pointermove" && areaStart.current) { const x = event.clientX - rect.left, y = event.clientY - rect.top; setAreaRect({ left: Math.min(x, areaStart.current.x), top: Math.min(y, areaStart.current.y), width: Math.abs(x - areaStart.current.x), height: Math.abs(y - areaStart.current.y) }); }
-    else if (event.type === "pointerup" && areaStart.current && map.current) { const start = areaStart.current, end = { x: event.clientX - rect.left, y: event.clientY - rect.top }; areaStart.current = null; setAreaRect(null); setAreaMode(false); if (Math.abs(end.x - start.x) > 12 && Math.abs(end.y - start.y) > 12) { const a = map.current.unproject([start.x, start.y]), b = map.current.unproject([end.x, end.y]); map.current.fitBounds([[Math.min(a.lng,b.lng),Math.min(a.lat,b.lat)],[Math.max(a.lng,b.lng),Math.max(a.lat,b.lat)]], { padding: 42, duration: 420 }); } }
+    else if (event.type === "pointerup" && areaStart.current && map.current) { const start = areaStart.current, end = { x: event.clientX - rect.left, y: event.clientY - rect.top }; areaStart.current = null; setAreaRect(null); setAreaMode(false); if (Math.abs(end.x - start.x) > 12 && Math.abs(end.y - start.y) > 12) { const a = map.current.unproject([start.x, start.y]), b = map.current.unproject([end.x, end.y]); map.current.fitBounds([[Math.min(a.lng,b.lng),Math.min(a.lat,b.lat)],[Math.max(a.lng,b.lng),Math.max(a.lat,b.lat)]], { padding: 42, duration: motionDuration(420) }); } }
   };
   return <div className="national-map-wrap"><div className="national-map" ref={target} role="application" aria-label="Map of historical U.S. air quality evidence" />
     <div className={`map-area-capture${areaMode ? " active" : ""}`} onPointerDown={areaPointer} onPointerMove={areaPointer} onPointerUp={areaPointer} aria-hidden="true">{areaRect&&<span style={{left:areaRect.left,top:areaRect.top,width:areaRect.width,height:areaRect.height}}/>}</div>
@@ -598,6 +671,7 @@ export default function NationalExplorer() {
   const [contextData, setContextData] = useState<ContextResponse | null>(null);
   const [contextLoading, setContextLoading] = useState(false);
   const [contextError, setContextError] = useState("");
+  const [investigationOpen, setInvestigationOpen] = useState(false);
   const [year, setYear] = useState(Number(params.get("year")) || 2024);
   const requestedLayer = params.get("layer");
   const [layer, setLayer] = useState<Layer>(requestedLayer === "monitors" || requestedLayer === "sources" ? requestedLayer : "estimates");
@@ -629,6 +703,8 @@ export default function NationalExplorer() {
   const [printSnapshot, setPrintSnapshot] = useState<NationalSnapshot | null>(null);
   const [tab, setTab] = useState<"place" | "methodology">("place");
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [selectionChanging, setSelectionChanging] = useState(false);
+  const selectionTimer = useRef<number | undefined>(undefined);
   const [shareCopied, setShareCopied] = useState(false);
   const searchTimer = useRef<number | undefined>(undefined);
   const viewportTimer = useRef<number | undefined>(undefined);
@@ -639,6 +715,11 @@ export default function NationalExplorer() {
   const cameraRef = useRef<CameraState | null>(readCamera(params));
   const cameraWriteTimer = useRef<number | undefined>(undefined);
   const [selectedPoint, setSelectedPoint] = useState<[number, number] | null>(null);
+  const pulseSelection = useCallback(() => {
+    window.clearTimeout(selectionTimer.current);
+    setSelectionChanging(true);
+    selectionTimer.current = window.setTimeout(() => setSelectionChanging(false), 260);
+  }, []);
   const activePlace = useMemo(() => {
     if (active?.kind === "estimates") {
       const foundInPlaces = places.find((p) => isSameId(p.id, active.id));
@@ -725,7 +806,14 @@ export default function NationalExplorer() {
   }, [active?.kind, active?.id]);
   useEffect(() => {
     window.clearTimeout(searchTimer.current);
-    if (!query.trim()) { setSearchResults([]); return; }
+    if (!query.trim()) {
+      // A quick-place selection can clear the input while its earlier request
+      // is still in flight. Ignore that response so it cannot reopen the menu.
+      searchRequest.current += 1;
+      setSearchLoading(false);
+      setSearchResults([]);
+      return;
+    }
     searchTimer.current = window.setTimeout(() => {
       const [nameQuery, stateQuery] = query.split(",").map((part) => part.trim());
       const stateParam = stateQuery ? `&state=${encodeURIComponent(stateQuery)}` : "";
@@ -754,6 +842,7 @@ export default function NationalExplorer() {
     if (!activePlace) {
       setContextData(null);
       setContextError("");
+      setInvestigationOpen(false);
       return;
     }
     const controller = new AbortController();
@@ -765,6 +854,7 @@ export default function NationalExplorer() {
       radius_km: String(contextRadius),
       monitor_year: String(year),
       limit: "24",
+      geoid: activePlace.id,
     });
     fetch(`${API}/context?${params.toString()}`, { signal: controller.signal })
       .then((response) => {
@@ -824,6 +914,7 @@ export default function NationalExplorer() {
   const onMapSelect = useCallback((kind: Layer, id: string, coords?: [number, number], item?: ViewportItem) => {
     const normId = String(id).trim();
     const normalizedItem = item ? normalizeItem<ViewportItem>(item) : undefined;
+    pulseSelection();
     setSidebarOpen(true);
     setTab("place");
     setSelectedCluster(null);
@@ -886,8 +977,9 @@ export default function NationalExplorer() {
           });
         }).catch(() => undefined);
     }
-  }, [visiblePlaces, places, monitors, sources, year]);
+  }, [visiblePlaces, places, monitors, sources, year, pulseSelection]);
   const onCluster = useCallback((kind: Layer, id: string, count: number, coordinates: [number, number]) => {
+    pulseSelection();
     setSidebarOpen(true);
     setTab("place");
     setActive(null);
@@ -901,7 +993,7 @@ export default function NationalExplorer() {
     const [west, south, east, north] = bounds;
     const params = new URLSearchParams({ layer: kind, cluster_id: id, west: String(west), south: String(south), east: String(east), north: String(north), year: String(year), offset: "0", limit: "50" });
     fetch(`${API}/viewport-members?${params}`).then((r) => { if (!r.ok) throw new Error(); return r.json(); }).then((d) => setSelectedCluster((old) => old?.id === id ? { ...old, members: d.items, nextOffset: d.next_offset, count: d.total, loading: false } : old)).catch(() => setSelectedCluster((old) => old?.id === id ? { ...old, loading: false, nextOffset: null } : old));
-  }, [year]);
+  }, [year, pulseSelection]);
   const loadMoreClusterMembers = () => {
     if (!selectedCluster || selectedCluster.nextOffset == null || !boundsRef.current) return;
     const [west, south, east, north] = boundsRef.current;
@@ -946,8 +1038,8 @@ export default function NationalExplorer() {
   const chartData = nearbyMonitors.map((m) => ({ year: m.year, measured: m.pm25_ug_m3 }));
   const comparisons = comparisonIds.map((id) => places.find((p) => isSameId(p.id, id))).filter((p): p is NationalPlace => !!p);
   const comparisonPlaces = activePlace && !comparisons.some((p) => isSameId(p.id, activePlace.id)) ? [activePlace, ...comparisons] : comparisons;
-  const ranking = useMemo(() => places.filter((p) => p.model_estimates?.[String(year)]).sort((a,b)=>(b.model_estimates?.[String(year)]?.value_ug_m3 || 0)-(a.model_estimates?.[String(year)]?.value_ug_m3 || 0)).slice(0,8), [places,year]);
   const selectPlace = (place: NationalPlace) => {
+    pulseSelection();
     setSidebarOpen(true);
     setActiveMapItem(null);
     history.pushState(null, "", `${location.pathname}?${new URLSearchParams({year:String(year),layer,place:String(place.id),...(comparisonIds.length?{compare:comparisonIds.join(",")}:{})}).toString()}`);
@@ -960,6 +1052,7 @@ export default function NationalExplorer() {
     setTab("place");
   };
   const closeDetail = () => {
+    pulseSelection();
     setActive(null);
     setActiveMapItem(null);
     setSelectedId(null);
@@ -985,6 +1078,25 @@ export default function NationalExplorer() {
       document.body.appendChild(link); link.click(); link.remove(); window.setTimeout(() => URL.revokeObjectURL(href), 1000);
     } catch { setExportError("Export could not be loaded. Check the connection and try again."); }
   };
+  const exportInvestigation = () => {
+    if (!activePlace) return;
+    const payload = {
+      title: `UPWIND Local Pollution Investigation — ${activePlace.name}, ${activePlace.state}`,
+      generated_utc: new Date().toISOString(),
+      location: { geoid: activePlace.id, latitude: activePlace.latitude, longitude: activePlace.longitude, coordinate_meaning: "Census Gazetteer internal point" },
+      year, place_evidence: contextData?.place_evidence ?? { estimate: activePlace.model_estimates?.[String(year)] ?? null },
+      nearby_monitor_summaries: contextData?.nearest_monitors ?? [],
+      nearby_nei_inventory_records: contextData?.closest_facilities ?? [],
+      road_context: contextData?.road_context ?? { available: false },
+      provenance: contextData?.provenance ?? null,
+      limitations: contextData?.limitations ?? [],
+      interpretation_boundary: "Proximity is descriptive context and does not establish source contribution, responsibility, risk, or causation.",
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const href = URL.createObjectURL(blob); const link = document.createElement("a");
+    link.href = href; link.download = `upwind-investigation-${activePlace.id}-${year}.json`;
+    document.body.appendChild(link); link.click(); link.remove(); window.setTimeout(() => URL.revokeObjectURL(href), 1000);
+  };
   const printBrief = async () => {
     setPrintError("");
     if (!snapshotIds.length) { window.print(); return; }
@@ -1007,11 +1119,76 @@ export default function NationalExplorer() {
 
   return <main className={`national-shell${sidebarOpen ? "" : " sidebar-collapsed"}`}>
     {printSnapshot && <section className="print-snapshot" aria-label="Printable evidence snapshot"><header><strong>UPWIND · Historical air quality evidence</strong><span>Release {printSnapshot.release} · built {printSnapshot.built_utc || "not recorded"} · generated {printSnapshot.generated_utc || "not recorded"}</span></header><h1>Place evidence · {printSnapshot.year}</h1><p>PM2.5 annual mean at Census Gazetteer internal points. These are point estimates, not place averages, current conditions, exposure, forecasts, or source attribution. The empirical spatial out-of-fold interval does not guarantee local coverage.</p><div className="print-snapshot-grid">{printSnapshot.items.map((item) => <article key={item.id}><h2>{item.name}, {item.state}</h2><p>GEOID {item.id} · {item.place_type}</p><strong>{item.estimate ? `${fmt(item.estimate.value_ug_m3,2)} µg/m³` : "Estimate withheld"}</strong><p>{item.estimate ? `${fmt(item.estimate.interval90_low_ug_m3,2)}–${fmt(item.estimate.interval90_high_ug_m3,2)} µg/m³ · ${item.estimate.interval_interpretation}` : item.unsupported_reason || "No supported estimate for this place and year."}</p><p>WGS84 internal point: {item.coordinates[1].toFixed(5)}, {item.coordinates[0].toFixed(5)} · {item.coordinate_meaning}</p><p>Supporting AQS monitor: {item.estimate?.reference_monitor_id || "not identified"} · {fmt(item.estimate?.nearest_monitor_km)} km</p><p>{item.evidence_explanation?.why_this_appears || `Annual ${item.year} model evidence at this point.`}</p>{!!item.nearby_inventory_records?.length && <><h3>Nearby EPA NEI inventory records · not ambient measurements</h3>{item.nearby_inventory_records.slice(0,3).map((record,index)=><p key={`${record.facility_id || record.summary_row_id}:${index}`}>{String(record.name || record.facility_id || "EPA inventory record")} · {String(record.pollutant_code || "pollutant not specified")} · {fmt(Number(record.emissions),2)} {String(record.units || "")} · inventory {String(record.inventory_year || "year unavailable")} · {fmt(Number(record.distance_km),1)} km from internal point</p>)}</>}<p>Population 2024: {item.population_2024 == null ? "not reported" : fmt(item.population_2024)} · vintage {item.population_vintage || "not recorded"}</p></article>)}</div><p>Sources and provenance are available from the versioned dataset release. EPA NEI facility rows describe inventory estimates and do not show contribution to ambient concentration.</p><h2>Questions for further investigation</h2><ul><li>Are the annual observation period and nearby AQS monitor suitable for the local question being asked?</li><li>Which local, tribal, or community monitoring records could fill gaps in this release?</li><li>Can listed inventory facilities be verified against current records, permits, or mapped facility boundaries?</li><li>What timestamped weather and independent measurements would be needed before testing a non-causal association?</li></ul></section>}
-    <header className="national-header">
-      <a className="national-brand" href="/"><span className="national-brand-icon"><Wind size={23}/></span><span>UPWIND<small>HISTORICAL AIR ATLAS</small></span></a>
-      <div className="national-head-copy"><span className="national-kicker">PUBLIC DATA EXPLORER</span><h1>Air quality, seen across place and time.</h1></div>
-      <div className="national-header-actions"><button onClick={share} className="soft-button"><Share2 size={15}/> {shareCopied ? "Link copied" : "Share view"}</button></div>
-    </header>
+    <Navbar active="map" onShare={share} shareCopied={shareCopied}>
+      <section className="national-toolbar" aria-label="Explorer controls">
+        <div className="national-search"><Search size={15}/><input aria-label="Search Census places" aria-expanded={!!searchResults.length} aria-controls="national-place-results" aria-activedescendant={searchResults[searchIndex]?`national-place-${searchResults[searchIndex].id}`:undefined} placeholder="Search Census places…" value={query} onChange={(e)=>setQuery(e.target.value)} onKeyDown={onSearchKey}/>{query&&<button aria-label="Clear search" onClick={()=>{setQuery("");setSearchResults([]);setSearchError("")}}><X size={14}/></button>}
+          {!!searchResults.length&&<div id="national-place-results" className="search-results" role="listbox">{searchResults.map((p,i)=><button id={`national-place-${p.id}`} role="option" aria-selected={i===searchIndex} key={p.id} onMouseEnter={()=>setSearchIndex(i)} onClick={()=>selectPlace(p)}><span>{p.name}</span><small>{p.state} · {p.place_type}</small></button>)}</div>}
+          {!!query.trim()&&searchLoading&&<div className="search-results" role="status">Searching Census places…</div>}
+          {!!query.trim()&&!searchLoading&&!searchResults.length&&<div className="search-results" role="status">{searchError || `No Census places match “${query}”. Include the state name to distinguish places.`}</div>}
+        </div>
+        <label className="national-select"><span>Historical year</span><select aria-label="Historical year" value={year} onChange={(e)=>{
+          const next = Number(e.target.value);
+          const modelingYear = manifest?.selected_modeling_year ?? 2024;
+          let nextLayer = layer;
+          if (layer === "estimates" && next !== modelingYear) {
+            nextLayer = "monitors";
+          }
+          setYear(next);
+          if (nextLayer !== layer) setLayer(nextLayer);
+          history.pushState(null,"",`${location.pathname}?${new URLSearchParams({year:String(next),layer:nextLayer,...(selectedId?{place:selectedId}:{}),...(comparisonIds.length?{compare:comparisonIds.join(",")}:{})}).toString()}`);
+        }}>{availableYears.map((y)=><option key={y} value={y}>{y}{y===manifest?.selected_modeling_year?" · modeled + monitors":y===2025?" · preliminary monitors":" · measured monitors"}</option>)}</select><ChevronDown size={14}/></label>
+        <div className="national-layer-controls">
+          <div className="national-layers" role="group" aria-label="Map evidence layer">
+            <button
+              type="button"
+              aria-pressed={layer === "estimates"}
+              className={layer === "estimates" ? "selected" : ""}
+              title={year !== (manifest?.selected_modeling_year ?? 2024) ? `Modeled place estimates (${manifest?.selected_modeling_year ?? 2024})` : "Model estimates"}
+              onClick={() => {
+                const modelingYear = manifest?.selected_modeling_year ?? 2024;
+                const targetYear = year !== modelingYear ? modelingYear : year;
+                if (targetYear !== year) setYear(targetYear);
+                setLayer("estimates");
+                history.pushState(null, "", `${location.pathname}?${new URLSearchParams({ year: String(targetYear), layer: "estimates", ...(selectedId ? { place: selectedId } : {}), ...(comparisonIds.length ? { compare: comparisonIds.join(",") } : {}) }).toString()}`);
+              }}
+            >
+              <Activity size={14} /> Estimates
+            </button>
+            <button
+              type="button"
+              aria-pressed={layer === "monitors"}
+              className={layer === "monitors" ? "selected" : ""}
+              onClick={() => {
+                history.pushState(null, "", `${location.pathname}?${new URLSearchParams({ year: String(year), layer: "monitors", ...(selectedId ? { place: selectedId } : {}), ...(comparisonIds.length ? { compare: comparisonIds.join(",") } : {}) }).toString()}`);
+                setLayer("monitors");
+              }}
+            >
+              <MapPin size={14} /> Monitors
+            </button>
+          </div>
+          <div className="national-overlay-control" role="group" aria-label="Evidence overlays">
+            <button
+              type="button"
+              aria-pressed={showSources || layer === "sources"}
+              className={`source-overlay-toggle${showSources || layer === "sources" ? " is-active" : ""}`}
+              title="Quick toggle to overlay EPA NEI emissions source facilities on top of the map"
+              onClick={() => {
+                if (layer === "sources") {
+                  setLayer("estimates");
+                  setShowSources(false);
+                } else {
+                  setShowSources((value) => !value);
+                }
+              }}
+            >
+              <span className="source-toggle-indicator" aria-hidden="true" />
+              <Layers3 size={14} />
+              <span>{showSources || layer === "sources" ? "Sources on" : "Show sources"}</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </Navbar>
     {error && (
       <div className="national-alert" role="alert">
         <div className="alert-content">
@@ -1036,83 +1213,15 @@ export default function NationalExplorer() {
         <button type="button" className="alert-dismiss" aria-label="Dismiss notice" onClick={() => setMapDataError("")}><X size={14}/></button>
       </div>
     )}
-    <section className="national-toolbar" aria-label="Explorer controls">
-      <div className="national-search"><Search size={17}/><input aria-label="Search Census places" aria-expanded={!!searchResults.length} aria-controls="national-place-results" aria-activedescendant={searchResults[searchIndex]?`national-place-${searchResults[searchIndex].id}`:undefined} placeholder="Search a Census place or state" value={query} onChange={(e)=>setQuery(e.target.value)} onKeyDown={onSearchKey}/>{query&&<button aria-label="Clear search" onClick={()=>{setQuery("");setSearchResults([]);setSearchError("")}}><X size={15}/></button>}
-        {!!searchResults.length&&<div id="national-place-results" className="search-results" role="listbox">{searchResults.map((p,i)=><button id={`national-place-${p.id}`} role="option" aria-selected={i===searchIndex} key={p.id} onMouseEnter={()=>setSearchIndex(i)} onClick={()=>selectPlace(p)}><span>{p.name}</span><small>{p.state} · {p.place_type}</small></button>)}</div>}
-        {!!query.trim()&&searchLoading&&<div className="search-results" role="status">Searching Census places…</div>}
-        {!!query.trim()&&!searchLoading&&!searchResults.length&&<div className="search-results" role="status">{searchError || `No Census places match “${query}”. Include the state name to distinguish places.`}</div>}
-      </div>
-      <label className="national-select"><span>Historical year</span><select value={year} onChange={(e)=>{
-        const next = Number(e.target.value);
-        const modelingYear = manifest?.selected_modeling_year ?? 2024;
-        let nextLayer = layer;
-        if (layer === "estimates" && next !== modelingYear) {
-          nextLayer = "monitors";
-        }
-        setYear(next);
-        if (nextLayer !== layer) setLayer(nextLayer);
-        history.pushState(null,"",`${location.pathname}?${new URLSearchParams({year:String(next),layer:nextLayer,...(selectedId?{place:selectedId}:{}),...(comparisonIds.length?{compare:comparisonIds.join(",")}:{})}).toString()}`);
-      }}>{availableYears.map((y)=><option key={y} value={y}>{y}{y===manifest?.selected_modeling_year?" · modeled estimates & monitors":y===2025?" · preliminary monitors":" · measured monitors"}</option>)}</select><ChevronDown size={14}/></label>
-      <div className="national-layer-controls">
-        <div className="national-layers" role="group" aria-label="Map evidence layer">
-          <button
-            type="button"
-            aria-pressed={layer === "estimates"}
-            className={layer === "estimates" ? "selected" : ""}
-            title={year !== (manifest?.selected_modeling_year ?? 2024) ? `Modeled place estimates (${manifest?.selected_modeling_year ?? 2024})` : "Model estimates"}
-            onClick={() => {
-              const modelingYear = manifest?.selected_modeling_year ?? 2024;
-              const targetYear = year !== modelingYear ? modelingYear : year;
-              if (targetYear !== year) setYear(targetYear);
-              setLayer("estimates");
-              history.pushState(null, "", `${location.pathname}?${new URLSearchParams({ year: String(targetYear), layer: "estimates", ...(selectedId ? { place: selectedId } : {}), ...(comparisonIds.length ? { compare: comparisonIds.join(",") } : {}) }).toString()}`);
-            }}
-          >
-            <Activity size={15} /> Estimates
-          </button>
-          <button
-            type="button"
-            aria-pressed={layer === "monitors"}
-            className={layer === "monitors" ? "selected" : ""}
-            onClick={() => {
-              history.pushState(null, "", `${location.pathname}?${new URLSearchParams({ year: String(year), layer: "monitors", ...(selectedId ? { place: selectedId } : {}), ...(comparisonIds.length ? { compare: comparisonIds.join(",") } : {}) }).toString()}`);
-              setLayer("monitors");
-            }}
-          >
-            <MapPin size={15} /> Monitors
-          </button>
-        </div>
-        <div className="national-overlay-control" role="group" aria-label="Evidence overlays">
-          <button
-            type="button"
-            aria-pressed={showSources || layer === "sources"}
-            className={`source-overlay-toggle${showSources || layer === "sources" ? " is-active" : ""}`}
-            title="Quick toggle to overlay EPA NEI emissions source facilities on top of the map"
-            onClick={() => {
-              if (layer === "sources") {
-                setLayer("estimates");
-                setShowSources(false);
-              } else {
-                setShowSources((value) => !value);
-              }
-            }}
-          >
-            <span className="source-toggle-indicator" aria-hidden="true" />
-            <Layers3 size={15} />
-            <span>{showSources || layer === "sources" ? "Sources on" : "Show sources"}</span>
-          </button>
-        </div>
-      </div>
-    </section>
     {loading ? (
       <LoadingScreen
-        message="Loading versioned EPA and Census release…"
-        submessage="Streaming EPA regulatory monitors, Census boundaries, and historical PM2.5 estimates"
+        message="Loading map data…"
+        submessage="Preparing places, monitors, and historical estimates"
       />
     ) : <>
       <div className={`national-main-grid${activePlace || active || selectedCluster ? " has-selection" : ""}`}>
         <section className="national-map-panel" aria-label="National evidence map">
-          <div className="national-map-heading"><div className="national-map-title-card"><span className="national-kicker">UNITED STATES · {layer==="estimates"?"ANNUAL PM2.5":layer==="monitors"?"REGULATORY MONITOR SITES":"DOCUMENTED EMISSIONS INVENTORY"}</span><h2>{activePlace?.name ? `${activePlace.name}, ${activePlace.state}` : "Explore the national pattern"}</h2></div><span className="map-data-pill">{layer === "estimates" ? `${fmt(manifest?.counts.supported_model_places)} supported places` : layer === "monitors" ? `${fmt(manifest?.annual_monitor_audit?.[String(year)]?.unique_spatial_site_years)} monitor site-years in ${year}` : `EPA inventory · 2023`}</span></div>
+          <div className="national-map-heading"><div className="national-map-title-card"><span className="national-kicker">UNITED STATES · {layer==="estimates"?"ANNUAL PM2.5":layer==="monitors"?"REGULATORY MONITOR SITES":"DOCUMENTED EMISSIONS INVENTORY"}</span><h2>{activePlace?.name ? `${activePlace.name}, ${activePlace.state}` : "National evidence map"}</h2><span className="map-place-count-tag" style={{ display: "block", fontSize: "11px", color: "#64748B", marginTop: "2px" }}>32,333 searchable Census places</span></div><span className="map-data-pill">{layer === "estimates" ? `${fmt(manifest?.counts.supported_model_places)} supported places` : layer === "monitors" ? `${fmt(manifest?.annual_monitor_audit?.[String(year)]?.unique_spatial_site_years)} monitor site-years in ${year}` : `EPA inventory · 2023`}</span></div>
           <EvidenceMap year={year} layer={layer} showSources={showSources} initialCamera={readCamera(params)} selected={activePlace} selectedPoint={selectedPoint} onSelect={onMapSelect} onCluster={onCluster} onBounds={onBounds} onCamera={onCamera} places={visiblePlaces} monitors={monitors.filter((m)=>m.year===year)} sources={sources}/>
           <div className="map-hud-stack" role="region" aria-label="Map status and legend">
             {layer === "estimates" && !visiblePlaces.some((p) => p.model_estimates?.[String(year)]) && (
@@ -1150,27 +1259,33 @@ export default function NationalExplorer() {
             className="floating-sidebar-toggle"
             aria-label="Show sidebar details"
             title="Show sidebar details (Press [)"
-            onClick={() => setSidebarOpen(true)}
+            onClick={(e) => { e.stopPropagation(); setSidebarOpen(true); }}
           >
             <PanelRightOpen size={16} />
             <span>{activePlace ? activePlace.name : "Places & Details"}</span>
           </button>
         )}
         <aside className={`national-detail-panel${sidebarOpen ? "" : " is-hidden"}`} aria-label="Place details and evidence sidebar">
+          <div className={`detail-panel-content${selectionChanging ? " is-selection-changing" : ""}`}>
           {tab === "methodology" ? <Methodology manifest={manifest} onBack={()=>setTab("place")} onToggleSidebar={()=>setSidebarOpen(false)}/> : activePlace ? <>
-            <div className="detail-title-row"><div><span className="national-kicker">CENSUS {(activePlace.place_type || "PLACE").toUpperCase()}</span><h2>{activePlace.name || "Selected Census place"}</h2><p>{activePlace.state || "State unavailable"} · GEOID {activePlace.id}</p></div><div className="detail-header-actions"><button type="button" className="sidebar-toggle-btn" aria-label="Hide sidebar" title="Hide sidebar (Press [)" onClick={() => setSidebarOpen(false)}><PanelRightClose size={14}/><span>Hide</span></button><button className="icon-action" aria-label="Close selected place" onClick={closeDetail}><X size={17}/></button></div></div>
+            <div className="detail-title-row"><div><span className="national-kicker">CENSUS {(activePlace.place_type || "PLACE").toUpperCase()}</span><h2>{activePlace.name || "Selected Census place"}</h2><p>{activePlace.state || "State unavailable"} · GEOID {activePlace.id}</p></div><div className="detail-header-actions"><button type="button" className="sidebar-toggle-btn" aria-label="Hide sidebar" title="Hide sidebar (Press [)" onClick={(e) => { e.stopPropagation(); setSidebarOpen(false); }}><PanelRightClose size={14}/><span>Hide</span></button><button className="icon-action" aria-label="Close selected place" onClick={closeDetail}><X size={17}/></button></div></div>
+            <div className="investigate-action"><button type="button" className="primary-investigate" aria-expanded={investigationOpen} onClick={()=>setInvestigationOpen((value)=>!value)}><Compass size={16}/>{investigationOpen ? "Close investigation" : "Investigate Location"}</button><span>Nearby measurements, inventory records, and road context.</span></div>
+            {investigationOpen && <InvestigationPanel place={activePlace} year={year} data={contextData} onExport={exportInvestigation}/>}
             <div className="detail-metric"><div><span>{activePlace.model_estimates?.[String(year)] ? `MODEL ESTIMATE · ${year}` : nearbyYearMonitor ? `NEARBY AQS MONITOR · ${year}` : `MODEL ESTIMATE · ${year}`}</span><strong>{activePlace.model_estimates?.[String(year)] ? fmt(activePlace.model_estimates[String(year)].value_ug_m3,2) : nearbyYearMonitor ? fmt(nearbyYearMonitor.pm25_ug_m3,2) : fmt(undefined,2)} <small>µg/m³</small></strong></div><div className="metric-chip">{activePlace.model_estimates?.[String(year)]?.evidence_status === "low_evidence_estimate" ? "Low evidence" : activePlace.model_estimates?.[String(year)] ? "Estimated" : nearbyYearMonitor ? `AQS measured (${year})` : "Insufficient evidence"}</div></div>
             {activePlace.model_estimates?.[String(year)] ? <><div className="uncertainty-block"><span>{activePlace.model_estimates[String(year)].evidence_status === "low_evidence_estimate" ? "Low-evidence estimate · spatial OOF 90% error band" : "Estimated point · spatial OOF 90% error band"}</span><strong>{fmt(activePlace.model_estimates[String(year)].interval90_low_ug_m3,2)} – {fmt(activePlace.model_estimates[String(year)].interval90_high_ug_m3,2)} µg/m³</strong><small>Band from geographic out-of-fold monitor-site errors. It is broad, describes this model evaluation, and does not guarantee local coverage or an area-average bound.</small></div><div className="fact-grid"><div><span>Nearest training monitor</span><b>{fmt(activePlace.model_estimates[String(year)].nearest_monitor_km)} km · AQS {activePlace.model_estimates[String(year)].reference_monitor_id || "ID unavailable"}</b></div><div><span>Population · 2024</span><b>{activePlace.estimates?.["2024"]?fmt(activePlace.estimates["2024"]):"Not reported"}</b></div></div></> : <div className="no-estimate"><strong>Estimate withheld for {year}</strong><p>{activePlace.withheld_reason || `No supported model estimate is published for this place in ${year}. The release supports ${manifest?.selected_modeling_year} only and withholds locations outside its geographic or monitor-distance support.`}</p>{nearbyYearMonitor && <div className="nearby-monitor-callout"><span>Nearest measured EPA monitor in {year}</span><b>{fmt(nearbyYearMonitor.pm25_ug_m3, 2)} <small>µg/m³</small></b><small>AQS Site {nearbyYearMonitor.id} · {fmt(activePlace.nearby_monitor?.distance_km, 1)} km from Census internal point</small></div>}<button onClick={()=>{history.pushState(null,"",`${location.pathname}?${new URLSearchParams({year:String(year),layer:"monitors",...(selectedId?{place:selectedId}:{}),...(comparisonIds.length?{compare:comparisonIds.join(",")}:{})}).toString()}`);setLayer("monitors")}}>View {year} measured monitors</button></div>}
             <div className="detail-actions"><button className="soft-button" onClick={()=>toggleCompare(activePlace.id)}><Bookmark size={15}/>{comparisonIds.includes(activePlace.id)?"Remove comparison":"Compare place"}</button><button className="soft-button" onClick={share}><Share2 size={15}/>{shareCopied?"Link copied":"Share"}</button><button className="soft-button" onClick={()=>exportSnapshot("csv")}><Download size={15}/> Export place</button></div>
             <section className="detail-section"><div className="section-title-line"><h3>Nearby measured history</h3><span>EPA AQS annual summaries</span></div>{chartData.length>1?<div className="history-chart"><ResponsiveContainer width="100%" height={160}><LineChart data={chartData} margin={{left:-25,right:8,top:8,bottom:2}}><CartesianGrid stroke="#e6e8e3" vertical={false}/><XAxis dataKey="year" tick={{fontSize:10,fill:"#637079"}} axisLine={false} tickLine={false}/><YAxis tick={{fontSize:10,fill:"#637079"}} axisLine={false} tickLine={false}/><Tooltip formatter={(v)=>[`${fmt(Number(v),2)} µg/m³`,"Measured annual PM2.5"]}/><Line type="monotone" dataKey="measured" stroke="#247b70" strokeWidth={2.5} dot={{r:3,fill:"#247b70"}}/></LineChart></ResponsiveContainer></div>:<p className="muted-note">No consistent nearby monitor history under the 5 km Gazetteer-point rule. Monitor-site history remains separately searchable.</p>}</section><EvidenceExplanation place={activePlace} year={year}/><SourceContext data={contextData} loading={contextLoading} error={contextError} radius={contextRadius} onRadiusChange={(next)=>{setContextRadius(next);const nextParams=new URLSearchParams(location.search);nextParams.set("radius",String(next));history.pushState(null,"",`${location.pathname}?${nextParams.toString()}`)}}/>
-          </> : selectedCluster ? <><div className="detail-title-row"><div><span className="national-kicker">{selectedCluster.kind === "estimates" ? "PLACE ESTIMATES" : selectedCluster.kind === "monitors" ? "EPA MONITORS" : "EPA INVENTORY SOURCES"}</span><h2>{fmt(selectedCluster.count)} records nearby</h2><p>Choose a record to inspect its details.</p></div><div className="detail-header-actions"><button type="button" className="sidebar-toggle-btn" aria-label="Hide sidebar" title="Hide sidebar (Press [)" onClick={() => setSidebarOpen(false)}><PanelRightClose size={14}/><span>Hide</span></button><button className="icon-action" aria-label="Close record details" onClick={closeDetail}><X size={17}/></button></div></div><div className="detail-section"><h3>Records</h3>{selectedCluster.loading&&!selectedCluster.members.length&&<p role="status">Loading records…</p>}{selectedCluster.members.map((member,index)=><div className="source-row" key={`${member.id}:${index}`} style={{cursor:"pointer"}} onClick={()=>{const coords: [number, number] | undefined = (member.render_longitude != null && member.render_latitude != null) ? [member.render_longitude, member.render_latitude] : (member.longitude != null && member.latitude != null) ? [member.longitude, member.latitude] : undefined; onMapSelect(selectedCluster.kind, String(member.id), coords, member);}}><span><b>{member.name || member.id}</b><small>{member.state || member.category || (member.year ? `EPA AQS · ${member.year}` : selectedCluster.kind === "estimates" ? "Census place estimate" : "EPA inventory record")}</small></span><span>{selectedCluster.kind === "estimates" ? `${fmt(member.model_estimates?.[String(year)]?.value_ug_m3,2)} µg/m³` : selectedCluster.kind === "monitors" ? `${fmt(member.pm25_ug_m3,2)} µg/m³` : `${fmt(member.emissions,2)} ${member.units || ""}`}</span></div>)}{selectedCluster.nextOffset != null&&<button className="soft-button" onClick={loadMoreClusterMembers} disabled={selectedCluster.loading}>{selectedCluster.loading?"Loading…":"Load more records"}</button>}</div></> : selectedMonitor ? <><div className="detail-title-row"><div><span className="national-kicker">MEASURED · EPA AQS</span><h2>Monitor {selectedMonitor.id}</h2><p>{selectedMonitor.year} annual PM2.5 summary</p></div><div className="detail-header-actions"><button type="button" className="sidebar-toggle-btn" aria-label="Hide sidebar" title="Hide sidebar (Press [)" onClick={() => setSidebarOpen(false)}><PanelRightClose size={14}/><span>Hide</span></button><button className="icon-action" aria-label="Close monitor details" onClick={closeDetail}><X size={17}/></button></div></div><div className="detail-metric"><div><span>MEASURED ANNUAL MEAN</span><strong>{fmt(selectedMonitor.pm25_ug_m3,2)} <small>µg/m³</small></strong></div></div><div className="detail-facts"><p>Completeness indicator: <b>{selectedMonitor.sample_completeness}</b></p><p>Event treatment: <b>{selectedMonitor.event_treatment}</b></p><p>Pollutant standard: <b>{selectedMonitor.pollutant_standard}</b></p><p>Metric: <b>{selectedMonitor.metric}</b></p><p>Coordinates: {selectedMonitor.latitude.toFixed(4)}, {selectedMonitor.longitude.toFixed(4)}</p></div></> : selectedFacility ? <><div className="detail-title-row"><div><span className="national-kicker">INVENTORY ESTIMATE · EPA NEI {selectedFacility.inventory_year}</span><h2>{selectedFacility.name}</h2><p>EIS facility ID {selectedFacility.facility_id || selectedFacility.id} · {selectedFacility.pollutant_code} · {selectedFacility.category}</p></div><div className="detail-header-actions"><button type="button" className="sidebar-toggle-btn" aria-label="Hide sidebar" title="Hide sidebar (Press [)" onClick={() => setSidebarOpen(false)}><PanelRightClose size={14}/><span>Hide</span></button><button className="icon-action" aria-label="Close source details" onClick={closeDetail}><X size={17}/></button></div></div><div className="detail-metric"><div><span>{selectedFacility.pollutant_code} · REPORTED EMISSIONS</span><strong>{fmt(selectedFacility.emissions,2)} <small>{selectedFacility.units}</small></strong></div></div><div className="detail-facts"><p>Location: <b>Approximate inventory facility coordinate</b></p><p>Coordinate role: {selectedFacility.coordinate_role || "Reported facility coordinate; not a release point."}</p><p>WGS84: {(selectedFacility.original_coordinates || [selectedFacility.longitude, selectedFacility.latitude]).map((value: number) => value.toFixed(5)).join(", ")}</p><p>Identity: <b>{selectedFacility.match_method || "Exact EPA EIS facility identifier"}</b> · canonical {selectedFacility.canonical_facility_id || `epa-eis:${selectedFacility.id}`}</p><p>Verified address or footprint: <b>{selectedFacility.address || "not available in this release"}</b></p></div><p className="source-disclaimer">This is a facility-level annual inventory estimate for {selectedFacility.inventory_year}, not ambient concentration. It does not show the facility's contribution to a nearby monitor. The map retains the original NEI coordinate; it is not snapped to a building or treated as a release point.</p><a className="external-link" href={selectedFacility.url} target="_blank" rel="noreferrer">Open EPA inventory source data <ExternalLink size={14}/></a></> : active ? <div className="detail-loading-state" role="status"><div className="detail-title-row"><div><span className="national-kicker">LOADING EVIDENCE</span><h2>Loading {active.kind === "estimates" ? "place estimate" : active.kind === "monitors" ? "monitor site" : "inventory source"}…</h2><p>Retrieving documented record {active.id}.</p></div><div className="detail-header-actions"><button type="button" className="sidebar-toggle-btn" aria-label="Hide sidebar" title="Hide sidebar (Press [)" onClick={() => setSidebarOpen(false)}><PanelRightClose size={14}/><span>Hide</span></button><button className="icon-action" aria-label="Close" onClick={closeDetail}><X size={17}/></button></div></div></div> : <>
-            <div className="detail-title-row"><div><span className="national-kicker">A PLACE-BASED VIEW</span><h2>Start with a place.</h2><p>Search a Census place or select evidence from the map.</p></div><div className="detail-header-actions"><button type="button" className="sidebar-toggle-btn" aria-label="Hide sidebar" title="Hide sidebar (Press [)" onClick={() => setSidebarOpen(false)}><PanelRightClose size={14}/><span>Hide</span></button></div></div><div className="quick-places"><span>Try Charlotte, Durham, Raleigh, or Denver</span>{[{name:"Charlotte",state:"North Carolina"},{name:"Durham",state:"North Carolina"},{name:"Raleigh",state:"North Carolina"},{name:"Denver",state:"Colorado"}].map(({name,state})=><button key={name} onClick={()=>{setQuery(`${name}, ${state}`);fetch(`${API}/places?q=${encodeURIComponent(name)}&state=${encodeURIComponent(state)}&limit=10&year=${year}`).then((r)=>{if(!r.ok)throw new Error();return r.json()}).then((d)=>d.items?.[0]&&selectPlace(d.items[0])).catch(()=>setSearchError("Place search is temporarily unavailable."));}}>{name}<ArrowRight size={13}/></button>)}</div><div className="rank-list"><div className="section-title-line"><h3>Higher estimates in loaded map view</h3><span>{year} · supported only</span></div>{ranking.slice(0,6).map((p,i)=><button key={p.id} onClick={()=>selectPlace(p)} className="rank-row"><span className="rank-number">{String(i+1).padStart(2,"0")}</span><span><b>{p.name}</b><small>{p.state}</small></span><strong>{fmt(p.model_estimates?.[String(year)]?.value_ug_m3,2)}<small>µg/m³</small></strong></button>)}</div><div className="detail-footnote">Sorted point estimates are not precise ranks or a “most dangerous” list. Differences can be too small to distinguish within the broad error band.</div>
+          </> : selectedCluster ? <><div className="detail-title-row"><div><span className="national-kicker">{selectedCluster.kind === "estimates" ? "PLACE ESTIMATES" : selectedCluster.kind === "monitors" ? "EPA MONITORS" : "EPA INVENTORY SOURCES"}</span><h2>{fmt(selectedCluster.count)} records nearby</h2><p>Select a record to see its details.</p></div><div className="detail-header-actions"><button type="button" className="sidebar-toggle-btn" aria-label="Hide sidebar" title="Hide sidebar (Press [)" onClick={(e) => { e.stopPropagation(); setSidebarOpen(false); }}><PanelRightClose size={14}/><span>Hide</span></button><button className="icon-action" aria-label="Close record details" onClick={closeDetail}><X size={17}/></button></div></div><div className="detail-section"><h3>Records</h3>{selectedCluster.loading&&!selectedCluster.members.length&&<p role="status">Loading records…</p>}{selectedCluster.members.map((member,index)=><div className="source-row" key={`${member.id}:${index}`} style={{cursor:"pointer"}} onClick={()=>{const coords: [number, number] | undefined = (member.render_longitude != null && member.render_latitude != null) ? [member.render_longitude, member.render_latitude] : (member.longitude != null && member.latitude != null) ? [member.longitude, member.latitude] : undefined; onMapSelect(selectedCluster.kind, String(member.id), coords, member);}}><span><b>{member.name || member.id}</b><small>{member.state || member.category || (member.year ? `EPA AQS · ${member.year}` : selectedCluster.kind === "estimates" ? "Census place estimate" : "EPA inventory record")}</small></span><span>{selectedCluster.kind === "estimates" ? `${fmt(member.model_estimates?.[String(year)]?.value_ug_m3,2)} µg/m³` : selectedCluster.kind === "monitors" ? `${fmt(member.pm25_ug_m3,2)} µg/m³` : `${fmt(member.emissions,2)} ${member.units || ""}`}</span></div>)}{selectedCluster.nextOffset != null&&<button className="soft-button" onClick={loadMoreClusterMembers} disabled={selectedCluster.loading}>{selectedCluster.loading?"Loading…":"Load more records"}</button>}</div></> : selectedMonitor ? <><div className="detail-title-row"><div><span className="national-kicker">MEASURED · EPA AQS</span><h2>Monitor {selectedMonitor.id}</h2><p>{selectedMonitor.year} annual PM2.5 summary</p></div><div className="detail-header-actions"><button type="button" className="sidebar-toggle-btn" aria-label="Hide sidebar" title="Hide sidebar (Press [)" onClick={(e) => { e.stopPropagation(); setSidebarOpen(false); }}><PanelRightClose size={14}/><span>Hide</span></button><button className="icon-action" aria-label="Close monitor details" onClick={closeDetail}><X size={17}/></button></div></div><div className="detail-metric"><div><span>MEASURED ANNUAL MEAN</span><strong>{fmt(selectedMonitor.pm25_ug_m3,2)} <small>µg/m³</small></strong></div></div><div className="detail-facts"><p>Completeness indicator: <b>{selectedMonitor.sample_completeness}</b></p><p>Event treatment: <b>{selectedMonitor.event_treatment}</b></p><p>Pollutant standard: <b>{selectedMonitor.pollutant_standard}</b></p><p>Metric: <b>{selectedMonitor.metric}</b></p><p>Coordinates: {selectedMonitor.latitude.toFixed(4)}, {selectedMonitor.longitude.toFixed(4)}</p></div></> : selectedFacility ? <><div className="detail-title-row"><div><span className="national-kicker">INVENTORY ESTIMATE · EPA NEI {selectedFacility.inventory_year}</span><h2>{selectedFacility.name}</h2><p>EIS facility ID {selectedFacility.facility_id || selectedFacility.id} · {selectedFacility.pollutant_code} · {selectedFacility.category}</p></div><div className="detail-header-actions"><button type="button" className="sidebar-toggle-btn" aria-label="Hide sidebar" title="Hide sidebar (Press [)" onClick={(e) => { e.stopPropagation(); setSidebarOpen(false); }}><PanelRightClose size={14}/><span>Hide</span></button><button className="icon-action" aria-label="Close source details" onClick={closeDetail}><X size={17}/></button></div></div><div className="detail-metric"><div><span>{selectedFacility.pollutant_code} · REPORTED EMISSIONS</span><strong>{fmt(selectedFacility.emissions,2)} <small>{selectedFacility.units}</small></strong></div></div><div className="detail-facts"><p>Location: <b>Approximate inventory facility coordinate</b></p><p>Coordinate role: {selectedFacility.coordinate_role || "Reported facility coordinate; not a release point."}</p><p>WGS84: {(selectedFacility.original_coordinates || [selectedFacility.longitude, selectedFacility.latitude]).map((value: number) => value.toFixed(5)).join(", ")}</p><p>Identity: <b>{selectedFacility.match_method || "Exact EPA EIS facility identifier"}</b> · canonical {selectedFacility.canonical_facility_id || `epa-eis:${selectedFacility.id}`}</p><p>Verified address or footprint: <b>{selectedFacility.address || "not available in this release"}</b></p></div><p className="source-disclaimer">This is a facility-level annual inventory estimate for {selectedFacility.inventory_year}, not ambient concentration. It does not show the facility's contribution to a nearby monitor. The map retains the original NEI coordinate; it is not snapped to a building or treated as a release point.</p><a className="external-link" href={selectedFacility.url} target="_blank" rel="noreferrer">Open EPA inventory source data <ExternalLink size={14}/></a></> : active ? <div className="detail-loading-state" role="status"><div className="detail-title-row"><div><span className="national-kicker">LOADING RECORD</span><h2>Loading the selected {active.kind === "estimates" ? "place estimate" : active.kind === "monitors" ? "monitor site" : "inventory source"}…</h2><p>Loading the documented record {active.id}.</p></div><div className="detail-header-actions"><button type="button" className="sidebar-toggle-btn" aria-label="Hide sidebar" title="Hide sidebar (Press [)" onClick={(e) => { e.stopPropagation(); setSidebarOpen(false); }}><PanelRightClose size={14}/><span>Hide</span></button><button className="icon-action" aria-label="Close" onClick={closeDetail}><X size={17}/></button></div></div></div> : <>
+            <div className="detail-title-row"><div><span className="national-kicker">FIND A PLACE</span><h2>Find a place</h2><p>Search for a place or select a point on the map.</p></div><div className="detail-header-actions"><button type="button" className="sidebar-toggle-btn" aria-label="Hide sidebar" title="Hide sidebar (Press [)" onClick={(e) => { e.stopPropagation(); setSidebarOpen(false); }}><PanelRightClose size={14}/><span>Hide</span></button></div></div><div className="quick-places"><span>Try Charlotte, Durham, Raleigh, or Denver</span>{[{name:"Charlotte",state:"North Carolina"},{name:"Durham",state:"North Carolina"},{name:"Raleigh",state:"North Carolina"},{name:"Denver",state:"Colorado"}].map(({name,state})=><button key={name} onClick={()=>{setQuery(`${name}, ${state}`);fetch(`${API}/places?q=${encodeURIComponent(name)}&state=${encodeURIComponent(state)}&limit=10&year=${year}`).then((r)=>{if(!r.ok)throw new Error();return r.json()}).then((d)=>d.items?.[0]&&selectPlace(d.items[0])).catch(()=>setSearchError("Place search is temporarily unavailable."));}}>{name}<ArrowRight size={13}/></button>)}</div>
           </>}
+          </div>
         </aside>
       </div>
-      {(comparisons.length>0 || !!activePlace)&&<section className="comparison-panel"><div className="comparison-heading"><div><span className="national-kicker">SIDE BY SIDE · SAME YEAR</span><h2>Place comparison <small>{year}</small></h2></div><div className="export-actions"><button onClick={()=>exportSnapshot("csv")}><Download size={15}/> CSV</button><button onClick={()=>exportSnapshot("geojson")}>GeoJSON</button><button aria-label="Print brief" onClick={printBrief}><FileText size={15}/> Create community report</button><button aria-label="Clear comparisons" onClick={()=>{setComparisonIds([]);localStorage.removeItem("upwind-national-compare");history.pushState(null,"",`${location.pathname}?${new URLSearchParams({year:String(year),layer,...(selectedId?{place:selectedId}:{})}).toString()}`)}}><X size={16}/></button></div></div>{printError&&<p className="national-alert" role="alert">{printError}</p>}{exportError&&<p className="national-alert" role="alert">{exportError}</p>}<p className="source-disclaimer">Estimates that share a reference monitor are not independent. Overlapping broad error bands mean their ordering is uncertain; differences are descriptive and may not be distinguishable within the empirical spatial error band.</p><div className="comparison-cards">{comparisonPlaces.map((p)=><article key={p.id}><button className="comparison-remove" onClick={()=>toggleCompare(p.id)} aria-label={`Remove ${p.name}`}><X size={13}/></button><span>{p.state} · {p.place_type}</span><h3>{p.name}</h3><strong>{fmt(p.model_estimates?.[String(year)]?.value_ug_m3,2)} <small>µg/m³</small></strong><p>{p.model_estimates?.[String(year)]?`90% band ${fmt(p.model_estimates[String(year)].interval90_low_ug_m3,2)}–${fmt(p.model_estimates[String(year)].interval90_high_ug_m3,2)}`:"Estimate withheld for selected period"}</p>{comparisonPlaces.some((other)=>other.id!==p.id&&other.model_estimates?.[String(year)]?.reference_monitor_id===p.model_estimates?.[String(year)]?.reference_monitor_id)&&<small>Shares the same reference monitor as another selected place; comparison is correlated.</small>}</article>)}</div></section>}
-      <section className="national-bottom"><div className="coverage-card"><span className="national-kicker">RELEASE COVERAGE COUNTS</span><div className="coverage-numbers"><div><strong>{fmt(manifest?.counts.searchable_census_places)}</strong><span>searchable Census places</span></div><div><strong>{fmt(manifest?.counts.supported_model_places)}</strong><span>with supported estimates</span></div><div><strong>{fmt(manifest?.counts.places_with_nearby_monitor_proxy ?? manifest?.counts.monitor_sites_selected_year)}</strong><span>{manifest?.counts.places_with_nearby_monitor_proxy != null ? "monitor within 5 km of place point*" : `EPA monitor sites in ${manifest?.selected_modeling_year ?? 2024}`}</span></div><div><strong>{manifest?.counts.population_covered?fmt(manifest.counts.population_covered):"Not calculated"}</strong><span>residents in modeled places with published 2024 estimate</span></div></div><p>{manifest?.counts.places_with_nearby_monitor_proxy != null ? "*This is a proximity proxy, not a legal-boundary overlap count. " : ""}Population sum uses unique Census place GEOIDs with available estimates; it describes release coverage, not users or exposure impact.</p></div><button className="methodology-card" onClick={()=>setTab("methodology")}><span className="national-kicker">HOW TO READ THIS ATLAS</span><h3>Evidence, model evaluation & coverage</h3><p>Review the target definition, spatial holdout, uncertainty, source data, and unsupported places.</p><span>Open methodology <ArrowRight size={14}/></span></button></section>
-      <footer className="national-footer"><span>UPWIND · DATED HISTORICAL ATLAS · NO LIVE CONDITIONS</span><span>Historical concentration estimates do not identify sources or responsibility.</span></footer>
+      {(comparisons.length>0 || !!activePlace)&&<section className="comparison-panel"><div className="comparison-heading"><div><span className="national-kicker">SIDE BY SIDE · SAME YEAR</span><h2>Place comparison <small>{year}</small></h2></div><div className="export-actions"><button onClick={()=>exportSnapshot("csv")}><Download size={15}/> CSV</button><button onClick={()=>exportSnapshot("geojson")}>GeoJSON</button><button aria-label="Print brief" onClick={printBrief}><FileText size={15}/> Create community report</button><button aria-label="Clear comparisons" onClick={()=>{setComparisonIds([]);localStorage.removeItem("upwind-national-compare");history.pushState(null,"",`${location.pathname}?${new URLSearchParams({year:String(year),layer,...(selectedId?{place:selectedId}:{})}).toString()}`)}}><X size={16}/></button></div></div>{printError&&<p className="national-alert" role="alert">{printError}</p>}{exportError&&<p className="national-alert" role="alert">{exportError}</p>}<p className="source-disclaimer">Estimates that share a reference monitor are not independent. Overlapping broad error bands mean their ordering is uncertain; differences are descriptive and may not be distinguishable within the empirical spatial error band.</p><div className="comparison-list" role="list">{comparisonPlaces.map((p)=><article key={p.id} role="listitem"><button className="comparison-remove" onClick={()=>toggleCompare(p.id)} aria-label={`Remove ${p.name}`}><X size={13}/></button><span>{p.state} · {p.place_type}</span><h3>{p.name}</h3><strong>{fmt(p.model_estimates?.[String(year)]?.value_ug_m3,2)} <small>µg/m³</small></strong><p>{p.model_estimates?.[String(year)]?`90% band ${fmt(p.model_estimates[String(year)].interval90_low_ug_m3,2)}–${fmt(p.model_estimates[String(year)].interval90_high_ug_m3,2)}`:"Estimate withheld for selected period"}</p>{comparisonPlaces.some((other)=>other.id!==p.id&&other.model_estimates?.[String(year)]?.reference_monitor_id===p.model_estimates?.[String(year)]?.reference_monitor_id)&&<small>Shares the same reference monitor as another selected place; comparison is correlated.</small>}</article>)}</div></section>}
+      <footer className="national-method-note" aria-label="Methodology disclaimer">
+        <p>Historical estimates are place-point estimates at Census Gazetteer locations, not live conditions, exposure, or source attribution.</p>
+        <a href="/methodology">Read the methodology and limitations <ArrowRight size={14}/></a>
+      </footer>
     </>}
   </main>;
 }
@@ -1178,6 +1293,6 @@ export default function NationalExplorer() {
 function Methodology({manifest,onBack,onToggleSidebar}:{manifest:NationalManifest|null;onBack:()=>void;onToggleSidebar?:()=>void}) {
   const v2=manifest?.model_evaluation_v2; const cv=manifest?.counts;
   const r24=v2?.years["2024"]; const r25=v2?.years["2025"];
-  return <><div className="detail-title-row"><div><span className="national-kicker">METHODOLOGY · {v2?.protocol||"RELEASE"}</span><h2>What this map can say</h2><p>Historical annual PM2.5 at a specified point, separate from source attribution.</p></div><div className="detail-header-actions">{onToggleSidebar&&<button type="button" className="sidebar-toggle-btn" aria-label="Hide sidebar" title="Hide sidebar (Press [)" onClick={onToggleSidebar}><PanelRightClose size={14}/><span>Hide</span></button>}<button className="icon-action" onClick={onBack} aria-label="Back to explorer"><X size={17}/></button></div></div><div className="methodology-copy"><h3>Target and deployed model</h3><p>Target: EPA AQS annual PM2.5 summary (parameter 88101; annual standard; quarterly means of daily means; completeness flag Y), in µg/m³. The deployed model is {manifest?.model?.method}. It predicts at the Census Gazetteer internal point. Gazetteer points are not place polygons; results are not citywide or neighborhood averages.</p><p>The deployed model transfers the nearest eligible monitor value. The fixed 150 km Gaussian kernel and a Gaussian-plus-PRISM-temperature candidate were evaluated with spatial folds. Neither candidate met the predeclared requirement of at least four of five fold wins in both years; the deployed model therefore remains nearest-monitor. Fold outcomes are development evidence; all 2024 results had already been inspected. No untouched final set remains for this release, so no fresh final-accuracy claim is made.</p><h3>Geographic development comparison</h3><p>Spatial out-of-fold scores use the training-fold mean as the R² reference. On all corrected eligible monitor sites: 2024 (n={fmt(r24?.nearest_monitor?.n)}) nearest-monitor MAE {fmt(r24?.nearest_monitor?.mae_ug_m3,2)}, RMSE {fmt(r24?.nearest_monitor?.rmse_ug_m3,2)}, bias {fmt(r24?.nearest_monitor?.bias_ug_m3,2)}; Gaussian MAE {fmt(r24?.gaussian_kernel_ridge_150km?.mae_ug_m3,2)}, RMSE {fmt(r24?.gaussian_kernel_ridge_150km?.rmse_ug_m3,2)}. Provisional 2025 (n={fmt(r25?.nearest_monitor?.n)}) nearest-monitor MAE {fmt(r25?.nearest_monitor?.mae_ug_m3,2)}, RMSE {fmt(r25?.nearest_monitor?.rmse_ug_m3,2)}; Gaussian MAE {fmt(r25?.gaussian_kernel_ridge_150km?.mae_ug_m3,2)}, RMSE {fmt(r25?.gaussian_kernel_ridge_150km?.rmse_ug_m3,2)}. On the matched PRISM comparison rows (2024 n=872; provisional 2025 n=882), Gaussian plus PRISM temperature scored MAE/RMSE/bias 1.320/1.859/−0.081 and 1.384/1.872/−0.202 µg/m³ respectively. It won 5/5 2024 folds but only 3/5 provisional 2025 folds. The existing rule requires at least four wins in both years, so this candidate is not deployed. PRISM annual grids are retrospective, not available for a beginning-of-year forecast. Negative R² means squared error exceeded the training-fold mean reference. The 2025 archive is provisional and supplementary.</p><p>The symmetric 90th-percentile absolute error band is ±{fmt(v2?.deployment.calibration_abs_residual_90pct_ug_m3,2)} µg/m³, estimated from spatial out-of-fold monitor-site residuals. It is not a local guarantee. Publication withholds locations outside the contiguous-U.S. domain or beyond {fmt(v2?.deployment.oof_nearest_monitor_distance_p90_support_km)} km from an eligible monitor; farther places remain searchable without a prediction. The low-evidence label marks places beyond the 75th percentile of observed out-of-fold monitor distance; it is a distance evidence tier, not a validated local uncertainty class.</p><h3>Coverage</h3><p>{fmt(cv?.searchable_census_places)} Census places are searchable; {fmt(cv?.supported_model_places)} have a 2024 estimate; {fmt(v2?.deployment.withheld_places)} are withheld. Population coverage sums available 2024 Census estimates for unique modeled place GEOIDs ({fmt(cv?.population_covered)} residents); it is geographic coverage, not users reached or impact. EPA monitor proximity uses 5 km from the Gazetteer internal point, not legal-boundary containment.</p><h3>Data and limitations</h3><ul>{Object.entries(manifest?.dataset_sources||{}).map(([name,src])=><li key={name}><a href={src.url} target="_blank" rel="noreferrer">{name} <ExternalLink size={12}/></a>{src.vintage?` · vintage ${src.vintage}`:""}{src.period?` · ${src.period}`:""}</li>)}</ul><p>EPA AQS annual observations retain parameter, metric, units, sample completeness, event treatment, certification, and selected colocated POC provenance. The release selects one ambient summary per POC: Events Included when present, otherwise No Events; event-excluded alternatives are not substituted. EPA NEI rows are facility-level primary-PM2.5 annual inventory estimates in source units. Inventory proximity does not identify contribution or responsibility.</p><ul><li>2024 evaluation data and previous evaluation results were inspected; these folds are development evidence, not a fresh final test.</li><li>2025 monitor summaries are provisional; no year forecasting is claimed.</li><li>Population and facility proximity are not used as pollution proxies.</li><li>No independent between-monitor field validation, personal exposure, current conditions, forecast, source attribution, or health interpretation is established.</li></ul><div className="method-commands"><code>python scripts/build_national_dataset.py --start-year 2018 --end-year 2025</code><code>OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python scripts/evaluate_national_v2.py</code><code>python scripts/evaluate_national_v3.py</code></div></div></>;
+  return <><div className="detail-title-row"><div><span className="national-kicker">METHODOLOGY · {v2?.protocol||"RELEASE"}</span><h2>How to read this map</h2><p>Annual PM2.5 at a Census place point, separate from nearby source records.</p></div><div className="detail-header-actions">{onToggleSidebar&&<button type="button" className="sidebar-toggle-btn" aria-label="Hide sidebar" title="Hide sidebar (Press [)" onClick={(e)=>{e.stopPropagation();onToggleSidebar();}}><PanelRightClose size={14}/><span>Hide</span></button>}<button className="icon-action" onClick={onBack} aria-label="Back to explorer"><X size={17}/></button></div></div><div className="methodology-copy"><h3>Target and deployed model</h3><p>Target: EPA AQS annual PM2.5 summary (parameter 88101; annual standard; quarterly means of daily means; completeness flag Y), in µg/m³. The deployed model is {manifest?.model?.method}. It predicts at the Census Gazetteer internal point. Gazetteer points are not place polygons; results are not citywide or neighborhood averages.</p><p>The deployed model transfers the nearest eligible monitor value. The fixed 150 km Gaussian kernel and a Gaussian-plus-PRISM-temperature candidate were evaluated with spatial folds. Neither candidate met the predeclared requirement of at least four of five fold wins in both years; the deployed model therefore remains nearest-monitor. Fold outcomes are development evidence; all 2024 results had already been inspected. No untouched final set remains for this release, so no fresh final-accuracy claim is made.</p><h3>Geographic development comparison</h3><p>Spatial out-of-fold scores use the training-fold mean as the R² reference. On all corrected eligible monitor sites: 2024 (n={fmt(r24?.nearest_monitor?.n)}) nearest-monitor MAE {fmt(r24?.nearest_monitor?.mae_ug_m3,2)}, RMSE {fmt(r24?.nearest_monitor?.rmse_ug_m3,2)}, bias {fmt(r24?.nearest_monitor?.bias_ug_m3,2)}; Gaussian MAE {fmt(r24?.gaussian_kernel_ridge_150km?.mae_ug_m3,2)}, RMSE {fmt(r24?.gaussian_kernel_ridge_150km?.rmse_ug_m3,2)}. Provisional 2025 (n={fmt(r25?.nearest_monitor?.n)}) nearest-monitor MAE {fmt(r25?.nearest_monitor?.mae_ug_m3,2)}, RMSE {fmt(r25?.nearest_monitor?.rmse_ug_m3,2)}; Gaussian MAE {fmt(r25?.gaussian_kernel_ridge_150km?.mae_ug_m3,2)}, RMSE {fmt(r25?.gaussian_kernel_ridge_150km?.rmse_ug_m3,2)}. On the matched PRISM comparison rows (2024 n=872; provisional 2025 n=882), Gaussian plus PRISM temperature scored MAE/RMSE/bias 1.320/1.859/−0.081 and 1.384/1.872/−0.202 µg/m³ respectively. It won 5/5 2024 folds but only 3/5 provisional 2025 folds. The existing rule requires at least four wins in both years, so this candidate is not deployed. PRISM annual grids are retrospective, not available for a beginning-of-year forecast. Negative R² means squared error exceeded the training-fold mean reference. The 2025 archive is provisional and supplementary.</p><p>The symmetric 90th-percentile absolute error band is ±{fmt(v2?.deployment.calibration_abs_residual_90pct_ug_m3,2)} µg/m³, estimated from spatial out-of-fold monitor-site residuals. It is not a local guarantee. Publication withholds locations outside the contiguous-U.S. domain or beyond {fmt(v2?.deployment.oof_nearest_monitor_distance_p90_support_km)} km from an eligible monitor; farther places remain searchable without a prediction. The low-evidence label marks places beyond the 75th percentile of observed out-of-fold monitor distance; it is a distance evidence tier, not a validated local uncertainty class.</p><h3>Coverage</h3><p>{fmt(cv?.searchable_census_places)} Census places are searchable; {fmt(cv?.supported_model_places)} have a 2024 estimate; {fmt(v2?.deployment.withheld_places)} are withheld. Population coverage sums available 2024 Census estimates for unique modeled place GEOIDs ({fmt(cv?.population_covered)} residents); it is geographic coverage, not users reached or impact. EPA monitor proximity uses 5 km from the Gazetteer internal point, not legal-boundary containment.</p><h3>Data and limitations</h3><ul>{Object.entries(manifest?.dataset_sources||{}).map(([name,src])=><li key={name}><a href={src.url} target="_blank" rel="noreferrer">{name} <ExternalLink size={12}/></a>{src.vintage?` · vintage ${src.vintage}`:""}{src.period?` · ${src.period}`:""}</li>)}</ul><p>EPA AQS annual observations retain parameter, metric, units, sample completeness, event treatment, certification, and selected colocated POC provenance. The release selects one ambient summary per POC: Events Included when present, otherwise No Events; event-excluded alternatives are not substituted. EPA NEI rows are facility-level primary-PM2.5 annual inventory estimates in source units. Inventory proximity does not identify contribution or responsibility.</p><ul><li>2024 evaluation data and previous evaluation results were inspected; these folds are development evidence, not a fresh final test.</li><li>2025 monitor summaries are provisional; no year forecasting is claimed.</li><li>Population and facility proximity are not used as pollution proxies.</li><li>No independent between-monitor field validation, personal exposure, current conditions, forecast, source attribution, or health interpretation is established.</li></ul><div className="method-commands"><code>python scripts/build_national_dataset.py --start-year 2018 --end-year 2025</code><code>OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python scripts/evaluate_national_v2.py</code><code>python scripts/evaluate_national_v3.py</code></div></div></>;
 }
 

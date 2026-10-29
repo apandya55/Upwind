@@ -1,6 +1,8 @@
 import { defineConfig } from "@playwright/test";
+const python = process.env.UPWIND_PYTHON || ".venv/bin/python";
 export default defineConfig({
   testDir: "./tests",
+  testIgnore: "**/public-surface.spec.ts",
   workers: 1,
   timeout: 120000,
   expect: { timeout: 30000 },
@@ -15,7 +17,7 @@ export default defineConfig({
   },
   webServer: [
     {
-      command: ".venv/bin/uvicorn upwind.api:app --host 127.0.0.1 --port 8001",
+      command: `${python} -m uvicorn upwind.api:app --host 127.0.0.1 --port 8001`,
       url: "http://127.0.0.1:8001/api/health",
       reuseExistingServer: false,
       cwd: "..",

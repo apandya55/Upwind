@@ -23,7 +23,7 @@ test("coverage planning renders when reconstruction fields are explicitly unavai
       },
     }),
   );
-  await page.goto("/");
+  await page.goto("/workspace");
   await page
     .getByRole("button", { name: "Generate measurement plans", exact: true })
     .click();
@@ -101,7 +101,7 @@ test("conditional evidence is distinct from field confidence and incomplete diag
       },
     }),
   );
-  await page.goto("/");
+  await page.goto("/workspace");
   await page
     .getByRole("button", { name: "Generate measurement plans", exact: true })
     .click();

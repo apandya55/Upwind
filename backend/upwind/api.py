@@ -4,21 +4,100 @@ import asyncio
 import csv
 import hashlib
 import io
+import os
 import re
+import time
 from pathlib import Path
 from fastapi import FastAPI, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, HTMLResponse, Response
 from fastapi.staticfiles import StaticFiles
-from .models import Investigation, ImportRequest, migrate_analysis
-from .fixtures import synthetic_case
-from .engine import analyze, MODEL_VERSION, PROTOCOL_VERSION
-from .importers import parse_csv
-from . import store
-from .report import evidence_report, measurements_csv
+from .models import Investigation, ImportRequest
 from .national.data import read_release, read_release_set, release_identity, release_file_sha256, query_bounds, validate_bounds, haversine_km, aggregate_bounds
+from .national.roads import major_road_context, SUPPORTED as OSM_ROAD_PLACES
+from .national import data as national_data
+from .national import roads as national_roads
 
 app = FastAPI(title="UPWIND", version="0.1.0")
+_cors_origins = [origin.strip() for origin in os.environ.get("UPWIND_CORS_ORIGINS", "").split(",") if origin.strip()]
+if _cors_origins:
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=_cors_origins,
+        allow_credentials=False,
+        allow_methods=["GET", "HEAD"],
+        allow_headers=[],
+    )
+NATIONAL_MODEL_VERSION = "upwind-nearest-monitor-annual-pm25-0.3.0"
+NATIONAL_PROTOCOL_VERSION = "UW-NATIONAL-SPATIAL-2026-04"
 _post_capacity = asyncio.Semaphore(4)
+_public_rate_windows: dict[str, tuple[int, int]] = {}
+_public_rate_checks = 0
+_PUBLIC_RATE_MAX_CLIENTS = 10_000
+
+
+def _public_mode() -> bool:
+    return os.environ.get("UPWIND_PUBLIC_READONLY", "0").strip().lower() in {"1", "true", "yes"}
+
+
+def _public_path_allowed(request: Request) -> bool:
+    path = request.url.path
+    return path in {"/api/health", "/api/ready"} or path.startswith("/api/national/")
+
+
+def _public_preflight_allowed(request: Request) -> bool:
+    return (
+        request.method == "OPTIONS"
+        and bool(_cors_origins)
+        and request.headers.get("origin", "") in _cors_origins
+        and request.headers.get("access-control-request-method", "GET") in {"GET", "HEAD"}
+        and _public_path_allowed(request)
+    )
+
+
+def _public_client_key(request: Request) -> str:
+    """Use forwarded identity only when the service explicitly trusts its proxy."""
+    if os.environ.get("UPWIND_TRUST_PROXY", "0").strip().lower() in {"1", "true", "yes"}:
+        forwarded = request.headers.get("x-forwarded-for", "").split(",")
+        candidate = forwarded[-1].strip() if forwarded else ""
+        if candidate and len(candidate) <= 128:
+            return candidate
+    return request.client.host if request.client and request.client.host else "unknown"
+
+
+@app.middleware("http")
+async def public_read_only_boundary(request: Request, call_next):
+    """When deployed publicly, expose only the national read API and health."""
+    if _public_mode():
+        if _public_preflight_allowed(request):
+            return await call_next(request)
+        if request.method not in {"GET", "HEAD"} or not _public_path_allowed(request):
+            return Response("Not found", status_code=404)
+        # Compose exposes the API only to Caddy, which overwrites this header
+        # with the socket peer address. Keep a modest per-client ceiling for
+        # public reads; query results are separately bounded by each endpoint.
+        client_ip = _public_client_key(request)
+        now = int(time.monotonic() // 60)
+        if client_ip not in _public_rate_windows and len(_public_rate_windows) >= _PUBLIC_RATE_MAX_CLIENTS:
+            client_ip = "__overflow__"
+        window, count = _public_rate_windows.get(client_ip, (now, 0))
+        if window != now:
+            window, count = now, 0
+        if count >= 120:
+            return Response(
+                '{"detail":"Read request limit reached; retry next minute"}',
+                status_code=429,
+                media_type="application/json",
+                headers={"Retry-After": str(60 - int(time.monotonic() % 60))},
+            )
+        _public_rate_windows[client_ip] = (window, count + 1)
+        global _public_rate_checks
+        _public_rate_checks += 1
+        if _public_rate_checks % 256 == 0:
+            for address, (minute, _) in tuple(_public_rate_windows.items()):
+                if minute < now - 1:
+                    _public_rate_windows.pop(address, None)
+    return await call_next(request)
 
 
 def _facility_identity(row: dict) -> dict:
@@ -267,7 +346,8 @@ def national_sources(west: float | None = None, south: float | None = None, east
 
 @app.get("/api/national/context")
 def national_context(latitude: float, longitude: float, radius_km: float = 50.0,
-                    pollutant: str = "PM25", monitor_year: int = 2024, limit: int = 20):
+                    pollutant: str = "PM25", monitor_year: int = 2024, limit: int = 20,
+                    geoid: str = ""):
     """Return documented nearby evidence around a point, retaining its evidence class."""
     if not (math.isfinite(latitude) and -90 <= latitude <= 90
             and math.isfinite(longitude) and -180 <= longitude <= 180):
@@ -345,6 +425,26 @@ def national_context(latitude: float, longitude: float, radius_km: float = 50.0,
             "records": ranked[:min(limit, 10)], "compatible_record_count": len(records),
             "ranking_meaning": f"Reported annual emissions descending within {pollutant_code} records measured in {units}.",
         })
+    road_geoid = min(
+        OSM_ROAD_PLACES,
+        key=lambda key: haversine_km(latitude, longitude, OSM_ROAD_PLACES[key][1], OSM_ROAD_PLACES[key][2]),
+    )
+    road_distance = haversine_km(latitude, longitude, OSM_ROAD_PLACES[road_geoid][1], OSM_ROAD_PLACES[road_geoid][2])
+    road_context = major_road_context(road_geoid if road_distance <= 0.01 else "", latitude, longitude)
+    place_evidence = None
+    if geoid:
+        if not re.fullmatch(r"[0-9]{7}", geoid):
+            raise HTTPException(status_code=422, detail="geoid must be a seven-digit Census place identifier")
+        matching_place = next((place for place in read_release("places.json") if str(place.get("id")) == geoid), None)
+        if matching_place:
+            estimate = (matching_place.get("model_estimates") or {}).get(str(monitor_year))
+            place_evidence = {
+                "evidence_class": "modeled_place_point_estimate" if estimate else "no_published_estimate",
+                "place": {"id": geoid, "name": matching_place.get("name"), "state": matching_place.get("state")},
+                "year": monitor_year, "estimate": estimate,
+                "coordinate_meaning": "Census Gazetteer internal point; not a place boundary or area average.",
+                "uncertainty": estimate.get("interval_interpretation") if estimate else matching_place.get("withheld_reason"),
+            }
     return {
         "query": {"latitude": latitude, "longitude": longitude, "radius_km": radius_km,
                   "pollutant": pollutant, "monitor_year": monitor_year},
@@ -365,11 +465,14 @@ def national_context(latitude: float, longitude: float, radius_km: float = 50.0,
             "monitor_summary_count": len(monitor_items), "radius_km": radius_km,
             "meaning": "A zero count means this release has no eligible AQS annual site summary within the selected radius and year; it does not prove an area has no monitoring of any kind.",
         },
+        "place_evidence": place_evidence,
+        "road_context": road_context,
         "limitations": [
             "A Census Gazetteer point is not a legal place boundary; this endpoint measures distance from the supplied point only.",
             "Near means within the requested radius and does not mean inside a place boundary.",
             "Monitor summaries are measured at instrument sites; facility records are annual inventory estimates, not ambient measurements.",
             "Proximity and inventory emissions do not establish facility contribution, source responsibility, or local air quality.",
+            "OpenStreetMap road proximity and mapped road length are geographic context only; they do not represent traffic, emissions, concentration, or causal contribution. Road metrics cover only the bounded Durham and Charlotte extracts.",
         ],
     }
 
@@ -621,6 +724,10 @@ def _validate_json_body(raw):
 @app.middleware("http")
 async def size_limit(request: Request, call_next):
     # Stream limit also covers clients without Content-Length.
+    # This middleware is registered after the other wrappers and therefore
+    # runs first. Reject public writes before reading or validating a body.
+    if _public_mode() and not _public_preflight_allowed(request) and (request.method not in {"GET", "HEAD"} or not _public_path_allowed(request)):
+        return Response("Not found", status_code=404)
     if request.method in {"POST", "PUT"}:
         chunks, size = [], 0
         async for chunk in request.stream():
@@ -649,19 +756,65 @@ async def size_limit(request: Request, call_next):
 
 @app.get("/api/health")
 def health():
+    if _public_mode():
+        model_version, protocol_version = NATIONAL_MODEL_VERSION, NATIONAL_PROTOCOL_VERSION
+    else:
+        from .engine import MODEL_VERSION, PROTOCOL_VERSION
+        model_version, protocol_version = MODEL_VERSION, PROTOCOL_VERSION
     return {
         "status": "ok",
         "version": "0.1.0",
-        "model_version": MODEL_VERSION,
-        "protocol_version": PROTOCOL_VERSION,
-        "evidence": "synthetic evaluations only",
+        "model_version": model_version,
+        "protocol_version": protocol_version,
+        "product": "national-explorer" if _public_mode() else "local-research-engine",
+        "evidence": "historical release evidence" if _public_mode() else "synthetic evaluations only",
     }
+
+
+@app.get("/api/ready")
+def ready():
+    """Deployment readiness: every runtime release artifact and road extract exists."""
+    required = [
+        (national_data.release_dir(), name)
+        for name in ("manifest.json", "places.json", "model.json", "monitors.json", "sources.json")
+    ]
+    required.extend((national_roads.road_dir(), f"{city}.{suffix}")
+                    for city in ("durham", "charlotte") for suffix in ("osm", "metadata.json"))
+    missing = [str(directory / name) for directory, name in required
+               if not (directory / name).is_file() or (directory / name).stat().st_size == 0]
+    malformed = []
+    for directory, name in required[:5]:
+        path = directory / name
+        if str(path) in missing:
+            continue
+        try:
+            json.loads(path.read_text())
+        except (OSError, UnicodeDecodeError, json.JSONDecodeError):
+            malformed.append(str(path))
+    if malformed:
+        return Response(
+            json.dumps({"status": "not_ready", "malformed_files": malformed}),
+            status_code=503,
+            media_type="application/json",
+        )
+    if missing:
+        return Response(
+            json.dumps({"status": "not_ready", "missing_files": missing}),
+            status_code=503,
+            media_type="application/json",
+        )
+    return {"status": "ready", "release": "national explorer data and bounded road context available"}
 
 
 @app.middleware("http")
 async def bounded_post_admission(request: Request, call_next):
     # Reject overload before buffering large JSON bodies. One application worker
     # owns this event-loop semaphore; health/reads stay available under load.
+    if os.environ.get("UPWIND_PUBLIC_READONLY", "0").strip().lower() in {"1", "true", "yes"}:
+        path = request.url.path
+        allowed = path in {"/api/health", "/api/ready"} or path.startswith("/api/national/")
+        if not _public_preflight_allowed(request) and (request.method not in {"GET", "HEAD"} or not allowed):
+            return Response("Not found", status_code=404)
     if request.method not in {"POST", "PUT"}:
         return await call_next(request)
     if _post_capacity.locked():
@@ -680,6 +833,7 @@ async def bounded_post_admission(request: Request, call_next):
 
 @app.get("/api/demo")
 def demo():
+    from .fixtures import synthetic_case
     inv, _ = synthetic_case()
     return inv
 
@@ -693,11 +847,13 @@ def campaign_demo():
 
 @app.post("/api/analyze")
 def analysis(inv: Investigation):
+    from .engine import analyze
     return analyze(inv)
 
 
 @app.post("/api/import/csv")
 def import_csv(req: ImportRequest):
+    from .importers import parse_csv
     try:
         rows, record = parse_csv(req)
     except ValueError as e:
@@ -707,11 +863,15 @@ def import_csv(req: ImportRequest):
 
 @app.get("/api/investigations")
 def investigations():
+    from . import store
     return store.list_all()
 
 
 @app.post("/api/investigations")
 def save(inv: Investigation):
+    from . import store
+    from .engine import analyze
+    from .models import migrate_analysis
     migrate_analysis(inv)
     if inv.result is not None:
         inv.result = analyze(inv)
@@ -720,6 +880,9 @@ def save(inv: Investigation):
 
 @app.post("/api/investigations/import")
 def import_investigation(inv: Investigation):
+    from . import store
+    from .engine import analyze
+    from .models import migrate_analysis
     migrate_analysis(inv)
     inv.id = ""
     if inv.result is not None:
@@ -728,6 +891,7 @@ def import_investigation(inv: Investigation):
 
 
 def lookup(id):
+    from . import store
     try:
         return store.load(id)
     except KeyError:
@@ -752,6 +916,7 @@ def export(id: str):
 
 @app.get("/api/investigations/{id}/measurements.csv")
 def export_csv(id: str):
+    from .report import measurements_csv
     return Response(
         measurements_csv(lookup(id)),
         media_type="text/csv",
@@ -763,6 +928,7 @@ def export_csv(id: str):
 
 @app.get("/api/investigations/{id}/report", response_class=HTMLResponse)
 def report(id: str):
+    from .report import evidence_report
     return HTMLResponse(
         evidence_report(lookup(id)),
         headers={

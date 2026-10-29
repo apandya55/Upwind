@@ -6,7 +6,7 @@ test("complete example: plan, constraints, save, reopen, export and responsive l
 }) => {
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
-  await page.goto("/");
+  await page.goto("/workspace");
   await expect(
     page.getByRole("heading", { name: "Estuary monitoring study" }),
   ).toBeVisible();
@@ -76,7 +76,7 @@ test("complete example: plan, constraints, save, reopen, export and responsive l
 test("new investigation, valid and malformed imports, follow-up, observations and restore", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/workspace");
   await page.locator(".investigation-switch").click();
   await page
     .getByRole("button", { name: "New investigation", exact: true })
@@ -166,7 +166,7 @@ test("offline operation, labelled synthetic CSV reimport, keyboard observation a
       await route.abort();
     else await route.continue();
   });
-  await page.goto("/");
+  await page.goto("/workspace");
   await page
     .getByRole("button", { name: "Generate measurement plans" })
     .click();
@@ -229,7 +229,7 @@ test("offline operation, labelled synthetic CSV reimport, keyboard observation a
 test("candidate permissions, unsupported weather and map interaction", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/workspace");
   await page
     .getByRole("button", { name: "Select Footbridge", exact: true })
     .locator("circle")

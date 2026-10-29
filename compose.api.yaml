@@ -1,0 +1,50 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.api
+    environment:
+      UPWIND_PUBLIC_READONLY: "1"
+      UPWIND_TRUST_PROXY: "1"
+      UPWIND_CORS_ORIGINS: ${UPWIND_CORS_ORIGINS:?set exact Vercel site origins}
+      UPWIND_NATIONAL_RELEASE_DIR: /data/release
+      UPWIND_OSM_ROADS_DIR: /data/osm_roads/raw
+      UPWIND_DATA_DIR: /tmp/upwind
+    volumes:
+      - ./deployment-data:/data:ro
+    read_only: true
+    tmpfs:
+      - /tmp
+    init: true
+    security_opt:
+      - no-new-privileges:true
+    expose:
+      - "8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/ready', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+  gateway:
+    image: caddy:2-alpine
+    depends_on:
+      api:
+        condition: service_healthy
+    environment:
+      UPWIND_API_DOMAIN: ${UPWIND_API_DOMAIN:?set API hostname}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deploy/Caddyfile.api:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    init: true
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  caddy_data:
+  caddy_config:

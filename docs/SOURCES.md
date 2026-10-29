@@ -29,11 +29,11 @@ No NOAA, EPA, OpenAQ, PurpleAir or community data have been bundled or licensed 
 
 ## Software and geographic context
 
-React (MIT), Vite (MIT), TypeScript (Apache-2.0), MapLibre GL JS (BSD-3-Clause), Recharts (MIT), Lucide (ISC), FastAPI (MIT), Pydantic (MIT), NumPy/SciPy/pandas (BSD-3-Clause), pyproj (MIT), SQLite (public domain), pytest (MIT), Playwright (Apache-2.0). Exact dependency trees are in `requirements.lock` and `frontend/package-lock.json`; distributed packages carry their own notices. Review package notices before redistribution. No source image assets or proprietary basemap tiles are copied into the repository.
+React (MIT), Vite (MIT), TypeScript (Apache-2.0), MapLibre GL JS (BSD-3-Clause), Recharts (MIT), Lucide (ISC), FastAPI (MIT), Pydantic (MIT), NumPy/SciPy/pandas (BSD-3-Clause), pyproj (MIT), SQLite (public domain), pytest (MIT), Playwright (Apache-2.0). Exact dependency trees are in `requirements.lock` and `frontend/package-lock.json`; distributed packages carry their own notices. Review package notices before redistribution. No third-party source-image files or proprietary basemap tiles are copied into the repository.
 
-The default local grid has no third-party geographic content. Optional OpenStreetMap raster tiles display attribution via MapLibre; © OpenStreetMap contributors, ODbL data, subject to tile.openstreetmap.org usage policy. They are a convenience and may be unavailable; do not bulk download or assume a production tile-service agreement. Geographic context availability never changes measured readings or engine outputs.
+The default local grid has no third-party geographic content. Optional OpenStreetMap raster tiles display attribution via MapLibre; © OpenStreetMap contributors, ODbL data, subject to tile.openstreetmap.org usage policy. They are a convenience and may be unavailable; do not bulk download or assume a production tile-service agreement. Authored product screenshots are included in the frontend assets; map screenshots retain visible OpenStreetMap attribution. Geographic context availability never changes measured readings or engine outputs.
 
-The project owner has not yet selected a repository-wide license. Do not infer one from third-party dependency licenses.
+The project source is licensed under Apache-2.0; see the repository `LICENSE` and `CITATION.cff`. This project license applies to UPWIND code and authored documentation only. It does not relicense, grant redistribution rights to, or replace attribution and share-alike obligations for upstream EPA, Census, or OpenStreetMap datasets. Review the exact data bundle and hosting distribution before publishing it.
 
 ## Severe evaluation provenance
 

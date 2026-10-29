@@ -14,6 +14,7 @@ from __future__ import annotations
 import hashlib
 import json
 import shutil
+import argparse
 from pathlib import Path
 
 import numpy as np
@@ -66,8 +67,9 @@ def predict(method, train_x, train_y, test_x):
     raise ValueError(method)
 
 
-def run():
-    rows = json.loads((RELEASE / "monitors.json").read_text())
+def run(release=RELEASE):
+    release = Path(release)
+    rows = json.loads((release / "monitors.json").read_text())
     site_coordinates = {}
     coordinate_counts = {}
     for row in rows:
@@ -151,7 +153,7 @@ def run():
         coefficients = np.linalg.solve(kernel + np.eye(len(values)), values - intercept)
     else:
         intercept, coefficients = None, None
-    places_path = RELEASE / "places.json"
+    places_path = release / "places.json"
     places = json.loads(places_path.read_text())
     for start in range(0, len(places), 500):
         batch = places[start:start + 500]
@@ -198,16 +200,16 @@ def run():
                             "uncertainty_note": "Symmetric 90th-percentile absolute error from spatial out-of-fold monitor predictions; empirical site-level evidence, not a local guarantee."}
     # Preserve the v1 result as historical evidence before replacing active
     # release report/model metadata.
-    old_report = RELEASE / "model_report.json"
-    historical = RELEASE / "model_report_v1_historical.json"
+    old_report = release / "model_report.json"
+    historical = release / "model_report_v1_historical.json"
     if old_report.exists() and not historical.exists():
         shutil.copy2(old_report, historical)
-    report["input_sha256"] = hashlib.sha256((RELEASE / "monitors.json").read_bytes()).hexdigest()
-    path = RELEASE / "model_report_v2_development.json"
+    report["input_sha256"] = hashlib.sha256((release / "monitors.json").read_bytes()).hexdigest()
+    path = release / "model_report_v2_development.json"
     path.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
-    (RELEASE / "model_report.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
-    (RELEASE / "model.json").write_text(json.dumps(model, separators=(",", ":"), allow_nan=False) + "\n")
-    manifest_path = RELEASE / "manifest.json"
+    (release / "model_report.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
+    (release / "model.json").write_text(json.dumps(model, separators=(",", ":"), allow_nan=False) + "\n")
+    manifest_path = release / "manifest.json"
     manifest = json.loads(manifest_path.read_text())
     manifest["release"] = "upwind-national-explorer-0.3.0"
     manifest["model"] = {k: model[k] for k in ("model_id", "method", "target", "features", "kernel_bandwidth_km", "ridge")}
@@ -226,4 +228,6 @@ def run():
 
 
 if __name__ == "__main__":
-    run()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--release-dir", type=Path, default=RELEASE)
+    run(parser.parse_args().release_dir)

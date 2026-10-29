@@ -1,18 +1,18 @@
 /* Shared design language for the public atlas and research workspace. */
 :root {
-  --atlas-paper: #f6f5ef;
-  --atlas-surface: #fbfaf5;
-  --atlas-surface-raised: #fffefa;
-  --atlas-ink: #1d3029;
-  --atlas-muted: #5e7067;
-  --atlas-line: #cbd5ca;
-  --atlas-line-strong: #aebfb2;
-  --atlas-green: #174f46;
-  --atlas-green-hover: #23695d;
-  --atlas-teal: #398b7d;
-  --atlas-focus: #287c70;
-  --atlas-radius: 7px;
-  --atlas-shadow: 0 5px 18px rgb(23 54 45 / 8%);
+  --atlas-paper: #F6F5F2;
+  --atlas-surface: #FAF9F6;
+  --atlas-surface-raised: #FFFFFF;
+  --atlas-ink: #18181B;
+  --atlas-muted: #64748B;
+  --atlas-line: #E2E8F0;
+  --atlas-line-strong: #CBD5E1;
+  --atlas-green: #1B4332;
+  --atlas-green-hover: #143326;
+  --atlas-teal: #0284C7;
+  --atlas-focus: #1B4332;
+  --atlas-radius: 6px;
+  --atlas-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
   color-scheme: light;
 }
 
@@ -106,6 +106,163 @@ select:focus-visible, textarea:focus-visible, summary:focus-visible {
   }
 }
 
+/* Compact working-map labels and a single methodology disclosure at page end. */
+.national-shell .national-map-title-card {
+  max-width: min(390px, calc(100vw - 420px));
+  padding: 8px 10px;
+  border: 1px solid #d8e1da;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 2px 7px rgb(26 51 39 / 7%);
+}
+.national-shell .national-map-title-card:hover { transform: none; box-shadow: 0 2px 7px rgb(26 51 39 / 7%); }
+.national-shell .national-map-title-card h2 { margin: 3px 0 0; font-size: 15px; font-weight: 620; }
+.national-shell .national-method-note { margin: 14px 0 16px; padding: 11px 0; border-top: 1px solid var(--atlas-line); }
+@media (max-width: 1000px) {
+  .national-shell .national-map-title-card { max-width: min(390px, calc(100vw - 40px)); }
+  .national-shell .national-method-note { margin: 12px 0; }
+}
+
+.national-method-note{max-width:none;margin:20px 24px 18px;padding:12px 0;border-top:1px solid #d2ddd5;display:flex;align-items:center;justify-content:space-between;gap:16px;color:#52675d;font-size:11px;line-height:1.5}
+.national-method-note p{margin:0}
+.national-method-note a{display:inline-flex;align-items:center;gap:6px;flex:none;color:#245b4e;font-weight:650;text-decoration:none}
+.national-method-note a:hover{text-decoration:underline}
+@media(max-width:1000px){.national-method-note{margin:16px 0 12px}}
+@media(max-width:650px){.national-method-note{align-items:flex-start;flex-direction:column;gap:6px;font-size:10px}}
+
+/* Grounded GIS Bottom Status Dock */
+.national-map-footer-dock {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid #e2e8f0;
+  padding: 8px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 11px;
+  color: #475569;
+  flex-shrink: 0;
+  z-index: 20;
+  margin: 0 !important;
+}
+
+@media (min-width: 1001px) {
+  .national-map-footer-dock {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-shadow: 0 -2px 10px rgba(15, 23, 42, 0.04);
+  }
+  .national-shell .map-hud-stack {
+    bottom: 50px;
+  }
+}
+
+.national-map-footer-dock .dock-legend {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.national-map-footer-dock .dock-legend-title {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.national-map-footer-dock .dock-tier {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #334155;
+}
+
+.national-map-footer-dock .dock-tier .tier-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.national-map-footer-dock .dock-tier.low .tier-dot { background: #3d8b7a; }
+.national-map-footer-dock .dock-tier.mid .tier-dot { background: #d97706; }
+.national-map-footer-dock .dock-tier.elevated .tier-dot { background: #ea580c; }
+.national-map-footer-dock .dock-tier.high .tier-dot { background: #dc2626; }
+
+.national-map-footer-dock .dock-protocol {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  color: #64748b;
+}
+
+.national-map-footer-dock .dock-protocol code {
+  background: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #0f172a;
+}
+
+.national-map-footer-dock .dock-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
+}
+
+.national-map-footer-dock .dock-meta p {
+  margin: 0;
+  color: #64748b;
+  font-size: 11px;
+}
+
+.national-map-footer-dock .dock-meta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #1b4332;
+  font-weight: 600;
+  font-size: 12px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.national-map-footer-dock .dock-meta a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 1000px) {
+  .national-map-footer-dock .dock-protocol {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .national-map-footer-dock {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px 16px;
+  }
+  .national-map-footer-dock .dock-meta {
+    margin-left: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
+
 @media (max-width: 860px) {
   /* Keep the research workspace rail usable on small screens: the icon rail
      remains a clear navigation affordance while labels stay out of the map. */
@@ -118,4 +275,138 @@ select:focus-visible, textarea:focus-visible, summary:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   html:focus-within { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+/* Precision cartography skin for the working Explorer. Data colors remain
+   owned by the map legend; these tokens describe only the interface chrome. */
+.national-shell {
+  --atlas-paper: #f7f8fa;
+  --atlas-panel: #ffffff;
+  --atlas-ink: #17212b;
+  --atlas-slate: #526170;
+  --atlas-border: #d9e0e5;
+  --atlas-vermilion: #b83a25;
+  --atlas-vermilion-dark: #8f2d1d;
+  background: var(--atlas-paper);
+  color: var(--atlas-ink);
+}
+.national-shell,
+.national-shell button,
+.national-shell input,
+.national-shell select { font-family: "Avenir Next", Avenir, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+.national-shell .national-head-copy h1,
+.national-shell .national-map-title-card h2,
+.national-shell .detail-title-row h2,
+.national-shell .comparison-heading h2,
+.national-shell .comparison-cards h3 { font-family: inherit; font-weight: 650; letter-spacing: -.045em; }
+.national-shell .national-map-title-card h2,
+.national-shell .detail-title-row h2 { font-size: clamp(20px, 2vw, 28px); }
+.national-shell .national-brand,
+.national-shell .national-search,
+.national-shell .national-select,
+.national-shell .national-layers,
+.national-shell .source-overlay-toggle,
+.national-shell .national-map-title-card,
+.national-shell .national-detail-panel,
+.national-shell .map-legend,
+.national-shell .map-caveat,
+.national-shell .map-floating-controls,
+.national-shell .national-bottom > *,
+.national-shell .comparison-panel {
+  border-color: var(--atlas-border);
+  background: var(--atlas-panel);
+  color: var(--atlas-ink);
+  box-shadow: 0 5px 18px rgb(23 33 43 / 7%);
+}
+.national-shell .national-brand:hover,
+.national-shell .national-search:hover,
+.national-shell .national-select:hover,
+.national-shell .source-overlay-toggle:hover,
+.national-shell .map-floating-controls:hover {
+  border-color: #b9c5ce;
+  box-shadow: 0 8px 22px rgb(23 33 43 / 11%);
+}
+.national-shell .national-search:focus-within {
+  border-color: var(--atlas-vermilion);
+  box-shadow: 0 0 0 3px rgb(184 58 37 / 16%), 0 8px 22px rgb(23 33 43 / 10%);
+}
+.national-shell .national-search input,
+.national-shell .national-select select { color: var(--atlas-ink); }
+.national-shell .national-search,
+.national-shell .national-select,
+.national-shell .national-layers button,
+.national-shell .source-overlay-toggle { font-size: 13px; }
+.national-shell .national-select > span,
+.national-shell .national-search,
+.national-shell .national-layers button,
+.national-shell .source-overlay-toggle { color: var(--atlas-slate); }
+.national-shell .national-layers button.selected {
+  color: var(--atlas-vermilion-dark);
+  box-shadow: inset 0 -2px var(--atlas-vermilion), 0 2px 7px rgb(23 33 43 / 8%);
+}
+.national-shell .national-layers button.selected svg { color: var(--atlas-vermilion); }
+.national-shell .source-overlay-toggle.is-active {
+  color: var(--atlas-vermilion-dark);
+  border-color: #d99b8d;
+  background: #fff8f6;
+  box-shadow: 0 3px 12px rgb(184 58 37 / 13%);
+}
+.national-shell .source-overlay-toggle.is-active .source-toggle-indicator {
+  background: var(--atlas-vermilion);
+  box-shadow: 0 0 0 3px rgb(184 58 37 / 16%);
+}
+.national-shell .national-map-title-card { border-radius: 6px; }
+.national-shell .national-map-title-card h2,
+.national-shell .detail-title-row h2,
+.national-shell .comparison-heading h2 { color: var(--atlas-ink); }
+.national-shell .national-map-title-card .national-kicker,
+.national-shell .national-map-heading .national-kicker { color: var(--atlas-slate); }
+.national-shell .detail-metric {
+  background: #fff7f5;
+  border-color: #e1b6ac;
+}
+.national-shell .detail-metric strong,
+.national-shell .metric-chip { color: var(--atlas-vermilion-dark); }
+.national-shell .detail-metric .metric-chip { border-color: #e1b6ac; background: #fff; }
+.national-shell .detail-actions .button,
+.national-shell .notice-btn.primary {
+  background: var(--atlas-vermilion);
+  border-color: var(--atlas-vermilion);
+  color: #fff;
+}
+.national-shell .detail-actions .button:hover,
+.national-shell .notice-btn.primary:hover { background: var(--atlas-vermilion-dark); }
+.national-shell .icon-action:hover,
+.national-shell .sidebar-toggle-btn:hover,
+.national-shell .floating-sidebar-toggle:hover { border-color: #d99b8d; color: var(--atlas-vermilion-dark); }
+.national-shell .quick-places button:hover,
+.national-shell .rank-row:hover,
+.national-shell .search-results button:hover { background: #fff5f2; color: var(--atlas-vermilion-dark); }
+.national-shell .search-results button[aria-selected="true"] {
+  background: #fff0ec;
+  color: var(--atlas-vermilion-dark);
+  box-shadow: inset 3px 0 var(--atlas-vermilion);
+}
+.national-shell .map-caveat,
+.national-shell .source-disclaimer,
+.national-shell .detail-footnote { color: var(--atlas-slate); }
+
+@media (max-width: 700px) {
+  .national-shell .national-toolbar { gap: 8px; }
+  .national-shell .national-layer-controls {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+    width: 100%;
+    flex-basis: 100%;
+  }
+  .national-shell .national-layers,
+  .national-shell .national-overlay-control,
+  .national-shell .source-overlay-toggle { width: 100%; }
+  .national-shell .national-layers { display: grid; grid-template-columns: 1fr 1fr; }
+  .national-shell .national-layers button,
+  .national-shell .source-overlay-toggle { min-height: 44px; justify-content: center; }
+  .national-shell .source-overlay-toggle { padding-inline: 12px; }
+  .national-shell .national-map-wrap { min-height: 370px; }
+  .national-shell .national-detail-panel { border-radius: 10px; }
 }

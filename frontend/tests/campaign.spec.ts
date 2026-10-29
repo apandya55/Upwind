@@ -5,7 +5,7 @@ test("campaign example preserves periods, explains shared release and exports it
 }) => {
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
-  await page.goto("/");
+  await page.goto("/workspace");
   await page.getByRole("button", { name: "Scenarios", exact: true }).click();
   await page
     .getByRole("button", { name: "Open synthetic campaign example" })

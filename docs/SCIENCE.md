@@ -1,6 +1,6 @@
-# Current scientific status: engine0.7 evaluated synthetic candidate
+# Current scientific status: engine0.9 evaluated synthetic candidate
 
-Current candidate model **plume-robust-0.7.1**, protocol **UW-ENGINE-2026-07A**. See [protocol](ENGINE_V07_PROTOCOL.md), [implementation](ENGINE_V07_IMPLEMENTATION.md), and the frozen [0.6 results](ENGINE_V06_RESULTS.md). The locked development, calibration and final synthetic splits are complete; a post-final numerical repair is recorded in `docs/PROGRESS.md` and `evaluations/engine-v07/`. All available accuracy evidence is synthetic; no field calibration or organizational attribution reliability is established. The 0.6 nominal point-error targets failed (median mean141.1m, mode179.9m). The retained0.5 methods below remain the physical/statistical foundation; their older evidence is historical.
+Current candidate model **plume-robust-0.9.0**, protocol **UW-ENGINE-2026-09**. See [protocol](ENGINE_V09_PROTOCOL.md), the [current handoff](PROGRESS.md), and the retained v0.8/v0.7 results. The v0.9 feasibility and sensitivity work is synthetic; no field calibration or organizational attribution reliability is established. The current practical conclusion remains that source localization is not demonstrated for operational use. Earlier methods and results remain historical evidence.
 
 The 0.7 candidate preserves the 0.6 posterior while adding an explicit
 humidity-response nuisance covariance, a bounded two-source adequacy profile,

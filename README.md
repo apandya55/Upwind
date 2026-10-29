@@ -1,14 +1,18 @@
 # UPWIND
 
-A public National Explorer for community **PM2.5 evidence**, with the older investigation workspace retained at `/workspace` for research use. No accounts, paid APIs, live hardware or GPU required. The investigation examples remain visibly synthetic; the explorer uses official EPA, Census, and PRISM data to provide historical 2024 PM2.5 evidence with explicit validation limits. Neither workflow establishes field-validated source attribution.
+A public National Explorer for community **PM2.5 evidence**, with the older investigation workspace retained at `/workspace` for local research use. No accounts, paid APIs, live hardware or GPU required. The investigation examples remain visibly synthetic; the explorer uses EPA monitoring and inventory records plus Census place data for historical evidence. The deployed place estimate is a nearest-monitor assignment; PRISM appears only in the documented candidate comparison, not the deployed estimates. Neither workflow establishes field-validated source attribution.
 
 ## National Explorer
 
 Run the resumable national data pipeline, evaluate the selected baseline, then open `/` in the local app (`/explore` remains a compatible alias). Exact source vintages, data counts, model evaluation, coverage, limitations, exports, and verification commands are in the [National Explorer v3 release record](docs/NATIONAL_EXPLORER_V3_RELEASE.md). The atlas maps historical measured monitor values, supported place estimates, and EPA inventoried facility emissions as separate evidence layers.
 
-Current scientific candidate: **plume-robust-0.7.1** under [UW-ENGINE-2026-07A](docs/ENGINE_V07_PROTOCOL.md). The locked synthetic evaluation and post-final numerical confirmation are recorded in [the engine handoff](docs/PROGRESS.md) and `evaluations/engine-v07/`. The published 0.6 release and its negative results remain frozen in the [engine results](docs/ENGINE_V06_RESULTS.md). Synthetic evidence does not establish operational attribution reliability.
+The home route opens the Explorer directly. Search a Census place, inspect its estimate and reference monitor, compare nearby measured summaries with EPA inventory records, read the limits, and export a snapshot. These workflows are local to the app; they do not establish source responsibility, health risk, or current conditions. CAC sprint decisions and submission notes are in [CAC_FINAL_SPRINT.md](CAC_FINAL_SPRINT.md) and [CAC_SUBMISSION_NOTES.md](CAC_SUBMISSION_NOTES.md).
 
-The [measured-data intake guide](docs/MEASURED_DATA_VALIDATION.md) documents the repaired EPA archive converter. The [readiness audit](docs/MEASURED_READINESS_AUDIT.md) explains why an inspected secondary Prairie Grass workbook cannot yet serve as a benchmark. The current backend suite has 253 passing tests; the National Explorer has nine passing browser workflows. Measured field accuracy remains unvalidated.
+UPWIND has two deliberate product surfaces. The **National Explorer** is a public, read-only atlas backed by the nearest-monitor national release (`upwind-national-explorer-0.3.0`, protocol `UW-NATIONAL-SPATIAL-2026-04`). The **local research engine** is downloadable software for importing user-owned measurements and weather, preserving raw provenance, and running the experimental plume model (`plume-robust-0.9.0`, protocol `UW-ENGINE-2026-09`) on the user's computer. The Explorer does not run the plume engine or accept uploads. The local engine does not depend on the public national release. The boundary and planned package split are recorded in [the release architecture ADR](docs/ARCHITECTURE_RELEASE.md).
+
+Current scientific candidate: **plume-robust-0.9.0** under [UW-ENGINE-2026-09](docs/ENGINE_V09_PROTOCOL.md). The feasibility and sensitivity evidence are recorded in [the engine handoff](docs/PROGRESS.md) and the versioned v0.9 reports. Synthetic evidence does not establish operational attribution reliability.
+
+The [measured-data intake guide](docs/MEASURED_DATA_VALIDATION.md) documents the repaired EPA archive converter. The [readiness audit](docs/MEASURED_READINESS_AUDIT.md) explains why an inspected secondary Prairie Grass workbook cannot yet serve as a benchmark. The latest release verification is recorded in [RELEASE_READINESS.md](RELEASE_READINESS.md); measured field accuracy remains unvalidated. Deployment data preparation and the static-front-end/private-read-only-API configuration are documented in [DEPLOYMENT.md](DEPLOYMENT.md). Project source uses Apache-2.0; upstream data retain their own terms and require separate review. No public deployment has been performed.
 
 ## Latest stress results
 
@@ -18,14 +22,34 @@ Verify current evidence with `.venv/bin/python scripts/verify_v06.py`. All retai
 
 ## Run locally
 
-Requires Python 3.12+, Node 22.12+ (tested 24.19), and npm. Linux/macOS commands:
+Requires Python 3.12, Node 22.12+ (tested 24.19), and npm. The local engine/test install uses `requirements.lock` (the `engine` and `dev` extras); the deployed read-only API uses the separate runtime-only `requirements-runtime.lock`. Linux/macOS commands:
 
 ```sh
 bash scripts/setup.sh
 bash scripts/dev.sh
 ```
 
-Open `http://127.0.0.1:5173` in your own laptop browser. API: port 8000. No credentials needed. The first screen opens the National Explorer; search a place, switch evidence layers, inspect nearby documented context, compare places, and create a community report. The older synthetic investigation workspace remains directly available at `/workspace`.
+Open `http://127.0.0.1:5173` in your own laptop browser. API: port 8000. No credentials needed. The first screen opens the National Explorer; search a place, switch evidence layers, inspect nearby documented context, compare places, and create a community report. The older synthetic investigation workspace remains directly available at `/workspace` in local mode; public deployment configuration intentionally exposes only the national read API.
+
+For the public website build, configure the final origin and use the Explorer-only surface. This build removes the local investigation application from the client bundle and generates public crawler metadata:
+
+```sh
+cd frontend
+VITE_SITE_URL=https://your-domain.example npm run build:public
+```
+
+The container deployment sets this surface automatically. Public API mode allows bounded national GET/HEAD requests and health/readiness checks; Vercel's cross-origin build also enables configured exact-origin GET/HEAD preflight. Uploads, analysis, demo fixtures, and local investigation storage remain unavailable publicly.
+
+To install the local numerical engine from a cloned checkout, use Python 3.12 and the optional `engine` extra:
+
+```sh
+python -m pip install -e ".[engine]"
+upwind --help
+```
+
+The public API uses `requirements-runtime.lock`, which excludes the local scientific stack.
+
+The selected hosted split is Vercel for the static Explorer plus a separate Linux VM running the National API in Docker/Caddy. Configure the public site/API origins and exact CORS allowlist using [the Vercel deployment guide](docs/VERCEL_DEPLOYMENT.md) before deploying.
 
 For local sensor CSV preparation, import steps, tested setup instructions, and a measured parser resource probe, open `/local` in the app or read the [local workflow guide](docs/LOCAL_WORKFLOW.md). A downloadable template and a separately labeled synthetic example are linked from that page.
 
@@ -67,7 +91,7 @@ NOAA/Sagebrush, EPA documentation, and the EPA hourly PM2.5 archive were blocked
 
 ## Research engine and current evidence
 
-Current scientific candidate: **plume-robust-0.7.1**, protocol **UW-ENGINE-2026-07A**. The candidate adds explicit humidity-response nuisance covariance, bounded shared-weather two-source adequacy profiling, a bounded release-variation check and residual externality flags; details are in [ENGINE_V07_IMPLEMENTATION.md](docs/ENGINE_V07_IMPLEMENTATION.md). The frozen 0.6 implementation and results remain the evidence baseline. Read [weather-bias results](docs/WEATHER_BIAS_RESULTS.md), [root causes, equations and reproduction](docs/WEATHER_BIAS_IMPLEMENTATION.md), and [science limits](docs/SCIENCE.md). Historical campaign0.4 results remain in [RESEARCH_RESULTS.md](docs/RESEARCH_RESULTS.md). Local engineering tests do not establish reliable source attribution for governments, companies or activist organizations.
+Current scientific candidate: **plume-robust-0.9.0**, protocol **UW-ENGINE-2026-09**. The candidate adds bounded source-strength sensitivity and deterministic source-cell/weather quadrature checks; details are in [ENGINE_V09_PROTOCOL.md](docs/ENGINE_V09_PROTOCOL.md) and [the current handoff](docs/PROGRESS.md). Synthetic evidence does not establish reliable source attribution for governments, companies or activist organizations.
 
 Open **Scenarios → Open synthetic campaign example** to explore four independently steady wind periods. The new model supports explicit 2–6 periods with a shared fixed source/constant release assumption, independent period backgrounds and persistent instrument bias. Enter documented wind uncertainty and release/receptor heights. Read nuisance-profile ambiguity and whole-sensor/period predictive checks together. Changed release, incorrect weather and transport mismatch can still produce confidently wrong results without a warning.
 

@@ -1,0 +1,538 @@
+/* UPWIND About Page — Editorial Climate Intelligence Style */
+.about-page {
+  min-height: 100vh;
+  background: #f8f9fa;
+  color: #18181b;
+  font-family: "Avenir Next", Avenir, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.about-page * {
+  box-sizing: border-box;
+}
+
+.about-page a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 150ms ease, border-color 150ms ease;
+}
+
+.about-page a:focus-visible {
+  outline: 2px solid #1b4332;
+  outline-offset: 3px;
+}
+
+/* Main Container */
+.about-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+.about-topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.about-topline a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #1b4332;
+  font-weight: 600;
+}
+
+.about-topline a:hover {
+  text-decoration: underline;
+}
+
+/* Hero Section */
+.about-hero {
+  margin-bottom: 40px;
+}
+
+.about-kicker {
+  display: inline-block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #1b4332;
+  margin-bottom: 12px;
+}
+
+.about-hero h1 {
+  font-family: "Avenir Next", Avenir, Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(32px, 4.5vw, 48px);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: #0f172a;
+  margin: 0 0 20px;
+}
+
+.about-hero-lead {
+  font-size: clamp(16px, 2vw, 18.5px);
+  line-height: 1.6;
+  color: #334155;
+  max-width: 840px;
+  margin: 0;
+}
+
+/* Frontier Style Audited Metadata Index Table */
+.about-spec-sheet {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 24px 28px;
+  margin-bottom: 48px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+.spec-sheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.spec-sheet-kicker {
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.spec-sheet-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.spec-sheet-tag {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: #1b4332;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.about-index-rows {
+  display: flex;
+  flex-direction: column;
+  divide-y: 1px solid #f1f5f9;
+}
+
+.about-index-row {
+  display: grid;
+  grid-template-columns: 210px 120px 1fr;
+  align-items: baseline;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.about-index-row:last-child {
+  border-bottom: none;
+}
+
+.index-row-title {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+  letter-spacing: 0.02em;
+}
+
+.index-row-val {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.spec-highlight {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1b4332;
+}
+
+.index-row-desc {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #475569;
+  margin: 0;
+}
+
+/* Sections */
+.about-section {
+  padding: 44px 0;
+  border-top: 1px solid #e2e8f0;
+}
+
+.about-section-header {
+  margin-bottom: 24px;
+}
+
+.about-section h2 {
+  font-family: "Avenir Next", Avenir, Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  color: #0f172a;
+  margin: 0;
+}
+
+/* 2-Column Narrative Split */
+.about-narrative-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 1fr);
+  gap: 36px;
+  align-items: start;
+}
+
+.about-prose {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #334155;
+}
+
+.about-prose p {
+  margin: 0 0 16px;
+}
+
+.about-quote-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 24px 22px;
+  position: relative;
+}
+
+.quote-accent-bar {
+  width: 28px;
+  height: 3px;
+  background: #1b4332;
+  border-radius: 2px;
+  margin-bottom: 16px;
+}
+
+.quote-text {
+  font-family: "Avenir Next", Avenir, Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.6;
+  color: #1e293b;
+  margin: 0 0 14px;
+}
+
+.quote-author {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  display: block;
+}
+
+/* Scientific Principles — Editorial Structured List */
+.about-rules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.about-rule-item {
+  display: flex;
+  gap: 18px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 20px 22px;
+  align-items: flex-start;
+  transition: border-color 150ms ease;
+}
+
+.about-rule-item:hover {
+  border-color: #cbd5e1;
+}
+
+.rule-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: #f0fdf4;
+  color: #1b4332;
+  border: 1px solid #bbf7d0;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.rule-body h3 {
+  font-size: 16px;
+  font-weight: 650;
+  color: #0f172a;
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+}
+
+.rule-body p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0;
+}
+
+/* Spec Index Table (Frontier Style) */
+.about-spec-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  margin-top: 24px;
+}
+
+.about-spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border: none;
+  margin: 0;
+}
+
+.about-spec-table th,
+.about-spec-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 13.5px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.about-spec-table tr:last-child th,
+.about-spec-table tr:last-child td {
+  border-bottom: none;
+}
+
+.about-spec-table thead th {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.about-spec-table tbody th {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #334155;
+  background: #fcfcfd;
+}
+
+.about-spec-table td {
+  color: #1e293b;
+  line-height: 1.6;
+}
+
+.about-spec-table code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+  background: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #0f172a;
+}
+
+/* Quickstart Box */
+.about-quickstart-box {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 24px;
+  margin-top: 24px;
+}
+
+.quickstart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.quickstart-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 650;
+  color: #0f172a;
+}
+
+.quickstart-repo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1b4332;
+}
+
+.quickstart-repo-link:hover {
+  text-decoration: underline;
+}
+
+.quickstart-code {
+  background: #0f172a;
+  color: #f8fafc;
+  border-radius: 6px;
+  padding: 16px 18px;
+  margin: 0 0 14px;
+  overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+.quickstart-note {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.quickstart-note a {
+  color: #1b4332;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* Call to Action Box */
+.about-cta-box {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 36px 32px;
+  margin-top: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.about-cta-box h3 {
+  font-family: "Avenir Next", Avenir, Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: #0f172a;
+  margin: 0 0 6px;
+}
+
+.about-cta-box p {
+  font-size: 14px;
+  color: #475569;
+  margin: 0;
+}
+
+.about-cta-buttons {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.about-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: #1b4332;
+  color: #ffffff !important;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background-color 150ms ease, transform 150ms ease;
+}
+
+.about-btn-primary:hover {
+  background: #143226;
+  transform: translateY(-1px);
+}
+
+.about-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: #ffffff;
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.about-btn-secondary:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+}
+
+/* Responsive */
+@media (max-width: 820px) {
+  .about-narrative-split {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .about-cta-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .about-spec-table tbody th {
+    width: 140px;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-container {
+    padding: 32px 16px 60px;
+  }
+  .about-index-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 14px 0;
+  }
+  .about-cta-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  .about-cta-buttons a {
+    justify-content: center;
+  }
+}

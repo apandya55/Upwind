@@ -5,6 +5,8 @@ __pycache__/
 .pytest_cache/
 *.pyc
 .env
+.env.*
+!.env.example
 .local/
 test-results/
 playwright-report/
@@ -13,3 +15,9 @@ playwright-report/
 .ruff_cache/
 data/national/raw/
 data/national/release/
+/deployment-data/
+/artifacts/
+/frontend/artifacts/
+/data/national/context/osm_roads/raw/
+/data/national/context/*.tmp
+*.blend1

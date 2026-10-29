@@ -5,21 +5,28 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
-    "build": "tsc -b && vite build",
-    "test:e2e": "playwright test"
+    "build": "tsc -b && vite build && node scripts/generate-seo-assets.mjs",
+    "build:public": "node scripts/build-public.mjs",
+    "build:vercel": "node scripts/build-vercel.mjs",
+    "verify:public": "node scripts/verify-public-build.mjs",
+    "test:e2e": "playwright test",
+    "test:e2e:public": "playwright test --config playwright.public.config.ts",
+    "preview": "vite preview"
   },
   "dependencies": {
     "lucide-react": "1.59.0",
     "maplibre-gl": "6.14.0",
     "react": "19.3.1",
     "react-dom": "19.3.1",
-    "recharts": "3.10.1"
+    "recharts": "3.10.1",
+    "three": "^0.179.1"
   },
   "devDependencies": {
     "@playwright/test": "1.64.1",
     "@types/node": "24.10.1",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
+    "@types/three": "^0.179.0",
     "@vitejs/plugin-react": "6.1.2",
     "prettier": "3.6.2",
     "typescript": "5.9.3",

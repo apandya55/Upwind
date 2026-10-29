@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import math
 import hashlib
+import os
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
@@ -11,6 +12,11 @@ from fastapi import HTTPException
 
 ROOT = Path(__file__).resolve().parents[3]
 RELEASE = ROOT / "data" / "national" / "release"
+
+
+def release_dir() -> Path:
+    """Resolve the configured national release directory at request time."""
+    return Path(os.environ.get("UPWIND_NATIONAL_RELEASE_DIR", str(RELEASE))).expanduser()
 
 
 class ReleaseSet(dict[str, Any]):
@@ -23,7 +29,7 @@ class ReleaseSet(dict[str, Any]):
 
 def release_identity(name: str) -> tuple[int, int, int, int]:
     """Return a cache identity that changes atomically with a release file."""
-    path = RELEASE / name
+    path = release_dir() / name
     try:
         stat = path.stat()
     except OSError as exc:
@@ -42,7 +48,7 @@ def release_file_sha256(name: str, identity: tuple[int, int, int, int]) -> str:
     del identity
     digest = hashlib.sha256()
     try:
-        with (RELEASE / name).open("rb") as source:
+        with (release_dir() / name).open("rb") as source:
             for block in iter(lambda: source.read(1024 * 1024), b""):
                 digest.update(block)
     except OSError as exc:
@@ -53,7 +59,7 @@ def release_file_sha256(name: str, identity: tuple[int, int, int, int]) -> str:
 @lru_cache(maxsize=12)
 def _read_release(name: str, identity: tuple[int, int, int, int]) -> Any:
     del identity  # Identity is part of the key so atomic release replacements invalidate cache.
-    path = RELEASE / name
+    path = release_dir() / name
     try:
         return json.loads(path.read_text())
     except (OSError, json.JSONDecodeError) as exc:

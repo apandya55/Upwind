@@ -4,7 +4,7 @@ test("paired weather CSV retains independent readings, raw metadata and legacy a
   page,
   request,
 }) => {
-  await page.goto("/");
+  await page.goto("/workspace");
   await page.getByRole("button", { name: "Import data", exact: true }).click();
   await page.getByLabel("Table type").selectOption("weather");
   const csv =
@@ -52,7 +52,7 @@ test("paired weather CSV retains independent readings, raw metadata and legacy a
     buffer: Buffer.from(JSON.stringify(saved)),
   });
   await expect(
-    page.getByText(/Previous analysis archived: joint common-mode weather/),
+    page.getByText(/previous model analysis archived/i),
   ).toBeVisible();
   await expect(
     page.getByText(/1 previous model results retained/),

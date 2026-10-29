@@ -35,34 +35,73 @@ async function clickViewportSymbol(page: import("@playwright/test").Page, items:
 }
 
 test("public landing and local entry routes are distinct from the Explorer", async ({ page }) => {
-  await page.goto("/");
-  await expect(page.getByRole("heading", { name: /Explore your community’s air record/ })).toBeVisible();
+  await page.goto("/landing");
+  await expect(page.getByRole("heading", { name: "Explore America’s air quality, place by place." })).toBeVisible();
   await page.keyboard.press("Tab");
   await expect(page.getByRole("link", { name: "Skip to content" })).toBeFocused();
-  await expect(page.getByRole("link", { name: "Explore the map" }).first()).toHaveAttribute("href", "/explore");
+  await expect(page.getByRole("link", { name: /Open the atlas/ }).first()).toHaveAttribute("href", "/explore");
   await page.goto("/local");
   await expect(page.getByRole("heading", { name: "Bring local readings into view." })).toBeVisible();
   await expect(page.getByRole("link", { name: /Use the public map|Explore the map/ }).first()).toHaveAttribute("href", "/explore");
 });
 
-test("landing explains the Explorer with real product evidence and adapts to mobile", async ({ page }) => {
-  await page.goto("/");
-  await expect(page.getByRole("heading", { name: "One point. Several kinds of evidence." })).toBeVisible();
-  await expect(page.locator(".hero-product img")).toBeVisible();
+test("landing uses a static map preview and adapts to mobile", async ({ page }) => {
+  await page.goto("/landing");
+  await expect(page.getByRole("heading", { name: "Read the record in context." })).toBeVisible();
+  await expect(page.locator(".preview-frame img")).toBeVisible();
   await expect(page.locator("#coverage-heading")).toBeVisible();
-  await expect(page.locator(".estimate-row")).toContainText("9.71");
+  await expect(page.locator("a.preview-map")).toHaveCount(0);
 
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/");
+  await page.goto("/landing");
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await expect(page.locator(".hero-product img")).toBeVisible();
-  await expect(page.getByRole("link", { name: "Explore the map" }).first()).toBeVisible();
+  await expect(page.locator(".preview-frame img")).toBeVisible();
+  await expect(page.getByRole("link", { name: /Open the atlas/ }).first()).toBeVisible();
+});
+
+test("root path directly renders the National Explorer map with discrete navigation and menu drawer", async ({ page }, testInfo) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/");
+  await expect(page.locator(".national-header")).toBeVisible();
+  await expect(page.locator(".national-search")).toBeVisible();
+  await expect(page.locator(".national-layers")).toBeVisible();
+  await expect(page.getByRole("button", { name: "Open menu" })).toBeVisible();
+
+  // Take screenshot of map hero
+  await page.waitForTimeout(1000);
+  await page.screenshot({ path: testInfo.outputPath("national-map-hero.png") });
+
+  // Test opening hamburger menu
+  await page.getByRole("button", { name: "Open menu" }).click();
+  await page.waitForTimeout(300);
+  await expect(page.locator(".national-menu-drawer")).toBeVisible();
+  await expect(page.getByRole("link", { name: /Run Model Locally/ })).toHaveAttribute("href", "/local");
+  await expect(page.getByRole("link", { name: /Scientific Methodology/ })).toHaveAttribute("href", "/methodology");
+  await expect(page.getByRole("link", { name: /About UPWIND/ })).toHaveAttribute("href", "/about");
+
+  // Take screenshot with menu drawer open
+  await page.screenshot({ path: testInfo.outputPath("national-menu-drawer.png") });
+
+  // Test closing hamburger menu
+  await page.getByRole("button", { name: "Close menu" }).click();
+  await expect(page.locator(".national-menu-drawer")).toHaveCount(0);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  await expect(page.locator(".national-search")).toBeVisible();
+  await expect(page.locator(".national-layers")).toBeVisible();
+  await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.waitForTimeout(500);
+  await page.screenshot({ path: testInfo.outputPath("national-explorer-mobile.png") });
 });
 
 test("National Explorer searches and compares a real Census place", async ({ page }) => {
   await page.goto("/explore");
-  await expect(page.getByText("searchable Census places")).toBeVisible();
+  await expect(page.locator(".national-method-note")).toContainText("Historical estimates are place-point estimates");
+  await expect(page.locator(".national-method-note a")).toHaveAttribute("href", "/methodology");
+  await expect(page.getByText("Higher estimates in loaded map view")).toHaveCount(0);
+  await expect(page.locator(".national-bottom")).toHaveCount(0);
+  await expect(page.locator(".methodology-card")).toHaveCount(0);
 
   await page.getByRole("button", { name: "Raleigh" }).click();
 
@@ -74,6 +113,47 @@ test("National Explorer searches and compares a real Census place", async ({ pag
   await page.getByRole("button", { name: /Compare place/ }).click();
   await expect(page.getByRole("heading", { name: /Place comparison/ })).toBeVisible();
   await expect(page.getByText("Raleigh city", { exact: true }).last()).toBeVisible();
+});
+
+test("Durham Local Pollution Investigation shows real OSM, monitor, and inventory evidence with export", async ({ page }, testInfo) => {
+  await page.goto("/explore");
+  await page.getByRole("button", { name: "Durham" }).click();
+  await expect(page.getByRole("complementary", { name: "Place details and evidence" }).getByRole("heading", { name: "Durham city", exact: true })).toBeVisible();
+  await expect(page.getByRole("textbox", { name: "Search Census places" })).toHaveAttribute("aria-expanded", "false");
+  const investigate = page.getByRole("button", { name: "Investigate Location" });
+  await expect(investigate).toBeVisible();
+  expect(await page.locator(".investigate-action").evaluate((action) => action.compareDocumentPosition(document.querySelector(".detail-metric")!) & Node.DOCUMENT_POSITION_FOLLOWING)).toBeTruthy();
+  await investigate.click();
+  const investigation = page.getByRole("region", { name: "Local pollution investigation for Durham city" });
+  await expect(investigation).toBeVisible();
+  await expect(investigation).toContainText("Major road network");
+  await expect(investigation).toContainText("Fayetteville Road");
+  await expect(investigation).toContainText("Open Database License");
+  await expect(investigation).toContainText("EPA NEI inventory records");
+  await expect(investigation).toContainText("across 2 named corridors");
+  await page.screenshot({ path: testInfo.outputPath("durham-investigation-desktop.png") });
+  await investigation.getByRole("heading", { name: "Major road network" }).scrollIntoViewIfNeeded();
+  await expect(investigation.getByRole("heading", { name: "Major road network" })).toBeVisible();
+  const download = page.waitForEvent("download");
+  await investigation.getByRole("button", { name: "Export JSON" }).click();
+  expect((await download).suggestedFilename()).toContain("upwind-investigation-3719000-2024.json");
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/explore?year=2024&place=3719000");
+  await expect(page.getByRole("complementary", { name: "Place details and evidence" }).getByRole("heading", { name: "Durham city", exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "Investigate Location" }).click();
+  await expect(page.getByRole("region", { name: "Local pollution investigation for Durham city" })).toBeVisible();
+  await page.waitForTimeout(800);
+  await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await expect(page.locator(".map-selected-pulse-marker")).toHaveCount(1);
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect.poll(() => page.getByRole("textbox", { name: "Search Census places" }).getAttribute("aria-expanded")).toBe("false");
+  const panelTransition = await page.locator(".national-detail-panel").evaluate((node) => getComputedStyle(node).transitionDuration.split(",").every((value) => Number.parseFloat(value.trim()) < 0.001));
+  expect(panelTransition).toBe(true);
+  await page.screenshot({ path: testInfo.outputPath("durham-investigation-mobile.png") });
+  const panelWidths = await page.locator(".national-detail-panel").evaluate((node) => ({ client: node.clientWidth, scroll: node.scrollWidth }));
+  expect(panelWidths.scroll).toBeLessThanOrEqual(panelWidths.client + 1);
+  await investigation.getByRole("heading", { name: "Major road network" }).scrollIntoViewIfNeeded();
+  await expect(investigation.getByRole("heading", { name: "Major road network" })).toBeVisible();
 });
 
 test("place search supports keyboard selection and shareable URL state", async ({ page }) => {
@@ -256,18 +336,19 @@ test("dense aggregate opens a pageable, exact member list", async ({ page }) => 
   await page.screenshot({ path: "/tmp/upwind-polish/cluster-members.png" });
 });
 
-test("mobile Explorer layout keeps search, map, and layer controls within the viewport", async ({ page }) => {
+test("mobile Explorer layout keeps search, map, and layer controls within the viewport", async ({ page }, testInfo) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/explore");
   await expect(page.getByRole("textbox", { name: "Search Census places" })).toBeVisible();
   await expect(page.getByRole("group", { name: "Map evidence layer" })).toBeVisible();
   await expect(page.getByRole("region", { name: "National evidence map" })).toBeVisible();
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  await page.screenshot({ path: testInfo.outputPath("explorer-mobile.png"), fullPage: true });
 });
 
 test("methodology shows corrected AQS event policy and matched PRISM evidence", async ({ page }) => {
   await page.goto("/explore");
-  await page.getByRole("button", { name: /Evidence, model evaluation & coverage/ }).click();
+  await page.getByRole("button", { name: "Read limits" }).click();
   await expect(page.getByText(/Events Included when present, otherwise No Events/)).toBeVisible();
   await expect(page.getByText(/1\.320\/1\.859\/−0\.081/)).toBeVisible();
   await expect(page.getByText(/5\/5 2024 folds but only 3\/5 provisional 2025 folds/)).toBeVisible();
@@ -333,7 +414,7 @@ test("map heading is framed in a readable card, select has single chevron, and d
   // 1. Heading is in a frosted title card with background
   const titleCard = page.locator(".national-map-title-card");
   await expect(titleCard).toBeVisible();
-  await expect(titleCard.getByRole("heading", { name: "Explore the national pattern" })).toBeVisible();
+  await expect(titleCard.getByRole("heading", { name: "National evidence map" })).toBeVisible();
 
   // 2. Year select has appearance none (single chevron icon without native arrow duplicate)
   const select = page.locator(".national-select select");

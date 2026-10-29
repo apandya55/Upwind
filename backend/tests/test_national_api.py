@@ -56,6 +56,144 @@ def test_national_viewport_rejects_invalid_bounds():
     assert result.status_code == 422
 
 
+def test_public_readonly_mode_exposes_national_gets_and_hides_legacy_api(monkeypatch):
+    monkeypatch.setenv("UPWIND_PUBLIC_READONLY", "1")
+    client = TestClient(api.app)
+    health = client.get("/api/health")
+    assert health.status_code == 200
+    assert health.json()["product"] == "national-explorer"
+    assert health.json()["model_version"] == "upwind-nearest-monitor-annual-pm25-0.3.0"
+    assert health.json()["protocol_version"] == "UW-NATIONAL-SPATIAL-2026-04"
+    # Allowed route reaches the data layer; the 503 here is the expected result
+    # because unit tests intentionally do not package the national release.
+    assert client.get("/api/national/manifest").status_code in (200, 503)
+    assert client.get("/api/demo").status_code == 404
+    assert client.get("/api/investigations").status_code == 404
+    assert client.post("/api/analyze", json={}).status_code == 404
+
+
+def test_public_app_import_does_not_load_local_engine():
+    import os
+    import subprocess
+    import sys
+
+    environment = os.environ.copy()
+    environment["UPWIND_PUBLIC_READONLY"] = "1"
+    environment["PYTHONPATH"] = "backend"
+    subprocess.run(
+        [sys.executable, "-c", "import sys; import upwind.api; assert 'upwind.engine' not in sys.modules"],
+        check=True,
+        env=environment,
+        capture_output=True,
+        text=True,
+    )
+
+
+def test_configured_cors_allows_only_declared_origin():
+    import os
+    import subprocess
+    import sys
+
+    environment = os.environ.copy()
+    environment.update({"UPWIND_PUBLIC_READONLY": "1", "UPWIND_CORS_ORIGINS": "https://upwind.example"})
+    environment["PYTHONPATH"] = "backend"
+    subprocess.run(
+        [sys.executable, "-c", "from fastapi.testclient import TestClient; from upwind.api import app; c=TestClient(app); a=c.get('/api/health', headers={'Origin':'https://upwind.example'}); p=c.options('/api/health', headers={'Origin':'https://upwind.example','Access-Control-Request-Method':'GET'}); b=c.get('/api/health', headers={'Origin':'https://attacker.example'}); assert a.headers.get('access-control-allow-origin') == 'https://upwind.example'; assert p.status_code == 200 and p.headers.get('access-control-allow-origin') == 'https://upwind.example'; assert 'access-control-allow-origin' not in b.headers"],
+        check=True,
+        env=environment,
+        capture_output=True,
+        text=True,
+    )
+
+
+def test_ready_requires_release_and_bounded_osm_artifacts(monkeypatch, tmp_path):
+    release, roads = tmp_path / "release", tmp_path / "roads"
+    release.mkdir(); roads.mkdir()
+    monkeypatch.setenv("UPWIND_NATIONAL_RELEASE_DIR", str(release))
+    monkeypatch.setenv("UPWIND_OSM_ROADS_DIR", str(roads))
+    client = TestClient(api.app)
+    assert client.get("/api/ready").status_code == 503
+    for name in ("manifest.json", "places.json", "model.json", "monitors.json", "sources.json"):
+        (release / name).write_text("{}")
+    for city in ("durham", "charlotte"):
+        (roads / f"{city}.osm").write_text("<osm/>")
+        (roads / f"{city}.metadata.json").write_text("{}")
+    assert client.get("/api/ready").json()["status"] == "ready"
+
+
+def test_ready_rejects_malformed_release_json(monkeypatch, tmp_path):
+    release, roads = tmp_path / "release", tmp_path / "roads"
+    release.mkdir(); roads.mkdir()
+    monkeypatch.setenv("UPWIND_NATIONAL_RELEASE_DIR", str(release))
+    monkeypatch.setenv("UPWIND_OSM_ROADS_DIR", str(roads))
+    for name in ("manifest.json", "places.json", "model.json", "monitors.json", "sources.json"):
+        (release / name).write_text("{}")
+    (release / "places.json").write_text("{")
+    for city in ("durham", "charlotte"):
+        (roads / f"{city}.osm").write_text("<osm/>")
+        (roads / f"{city}.metadata.json").write_text("{}")
+    response = TestClient(api.app).get("/api/ready")
+    assert response.status_code == 503
+    assert str(release / "places.json") in response.json()["malformed_files"]
+
+
+def test_public_read_limit_is_per_client_ip(monkeypatch):
+    monkeypatch.setenv("UPWIND_PUBLIC_READONLY", "1")
+    monkeypatch.setenv("UPWIND_TRUST_PROXY", "1")
+    api._public_rate_windows.clear()
+    client = TestClient(api.app)
+    for _ in range(120):
+        assert client.get("/api/health", headers={"X-Forwarded-For": "198.51.100.20"}).status_code == 200
+    limited = client.get("/api/health", headers={"X-Forwarded-For": "198.51.100.20"})
+    assert limited.status_code == 429
+    assert limited.headers["retry-after"]
+    assert client.get("/api/health", headers={"X-Forwarded-For": "198.51.100.21"}).status_code == 200
+
+
+def test_public_read_limit_ignores_forwarded_header_without_trusted_proxy(monkeypatch):
+    monkeypatch.setenv("UPWIND_PUBLIC_READONLY", "1")
+    monkeypatch.delenv("UPWIND_TRUST_PROXY", raising=False)
+    api._public_rate_windows.clear()
+    client = TestClient(api.app)
+    for _ in range(120):
+        assert client.get("/api/health", headers={"X-Forwarded-For": f"198.51.100.{_ + 1}"}).status_code == 200
+    assert client.get("/api/health", headers={"X-Forwarded-For": "203.0.113.1"}).status_code == 429
+
+
+def test_public_rate_limit_bounds_client_key_state(monkeypatch):
+    monkeypatch.setenv("UPWIND_PUBLIC_READONLY", "1")
+    monkeypatch.setenv("UPWIND_TRUST_PROXY", "1")
+    api._public_rate_windows.clear()
+    monkeypatch.setattr(api, "_PUBLIC_RATE_MAX_CLIENTS", 2)
+    client = TestClient(api.app)
+    assert client.get("/api/health", headers={"X-Forwarded-For": "198.51.100.1"}).status_code == 200
+    assert client.get("/api/health", headers={"X-Forwarded-For": "198.51.100.2"}).status_code == 200
+    assert client.get("/api/health", headers={"X-Forwarded-For": "198.51.100.3"}).status_code == 200
+    assert len(api._public_rate_windows) == 3
+
+
+def test_public_write_is_rejected_before_body_validation(monkeypatch):
+    monkeypatch.setenv("UPWIND_PUBLIC_READONLY", "1")
+    response = TestClient(api.app).post("/api/analyze", content="{" + ("[" * 80))
+    assert response.status_code == 404
+
+
+def test_public_api_reports_separate_national_model_identity(monkeypatch):
+    monkeypatch.setenv("UPWIND_PUBLIC_READONLY", "1")
+    payload = TestClient(api.app).get("/api/health").json()
+    assert payload["product"] == "national-explorer"
+    assert payload["model_version"] == "upwind-nearest-monitor-annual-pm25-0.3.0"
+    assert payload["protocol_version"] == "UW-NATIONAL-SPATIAL-2026-04"
+
+
+def test_local_health_retains_plume_engine_identity(monkeypatch):
+    monkeypatch.delenv("UPWIND_PUBLIC_READONLY", raising=False)
+    payload = TestClient(api.app).get("/api/health").json()
+    assert payload["product"] == "local-research-engine"
+    assert payload["model_version"].startswith("plume-")
+    assert payload["protocol_version"].startswith("UW-ENGINE-")
+
+
 def test_national_context_keeps_evidence_classes_and_distance_ranking(monkeypatch):
     monitors = [
         {"id": "monitor-far", "year": 2024, "latitude": 35.1, "longitude": -78.9,
