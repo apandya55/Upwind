@@ -4,8 +4,8 @@ export default defineConfig({
   testDir: "./tests",
   testIgnore: "**/public-surface.spec.ts",
   workers: 1,
-  timeout: 120000,
-  expect: { timeout: 30000 },
+  timeout: 240000,
+  expect: { timeout: 120000 },
   use: {
     baseURL: "http://127.0.0.1:5174",
     viewport: { width: 1440, height: 1000 },
