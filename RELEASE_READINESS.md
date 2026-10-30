@@ -1,6 +1,6 @@
 # UPWIND source 0.1.0 / National Explorer 0.3.0 release readiness
 
-Audit updated: 2026-10-29. This report records the source release candidate and checks run locally. Commit `7527f21900a2ba5737e17ef2bebcad66c1f4cbd5` matches `origin/main`; this checkout has uncommitted release hardening changes. **UPWIND is not verified production-ready.** No public or production deployment was performed.
+Audit updated: 2026-10-29. This report records the source release candidate and checks run locally. Commit `e75ee2e` passed GitHub Actions run `40980151135`. **UPWIND is not verified production-ready.** No public or production deployment was performed.
 
 ## Tonight's verdict
 
@@ -14,20 +14,15 @@ Keep one monorepo containing the local downloadable engine, the public Vercel Ex
 - **National Explorer release/data model:** `upwind-national-explorer-0.3.0`, model `upwind-nearest-monitor-annual-pm25-0.3.0`, protocol `UW-NATIONAL-SPATIAL-2026-04`.
 - **Local engine science:** model `plume-robust-0.9.0`, protocol `UW-ENGINE-2026-09`; this is not the package version.
 
-Keep these identifiers independent. A source tag should use the software version; data manifests and model outputs should retain their own release and scientific identifiers.
+Keep these identifiers independent. The source prerelease tag is `v0.1.0-rc.1`; package artifacts report software version `0.1.0`. Data manifests and model outputs retain their own release and scientific identifiers.
 
 ### What to do now
 
-1. Keep generated data, raw upstream archives, local investigations, `.env` files, evaluation workspaces, and caches out of Git; review the uncommitted source diff before releasing it.
-2. Preserve EPA/Census/OSM terms and attribution in the hosted bundle. The owner approved public hosting; Apache-2.0 covers source code only and no independent legal opinion has been obtained.
-3. In Vercel, create two projects from this monorepo: the static site with root `frontend`, and the read-only Python API with repository root. Use Vercel preview domains tonight if custom domains are not ready; set exact site/API origins and exact-origin CORS.
-4. After data terms are approved, upload the versioned artifact to private Blob with its SHA-256 and build-only token, then build the API preview. Measure function bundle size, cold start, memory, and representative response sizes.
-5. Run the hosted smoke test: search a place, inspect monitor and inventory evidence, export JSON, confirm an unlisted origin has no CORS permission, and confirm legacy write/demo routes return 404.
-6. Add provider-level rate limiting, logs/alerts, a data backup and restore test, and a rollback rehearsal before switching a public domain or announcing availability.
+Tonight's scope is a **source release candidate only**. With GitHub Actions green, publish tag `v0.1.0-rc.1` and attach the `0.1.0` Python wheel and source archive. Keep generated data, raw upstream archives, local investigations, `.env` files, evaluation workspaces, and caches out of Git and release assets.
 
-If Vercel project access/configuration or hosted acceptance checks cannot be completed tonight, publish the source release candidate and keep the hosted National Explorer unlaunched until those gates pass.
+The owner approved public hosting of the EPA/Census/OSM bundle with its required attribution. The hosted service is deferred: Vercel is logged out on this machine, its two projects and private Blob object do not exist, and no HTTPS preview has passed. When service work resumes, create the static project rooted at `frontend` and the read-only Python API project rooted at the repository; upload the pinned private artifact; verify `/api/ready`, exact-origin CORS, public route boundaries, place/evidence/export workflows, monitoring, rate limits, backup/restore, and rollback before launch.
 
-After those checks, create the release commit/tag and deploy. Do not claim field accuracy, source responsibility, current conditions, or partner adoption in the launch copy.
+Do not claim field accuracy, source responsibility, current conditions, partner adoption, or that the hosted National Explorer is live.
 
 The repeatable HTTP acceptance command is `python3 scripts/smoke_public_deployment.py --site https://... --api https://...`; it is provider-neutral because Vercel project domains remain deployment inputs.
 
@@ -54,13 +49,12 @@ The repeatable HTTP acceptance command is `python3 scripts/smoke_public_deployme
 - **Scientific scope:** model, dataset content and numerical results were preserved. The production workflow runs the existing nearest-monitor release evaluator. The deployed estimates remain Census-point assignments supported by historical monitor evidence; they are not place averages, current conditions, field validation, personal exposure or source attribution. Existing methodology and limitations remain in the release artifacts and UI.
 - **Credentials:** no browser-facing application key or paid API credential is required. Clean API builds that retrieve a private Blob artifact require a server-only bearer token plus the artifact URL and SHA-256. No credentials have been added to the repository.
 - **Configuration syntax:** both Vercel JSON configs and the GitHub workflow parse successfully; `requirements.txt` matches the runtime lock. Vercel CLI 65.8.0 is available through `npx`, but the CLI is currently logged out, so the CLI build could not authenticate. Docker Engine and Docker Compose are absent, so container builds and Caddy validation could not be run. No Vercel projects, private Blob object, or domains are configured.
-- **Continuous integration:** GitHub Actions ran on commits `ce931831` and `7527f219`; both runs failed. The latest backend job used the legacy repository-default data paths, and the browser job ran without a national test release, producing fixture-dependent failures. This worktree adds isolated synthetic data setup to CI and browser configuration, plus regression coverage for the Vercel API entrypoint route; these latest fixes are uncommitted and therefore have not run on GitHub. A passing local rerun is not a substitute for that required remote confirmation.
+- **Continuous integration:** the previous release-surface runs on `ce931831` and `7527f219` failed because of legacy data paths and missing browser fixtures. Commit `e75ee2e` includes isolated fixture setup, the Vercel API boundary checks, and a slower-browser timeout. GitHub Actions run `40980151135` passed: backend 286 tests in 8m55s, frontend 45 local-engine and 3 public-surface browser tests, and the container build.
 
 ## Remaining blockers
 
 1. **No hosted staging verification.** No Vercel projects, domains, private Blob object, or build credentials are configured. The static build and API entrypoint pass local checks, but the Vercel function build, HTTPS, exact-origin CORS, `/api/ready`, and real API browser traffic have not been verified on a host. Do not describe the candidate as deployed or staging-tested.
-2. **Source release candidate is not yet verified.** The source baseline is on `main`; the current fixture/CI/documentation fixes are uncommitted. After those changes are published, wait for the new GitHub Actions run to pass before tagging or calling the source release verified. The hosted service still requires the external gates above.
-3. **Production operations are unproven.** No production URL, monitoring/alerting, backup restore, load test, rollback rehearsal, function-capacity test, or provider contract has been verified. The public OSM tile service has no project production agreement.
+2. **Production operations are unproven.** No production URL, monitoring/alerting, backup restore, load test, rollback rehearsal, function-capacity test, or provider contract has been verified. The public OSM tile service has no project production agreement.
 
 ## Nonblocking warnings and boundaries
 
