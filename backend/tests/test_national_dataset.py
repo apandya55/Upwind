@@ -1,9 +1,12 @@
 """Focused checks for national monitor source selection."""
 
 import zipfile
+import json
 from pathlib import Path
 
-from scripts.build_national_dataset import process_aqs
+from scripts import build_national_dataset as dataset
+
+process_aqs = dataset.process_aqs
 
 
 def _aqs_row(site: int, poc: int, event: str, value: float) -> dict:
@@ -130,3 +133,35 @@ def test_aqs_source_row_lineage_tracks_original_csv_rows_after_selection(tmp_pat
     assert selected["poc_event_treatments"][0]["source_row_number"] == 3
     assert selected["poc_event_treatments"][1]["source_row_number"] == 4
     assert selected["source_provenance"]["selected_source_rows"] == [3, 4]
+
+
+def test_initial_national_manifest_uses_current_explorer_release_id(monkeypatch, tmp_path: Path):
+    def fake_download(_url, target, *, archive=False):
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(b"test source")
+        return "a" * 64
+
+    monkeypatch.setattr(dataset, "download", fake_download)
+    monkeypatch.setattr(
+        dataset,
+        "process_aqs",
+        lambda _aqs: ([{"id": "test-monitor", "year": 2024, "latitude": 35.8, "longitude": -78.6}],
+                     {"2024": {"unique_spatial_site_years": 100}}),
+    )
+    monkeypatch.setattr(
+        dataset,
+        "process_places",
+        lambda *_args: ([{"latitude": 35.9, "longitude": -78.7}], {}),
+    )
+    raw_dir, release_dir = tmp_path / "raw", tmp_path / "release"
+    monkeypatch.setattr(
+        "sys.argv",
+        ["build_national_dataset.py", "--start-year", "2024", "--end-year", "2024",
+         "--no-nei", "--raw-dir", str(raw_dir), "--release-dir", str(release_dir)],
+    )
+
+    dataset.main()
+
+    manifest = json.loads((release_dir / "manifest.json").read_text())
+    assert manifest["release"] == "upwind-national-explorer-0.3.0"
+    assert manifest["status"] == "data_built_model_pending"

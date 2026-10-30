@@ -17,11 +17,16 @@ export default defineConfig({
   },
   webServer: [
     {
-      command: `${python} -m uvicorn upwind.api:app --host 127.0.0.1 --port 8001`,
+      command: `${python} scripts/create_test_release.py --output-root .local/browser-test-data && ${python} -m uvicorn upwind.api:app --host 127.0.0.1 --port 8001`,
       url: "http://127.0.0.1:8001/api/health",
       reuseExistingServer: false,
       cwd: "..",
-      env: { UPWIND_DATA_DIR: ".local/browser-test-data", PYTHONPATH: "backend" },
+      env: {
+        UPWIND_NATIONAL_RELEASE_DIR: ".local/browser-test-data/release",
+        UPWIND_OSM_ROADS_DIR: ".local/browser-test-data/context/osm_roads/raw",
+        UPWIND_DATA_DIR: ".local/browser-test-data/workspace",
+        PYTHONPATH: "backend",
+      },
     },
     {
       command: "npm run dev -- --port 5174 --strictPort",

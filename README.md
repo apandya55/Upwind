@@ -12,7 +12,7 @@ UPWIND has two deliberate product surfaces. The **National Explorer** is a publi
 
 Current scientific candidate: **plume-robust-0.9.0** under [UW-ENGINE-2026-09](docs/ENGINE_V09_PROTOCOL.md). The feasibility and sensitivity evidence are recorded in [the engine handoff](docs/PROGRESS.md) and the versioned v0.9 reports. Synthetic evidence does not establish operational attribution reliability.
 
-The [measured-data intake guide](docs/MEASURED_DATA_VALIDATION.md) documents the repaired EPA archive converter. The [readiness audit](docs/MEASURED_READINESS_AUDIT.md) explains why an inspected secondary Prairie Grass workbook cannot yet serve as a benchmark. The latest release verification is recorded in [RELEASE_READINESS.md](RELEASE_READINESS.md); measured field accuracy remains unvalidated. Deployment data preparation and the static-front-end/private-read-only-API configuration are documented in [DEPLOYMENT.md](DEPLOYMENT.md). Project source uses Apache-2.0; upstream data retain their own terms and require separate review. No public deployment has been performed.
+The [measured-data intake guide](docs/MEASURED_DATA_VALIDATION.md) documents the repaired EPA archive converter. The [readiness audit](docs/MEASURED_READINESS_AUDIT.md) explains why an inspected secondary Prairie Grass workbook cannot yet serve as a benchmark. The latest release verification is recorded in [RELEASE_READINESS.md](RELEASE_READINESS.md); measured field accuracy remains unvalidated. Deployment data preparation and the static-front-end/private-read-only-API configuration are documented in [DEPLOYMENT.md](DEPLOYMENT.md). Project source uses Apache-2.0; upstream data retain their own terms and require separate review. Security reports belong in the private process described by [SECURITY.md](SECURITY.md). No public deployment has been performed.
 
 ## Latest stress results
 
@@ -49,7 +49,7 @@ upwind --help
 
 The public API uses `requirements-runtime.lock`, which excludes the local scientific stack.
 
-The selected hosted split is Vercel for the static Explorer plus a separate Linux VM running the National API in Docker/Caddy. Configure the public site/API origins and exact CORS allowlist using [the Vercel deployment guide](docs/VERCEL_DEPLOYMENT.md) before deploying.
+The selected hosting direction is Vercel for both the static Explorer and the read-only National API, with the local downloadable engine remaining separate. This checkout configures the static Vercel frontend, includes a fail-closed FastAPI entrypoint at `api/index.py`, and implements deterministic private-artifact packaging for the API. The owner approved public hosting of the generated EPA/Census/OSM bundle with its required attribution. The production artifact, Vercel project setup, and hosted preview are still outstanding. See [the Vercel deployment guide](docs/VERCEL_DEPLOYMENT.md) for the release gates.
 
 For local sensor CSV preparation, import steps, tested setup instructions, and a measured parser resource probe, open `/local` in the app or read the [local workflow guide](docs/LOCAL_WORKFLOW.md). A downloadable template and a separately labeled synthetic example are linked from that page.
 
@@ -72,7 +72,7 @@ npm run build
 npm run test:e2e
 ```
 
-Browser tests use separate ports 8001/5174 and `.local/browser-test-data`. Install Chromium and set `CHROMIUM_PATH` if it is not `/usr/bin/chromium`, or install Playwright's Chromium and point that variable at its executable. Browser test downloads/screenshots stay local. Exported investigation JSON can be reproduced with `.venv/bin/upwind analyze path/to/investigation.json --out .local/analysis.json` from the repository root. Generated `runtime_ms` is a measured first-run timing retained in cache; it is not an SLA.
+Browser tests use separate ports 8001/5174 and a generated synthetic fixture under `.local/browser-test-data`; the test API displays a fixture notice and never uses this bundle for deployment. Install Chromium and set `CHROMIUM_PATH` if it is not `/usr/bin/chromium`, or install Playwright's Chromium and point that variable at its executable. Browser test downloads/screenshots stay local. Exported investigation JSON can be reproduced with `.venv/bin/upwind analyze path/to/investigation.json --out .local/analysis.json` from the repository root. Generated `runtime_ms` is a measured first-run timing retained in cache; it is not an SLA.
 
 ## What works
 

@@ -34,6 +34,29 @@ async function clickViewportSymbol(page: import("@playwright/test").Page, items:
   await page.mouse.click(point!.x, point!.y);
 }
 
+async function clickViewportCluster(page: import("@playwright/test").Page, items: any[]) {
+  await expect(page.locator(".national-map")).toHaveAttribute("data-zoom", "3.10");
+  await page.evaluate(() => new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+  const point = await page.evaluate((features: any[]) => {
+    const canvas = document.querySelector(".maplibregl-canvas") as HTMLCanvasElement;
+    const map = document.querySelector(".national-map") as HTMLElement;
+    const zoom = Number(map.dataset.zoom);
+    const centerLongitude = Number(map.dataset.longitude), centerLatitude = Number(map.dataset.latitude);
+    const worldSize = 512 * 2 ** zoom;
+    const world = (longitude: number, latitude: number) => ({
+      x: (longitude + 180) / 360 * worldSize,
+      y: (1 - Math.asinh(Math.tan(Math.max(-85.05112878, Math.min(85.05112878, latitude)) * Math.PI / 180)) / Math.PI) / 2 * worldSize,
+    });
+    const center = world(centerLongitude, centerLatitude);
+    return features.filter((item) => item.is_cluster).map((item) => {
+      const position = world(item.render_longitude ?? item.longitude, item.render_latitude ?? item.latitude);
+      return { x: canvas.clientWidth / 2 + position.x - center.x, y: canvas.clientHeight / 2 + position.y - center.y };
+    }).find(({ x, y }) => x > 20 && x < Math.min(canvas.clientWidth - 20, innerWidth - 450) && y > 20 && y < canvas.clientHeight - 20) ?? null;
+  }, items);
+  expect(point).toBeTruthy();
+  await page.locator(".maplibregl-canvas").click({ position: { x: point!.x, y: point!.y }, force: true });
+}
+
 test("public landing and local entry routes are distinct from the Explorer", async ({ page }) => {
   await page.goto("/landing");
   await expect(page.getByRole("heading", { name: "Explore America’s air quality, place by place." })).toBeVisible();
@@ -95,7 +118,7 @@ test("root path directly renders the National Explorer map with discrete navigat
   await page.screenshot({ path: testInfo.outputPath("national-explorer-mobile.png") });
 });
 
-test("National Explorer searches and compares a real Census place", async ({ page }) => {
+test("National Explorer searches and compares a place from the isolated test release", async ({ page }) => {
   await page.goto("/explore");
   await expect(page.locator(".national-method-note")).toContainText("Historical estimates are place-point estimates");
   await expect(page.locator(".national-method-note a")).toHaveAttribute("href", "/methodology");
@@ -105,7 +128,7 @@ test("National Explorer searches and compares a real Census place", async ({ pag
 
   await page.getByRole("button", { name: "Raleigh" }).click();
 
-  await expect(page.getByRole("heading", { name: "Raleigh city, North Carolina" })).toBeVisible();
+  await expect(page.getByRole("complementary", { name: "Place details and evidence sidebar" }).getByRole("heading", { name: "Raleigh city", exact: true })).toBeVisible();
   await expect(page.getByText(/Nearest training monitor/)).toBeVisible();
   await expect(page.getByRole("heading", { name: "Why this estimate?" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Nearby documented evidence" })).toBeVisible();
@@ -115,10 +138,10 @@ test("National Explorer searches and compares a real Census place", async ({ pag
   await expect(page.getByText("Raleigh city", { exact: true }).last()).toBeVisible();
 });
 
-test("Durham Local Pollution Investigation shows real OSM, monitor, and inventory evidence with export", async ({ page }, testInfo) => {
+test("Durham investigation keeps road, monitor, and inventory evidence distinct and exports it", async ({ page }, testInfo) => {
   await page.goto("/explore");
   await page.getByRole("button", { name: "Durham" }).click();
-  await expect(page.getByRole("complementary", { name: "Place details and evidence" }).getByRole("heading", { name: "Durham city", exact: true })).toBeVisible();
+  await expect(page.getByRole("complementary", { name: "Place details and evidence sidebar" }).getByRole("heading", { name: "Durham city", exact: true })).toBeVisible();
   await expect(page.getByRole("textbox", { name: "Search Census places" })).toHaveAttribute("aria-expanded", "false");
   const investigate = page.getByRole("button", { name: "Investigate Location" });
   await expect(investigate).toBeVisible();
@@ -128,7 +151,7 @@ test("Durham Local Pollution Investigation shows real OSM, monitor, and inventor
   await expect(investigation).toBeVisible();
   await expect(investigation).toContainText("Major road network");
   await expect(investigation).toContainText("Fayetteville Road");
-  await expect(investigation).toContainText("Open Database License");
+  await expect(investigation).toContainText("Test fixture only (not ODbL)");
   await expect(investigation).toContainText("EPA NEI inventory records");
   await expect(investigation).toContainText("across 2 named corridors");
   await page.screenshot({ path: testInfo.outputPath("durham-investigation-desktop.png") });
@@ -139,7 +162,7 @@ test("Durham Local Pollution Investigation shows real OSM, monitor, and inventor
   expect((await download).suggestedFilename()).toContain("upwind-investigation-3719000-2024.json");
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/explore?year=2024&place=3719000");
-  await expect(page.getByRole("complementary", { name: "Place details and evidence" }).getByRole("heading", { name: "Durham city", exact: true })).toBeVisible();
+  await expect(page.getByRole("complementary", { name: "Place details and evidence sidebar" }).getByRole("heading", { name: "Durham city", exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Investigate Location" }).click();
   await expect(page.getByRole("region", { name: "Local pollution investigation for Durham city" })).toBeVisible();
   await page.waitForTimeout(800);
@@ -164,7 +187,7 @@ test("place search supports keyboard selection and shareable URL state", async (
   await expect(option).toBeVisible();
   await search.press("ArrowDown");
   await search.press("Enter");
-  await expect(page.getByRole("heading", { name: "Durham city, North Carolina" })).toBeVisible();
+  await expect(page.getByRole("complementary", { name: "Place details and evidence sidebar" }).getByRole("heading", { name: "Durham city", exact: true })).toBeVisible();
   await expect(page).toHaveURL(/place=37/);
   await expect(page.getByRole("heading", { name: "Why this estimate?" })).toBeVisible();
 });
@@ -210,7 +233,7 @@ test("back and forward restore the selected place, year, and evidence layer", as
   await expect(page.getByLabel("Historical year")).toHaveValue("2024");
   await expect(page.getByRole("button", { name: "Monitors" })).toHaveAttribute("aria-pressed", "true");
   await page.goBack();
-  await expect(page.getByRole("heading", { name: "Durham city, North Carolina" })).toBeVisible();
+  await expect(page.getByRole("complementary", { name: "Place details and evidence sidebar" }).getByRole("heading", { name: "Durham city", exact: true })).toBeVisible();
   await expect(page.getByRole("button", { name: "Estimates" })).toHaveAttribute("aria-pressed", "true");
   await page.goForward();
   await expect(page.getByRole("button", { name: "Monitors" })).toHaveAttribute("aria-pressed", "true");
@@ -312,24 +335,13 @@ test("viewport aggregation represents all filtered records within its symbol bud
 test("dense aggregate opens a pageable, exact member list", async ({ page }) => {
   let result: any = null;
   page.on("response", async (response) => {
-    if (response.url().includes("/api/national/viewport?") && !result) result = await response.json().catch(() => null);
+    if (response.url().includes("/api/national/viewport?") && new URL(response.url()).searchParams.get("layer") === "estimates" && !result) result = await response.json().catch(() => null);
   });
   await page.goto("/explore");
   await expect.poll(() => result?.items?.length).toBeGreaterThan(0);
   const candidates = result.items.filter((item: any) => item.is_cluster && item.member_count > 1);
   expect(candidates.length).toBeGreaterThan(0);
-  const boxes = await page.evaluate((items) => items.map(({ longitude, latitude, member_count, cluster_id }) => {
-    const zoom = 3.1, size = 512 * 2 ** zoom;
-    const x = (lon: number) => (lon + 180) / 360 * size;
-    const y = (lat: number) => (1 - Math.asinh(Math.tan(lat * Math.PI / 180)) / Math.PI) / 2 * size;
-    return { member_count, cluster_id, x: innerWidth / 2 + x(longitude) - x(-98.5), y: innerHeight / 2 + y(latitude) - y(39.8) };
-  }), candidates);
-  const cluster = boxes.find((item) => item.x > 10 && item.x < 1430 && item.y > 10 && item.y < 890);
-  expect(cluster).toBeTruthy();
-  await page.locator(".maplibregl-canvas").click({ position: { x: cluster.x, y: cluster.y }, force: true });
-  // Several grid cells can overlap at national scale. MapLibre correctly opens
-  // the topmost rendered aggregate under the pointer, which may differ from
-  // the fixture cell whose approximate screen point was calculated above.
+  await clickViewportCluster(page, candidates);
   await expect(page.getByRole("heading", { name: /records nearby/ })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Records", exact: true })).toBeVisible();
   await expect(page.locator(".source-row").first()).toBeVisible();

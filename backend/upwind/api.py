@@ -34,6 +34,8 @@ _post_capacity = asyncio.Semaphore(4)
 _public_rate_windows: dict[str, tuple[int, int]] = {}
 _public_rate_checks = 0
 _PUBLIC_RATE_MAX_CLIENTS = 10_000
+NATIONAL_PLACES_PAGE_MAX = 2_000
+NATIONAL_MONITORS_PAGE_MAX = 5_000
 
 
 def _public_mode() -> bool:
@@ -240,12 +242,12 @@ def national_manifest():
 
 
 @app.get("/api/national/places")
-def national_places(q: str = "", state: str = "", geoid: str = "", year: int = 2024, limit: int = 5000, offset: int = 0, west: float | None = None, south: float | None = None, east: float | None = None, north: float | None = None):
+def national_places(q: str = "", state: str = "", geoid: str = "", year: int = 2024, limit: int = NATIONAL_PLACES_PAGE_MAX, offset: int = 0, west: float | None = None, south: float | None = None, east: float | None = None, north: float | None = None):
     q_fold, state_fold = q.strip().casefold(), state.strip().casefold()
     geoid = geoid.strip()
     offset = max(0, offset)
     has_bounds = validate_bounds(west, south, east, north)
-    limit = max(1, min(limit, 10000 if q.strip() or geoid else 3000))
+    limit = max(1, min(limit, NATIONAL_PLACES_PAGE_MAX))
     if has_bounds:
         data, total = query_bounds(
             "places.json", west, south, east, north, limit=limit, offset=offset,
@@ -295,9 +297,9 @@ def national_places(q: str = "", state: str = "", geoid: str = "", year: int = 2
 
 
 @app.get("/api/national/monitors")
-def national_monitors(year: int = 2024, site_id: str = "", west: float | None = None, south: float | None = None, east: float | None = None, north: float | None = None, limit: int = 10000, offset: int = 0):
+def national_monitors(year: int = 2024, site_id: str = "", west: float | None = None, south: float | None = None, east: float | None = None, north: float | None = None, limit: int = NATIONAL_MONITORS_PAGE_MAX, offset: int = 0):
     has_bounds = validate_bounds(west, south, east, north)
-    limit = max(1, min(limit, 10000))
+    limit = max(1, min(limit, NATIONAL_MONITORS_PAGE_MAX))
     offset = max(0, offset)
     if has_bounds:
         selected, total = query_bounds("monitors.json", west, south, east, north, limit=limit, offset=offset, predicate=lambda r: (year < 0 or r["year"] == year) and (not site_id or r["id"] == site_id))

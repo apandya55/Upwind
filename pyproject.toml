@@ -24,6 +24,9 @@ upwind = "upwind.cli:main"
 Repository = "https://github.com/apandya55/Upwind"
 Documentation = "https://github.com/apandya55/Upwind#readme"
 
+[tool.vercel]
+entrypoint = "api.index:app"
+
 [tool.setuptools.packages.find]
 where = ["backend"]
 include = ["upwind*"]

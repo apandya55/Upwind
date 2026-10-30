@@ -42,7 +42,7 @@ the local upload/workspace UI; the local build may retain it. Both surfaces
 must preserve the same provenance and evidence distinctions.
 
 The Python distribution exposes local numerical dependencies through the
-`engine` optional extra. The public API image installs the runtime lock only;
+`engine` optional extra. The public API function installs the runtime lock only;
 it does not install NumPy, SciPy, pandas, pyproj, pytest, or the local engine's
 scientific stack. A clean Python 3.12 installation of `.[engine]` was verified
 with `upwind --help`; local users install that extra to use the CLI and engine.
@@ -64,25 +64,28 @@ flowchart LR
 
 The public API allows bounded GET/HEAD national reads plus health/readiness
 checks. Exact-origin OPTIONS preflight is enabled only for configured CORS
-origins and GET/HEAD requests. It runs with the generated release mounted
-read-only and must not expose port 8000 directly. Local engine commands may read user files and write local
+origins and GET/HEAD requests. It reads an immutable generated release bundle
+in the hosted function and must not expose a write-capable API. Local engine commands may read user files and write local
 SQLite/JSON/report outputs, but those paths are not part of the public service.
 
-The selected hosted option is Vercel for the static Explorer with a separate
-container API on a small Linux VM running Docker and Caddy. Set
-`VITE_API_BASE_URL` to the API's public HTTPS origin and
-`UPWIND_CORS_ORIGINS` to the exact Explorer origin(s). Do not expose a
-browser-side API secret, enable broad `*` CORS, or point Vercel functions at the
-local engine. The VM remains responsible for the release volume,
-`/api/ready`, rate limiting, logs, backups, and Caddy certificate state. The
-single-host Caddy Compose stack remains available for private staging.
+The selected hosted option is Vercel for both surfaces: one static Explorer
+project rooted at `frontend/` and one read-only Python API project rooted at
+the repository. Set `VITE_API_BASE_URL` to the API project's public HTTPS
+origin and `UPWIND_CORS_ORIGINS` to the exact Explorer origin(s). Do not expose
+a browser-side API secret, enable broad `*` CORS, or point Vercel functions at
+the local engine. The API build retrieves an approved immutable release bundle
+from private Vercel Blob or uses the explicitly staged `deployment-data/`
+directory; it runs in public read-only mode. The Docker/Caddy stack remains
+available for private staging and rollback rehearsal, but it is not the public
+API target.
 
 ## Phased migration
 
 ### Phase 1: first public release
 
-- Keep one repository and one release version for the Explorer web/API/data
-  bundle.
+- Keep one repository. Version the software/API package (`0.1.0`) separately
+  from the National Explorer data/model release (`0.3.0`); preserve the local
+  engine's model/protocol identity independently.
 - Add an explicit public/local build surface flag and keep public routes
   read-only.
 - Publish the local engine as research software with its model/protocol
@@ -120,10 +123,11 @@ recorded:
 - Public mode permits bounded national GET/HEAD routes, health/readiness, and
   configured exact-origin preflight only;
   write, demo, import, analysis, and local workspace routes return 404.
-- Container build, Compose configuration, Caddy configuration, `/api/ready`,
-  HTTPS smoke tests, export checks, and private API networking pass on the
-  selected staging host.
-- The deployment has an immutable image/data identity, logs, health alerts,
+- Vercel function build, immutable data bundle, `/api/ready`, HTTPS smoke tests,
+  export checks, exact-origin CORS, and public route-boundary checks pass in a
+  hosted preview. Optional Compose/Caddy staging remains a rollback rehearsal,
+  not evidence of Vercel readiness.
+- The deployment has an immutable function/data identity, logs, health alerts,
   backup/restore procedure, rollback procedure, and an edge rate limit. The
   in-process limiter alone is not an operations control.
 - README, methodology, exports, and release notes state that Explorer values
@@ -137,12 +141,12 @@ recorded:
   and `CITATION.cff` files are included in the repository. They license the
   project source; they do not override upstream EPA, Census, or OpenStreetMap
   data terms.
-- EPA, Census, and OpenStreetMap redistribution terms must be reviewed for the
-  exact source, generated-data, and host-distribution plan. OSM attribution and
-  ODbL obligations remain required; this ADR is not a legal determination.
-- A real hosting provider, DNS name, TLS endpoint, monitoring/alerting path,
-  backup location, and rollback owner must be selected before calling the
-  service production deployed.
+- The owner approved public hosting of the generated EPA/Census/OSM bundle
+  with required attribution. OSM attribution and ODbL obligations remain
+  required; this decision is not an independent legal determination.
+- Vercel project domains, monitoring/alerting path, backup location, and
+  rollback owner must be configured before calling the service production
+  deployed.
 - The public OSM tile service remains an external best-effort dependency with no
   project service-level agreement.
 - Scientific evidence remains synthetic/development evidence for the engine.

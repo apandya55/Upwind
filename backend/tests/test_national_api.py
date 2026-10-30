@@ -28,6 +28,41 @@ def test_national_places_support_search_geoid_and_viewport(monkeypatch):
     assert {p["id"] for p in result["items"]} == {"3712000"}
 
 
+def test_national_places_and_monitors_clamp_page_sizes_and_preserve_pagination(monkeypatch):
+    places = [
+        {"id": f"37{i:05d}", "name": f"Place {i}", "state": "North Carolina",
+         "state_fips": "37", "latitude": 35.0, "longitude": -79.0}
+        for i in range(2_105)
+    ]
+    monitors = [
+        {"id": f"37-001-{i:04d}", "year": 2024, "latitude": 35.0, "longitude": -79.0}
+        for i in range(5_005)
+    ]
+    monkeypatch.setattr(api, "read_release", lambda name: places if name == "places.json" else monitors)
+    monkeypatch.setattr(national_data, "read_release", lambda name: places if name == "places.json" else monitors)
+    national_data._spatial_buckets.cache_clear()
+    client = TestClient(api.app)
+
+    first_places = client.get("/api/national/places", params={"limit": 10_000}).json()
+    assert len(first_places["items"]) == 2_000
+    assert first_places["limit"] == 2_000
+    assert first_places["total"] == 2_105
+    assert first_places["next_offset"] == 2_000
+    second_places = client.get("/api/national/places", params={"limit": 10_000, "offset": 2_000}).json()
+    assert len(second_places["items"]) == 105
+    assert second_places["next_offset"] is None
+
+    first_monitors = client.get("/api/national/monitors", params={"year": 2024, "limit": 10_000}).json()
+    assert len(first_monitors["items"]) == 5_000
+    assert first_monitors["limit"] == 5_000
+    assert first_monitors["total"] == 5_005
+    assert first_monitors["next_offset"] == 5_000
+    second_monitors = client.get("/api/national/monitors", params={"year": 2024, "limit": 10_000, "offset": 5_000}).json()
+    assert len(second_monitors["items"]) == 5
+    assert second_monitors["next_offset"] is None
+    national_data._spatial_buckets.cache_clear()
+
+
 def test_national_monitor_history_and_source_bounds(monkeypatch):
     monitors = [
         {"id": "37-183-0001", "year": 2023, "latitude": 35.8, "longitude": -78.6},
@@ -61,6 +96,7 @@ def test_public_readonly_mode_exposes_national_gets_and_hides_legacy_api(monkeyp
     client = TestClient(api.app)
     health = client.get("/api/health")
     assert health.status_code == 200
+    assert health.json()["version"] == "0.1.0"
     assert health.json()["product"] == "national-explorer"
     assert health.json()["model_version"] == "upwind-nearest-monitor-annual-pm25-0.3.0"
     assert health.json()["protocol_version"] == "UW-NATIONAL-SPATIAL-2026-04"
@@ -153,6 +189,7 @@ def test_public_read_limit_is_per_client_ip(monkeypatch):
 def test_public_read_limit_ignores_forwarded_header_without_trusted_proxy(monkeypatch):
     monkeypatch.setenv("UPWIND_PUBLIC_READONLY", "1")
     monkeypatch.delenv("UPWIND_TRUST_PROXY", raising=False)
+    monkeypatch.setattr(api.time, "monotonic", lambda: 120.0)
     api._public_rate_windows.clear()
     client = TestClient(api.app)
     for _ in range(120):
@@ -520,6 +557,7 @@ def test_national_snapshot_json_csv_geojson_and_validation(monkeypatch):
 
 
 def test_release_file_replacement_invalidates_reader_and_spatial_index(monkeypatch, tmp_path):
+    monkeypatch.delenv("UPWIND_NATIONAL_RELEASE_DIR", raising=False)
     monkeypatch.setattr(national_data, "RELEASE", tmp_path)
     national_data._read_release.cache_clear()
     national_data._spatial_buckets.cache_clear()

@@ -1,0 +1,17 @@
+# The API project needs the backend package, scripts, requirements, api/, and
+# the approved deployment-data artifact. Keep research workspaces and the
+# static site out of the API deployment upload.
+.git/
+.local/
+artifacts/
+evaluations/
+examples/
+frontend/
+test-results/
+backend/tests/
+data/national/raw/
+data/national/release/
+data/national/context/osm_roads/raw/
+node_modules/
+**/__pycache__/
+**/*.pyc
