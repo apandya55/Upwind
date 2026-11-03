@@ -1,0 +1,15 @@
+# Keep research workspaces and local caches out of Vercel uploads. The API
+# function bundle applies its own excludeFiles rules from vercel.json.
+.git/
+.local/
+artifacts/
+evaluations/
+examples/
+test-results/
+backend/tests/
+data/national/raw/
+data/national/release/
+data/national/context/osm_roads/raw/
+node_modules/
+**/__pycache__/
+**/*.pyc

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "python scripts/prepare_vercel_bundle.py",
+  "functions": {
+    "api/index.py": {
+      "includeFiles": "deployment-data/**",
+      "excludeFiles": "{frontend/**,evaluations/**,backend/tests/**,docs/**,examples/**,artifacts/**,.local/**,node_modules/**,**/*.test.py,**/test_*.py}"
+    }
+  }
+}
