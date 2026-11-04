@@ -1,0 +1,29 @@
+{
+  "scope": "Hashes identify the files as published with this manifest. Later mutable documentation must be verified at the Git revision containing this manifest.",
+  "scientific_model": "plume-weather-0.5.0",
+  "scientific_files_changed": false,
+  "verified_measured_datasets": 0,
+  "accuracy_fits": 0,
+  "full_backend_tests_passed": 162,
+  "new_audit_tests_passed": 11,
+  "network_draft_applied": false,
+  "prior_intake_manifest": {
+    "commit": "7ffa8a4610e802f78869acae525025943203256d",
+    "entries_checked": 11,
+    "all_match_at_commit": true
+  },
+  "files": {
+    "scripts/audit_prairie_candidate.py": "548283c3fc4be2bf16d9a7611b42a494af90f822f1d3c4640f065724ae96df6a",
+    "backend/tests/test_prairie_audit.py": "dfb327d7e4b88e297b1dae8b7f60863b812cdcce5efc2d657c3fac7834283ac2",
+    "docs/MEASURED_READINESS_AUDIT.md": "37f3874e88048aeb5b831836f318dc1a939a14f925dbd880e76e634e8b72d68d",
+    "docs/DATASET_CATALOG.md": "72d3a2dc091ffcf1af879dad74363c970786a4bab7a3898c9a601a070ffdbcbf",
+    "docs/PROGRESS.md": "1854a2032736cf0abc38f9af76bf2d5fe02ea937a62ba6e282a483c2abaf818c",
+    "docs/UPWIND_LLM_EXPORT_PROMPT.md": "9821f24cd46afd892dadf9e7da5fa38c81eb3f77248e35b4b1b526222aafddf5",
+    "README.md": "bb12a8ba032551c60a111a7da02111295ada9e4e3aa5e872e98b496d6ce155e9",
+    "evaluations/aqs-intake/README.md": "8b763b7098d4785b254f2ceec98bcc889877023b25417bd90b76b9548835400f",
+    "evaluations/measured-readiness/access-and-sources.json": "8e5ff9d18605d002af3f58a323159a1483160a93c19f62192a70b892e0738e23",
+    "evaluations/measured-readiness/prairie-candidate.json": "283db1d56ddfeed3a2777fa21515aa141d88aeb23f16fad72eedb4a8c01fdca3",
+    "evaluations/measured-readiness/pytest-audit.log": "a4ba6a0b833ef7026d4d291578c1a66aa7b84a732bb259d96dc88bdb89ae3418",
+    "evaluations/measured-readiness/pytest-full.log": "67aab5e5ebba66da1c62b409147b9730363f8049305a905c5f7adebda7485c1d"
+  }
+}

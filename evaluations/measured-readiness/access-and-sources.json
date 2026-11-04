@@ -1,0 +1,87 @@
+{
+  "recorded_utc": "2026-10-19T03:16:50.173513+00:00",
+  "requests": [
+    {
+      "url": "https://www.arl.noaa.gov/research/atmospheric-transport-and-dispersion/atd-programs-datem/",
+      "outcome": "proxy CONNECT403"
+    },
+    {
+      "url": "https://www.harmo.org/jsirwin/PrairieGrassDiscussion.html",
+      "outcome": "proxy CONNECT403"
+    },
+    {
+      "url": "https://envs.au.dk/en/research-areas/air-pollution-emissions-and-effects/the-monitoring-program/air-pollution-models/background-info/omlprairie",
+      "outcome": "proxy CONNECT403"
+    },
+    {
+      "url": "https://github.com/noaa-oar-arl",
+      "outcome": "HTTP200",
+      "saved_response_sha256": "2757fe412180d75bc2782ead2c2da373ae1a4d80bfa06abaae0fbf6fd5ee1e3e"
+    },
+    {
+      "url": "https://github.com/search?q=%22Prairie+Grass%22&type=repositories",
+      "outcome": "HTTP200; two unrelated results"
+    },
+    {
+      "url": "https://github.com/search?q=%22Prairie+Grass%22+in%3Areadme&type=repositories",
+      "outcome": "HTTP200;47results, firstpage inspected",
+      "saved_response_sha256": "0ac35ec356d1813dd5d1b875c59f0c641dbbbe9c361093a5809c80b4b23593db"
+    }
+  ],
+  "search_rate_limit": "The initial parallel follow-up searches received429 for prairiegrass, sagebrush dispersion, controlled release methane data and pyELQ; copenhagen dispersion returned zero results. Search stopped, then a later single readme query succeeded. No authentication or rate-limit bypass.",
+  "network_draft": {
+    "status": "saved",
+    "requires_publish": true,
+    "added_domains": [
+      "www.harmo.org",
+      "envs.au.dk"
+    ],
+    "prior_custom_rules_preserved": true,
+    "runtime_connectivity_after_publication": "unverified; environment has not been republished during this audit"
+  },
+  "pinned_sources": [
+    {
+      "repository": "https://github.com/noaa-oar-arl/hysplitdata.git",
+      "revision": "757f7ced24a446ba5de92040b915fdc7acf5ae03",
+      "finding": "Reader package and HYSPLIT model-output test files, not a controlled-release observation archive",
+      "inspected_file_sha256": {
+        "README.md": "9b18075fe889392072597c7c67063d4e99b03d71d3b6ee410625ba500193ceb2"
+      },
+      "upstream_code_executed": false
+    },
+    {
+      "repository": "https://github.com/sede-open/pyELQ.git",
+      "revision": "c845e37a7410e5fcf3b2f7d77876c00007290e6f",
+      "finding": "Basic notebook explicitly generates synthetic concentrations/weather; not a measured dataset",
+      "inspected_file_sha256": {
+        "README.md": "566c91d2b2b84e9c12ea87214e144282293390a16606cb99a1efde7d4e2f70b6",
+        "LICENSE.md": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "examples/example_basic.ipynb": "73501f72faf25845b5d94c4a9a2c8dad37d8ee8ae2bfa445e946293787538f26"
+      },
+      "upstream_code_executed": false
+    },
+    {
+      "repository": "https://github.com/DreamCatcher096/Gas_dispersion_datasets.git",
+      "revision": "6f2a1d35e6696ece2fe1f98fcda1b097b4f797de",
+      "finding": "Secondary catalog of links, not dataset files; led to HARMO and Aarhus documentation",
+      "inspected_file_sha256": {
+        "README.md": "f548b7128635f5a7258ff183cc84576a6ccd18f0da438890e45520592e025e8d"
+      },
+      "upstream_code_executed": false
+    },
+    {
+      "repository": "https://github.com/Reinenornormey/Gaussian-plume-model.git",
+      "revision": "6fd4a0892481e25171f3c4c6efe3114448bd4674",
+      "finding": "Secondary modelling assignment; unverified purported observations mixed with predicted columns",
+      "inspected_file_sha256": {
+        "README.md": "c52f0f5698f1fad6bc7890f77a82cfa30f8ec1213d28cfdfa9542689132639ce",
+        "Work Assignment Reine.xlsx": "96a6cb7812d9a618fd50c1266ce7943acfe91c3ae339f60d9d130653f9b61887"
+      },
+      "upstream_code_executed": false
+    }
+  ],
+  "secondary_candidate_workbooks_inspected": 1,
+  "verified_measurement_datasets_acquired": 0,
+  "model_fits_performed": 0,
+  "raw_observations_redistributed": false
+}
