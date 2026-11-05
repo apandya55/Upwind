@@ -23,8 +23,17 @@ export default function CoverageEvidence() {
   useEffect(() => {
     const controller = new AbortController();
     fetch(`${apiBase}/api/national/manifest`, { signal: controller.signal })
-      .then((r) => {
-        if (!r.ok) throw new Error("Release unavailable");
+      .then(async (r) => {
+        if (r.status >= 500) throw new Error("Release unavailable");
+        const ct = r.headers.get("content-type") || "";
+        if (!r.ok || ct.includes("text/html")) {
+          const fallbackRes = await fetch("/data/national-fallback.json", {
+            signal: controller.signal,
+          });
+          const fallback = fallbackRes.ok ? await fallbackRes.json() : null;
+          if (fallback?.manifest) return fallback.manifest;
+          throw new Error("Release unavailable");
+        }
         return r.json() as Promise<ReleaseManifest>;
       })
       .then(setManifest)

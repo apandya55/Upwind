@@ -57,6 +57,22 @@ const API_ORIGIN =
   import.meta.env.VITE_API_BASE_URL?.trim().replace(/\/$/, "") || "";
 const API = `${API_ORIGIN}/api/national`;
 
+let fallbackDataPromise: Promise<{
+  manifest: NationalManifest;
+  places: any[];
+  monitors: any[];
+  sources: any[];
+} | null> | null = null;
+
+function getFallbackData() {
+  if (!fallbackDataPromise) {
+    fallbackDataPromise = fetch("/data/national-fallback.json")
+      .then((r) => (r.ok ? r.json() : null))
+      .catch(() => null);
+  }
+  return fallbackDataPromise;
+}
+
 export default function NationalExplorer() {
   const params = new URLSearchParams(location.search);
   const [manifest, setManifest] = useState<NationalManifest | null>(null);
@@ -240,10 +256,25 @@ export default function NationalExplorer() {
 
   useEffect(() => {
     Promise.all([
-      fetch(`${API}/manifest`).then((r) => {
-        if (!r.ok) throw new Error("National release is not built yet.");
-        return r.json();
-      }),
+      fetch(`${API}/manifest`)
+        .then(async (r) => {
+          if (r.status >= 500) throw new Error("API server error " + r.status);
+          const ct = r.headers.get("content-type") || "";
+          if (!r.ok || ct.includes("text/html")) {
+            const fallback = await getFallbackData();
+            if (fallback?.manifest) return fallback.manifest;
+            throw new Error("National release is not built yet.");
+          }
+          return r.json();
+        })
+        .catch(async (err) => {
+          if (err?.message && err.message.startsWith("API server error")) {
+            throw new Error("National release is not built yet.");
+          }
+          const fallback = await getFallbackData();
+          if (fallback?.manifest) return fallback.manifest;
+          throw new Error("National release is not built yet.");
+        }),
     ])
       .then(async ([m]) => {
         setManifest(m);
@@ -254,10 +285,22 @@ export default function NationalExplorer() {
           ids.map((id) =>
             fetch(`${API}/places?geoid=${encodeURIComponent(id)}&year=${year}`)
               .then((r) => (r.ok ? r.json() : { items: [] }))
-              .catch(() => ({ items: [] })),
+              .catch(async () => {
+                const fallback = await getFallbackData();
+                const match = fallback?.places?.find((p: any) => p.id === id);
+                return { items: match ? [match] : [] };
+              }),
           ),
         );
-        setPlaces(loaded.flatMap((result) => result.items || []));
+        const loadedPlaces = loaded.flatMap((result) => result.items || []);
+        if (loadedPlaces.length > 0) {
+          setPlaces(loadedPlaces);
+        } else {
+          const fallback = await getFallbackData();
+          if (fallback?.places) {
+            setPlaces(fallback.places.slice(0, 50));
+          }
+        }
         setLoading(false);
       })
       .catch((e) => {
@@ -380,10 +423,26 @@ export default function NationalExplorer() {
             setSearchIndex(0);
           }
         })
-        .catch((e: Error) => {
+        .catch(async (e: Error) => {
           if (requestId === searchRequest.current) {
-            setSearchResults([]);
-            setSearchError(e.message);
+            const fallback = await getFallbackData();
+            if (fallback?.places) {
+              const lowerName = nameQuery.toLowerCase();
+              const lowerState = stateQuery?.toLowerCase();
+              const filtered = fallback.places
+                .filter((p: any) => {
+                  const matchName = p.name.toLowerCase().includes(lowerName);
+                  const matchState =
+                    !lowerState || p.state.toLowerCase().includes(lowerState);
+                  return matchName && matchState;
+                })
+                .slice(0, 30);
+              setSearchResults(filtered);
+              setSearchIndex(0);
+            } else {
+              setSearchResults([]);
+              setSearchError(e.message);
+            }
           }
         })
         .finally(() => {
@@ -489,11 +548,76 @@ export default function NationalExplorer() {
             fetch(`${API}/viewport?${box(requested)}`, {
               signal: controller.signal,
             })
-              .then((r) => {
-                if (!r.ok) throw new Error();
+              .then(async (r) => {
+                if (r.status >= 500) {
+                  throw new Error(`Server error ${r.status}`);
+                }
+                const ct = r.headers.get("content-type") || "";
+                if (!r.ok || ct.includes("text/html")) {
+                  const fallback = await getFallbackData();
+                  if (!fallback)
+                    throw new Error(`Viewport failed with status ${r.status}`);
+                  const list =
+                    requested === "estimates"
+                      ? fallback.places
+                      : ((fallback as any)[requested] || []);
+                  const inBounds = list.filter(
+                    (item: any) =>
+                      item.longitude >= west &&
+                      item.longitude <= east &&
+                      item.latitude >= south &&
+                      item.latitude <= north,
+                  );
+                  const limit = Math.min(inBounds.length, parseInt(perLayerBudget, 10));
+                  return {
+                    items: inBounds.slice(0, limit),
+                    total: inBounds.length,
+                    represented_records: inBounds.length,
+                    symbol_count: limit,
+                    complete: true,
+                    aggregation_zoom: 6,
+                    dataset_version: "0.3.0",
+                    layer: requested,
+                  } as unknown as ViewportResult;
+                }
                 return r.json() as Promise<ViewportResult>;
               })
-              .then((data) => [requested, data] as const),
+              .then((data) => [requested, data] as const)
+              .catch(async (err) => {
+                if (
+                  err?.name === "AbortError" ||
+                  (err?.message && err.message.startsWith("Server error"))
+                ) {
+                  throw err;
+                }
+                const fallback = await getFallbackData();
+                if (!fallback) throw err;
+                const list =
+                  requested === "estimates"
+                    ? fallback.places
+                    : ((fallback as any)[requested] || []);
+                const inBounds = list.filter(
+                  (item: any) =>
+                    item.longitude >= west &&
+                    item.longitude <= east &&
+                    item.latitude >= south &&
+                    item.latitude <= north,
+                );
+                const limit = Math.min(inBounds.length, parseInt(perLayerBudget, 10));
+                return [
+                  requested,
+                  {
+                    items: inBounds.slice(0, limit),
+                    total: inBounds.length,
+                    represented_records: inBounds.length,
+                    symbol_count: limit,
+                    complete: true,
+                    aggregation_zoom: 6,
+                    dataset_version: "0.3.0",
+                    layer: requested,
+                  } as unknown as ViewportResult,
+                ] as const;
+              }),
           ),
         )
           .then((entries) => {
