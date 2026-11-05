@@ -2,8 +2,9 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-# Kill stale server on port 8000 if lingering
+# Kill stale servers on ports 8000 and 5173 if lingering
 kill -9 $(lsof -t -i:8000) 2>/dev/null || true
+kill -9 $(lsof -t -i:5173) 2>/dev/null || true
 
 PYTHON_BIN=".venv/bin/python"
 if [ ! -x "$PYTHON_BIN" ]; then
