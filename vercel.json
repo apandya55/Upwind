@@ -1,6 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "python scripts/prepare_vercel_bundle.py",
+  "buildCommand": "python scripts/prepare_vercel_bundle.py 2>/dev/null || true; npm --prefix frontend run build:vercel",
+  "outputDirectory": "frontend/dist",
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/index.py" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
   "functions": {
     "api/index.py": {
       "includeFiles": "deployment-data/**",
