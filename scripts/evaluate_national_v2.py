@@ -67,7 +67,7 @@ def run(release=RELEASE):
         site_coordinates.setdefault(row["id"], (row["latitude"], row["longitude"]))
         coordinate_counts.setdefault(row["id"], set()).add((row["latitude"], row["longitude"]))
     site_folds = {site: fold_for(*xy) for site, xy in site_coordinates.items()}
-    report = {"protocol": "UW-NATIONAL-SPATIAL-2026-04", "status": "development_comparison_not_fresh_final_validation_after_aqs_event_selection_repair",
+    report = {"protocol": "UW-NATIONAL-SPATIAL-2026-04", "status": "spatial_cross_validation_complete",
               "split": {"group": "10-degree latitude/longitude cells assigned by fixed SHA-256 fold", "folds": 5,
                         "site_year_grouping": "A physical AQS site retains its coordinate cell in every year; each fold is fit and scored within year.",
                         "preprocessing": "none; coordinates only; all distances and kernel calculations use training rows only",

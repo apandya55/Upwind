@@ -104,7 +104,7 @@ Upwind/
 ## Limitations
 
 - **Retrospective, not real-time**: Upwind uses annual historical summaries. It is designed for community research and historical perspective, not active wildfire smoke warnings or daily health advisories.
-- **Estimates have uncertainty**: The deployed national estimate assigns the nearest eligible monitoring station's reading to each Census place's internal point, with an empirical error band of ±4.12 µg/m³. Places located far from any physical monitor are withheld rather than guessed.
+- **Estimates have uncertainty**: The deployed national estimate assigns the nearest eligible monitoring station's reading to each Census place's internal point, with an empirical error band of ±4.123 µg/m³. Places located far from any physical monitor are withheld rather than guessed.
 - **Proximity does not equal causation**: Seeing an industrial site near a city on the map does not establish that the facility caused specific ambient readings. Complex winds, stack heights, and atmospheric chemistry all affect transport.
 
 ---
