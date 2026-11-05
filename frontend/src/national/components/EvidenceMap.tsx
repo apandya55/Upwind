@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
-import { Map as MapLibreMap, Marker as MapLibreMarker } from "maplibre-gl";
+import { Map as MapLibreMap, Marker as MapLibreMarker, config as maplibreConfig } from "maplibre-gl";
+
+if (typeof window !== "undefined") {
+  maplibreConfig.WORKER_URL = "/maplibre-gl-worker.mjs";
+}
 import type {
   ErrorEvent,
   GeoJSONSource as MapGeoJSONSource,

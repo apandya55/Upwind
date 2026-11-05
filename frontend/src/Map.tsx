@@ -64,6 +64,7 @@ export default function StudyMap({
     import("maplibre-gl")
       .then((maplibregl) => {
         if (cancelled || !container.current) return;
+        maplibregl.config.WORKER_URL = "/maplibre-gl-worker.mjs";
         try {
           map = new maplibregl.Map({
             container: container.current,
