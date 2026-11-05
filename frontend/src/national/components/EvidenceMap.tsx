@@ -190,18 +190,6 @@ export default function EvidenceMap({
           "circle-opacity": 0.86,
           "circle-stroke-color": "#ffffff",
           "circle-stroke-width": 1.25,
-          "circle-radius-transition": {
-            duration: motionDuration(350),
-            delay: 0,
-          },
-          "circle-color-transition": {
-            duration: motionDuration(350),
-            delay: 0,
-          },
-          "circle-opacity-transition": {
-            duration: motionDuration(250),
-            delay: 0,
-          },
         },
       });
       m.addLayer({
@@ -294,18 +282,6 @@ export default function EvidenceMap({
           ],
           "circle-stroke-color": "#ffffff",
           "circle-stroke-opacity": 0.95,
-          "circle-radius-transition": {
-            duration: motionDuration(350),
-            delay: 0,
-          },
-          "circle-color-transition": {
-            duration: motionDuration(350),
-            delay: 0,
-          },
-          "circle-opacity-transition": {
-            duration: motionDuration(250),
-            delay: 0,
-          },
         },
       });
       m.addLayer({
@@ -320,31 +296,19 @@ export default function EvidenceMap({
             ["linear"],
             ["get", "member_count"],
             2,
-            7,
+            5,
             10,
-            9,
+            7,
             50,
-            12,
+            9,
             200,
-            15,
+            11,
             1000,
-            18,
+            14,
           ],
-          "circle-opacity": 0.92,
+          "circle-opacity": 0.88,
           "circle-stroke-color": "#ffffff",
-          "circle-stroke-width": 2,
-          "circle-radius-transition": {
-            duration: motionDuration(350),
-            delay: 0,
-          },
-          "circle-color-transition": {
-            duration: motionDuration(350),
-            delay: 0,
-          },
-          "circle-opacity-transition": {
-            duration: motionDuration(250),
-            delay: 0,
-          },
+          "circle-stroke-width": 1.25,
         },
       });
       m.addLayer({
@@ -354,7 +318,7 @@ export default function EvidenceMap({
         filter: ["==", ["get", "is_cluster"], true],
         layout: {
           "text-field": ["to-string", ["get", "member_count"]],
-          "text-size": 10.5,
+          "text-size": 9.5,
           "text-allow-overlap": true,
         },
         paint: { "text-color": "#ffffff" },
@@ -382,18 +346,6 @@ export default function EvidenceMap({
           "circle-stroke-width": 1.6,
           "circle-stroke-color": "#ffffff",
           "circle-opacity": 0.92,
-          "circle-radius-transition": {
-            duration: motionDuration(350),
-            delay: 0,
-          },
-          "circle-color-transition": {
-            duration: motionDuration(350),
-            delay: 0,
-          },
-          "circle-opacity-transition": {
-            duration: motionDuration(250),
-            delay: 0,
-          },
         },
       });
       m.addLayer({
@@ -402,37 +354,26 @@ export default function EvidenceMap({
         source: "facilities",
         filter: ["==", ["get", "is_cluster"], true],
         paint: {
-          "circle-color": "#c5452d",
+          "circle-color": "#b8422b",
           "circle-radius": [
             "interpolate",
             ["linear"],
             ["get", "member_count"],
             2,
-            8,
+            4.5,
             10,
-            10,
+            6,
             50,
-            13,
+            8,
             200,
-            16,
+            10.5,
             1000,
-            19,
+            13,
           ],
-          "circle-opacity": 0.92,
+          "circle-opacity": 0.78,
           "circle-stroke-color": "#ffffff",
-          "circle-stroke-width": 2,
-          "circle-radius-transition": {
-            duration: motionDuration(350),
-            delay: 0,
-          },
-          "circle-color-transition": {
-            duration: motionDuration(350),
-            delay: 0,
-          },
-          "circle-opacity-transition": {
-            duration: motionDuration(250),
-            delay: 0,
-          },
+          "circle-stroke-width": 1.25,
+          "circle-stroke-opacity": 0.9,
         },
       });
       m.addLayer({
@@ -442,7 +383,7 @@ export default function EvidenceMap({
         filter: ["==", ["get", "is_cluster"], true],
         layout: {
           "text-field": ["to-string", ["get", "member_count"]],
-          "text-size": 10.5,
+          "text-size": 9,
           "text-allow-overlap": true,
         },
         paint: { "text-color": "#ffffff" },
@@ -470,18 +411,6 @@ export default function EvidenceMap({
           "circle-stroke-color": "#ffffff",
           "circle-stroke-width": 1.5,
           "circle-opacity": 0.98,
-          "circle-radius-transition": {
-            duration: motionDuration(350),
-            delay: 0,
-          },
-          "circle-color-transition": {
-            duration: motionDuration(350),
-            delay: 0,
-          },
-          "circle-opacity-transition": {
-            duration: motionDuration(250),
-            delay: 0,
-          },
         },
       });
       m.addLayer({
@@ -562,7 +491,10 @@ export default function EvidenceMap({
         callbacks.current.onSelect(kind, featureId, coords, properties);
       };
 
+      let lastHoveredCoord: string | null = null;
       const clearHover = () => {
+        if (!lastHoveredCoord) return;
+        lastHoveredCoord = null;
         (m.getSource("hover-marker") as MapGeoJSONSource | undefined)?.setData({
           type: "FeatureCollection",
           features: [],
@@ -582,6 +514,9 @@ export default function EvidenceMap({
               number,
               number,
             ];
+            const coordKey = `${coords[0]},${coords[1]}`;
+            if (lastHoveredCoord === coordKey) return;
+            lastHoveredCoord = coordKey;
             (
               m.getSource("hover-marker") as MapGeoJSONSource | undefined
             )?.setData({

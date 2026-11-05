@@ -528,7 +528,12 @@ export default function NationalExplorer() {
             ...(showSources && layer !== "sources" ? ["sources" as const] : []),
           ]),
         ];
-        const perLayerBudget = requestedLayers.length > 1 ? "1500" : "3000";
+        const perLayerBudget =
+          zoom < 5.5
+            ? "500"
+            : requestedLayers.length > 1
+              ? "1500"
+              : "3000";
         const box = (requested: Layer) =>
           new URLSearchParams({
             west: String(west),
