@@ -1,6 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "python scripts/prepare_vercel_bundle.py 2>/dev/null || true; npm --prefix frontend run build:vercel",
+  "installCommand": "npm --prefix frontend ci --no-audit --no-fund",
+  "buildCommand": "python scripts/prepare_vercel_bundle.py 2>/dev/null || true; (cd frontend && ([ -d node_modules/typescript ] || npm ci --no-audit --no-fund) && npm run build:vercel)",
   "outputDirectory": "frontend/dist",
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/index.py" },
