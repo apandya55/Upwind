@@ -10,14 +10,22 @@
 [![Node 22+](https://img.shields.io/badge/Node-22%2B-5FA04E.svg?logo=nodedotjs&logoColor=white)](package.json)
 [![React 19](https://img.shields.io/badge/React-19-61DAFB.svg?logo=react&logoColor=black)](frontend/package.json)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688.svg?logo=fastapi&logoColor=white)](backend/upwind/api.py)
+[![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-black.svg?logo=vercel&logoColor=white)](https://upwind-explorer.vercel.app)
 
-[Live Atlas](https://upwind.arnavpandya.com) · [Architecture](#system-architecture) · [Quick Start](#quick-start) · [Data Pipeline](#data-pipeline--reproduction) · [Methodology](https://github.com/apandya55/Upwind/blob/main/frontend/src/MethodologyPage.tsx) · [Contributing](CONTRIBUTING.md)
+[🌐 Live Web Atlas](https://upwind-explorer.vercel.app) · [⚡ Live API](https://upwind-national-api.vercel.app/api/health) · [Architecture](#system-architecture) · [Quick Start](#quick-start) · [Data Pipeline](#data-pipeline--reproduction) · [Contributing](CONTRIBUTING.md)
 
 <br />
 
-<img src="docs/assets/explorer-overview.png" alt="Upwind National Explorer Overview" width="100%" style="border-radius: 8px; border: 1px solid #334155;" />
+<a href="https://upwind-explorer.vercel.app" target="_blank" rel="noopener noreferrer">
+  <img src="docs/assets/explorer-overview.png" alt="Upwind National Explorer Overview" width="100%" style="border-radius: 8px; border: 1px solid #334155;" />
+</a>
 
 </div>
+
+> [!TIP]
+> **Live Production Deployment**:
+> - **Interactive National Explorer**: [https://upwind-explorer.vercel.app](https://upwind-explorer.vercel.app)
+> - **Public Read-Only REST API**: [https://upwind-national-api.vercel.app](https://upwind-national-api.vercel.app) (Health: [`/api/health`](https://upwind-national-api.vercel.app/api/health))
 
 ---
 
