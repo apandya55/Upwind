@@ -16,6 +16,7 @@ dependencies = ["fastapi==0.141.1", "pydantic==2.13.4", "uvicorn==0.52.1"]
 engine = ["numpy==2.3.5", "scipy==1.17.0", "pandas==2.2.3", "pyproj==3.7.2", "certifi>=2026.10.18"]
 dev = ["pytest==9.0.3", "httpx==0.28.1"]
 national-evaluation = ["rasterio>=1.4,<2"]
+export = ["numpy==2.3.5", "pandas==2.2.3", "pyarrow==19.0.1"]
 
 [project.scripts]
 upwind = "upwind.cli:main"
