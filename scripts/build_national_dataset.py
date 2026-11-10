@@ -176,10 +176,7 @@ def process_aqs(paths: dict[int, Path]) -> tuple[list[dict], dict]:
             & df["Completeness Indicator"].eq("Y")
             & df["Year"].eq(year)
         ].copy()
-        # Preserve the raw archive row identity before filtering, sorting, or
-        # selecting among alternative event-treatment summaries. The archive
-        # hash plus member and row number gives each selected summary a stable
-        # pointer back to its exact source record.
+        # Archive hash, member, and original row number identify the source record.
         csv_member = next(n for n in zipfile.ZipFile(path).namelist() if n.lower().endswith(".csv"))
         rows["_source_row_number"] = rows.index.astype(int) + 2  # CSV line, including header
         rows["State Code"] = rows["State Code"].astype(str).str.zfill(2)
@@ -188,9 +185,7 @@ def process_aqs(paths: dict[int, Path]) -> tuple[list[dict], dict]:
         rows["POC"] = rows["POC"].astype(str)
         rows["Arithmetic Mean"] = pd.to_numeric(rows["Arithmetic Mean"], errors="coerce")
         rows = rows[rows["Arithmetic Mean"].notna() & rows["Latitude"].between(-90, 90) & rows["Longitude"].between(-180, 180)]
-        # Each physical AQS site contributes once. When standards or POCs are
-        # colocated, retain eligible POCs in provenance and average the annual
-        # monitor summaries into a single spatial site-year.
+        # Combine eligible colocated POCs into one site-year; retain their provenance.
         rows["_standard_rank"] = rows["Pollutant Standard"].str.extract(r"(\d{4})$")[0].fillna("0").astype(int)
         rows = rows.sort_values(["_standard_rank", "POC", "Certification Indicator"], ascending=[False, True, False])
         rows = rows.drop_duplicates(["State Code", "County Code", "Site Num", "POC", "Event Type"], keep="first")
