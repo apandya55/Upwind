@@ -1,43 +1,95 @@
+<div align="center">
+
 # Upwind
 
-Upwind is an interactive national map and exploration tool for historical fine particulate matter (PM2.5) air pollution across the United States. Built to make federal environmental records accessible, transparent, and easy for anyone to explore place by place.
+**An open-source national atlas and atmospheric dispersion engine for historical U.S. fine particulate matter ($\text{PM}_{2.5}$) pollution.**
 
-Most online air quality tools only show real-time AQI widgets or broad county averages. County averages often hide local differences, while raw federal environmental archives are spread across massive spreadsheets that are tough to work with. Upwind brings three distinct public records together on a single map:
+[![CI Release Checks](https://github.com/apandya55/Upwind/actions/workflows/ci.yml/badge.svg)](https://github.com/apandya55/Upwind/actions/workflows/ci.yml)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
+[![Python 3.12](https://img.shields.io/badge/Python-3.12-3776AB.svg?logo=python&logoColor=white)](pyproject.toml)
+[![Node 22+](https://img.shields.io/badge/Node-22%2B-5FA04E.svg?logo=nodedotjs&logoColor=white)](package.json)
+[![React 19](https://img.shields.io/badge/React-19-61DAFB.svg?logo=react&logoColor=black)](frontend/package.json)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688.svg?logo=fastapi&logoColor=white)](backend/upwind/api.py)
 
-1. **Census Place Estimates** — Annual PM2.5 estimates mapped to 31,000+ U.S. Census places.
-2. **EPA Monitoring Stations** — Physical federal reference monitors with real historical readings and sampling event history.
-3. **Industrial Facility Emissions** — Over 76,000 facilities from the EPA National Emissions Inventory (NEI) with reported PM2.5 tons per year.
+[Live Atlas](https://upwind.arnavpandya.com) · [Architecture](#system-architecture) · [Quick Start](#quick-start) · [Data Pipeline](#data-pipeline--reproduction) · [Methodology](https://github.com/apandya55/Upwind/blob/main/frontend/src/MethodologyPage.tsx) · [Contributing](CONTRIBUTING.md)
 
-Proximity to an industrial facility does not mean it's causing the pollution you breathe. Upwind keeps modeled estimates, physical monitor measurements, and factory inventories visually distinct so you can see what the data actually says—and where its limits are.
+<br />
+
+<img src="docs/assets/explorer-overview.png" alt="Upwind National Explorer Overview" width="100%" style="border-radius: 8px; border: 1px solid #334155;" />
+
+</div>
+
+---
+
+## Why Upwind?
+
+Most public air-quality trackers show one of two extremes: real-time AQI dials or county-wide annual averages. County averages mask stark neighborhood differences, while raw federal environmental archives sit in gigabytes of multi-table spreadsheets that require dedicated GIS software to unpack.
+
+Upwind takes federal environmental records and maps them into a fast, transparent, and place-by-place explorer across the contiguous United States:
+
+1. **31,000+ U.S. Census Places**: Modeled annual $\text{PM}_{2.5}$ estimates grounded at Gazetteer internal points, bound by empirical $\pm 4.12\ \mu\text{g/m}^3$ 90% confidence intervals. Places beyond the 90th percentile distance from any reference monitor are explicitly withheld rather than guessed.
+2. **894 Physical EPA Reference Monitors**: Official Air Quality System (AQS) stations showing multi-year historical readings, monitor design values, and sampling event history.
+3. **76,400+ Industrial Facilities**: The full EPA National Emissions Inventory (NEI) with reported annual filterable and primary $\text{PM}_{2.5}$ tonnages.
+
+> [!IMPORTANT]
+> **Proximity does not equal causation.** Seeing an industrial facility near a town does not prove that factory caused local air readings. Upwind keeps physical monitor measurements, place estimates, and emissions inventories visually and conceptually separate so you can see where the data ends and where conjecture begins.
 
 ---
 
 ## What's in the App
 
-- **National Explorer (`/`)**
-  Search any U.S. Census town or city, check its estimated annual PM2.5 levels, compare it against the nearest reference monitor, inspect nearby industrial emissions within 50 km, and export community summary briefs (as CSV, GeoJSON, or printable reports).
+### 1. National Explorer (`/`)
+Search any U.S. Census town, borough, or city. Review its estimated annual $\text{PM}_{2.5}$ level, compare it with the nearest physical EPA reference monitor, inspect industrial emitters within a 50 km radius, and export community summary briefs as CSV, GeoJSON, or print-ready reports.
 
-- **Local Investigation Workspace (`/workspace`)**
-  A local playground for importing personal sensor CSVs (like PurpleAir or custom monitors) alongside weather logs to experiment with atmospheric plume dispersion models directly in your browser.
+<div align="center">
+  <img src="docs/assets/explorer-place.png" alt="Census Place Inspection" width="49%" style="border-radius: 6px; border: 1px solid #334155;" />
+  <img src="docs/assets/explorer-sources.png" alt="Industrial Emissions Radius" width="49%" style="border-radius: 6px; border: 1px solid #334155;" />
+</div>
 
-- **Methodology & Science Notes (`/methodology`)**
-  Complete documentation of data cleaning choices, nearest-monitor spatial assignment, error bands, and validation checks.
+### 2. Local Investigation Workspace (`/workspace`)
+An in-browser laboratory for community science. Import custom sensor CSVs (PurpleAir, Sensirion, or custom hardware) alongside local weather logs (wind speed, wind direction, temperature) to run real-time Briggs Gaussian plume dispersion simulations and evaluate upwind source hypotheses.
+
+### 3. Methodology & Scientific Notes (`/methodology`)
+Complete documentation of our data intake criteria, nearest-monitor spatial assignment, 5-fold cross-validation results, and empirical error bands.
+
+---
+
+## System Architecture
+
+Upwind is structured around a decoupled data pipeline, a high-performance backend, and a reactive vector-tile frontend:
+
+<div align="center">
+  <img src="docs/assets/architecture.svg" alt="Upwind Architecture Diagram" width="100%" style="border-radius: 8px; border: 1px solid #334155;" />
+</div>
+
+- **Frontend**: React 19, TypeScript, Vite, MapLibre GL with custom Web Workers for fluid pan-and-zoom across 76,000+ points without main-thread jank.
+- **Backend**: FastAPI with strict Pydantic schemas, spatial radius indexing, and Briggs Gaussian plume dispersion kernels.
+- **Data Engine**: Python pipelines compiling EPA AQS, EPA NEI, U.S. Census Gazetteer, and OpenStreetMap road layers into compact release artifacts.
 
 ---
 
 ## Quick Start
 
-You will need **Python 3.12+** and **Node 22+** (tested on Node 22 and 24).
+### Prerequisites
+- **Python 3.12**
+- **Node.js 22.12+** or **Node 24**
+- Optional: [`uv`](https://github.com/astral-sh/uv) for fast environment installation
+
+### Installation
 
 ```bash
 # Clone the repository
 git clone https://github.com/apandya55/Upwind.git
 cd Upwind
 
-# Install Python and Node dependencies
+# Install backend virtual environment & build frontend bundle
 bash scripts/setup.sh
+```
 
-# Start development servers (frontend on :5173, backend API on :8000)
+### Running Locally
+
+```bash
+# Launch FastAPI backend (:8000) and Vite frontend (:5173) concurrently
 bash scripts/dev.sh
 ```
 
@@ -45,70 +97,83 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
-## Data Pipeline
+## Data Pipeline & Reproduction
 
-The national dataset is compiled reproducibly from official public government records:
+Upwind builds its national dataset reproducibly from official government publications:
 
 ```bash
-# Build the national release from EPA and Census sources
+# 1. Fetch raw EPA AQS annual summaries and Census Gazetteer files
+.venv/bin/python scripts/acquire_aqs.py
+.venv/bin/python scripts/acquire_osm_roads.py
+
+# 2. Build the national release dataset (monitors, places, facilities, manifests)
 .venv/bin/python scripts/build_national_dataset.py
 
-# Run spatial evaluation and benchmark checks
+# 3. Execute spatial cross-validation and benchmark models
 .venv/bin/python scripts/evaluate_national_v3.py
 ```
 
-### Data Sources
-- **EPA Air Quality System (AQS)**: Annual PM2.5 summaries (2018–2024, plus provisional 2025).
-- **EPA National Emissions Inventory (NEI)**: 2023 PM2.5-PRI facility emission summaries.
-- **U.S. Census Bureau**: 2024 national Gazetteer place internal points and 2020–2024 population estimates.
-- **OpenStreetMap contributors**: Local road network context for selected focus areas.
+### Upstream Sources
+
+| Dataset | Source Agency | Timeframe | Records |
+| :--- | :--- | :--- | :--- |
+| **AQS Annual Summaries** | U.S. EPA | 2018–2024 (provisional 2025) | 894 active eligible stations |
+| **National Emissions Inventory (NEI)** | U.S. EPA | 2023 | 76,404 mapped facility records |
+| **Gazetteer Place Files** | U.S. Census Bureau | 2024 | 32,333 places (internal points) |
+| **Road Density Context** | OpenStreetMap | 2024–2026 snapshot | Major corridors across focus areas |
 
 ---
 
-## Testing
+## Verification & Testing
+
+The repository maintains an extensive test suite verifying mathematical kernels, boundary conditions, edge cases, and API contracts:
 
 ```bash
-# Run core backend tests
-.venv/bin/python -m pytest backend/tests/test_national_api.py backend/tests/test_report_evidence.py backend/tests/test_national_dataset.py backend/tests/test_vercel_data_bundle.py backend/tests/test_local_pollution_investigation.py backend/tests/test_json_request_guard.py
+# Run all 228 backend tests
+.venv/bin/python -m pytest backend/tests
 
-# Build frontend and run browser tests
+# Typecheck and compile frontend bundle
 cd frontend
 npm run build
+
+# Run Playwright end-to-end browser tests
 npx playwright test
 ```
 
 ---
 
-## Project Structure
+## Scientific Boundaries & Limitations
 
-```
-Upwind/
-├── frontend/               # React 19 + TypeScript + Vite + MapLibre GL
-│   ├── src/
-│   │   ├── national/       # National Explorer components & state
-│   │   ├── Landing.tsx     # Homepage & project introduction
-│   │   ├── AboutPage.tsx   # Project context & dataset summary
-│   │   └── MethodologyPage.tsx # Scientific documentation
-│   └── tests/              # Playwright browser end-to-end tests
-├── backend/upwind/         # FastAPI backend, data loaders & dispersion math
-│   ├── api.py              # REST API endpoints
-│   ├── engine.py           # Atmospheric plume model
-│   └── importers.py        # CSV parsing & normalization
-├── scripts/                # Data download & dataset building scripts
-├── data/                   # Release schemas, manifests & metadata
-└── evaluations/            # Spatial fold benchmarks & model outputs
-```
+- **Annual retrospective view**: Upwind is designed for research, baseline comparisons, and historical investigations. It is not an active wildfire tracking tool or real-time emergency alert system.
+- **Point-level approximations**: Census estimates represent Gazetteer internal points, not citywide averages. In geographically vast municipalities, conditions vary substantially across town limits.
+- **Zero data fabrication**: If a place is located beyond the 90th percentile distance of reference monitors ($> 75\ \text{km}$), Upwind withholds the estimate rather than inventing a number.
 
 ---
 
-## Limitations
+## Contributing
 
-- **Retrospective, not real-time**: Upwind uses annual historical summaries. It is designed for community research and historical perspective, not active wildfire smoke warnings or daily health advisories.
-- **Estimates have uncertainty**: The deployed national estimate assigns the nearest eligible monitoring station's reading to each Census place's internal point, with an empirical error band of ±4.123 µg/m³. Places located far from any physical monitor are withheld rather than guessed.
-- **Proximity does not equal causation**: Seeing an industrial site near a city on the map does not establish that the facility caused specific ambient readings. Complex winds, stack heights, and atmospheric chemistry all affect transport.
+Contributions, bug reports, and research discussions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md) before opening a pull request.
+
+---
+
+## Citation
+
+If you use Upwind in academic work, policy research, or environmental analyses, please cite it using:
+
+```bibtex
+@software{pandya2026upwind,
+  author = {Pandya, Arnav},
+  title = {Upwind: An Open-Source National Atlas for Historical Air Pollution Exploration},
+  year = {2026},
+  url = {https://github.com/apandya55/Upwind},
+  license = {Apache-2.0}
+}
+```
+
+See [CITATION.cff](CITATION.cff) for complete citation metadata.
 
 ---
 
 ## License
 
-Source code is available under the [Apache-2.0 License](LICENSE). Upstream public data records remain subject to their respective government open-data terms.
+Source code is released under the [Apache-2.0 License](LICENSE). Upstream public data records remain subject to their respective U.S. government open-data terms.
