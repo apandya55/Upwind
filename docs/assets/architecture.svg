@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="accentCyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="accentEmerald" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <linearGradient id="accentAmber" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <rect width="960" height="480" fill="url(#bg)" rx="16"/>
+
+  <!-- Subtle grid pattern -->
+  <g opacity="0.05" stroke="#94a3b8" stroke-width="1">
+    <line x1="40" y1="0" x2="40" y2="480"/>
+    <line x1="200" y1="0" x2="200" y2="480"/>
+    <line x1="360" y1="0" x2="360" y2="480"/>
+    <line x1="520" y1="0" x2="520" y2="480"/>
+    <line x1="680" y1="0" x2="680" y2="480"/>
+    <line x1="840" y1="0" x2="840" y2="480"/>
+    <line x1="0" y1="60" x2="960" y2="60"/>
+    <line x1="0" y1="180" x2="960" y2="180"/>
+    <line x1="0" y1="300" x2="960" y2="300"/>
+    <line x1="0" y1="420" x2="960" y2="420"/>
+  </g>
+
+  <!-- Title & Subtitle -->
+  <text x="48" y="44" fill="#f8fafc" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="700" letter-spacing="-0.02em">UPWIND System Architecture &amp; Data Pipeline</text>
+  <text x="48" y="66" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12">End-to-end flow from federal open environmental archives to calibrated spatial discovery</text>
+
+  <!-- Step 1: Upstream Federal Records -->
+  <rect x="40" y="96" width="195" height="340" rx="12" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+  <rect x="40" y="96" width="195" height="4" rx="2" fill="url(#accentCyan)"/>
+  <text x="56" y="126" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="700" letter-spacing="0.08em">STAGE 1 · DATA INGESTION</text>
+  <text x="56" y="148" fill="#f1f5f9" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15" font-weight="600">Federal Archives</text>
+
+  <!-- Box 1a -->
+  <rect x="52" y="166" width="171" height="58" rx="8" fill="#0f172a" stroke="#1e293b"/>
+  <text x="64" y="188" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="600">EPA AQS (2018–2025)</text>
+  <text x="64" y="206" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5">894 active reference monitors</text>
+
+  <!-- Box 1b -->
+  <rect x="52" y="234" width="171" height="58" rx="8" fill="#0f172a" stroke="#1e293b"/>
+  <text x="64" y="256" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="600">EPA NEI Inventory</text>
+  <text x="64" y="274" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5">76,404 industrial PM2.5 facilities</text>
+
+  <!-- Box 1c -->
+  <rect x="52" y="302" width="171" height="58" rx="8" fill="#0f172a" stroke="#1e293b"/>
+  <text x="64" y="324" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="600">U.S. Census Bureau</text>
+  <text x="64" y="342" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5">32,333 Gazetteer place points</text>
+
+  <!-- Box 1d -->
+  <rect x="52" y="370" width="171" height="50" rx="8" fill="#0f172a" stroke="#1e293b"/>
+  <text x="64" y="392" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="600">OpenStreetMap Roads</text>
+  <text x="64" y="408" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5">Local roadway density layers</text>
+
+  <!-- Arrow 1 -> 2 -->
+  <path d="M 235 266 L 265 266" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+  <circle cx="250" cy="266" r="3" fill="#38bdf8"/>
+
+  <!-- Step 2: Processing & Calibration Pipeline -->
+  <rect x="270" y="96" width="200" height="340" rx="12" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+  <rect x="270" y="96" width="200" height="4" rx="2" fill="url(#accentEmerald)"/>
+  <text x="286" y="126" fill="#34d399" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="700" letter-spacing="0.08em">STAGE 2 · MODELING</text>
+  <text x="286" y="148" fill="#f1f5f9" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15" font-weight="600">Build &amp; Benchmark</text>
+
+  <!-- Box 2a -->
+  <rect x="282" y="166" width="176" height="68" rx="8" fill="#0f172a" stroke="#1e293b"/>
+  <text x="294" y="188" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="600">Spatial Cross-Validation</text>
+  <text x="294" y="206" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5">5-fold 10° cell spatial split</text>
+  <text x="294" y="222" fill="#34d399" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="600">Evaluates out-of-fold error</text>
+
+  <!-- Box 2b -->
+  <rect x="282" y="244" width="176" height="68" rx="8" fill="#0f172a" stroke="#1e293b"/>
+  <text x="294" y="266" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="600">Nearest Monitor Mapping</text>
+  <text x="294" y="284" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5">31,523 supported places</text>
+  <text x="294" y="300" fill="#34d399" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="600">Empirical error band: ±4.12 µg/m³</text>
+
+  <!-- Box 2c -->
+  <rect x="282" y="322" width="176" height="98" rx="8" fill="#0f172a" stroke="#1e293b"/>
+  <text x="294" y="344" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="600">Quality &amp; Guardrails</text>
+  <text x="294" y="362" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5">• Withholds distant places (>P90)</text>
+  <text x="294" y="378" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5">• Unbiased ambient summaries</text>
+  <text x="294" y="394" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5">• Immutable manifest hashes</text>
+
+  <!-- Arrow 2 -> 3 -->
+  <path d="M 470 266 L 500 266" stroke="#34d399" stroke-width="2" stroke-dasharray="4 3"/>
+  <circle cx="485" cy="266" r="3" fill="#34d399"/>
+
+  <!-- Step 3: Upwind Backend & Physics Engine -->
+  <rect x="505" y="96" width="200" height="340" rx="12" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+  <rect x="505" y="96" width="200" height="4" rx="2" fill="url(#accentCyan)"/>
+  <text x="521" y="126" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="700" letter-spacing="0.08em">STAGE 3 · BACKEND ENGINE</text>
+  <text x="521" y="148" fill="#f1f5f9" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15" font-weight="600">FastAPI &amp; Physics</text>
+
+  <!-- Box 3a -->
+  <rect x="517" y="166" width="176" height="74" rx="8" fill="#0f172a" stroke="#1e293b"/>
+  <text x="529" y="188" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="600">National REST API</text>
+  <text x="529" y="206" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5">Place search, 50 km radius</text>
+  <text x="529" y="222" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5">facility rankings, summaries</text>
+
+  <!-- Box 3b -->
+  <rect x="517" y="250" width="176" height="88" rx="8" fill="#0f172a" stroke="#1e293b"/>
+  <text x="529" y="272" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="600">Atmospheric Plume Core</text>
+  <text x="529" y="290" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5">Gaussian Briggs dispersion model</text>
+  <text x="529" y="306" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5">Reflective boundary conditions</text>
+  <text x="529" y="322" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="600">Personal sensor CSV assimilation</text>
+
+  <!-- Box 3c -->
+  <rect x="517" y="348" width="176" height="72" rx="8" fill="#0f172a" stroke="#1e293b"/>
+  <text x="529" y="370" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="600">Multi-Format Exporters</text>
+  <text x="529" y="388" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5">Briefs, GeoJSON, CSV &amp; print</text>
+  <text x="529" y="404" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5">Audit-ready evidence reports</text>
+
+  <!-- Arrow 3 -> 4 -->
+  <path d="M 705 266 L 735 266" stroke="#06b6d4" stroke-width="2" stroke-dasharray="4 3"/>
+  <circle cx="720" cy="266" r="3" fill="#06b6d4"/>
+
+  <!-- Step 4: Interactive Frontend Atlas -->
+  <rect x="740" y="96" width="180" height="340" rx="12" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+  <rect x="740" y="96" width="180" height="4" rx="2" fill="url(#accentAmber)"/>
+  <text x="756" y="126" fill="#fbbf24" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="700" letter-spacing="0.08em">STAGE 4 · INTERFACE</text>
+  <text x="756" y="148" fill="#f1f5f9" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15" font-weight="600">React 19 &amp; Maps</text>
+
+  <!-- Box 4a -->
+  <rect x="752" y="166" width="156" height="68" rx="8" fill="#0f172a" stroke="#1e293b"/>
+  <text x="764" y="188" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="600">MapLibre GL Vector</text>
+  <text x="764" y="206" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5">High-perf WebWorker</text>
+  <text x="764" y="222" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5">Clustered national canvas</text>
+
+  <!-- Box 4b -->
+  <rect x="752" y="244" width="156" height="68" rx="8" fill="#0f172a" stroke="#1e293b"/>
+  <text x="764" y="266" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="600">National Explorer</text>
+  <text x="764" y="284" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5">Place drawer, monitor</text>
+  <text x="764" y="300" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5">deltas, emissions radius</text>
+
+  <!-- Box 4c -->
+  <rect x="752" y="322" width="156" height="98" rx="8" fill="#0f172a" stroke="#1e293b"/>
+  <text x="764" y="344" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="600">Local Investigation</text>
+  <text x="764" y="362" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5">Interactive sensor importer</text>
+  <text x="764" y="378" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5">Wind vector playback</text>
+  <text x="764" y="394" fill="#fbbf24" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="600">Real-time dispersion map</text>
+</svg>

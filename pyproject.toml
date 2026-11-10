@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "upwind"
 version = "0.1.0"
-description = "Local community air monitoring investigations and experimental scenario planning"
+description = "National map explorer and atmospheric dispersion engine for historical U.S. PM2.5 air pollution"
 readme = "README.md"
 license = "Apache-2.0"
 authors = [{ name = "Arnav Pandya" }]
@@ -23,6 +23,7 @@ upwind = "upwind.cli:main"
 [project.urls]
 Repository = "https://github.com/apandya55/Upwind"
 Documentation = "https://github.com/apandya55/Upwind#readme"
+Issues = "https://github.com/apandya55/Upwind/issues"
 
 [tool.vercel]
 entrypoint = "api.index:app"
