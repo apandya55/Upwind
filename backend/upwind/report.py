@@ -312,3 +312,13 @@ def evidence_report(inv):
 <h2>Model limitations & notes</h2><ul>{warnings}<li>Sensor coverage is discrete; unmonitored localized variations may not be captured.</li><li>Weather windows and wind vectors reflect retrospective observations.</li></ul>
 <h2>Run summary</h2><p>Model: {esc(result.get("model_version", "unrun"))}. Input hash: <code>{esc(result.get("input_hash", "unrun"))}</code>. Runtime: {esc(result.get("runtime_ms", "unrun"))} ms.</p><p>Results are generated from imported measurements and meteorological records. Raw CSV rows and full-precision coordinates are retained in the exported investigation JSON file.</p>
 <footer>UPWIND 0.1.0 · Open source atmospheric dispersion analysis.</footer></html>"""
+
+
+def static_evidence_report(title, pages):
+    """Render pre-escaped, trusted report sections as a script-free print artifact."""
+    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(title)}</title>
+<style>body{{margin:0;background:#e9eeef;color:#163440;font:15px/1.5 system-ui}}
+section{{box-sizing:border-box;max-width:850px;min-height:1000px;margin:24px auto;padding:48px;background:white}}
+h1{{font-size:32px;line-height:1.15}}h2{{font-size:22px}}img{{width:100%}}table{{border-collapse:collapse;width:100%;font-size:12px}}td,th{{padding:5px;border-bottom:1px solid #ccd8dc;text-align:left}}.note{{padding:14px;background:#edf4f4}}code{{overflow-wrap:anywhere}}a{{color:#006b74}}@page{{size:A4;margin:15mm}}@media print{{body{{background:white}}section{{margin:0;padding:0;min-height:0;break-after:page}}section:last-child{{break-after:auto}}}}</style></head>
+<body>{''.join('<section>'+page+'</section>' for page in pages)}</body></html>'''

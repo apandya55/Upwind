@@ -75,9 +75,8 @@ async def public_read_only_boundary(request: Request, call_next):
             return await call_next(request)
         if request.method not in {"GET", "HEAD"} or not _public_path_allowed(request):
             return Response("Not found", status_code=404)
-        # Compose exposes the API only to Caddy, which overwrites this header
-        # with the socket peer address. Keep a modest per-client ceiling for
-        # public reads; query results are separately bounded by each endpoint.
+        # Caddy replaces the forwarded header with the peer address.
+        # Rate limits apply per client; endpoints also cap result sizes.
         client_ip = _public_client_key(request)
         now = int(time.monotonic() // 60)
         if client_ip not in _public_rate_windows and len(_public_rate_windows) >= _PUBLIC_RATE_MAX_CLIENTS:
@@ -334,8 +333,7 @@ def national_sources(west: float | None = None, south: float | None = None, east
         )
     selected = [dict(row) for row in selected]
     for row in selected:
-        # EIS is the only traceable identity in this release. Keep the official
-        # archive URL and explicitly avoid inventing a per-facility URL.
+        # This release has EIS IDs and an archive URL, but no facility URLs.
         row.setdefault("facility_id", row.get("id"))
         row.setdefault("facility_record_url", None)
         row.update(_facility_identity(row))
@@ -369,8 +367,7 @@ def national_context(latitude: float, longitude: float, radius_km: float = 50.0,
     west, east = max(-180.0, longitude - lon_delta), min(180.0, longitude + lon_delta)
     south, north = max(-90.0, latitude - lat_delta), min(90.0, latitude + lat_delta)
     def all_candidates(name: str, predicate):
-        # query_bounds is deliberately paged: context counts and rankings must
-        # cover the whole radius even when its bounding box exceeds one page.
+        # Read every page so radius counts and rankings include all matches.
         page_size = 10000
         page, total = query_bounds(name, west, south, east, north, limit=page_size, offset=0, predicate=predicate)
         rows = list(page)

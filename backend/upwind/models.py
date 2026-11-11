@@ -190,8 +190,7 @@ class ArchivedPlan(Schema):
     method: str
     site_ids: list[str]
     cost: float = Field(ge=0)
-    # Numerical mutual-information integration can have a small negative estimate.
-    # Preserve it with its diagnostics instead of clipping archived evidence.
+    # Integration error can make this slightly negative; archive the raw score.
     score: float
     equipment: int = Field(ge=0, le=8)
     window: str

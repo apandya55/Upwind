@@ -1022,9 +1022,8 @@ def _fit_once(
         f"cell-{int(i):04d}-wind-{o:+07.2f}-speed-{s:.2f}" for i, o, s in configs
     ]
     if len(set(component_keys)) != len(component_keys):
-        # Very small but valid user speed uncertainty can collide at two decimal
-        # places. Preserve existing integration order otherwise; never merge
-        # scientifically distinct scenarios merely to make display keys unique.
+        # Two-decimal labels can collide for small speed differences.
+        # Use exact float keys without merging nodes or changing their order.
         component_keys = ["background"] + [
             f"node-{int(i)}-wind-{float(o).hex()}-speed-{float(s).hex()}"
             for i, o, s in configs
