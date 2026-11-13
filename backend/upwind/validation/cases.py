@@ -1,4 +1,22 @@
-"""Synthetic test case generator and reference fixtures."""
+# ==============================================================================
+# UPWIND ATMOSPHERIC VALIDATION SUITE: SYNTHETIC BENCHMARK FIXTURES
+# ==============================================================================
+#
+# This module provides deterministic synthetic fixtures used to stress-test the
+# Bayesian source inversion kernel against known ground-truth emission rates (Q),
+# advection wind vectors, sensor geometric configurations, and background fields.
+#
+# Methodological context:
+# Real-world sensor deployments face severe non-idealities:
+# 1. Low signal-to-to-noise ratio (SNR) near regional background levels (~10 ug/m^3).
+# 2. Geometric collinearity where sensors align with prevailing winds, degenerating
+#    the spatial Fisher Information Matrix.
+# 3. Meteorological uncertainty: local surface wind stations exhibit both speed bias
+#    (boundary layer drag) and directional veering (Ekman spiral).
+# 4. Moving baseline: diurnal boundary-layer height shifts create non-stationary backgrounds.
+#
+# The test cases enumerated below systematically probe these failure modes.
+# ==============================================================================
 
 import math
 from datetime import datetime, timezone
@@ -60,22 +78,55 @@ CANDIDATES = [
 
 
 def scalar_plume(point, source, q, speed, direction):
-    """Plain-math oracle: intentionally does not call the implementation kernel."""
+    """Plain-math analytical Gaussian plume oracle.
+    
+    This function intentionally acts as an independent ground-truth oracle:
+    it implements the steady-state Gaussian plume equations using direct
+    scalar arithmetic without calling into the vectorized C/NumPy kernel.
+    This guarantees that unit and regression tests catch any vectorization,
+    broadcasting, or numerical optimization discrepancies.
+
+    Governing physics:
+    C(x, y, z) = [Q / (2 * pi * u * sigma_y * sigma_z)]
+                 * exp(-0.5 * (y / sigma_y)^2)
+                 * [ exp(-0.5 * ((z - H) / sigma_z)^2) + exp(-0.5 * ((z + H) / sigma_z)^2) ]
+
+    Where:
+    - Q: Emission rate (ug/s)
+    - u: Wind speed along downwind axis (m/s)
+    - sigma_y, sigma_z: Lateral and vertical dispersion coefficients (m)
+    - H: Effective release height (5m stack height)
+    - z: Receptor height (2m breathing zone)
+    - Ground reflection is modeled via the virtual image source at -H.
+    """
     dx, dy = point[0] - source[0], point[1] - source[1]
     radians = math.radians(direction % 360)
+    
+    # Coordinate transformation: rotate Cartesian grid into plume wind-oriented frame
+    # down: distance along the downwind direction (x)
+    # across: perpendicular crosswind offset (y)
     down = -dx * math.sin(radians) - dy * math.cos(radians)
     across = dx * math.cos(radians) - dy * math.sin(radians)
+    
+    # Near-field cutoff (<20m) where Gaussian assumptions break down,
+    # and far-field radius boundary (>3000m) to preserve numerical precision.
     if down < 20 or math.hypot(dx, dy) > 3000:
         return 0.0
+
+    # Briggs Pasquill-Gifford Class D (neutral) dispersion parameterization:
     lateral = 0.08 * down / math.sqrt(1 + 0.0001 * down)
     vertical = 0.06 * down / math.sqrt(1 + 0.0015 * down)
+    
+    receptor_h = 2.0  # standard human breathing zone (2m AGL)
+    release_h = 5.0   # representative fugitive/low-stack emission height (5m AGL)
+    
     return (
         q
         / (2 * math.pi * speed * lateral * vertical)
         * math.exp(-(across**2) / (2 * lateral**2))
         * (
-            math.exp(-((2 - 5) ** 2) / (2 * vertical**2))
-            + math.exp(-((2 + 5) ** 2) / (2 * vertical**2))
+            math.exp(-((receptor_h - release_h) ** 2) / (2 * vertical**2))
+            + math.exp(-((receptor_h + release_h) ** 2) / (2 * vertical**2))
         )
     )
 
@@ -118,8 +169,11 @@ def make_case(case, seed, planning=False):
         datetime(2025, 7, 1, 10, t * 5, tzinfo=timezone.utc).isoformat()
         for t in range(3)
     ]
-    # Matched observational errors: independent measurement + shared instrument
-    # bias + spatially correlated, temporally shared model discrepancy.
+    # Error structure decomposition:
+    # 1. Independent observational sensor jitter: epsilon_obs ~ N(0, noise^2)
+    # 2. Sensor-specific calibration bias: beta_inst ~ N(0, 1^2)
+    # 3. Spatially correlated turbulent eddies / micrometeorological discrepancy:
+    #    eta_spatial ~ GP(0, K(d_ij)), where K(d) = exp(-d / 150m) exponential kernel
     points = np.asarray(xy)
     distance = np.linalg.norm(points[:, None, :] - points[None, :, :], axis=-1)
     spatial = rng.multivariate_normal(np.zeros(len(xy)), np.exp(-distance / 150))
