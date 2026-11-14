@@ -25,3 +25,17 @@ test("Vercel build sends National API reads to the configured API origin", async
   const apiRequest = await request;
   expect(apiRequest.method()).toBe("GET");
 });
+
+test('publication evidence and downloads are reachable', async ({ page, request }) => {
+  await page.goto('/landing');
+  await page.getByRole('link', { name: 'Methodology, benchmarks, and downloadable dataset →' }).click();
+  await expect(page.getByRole('heading', { name: 'Evidence you can inspect' })).toBeVisible();
+  for (const path of ['/research/upwind_nc_air_quality.parquet', '/research/evaluation.json', '/research/DATA_DICTIONARY.md', '/reports/nc-school-corridors-2026.pdf']) {
+    const response = await request.get(path);
+    expect(response.status()).toBe(200);
+    expect((await response.body()).length).toBeGreaterThan(100);
+  }
+  await page.getByRole('link', { name: 'Three-page county evidence report' }).click();
+  await expect(page.locator('section')).toHaveCount(3);
+  await expect(page.getByText(/NOT ESTIMABLE/)).toBeVisible();
+});

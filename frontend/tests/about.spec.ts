@@ -14,7 +14,7 @@ for (const viewport of [
     });
 
     await page.goto("/about");
-    await expect(page.getByRole("heading", { name: "A public atlas for exploring historical air-quality evidence." })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Explore historical air quality." })).toBeVisible();
     await expect(page.getByText("76,404", { exact: true })).toBeVisible();
     await expect(page.getByText("32,333", { exact: true })).toBeVisible();
     await expect(page.getByText("894", { exact: true })).toBeVisible();
