@@ -197,6 +197,11 @@ export default function Navbar({
                 </div>
               </a>
 
+              <a href="/research/" className="app-menu-link national-menu-item" onClick={handleClose}>
+                <div className="app-menu-icon menu-item-icon"><FileText size={16} /></div>
+                <div className="app-menu-content menu-item-text"><strong>Evidence &amp; Downloads</strong><span>Reproducible dataset, reports, and benchmarks</span></div>
+              </a>
+
               <a
                 href="/methodology"
                 className={`app-menu-link national-menu-item ${active === "methodology" ? "active" : ""}`}

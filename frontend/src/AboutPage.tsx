@@ -19,11 +19,11 @@ export default function AboutPage() {
 
         <header className="about-hero">
           <span className="about-kicker">About UPWIND</span>
-          <h1>A public atlas for exploring historical air-quality evidence.</h1>
+          <h1>Explore historical air quality.</h1>
           <p className="about-hero-lead">
             UPWIND puts annual PM2.5 estimates, measurements from EPA monitoring
-            sites, and emissions inventory records on one map. Each layer keeps
-            its own meaning and limitations visible.
+            sites, and emissions records on one map. You can check where each
+            value came from and what it can tell you.
           </p>
         </header>
 

@@ -136,8 +136,7 @@ export default function Landing() {
             </h1>
             <p className="landing-deck">
               Compare annual estimates with EPA monitor measurements and nearby
-              emissions inventory records. Each record keeps its source and
-              limits in view.
+              emissions records. Check the sources and limits behind each value.
             </p>
             <div className="hero-actions">
               <a className="button button-primary" href="/explore">
@@ -174,6 +173,12 @@ export default function Landing() {
         <div id="atlas-story">
           <StorySection />
         </div>
+        <aside className="landing-shell" aria-label="North Carolina evidence report">
+          <h2>Evidence you can inspect</h2>
+          <p><a href="/research/">Methodology, benchmarks, and downloadable dataset →</a></p>
+          <p>Annual PM2.5 readings in Durham and Mecklenburg, with tables you can download. The report also explains why these data cannot show commute peaks or school exposure.</p>
+          <p><a href="/reports/nc-school-corridors-2026.html">Read the empirical evidence report →</a>{" · "}<a href="/reports/nc-school-corridors-2026.pdf">Download PDF</a>{" · "}<a href="/reports/nc-school-corridors-2026-summary.csv">Download data table</a></p>
+        </aside>
         <CoverageEvidence />
         <section className="final-cta">
           <div className="landing-shell final-cta-inner">

@@ -1,3 +1,19 @@
+/**
+ * EvidenceMap: High-Performance WebGL/MapLibre GL National Air Quality Canvas
+ * ----------------------------------------------------------------------------
+ * Renders nationwide EPA AQS monitoring stations, NEI industrial emission sources,
+ * and Census place-level PM2.5 exposure estimates at 60 FPS across desktop and mobile.
+ *
+ * Engineering optimizations:
+ * 1. Dedicated Web Worker: Offloads GeoJSON parsing, tile decoding, and vector
+ *    math off the main UI thread via `/maplibre-gl-worker.mjs`.
+ * 2. Supercluster GPU Aggregation: Dynamically clusters dense facility and monitor
+ *    networks at continental zoom levels, expanding into individual interactive
+ *    point markers as the user zooms into urban air basins.
+ * 3. Fallback Resilience: Gracefully recovers from OpenStreetMap tile CDN rate-limits
+ *    or network timeouts via custom canvas error handlers.
+ */
+
 import { useEffect, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import { Map as MapLibreMap, Marker as MapLibreMarker, config as maplibreConfig } from "maplibre-gl";
