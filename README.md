@@ -2,7 +2,10 @@
 
 # Upwind
 
-**An open-source national atlas and atmospheric dispersion engine for historical U.S. fine particulate matter ($\text{PM}_{2.5}$) pollution.**
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24229463.svg)](https://doi.org/10.5281/zenodo.24229463)
+[![Hugging Face Dataset](https://img.shields.io/badge/Hugging_Face-Dataset-FFD21E?logo=huggingface)](https://huggingface.co/datasets/epple0/upwind-nc-air-quality)
+
+**A map of historical U.S. fine particulate matter ($\text{PM}_{2.5}$) pollution, with a local dispersion-modeling workspace.**
 
 [![CI Release Checks](https://github.com/apandya55/Upwind/actions/workflows/ci.yml/badge.svg)](https://github.com/apandya55/Upwind/actions/workflows/ci.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
@@ -31,16 +34,16 @@
 
 ## Why Upwind?
 
-Most public air-quality trackers show one of two extremes: real-time AQI dials or county-wide annual averages. County averages mask stark neighborhood differences, while raw federal environmental archives sit in gigabytes of multi-table spreadsheets that require dedicated GIS software to unpack.
+UPWIND brings EPA monitor readings, annual place estimates, and emissions records together on a map. You can inspect the source behind each value and download the results.
 
-Upwind takes federal environmental records and maps them into a fast, transparent, and place-by-place explorer across the contiguous United States:
+The national release includes:
 
-1. **31,000+ U.S. Census Places**: Modeled annual $\text{PM}_{2.5}$ estimates grounded at Gazetteer internal points, bound by empirical $\pm 4.12\ \mu\text{g/m}^3$ 90% confidence intervals. Places beyond the 90th percentile distance from any reference monitor are explicitly withheld rather than guessed.
+1. **31,000+ U.S. Census Places**: Modeled annual $\text{PM}_{2.5}$ estimates at Gazetteer internal points, with empirical $\pm 4.12\ \mu\text{g/m}^3$ 90% error bands. The release model sets the distance limit for publishing estimates.
 2. **894 Physical EPA Reference Monitors**: Official Air Quality System (AQS) stations showing multi-year historical readings, monitor design values, and sampling event history.
 3. **76,400+ Industrial Facilities**: The full EPA National Emissions Inventory (NEI) with reported annual filterable and primary $\text{PM}_{2.5}$ tonnages.
 
 > [!IMPORTANT]
-> **Proximity does not equal causation.** Seeing an industrial facility near a town does not prove that factory caused local air readings. Upwind keeps physical monitor measurements, place estimates, and emissions inventories visually and conceptually separate so you can see where the data ends and where conjecture begins.
+> **Proximity does not equal causation.** Seeing an industrial facility near a town does not prove that factory caused local air readings. Upwind keeps physical monitor measurements, place estimates, and emissions inventories visually and conceptually separate so they can be interpreted separately.
 
 ---
 
@@ -55,22 +58,22 @@ Search any U.S. Census town, borough, or city. Review its estimated annual $\tex
 </div>
 
 ### 2. Local Investigation Workspace (`/workspace`)
-An in-browser laboratory for community science. Import custom sensor CSVs (PurpleAir, Sensirion, or custom hardware) alongside local weather logs (wind speed, wind direction, temperature) to run real-time Briggs Gaussian plume dispersion simulations and evaluate upwind source hypotheses.
+Run the workspace locally to import sensor CSVs and weather logs, fit Briggs Gaussian plume models, and compare possible source locations. The public site does not accept uploads.
 
 ### 3. Methodology & Scientific Notes (`/methodology`)
-Complete documentation of our data intake criteria, nearest-monitor spatial assignment, 5-fold cross-validation results, and empirical error bands.
+Data intake criteria, nearest-monitor spatial assignment, 5-fold cross-validation results, and empirical error bands.
 
 ---
 
 ## System Architecture
 
-Upwind is structured around a decoupled data pipeline, a high-performance backend, and a reactive vector-tile frontend:
+The Python pipeline prepares the data, FastAPI serves it, and the React frontend displays the map:
 
 <div align="center">
   <img src="docs/assets/architecture.svg" alt="Upwind Architecture Diagram" width="100%" style="border-radius: 8px; border: 1px solid #334155;" />
 </div>
 
-- **Frontend**: React 19, TypeScript, Vite, MapLibre GL with custom Web Workers for fluid pan-and-zoom across 76,000+ points without main-thread jank.
+- **Frontend**: React 19, TypeScript, Vite, and MapLibre GL.
 - **Backend**: FastAPI with strict Pydantic schemas, spatial radius indexing, and Briggs Gaussian plume dispersion kernels.
 - **Data Engine**: Python pipelines compiling EPA AQS, EPA NEI, U.S. Census Gazetteer, and OpenStreetMap road layers into compact release artifacts.
 
@@ -134,10 +137,10 @@ Upwind builds its national dataset reproducibly from official government publica
 
 ## Verification & Testing
 
-The repository maintains an extensive test suite verifying mathematical kernels, boundary conditions, edge cases, and API contracts:
+Tests cover the model math, input validation, APIs, and browser workflows:
 
 ```bash
-# Run all 228 backend tests
+# Run backend tests
 .venv/bin/python -m pytest backend/tests
 
 # Typecheck and compile frontend bundle
@@ -154,13 +157,13 @@ npx playwright test
 
 - **Annual retrospective view**: Upwind is designed for research, baseline comparisons, and historical investigations. It is not an active wildfire tracking tool or real-time emergency alert system.
 - **Point-level approximations**: Census estimates represent Gazetteer internal points, not citywide averages. In geographically vast municipalities, conditions vary substantially across town limits.
-- **Zero data fabrication**: If a place is located beyond the 90th percentile distance of reference monitors ($> 75\ \text{km}$), Upwind withholds the estimate rather than inventing a number.
+- **Limited spatial coverage**: The release model sets a maximum supported distance to a monitor. Estimates outside that range are withheld.
 
 ---
 
 ## Contributing
 
-Contributions, bug reports, and research discussions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md) before opening a pull request.
+Bug reports and contributions are welcome. Please read our [Contributing Guide](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md) before opening a pull request.
 
 ---
 
@@ -174,7 +177,8 @@ If you use Upwind in academic work, policy research, or environmental analyses, 
   title = {Upwind: An Open-Source National Atlas for Historical Air Pollution Exploration},
   year = {2026},
   url = {https://github.com/apandya55/Upwind},
-  license = {Apache-2.0}
+  license = {Apache-2.0},
+  doi = {10.5281/zenodo.24229463}
 }
 ```
 
@@ -185,3 +189,16 @@ See [CITATION.cff](CITATION.cff) for complete citation metadata.
 ## License
 
 Source code is released under the [Apache-2.0 License](LICENSE). Upstream public data records remain subject to their respective U.S. government open-data terms.
+
+## Reproducible annual evidence release
+
+The publication workflow exports 160 NC annual observations at 23 physical stations, evaluates spatial holdouts, generates the county report, and packages checksummed inputs, outputs, and source:
+
+```sh
+python -m pip install -r requirements-publication.lock
+python scripts/publication_release.py
+```
+
+See [publication instructions](publication/README.md), [dataset dictionary](DATA_DICTIONARY.md), [benchmarks](BENCHMARKS.md), and [county evidence report](reports/nc-school-corridors-2026.html). The report documents annual observations and evidence gaps; it does not establish commute peaks, AQI spikes, or school-corridor exposure. Weather is absent from this snapshot. The public downloads live at `/research/` after deployment.
+
+Published artifacts: [Zenodo software archive](https://doi.org/10.5281/zenodo.24229463) · [Hugging Face dataset](https://huggingface.co/datasets/epple0/upwind-nc-air-quality).
